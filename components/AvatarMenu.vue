@@ -20,32 +20,49 @@
       </v-btn>
     </template>
     <v-card elevation="0">
-      <v-list class="text-center">
+      <v-list>
+        <v-sheet
+          height="1"
+          width="129"
+          color="secondary"
+          class="ml-4"
+        ></v-sheet>
         <v-list-item
           color="primary"
           dense
           to="/profile"
-          class="text-primary text-center"
+          :style="{
+            color: '#2D7BF0',
+            textAlign: 'center',
+            fontSize: '14px',
+          }"
         >
-          Profil Düzenle
+          <span class="mx-auto"> Profil Düzenle </span>
         </v-list-item>
-        <v-sheet height="1" color="secondary"></v-sheet>
-        <v-list-item color="primary" dense to="/ilan">
-          İlan Oluştur
-        </v-list-item>
-        <v-divider></v-divider>
+        <v-sheet
+          height="1"
+          width="129"
+          color="secondary"
+          class="ml-4"
+        ></v-sheet>
         <v-list-item
           color="primary"
           dense
-          to="/profile"
-          class="text-primary text-center"
+          to="/ilan"
+          :style="{
+            color: '#2D7BF0',
+            textAlign: 'center',
+            fontSize: '14px',
+          }"
         >
-          Profil Düzenle
+          <span class="mx-auto"> İlan oluştur </span>
         </v-list-item>
-        <v-divider></v-divider>
-        <v-list-item color="primary" dense to="/ilan">
-          İlan Oluştur
-        </v-list-item>
+        <v-sheet
+          height="1"
+          width="129"
+          color="secondary"
+          class="ml-4"
+        ></v-sheet>
       </v-list>
     </v-card>
   </v-menu>
