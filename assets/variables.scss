@@ -2,3 +2,25 @@
 //
 // The variables you want to modify
 // $font-size-root: 20px;
+@import '~vuetify/src/styles/styles.sass';
+
+// @media only screen and (min-width: map-get($grid-breakpoints, 'lg')) {
+//   .container {
+//     max-width: 1200px !important;
+//   }
+// }
+$container-max-widths: (
+  'lg': 1157px,
+);
+.container {
+  padding: 0px 8px;
+}
+.v-toolbar__content,
+.v-toolbar__extension {
+  padding: 4px 0px;
+}
+$rounded: (
+  'lg': $border-radius-root * 2,
+  'xl': $border-radius-root * 3,
+);
+$menu-content-elevation: 3 !default;
