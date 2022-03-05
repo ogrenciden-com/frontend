@@ -18,10 +18,13 @@ $container-max-widths: (
 }
 .v-toolbar__content,
 .v-toolbar__extension {
-  padding: 4px 0px;
+  padding: 0px 0px;
 }
 $rounded: (
   'lg': $border-radius-root * 2,
   'xl': $border-radius-root * 3,
 );
 $menu-content-elevation: 3 !default;
+.v-sheet--outlined {
+  border-width: 0.3px;
+}
