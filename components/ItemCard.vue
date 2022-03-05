@@ -1,12 +1,6 @@
 <template>
-  <v-sheet outlined color="darkGrey" rounded max-width="230">
-    <v-card
-      outlined
-      color="secondary"
-      flat
-      nuxt="/detail/1234"
-      class="px-2 py-3"
-    >
+  <v-sheet outlined color="darkGrey" rounded>
+    <v-card outlined color="secondary" flat class="px-2 py-3">
       <v-carousel
         v-model="model"
         hide-delimiters
