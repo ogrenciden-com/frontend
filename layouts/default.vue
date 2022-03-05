@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-container class="">
+    <v-container>
       <v-main>
         <v-app-bar width="1157" color="white" height="72" elevation="0">
           <!-- 
@@ -23,6 +23,11 @@
           >
           <avatar-menu />
         </v-app-bar>
+        <v-sheet
+          height="2px"
+          color="secondary"
+          :style="{ marginBottom: '100px' }"
+        ></v-sheet>
         <Nuxt />
       </v-main>
     </v-container>
