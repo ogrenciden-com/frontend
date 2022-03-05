@@ -6,7 +6,7 @@
         outlined
         elevation="0"
         height="48"
-        class="rounded-lg px-1"
+        class="rounded-lg pr-3 pl-4"
         :style="{ lineHeight: '18px' }"
         v-bind="attrs"
         v-on="on"
