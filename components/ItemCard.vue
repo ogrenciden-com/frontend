@@ -5,7 +5,10 @@
         v-model="model"
         hide-delimiters
         show-arrows-on-hover
-        touch
+        :touch="{
+          left: () => model++,
+          right: () => model--,
+        }"
         height="190"
       >
         <v-carousel-item v-for="link in links" :key="link">

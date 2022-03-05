@@ -12,13 +12,24 @@
       dense
     ></v-select>
     <v-select
-      :items="items"
+      :items="university"
       label="Üniversite"
       background-color="secondary"
       color="darkGrey"
-      class="mb-8"
+      class="mb-8 text-caption"
       flat
       hide-details
+      solo
+      dense
+    ></v-select>
+    <v-select
+      :items="items"
+      label="Kampüs"
+      background-color="secondary"
+      color="darkGrey"
+      class="mb-8"
+      hide-details
+      flat
       solo
       dense
     ></v-select>
@@ -52,17 +63,7 @@
         color="darkGrey"
       ></v-text-field>
     </div>
-    <v-select
-      :items="items"
-      label="Kampüs"
-      background-color="secondary"
-      color="darkGrey"
-      class="mb-8"
-      hide-details
-      flat
-      solo
-      dense
-    ></v-select>
+
     <v-select
       :items="items"
       label="Kategori"
@@ -83,6 +84,11 @@ export default {
     return {
       items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
     }
+  },
+  computed: {
+    university() {
+      return this.$store.state.university.list
+    },
   },
 }
 </script>
