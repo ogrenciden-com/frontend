@@ -2,7 +2,7 @@
   <v-row>
     <v-col order="last" order-md="first" cols="8" class="col-12 col-md-8">
       <v-row>
-        <v-col v-for="j in 10" :key="j">
+        <v-col v-for="j in 100" :key="j">
           <item-card class="mx-auto" />
         </v-col>
       </v-row>

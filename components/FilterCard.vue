@@ -16,7 +16,7 @@
       label="Üniversite"
       background-color="secondary"
       color="darkGrey"
-      class="mb-8"
+      class="mb-8 text-caption"
       flat
       hide-details
       solo
