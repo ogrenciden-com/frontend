@@ -1,5 +1,5 @@
 <template>
-  <v-sheet outlined color="darkGrey" rounded>
+  <v-sheet outlined color="darkGrey" rounded max-width="232px">
     <v-card outlined color="secondary" flat class="px-2 py-3">
       <v-carousel
         v-model="model"
