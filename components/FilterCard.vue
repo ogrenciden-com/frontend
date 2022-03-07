@@ -1,52 +1,27 @@
 <template>
   <v-card outlined flat class="px-5 py-3" width="100%">
-    <v-select
-      :items="items"
-      label="Sıralama"
-      background-color="secondary"
-      color="darkGrey"
-      class="mb-8"
-      hide-details
-      flat
-      solo
-      dense
-    ></v-select>
-    <v-select
+    <select-box :items="items" label="Sıralama" />
+    <select-box
       :items="university"
       label="Üniversite"
-      background-color="secondary"
-      color="darkGrey"
-      class="mb-8 text-caption"
-      flat
-      hide-details
-      solo
-      dense
-    ></v-select>
-    <v-select
-      :items="items"
-      label="Kampüs"
-      background-color="secondary"
-      color="darkGrey"
-      class="mb-8"
-      hide-details
-      flat
-      solo
-      dense
-    ></v-select>
+      classes="mb-8 text-caption"
+    />
+    <select-box :items="items" label="Kampüs" />
+
     <div class="d-flex">
       <v-text-field
         placeholder="En Az"
         class="mb-8 mr-1 text-left"
-        flat
         type="currency"
-        hide-details
-        hide-spin-buttons
-        reverse
         append-icon="mdi-currency-try"
-        dense
-        outlined
         background-color="white"
         color="darkGrey"
+        hide-details
+        hide-spin-buttons
+        flat
+        reverse
+        dense
+        outlined
       ></v-text-field>
       <v-text-field
         placeholder="En Çok"
@@ -63,23 +38,17 @@
         color="darkGrey"
       ></v-text-field>
     </div>
+    <select-box :items="items" label="Kategori" />
 
-    <v-select
-      :items="items"
-      label="Kategori"
-      background-color="secondary"
-      hide-details
-      color="darkGrey"
-      class="mb-8"
-      flat
-      solo
-      dense
-    ></v-select>
     <v-btn color="primary" elevation="0" width="100%"> Uygula </v-btn>
   </v-card>
 </template>
 <script>
+import SelectBox from '@/components/SelectBox.vue'
 export default {
+  components: {
+    SelectBox,
+  },
   data() {
     return {
       items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
