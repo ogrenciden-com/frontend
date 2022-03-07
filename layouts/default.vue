@@ -19,6 +19,7 @@
             width="150"
             elevation="0"
             class="rounded-lg d-none d-sm-flex mr-7"
+            @click="advertModal = !advertModal"
             >İlan oluştur</v-btn
           >
           <avatar-menu />
@@ -28,6 +29,9 @@
           color="secondary"
           :style="{ marginBottom: '100px' }"
         ></v-sheet>
+        <v-dialog v-model="advertModal" max-width="680" width="100%">
+          <advert-modal />
+        </v-dialog>
         <Nuxt />
       </v-main>
     </v-container>
@@ -38,12 +42,19 @@
 import BrandLogo from '@/components/BrandLogo.vue'
 import SearchBox from '@/components/SearchBox.vue'
 import AvatarMenu from '@/components/AvatarMenu.vue'
+import AdvertModal from '@/components/AdvertModal.vue'
 export default {
   name: 'DefaultLayout',
   components: {
     BrandLogo,
     SearchBox,
     AvatarMenu,
+    AdvertModal,
+  },
+  data() {
+    return {
+      advertModal: false,
+    }
   },
 }
 </script>
