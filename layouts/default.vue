@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app class="myFont">
     <v-container>
       <v-main>
         <v-app-bar width="1157" color="white" height="72" elevation="0">
@@ -22,7 +22,17 @@
             @click="advertModal = !advertModal"
             >İlan oluştur</v-btn
           >
-          <avatar-menu />
+          <avatar-menu v-if="isThereUser" />
+          <v-btn
+            v-else
+            outlined
+            color="primary"
+            height="48"
+            elevation="0"
+            class="rounded-lg"
+            @click="loginModal = !loginModal"
+            >Giriş yap / Kayıt ol</v-btn
+          >
         </v-app-bar>
         <v-sheet
           height="2px"
@@ -31,6 +41,14 @@
         ></v-sheet>
         <v-dialog v-model="advertModal" max-width="680" width="100%">
           <advert-modal />
+        </v-dialog>
+        <v-dialog
+          v-model="loginModal"
+          max-width="1000"
+          class="rounded-xl"
+          hide-overlay
+        >
+          <login-modal />
         </v-dialog>
         <Nuxt />
       </v-main>
@@ -43,6 +61,8 @@ import BrandLogo from '@/components/BrandLogo.vue'
 import SearchBox from '@/components/SearchBox.vue'
 import AvatarMenu from '@/components/AvatarMenu.vue'
 import AdvertModal from '@/components/AdvertModal.vue'
+import LoginModal from '@/components/LoginModal.vue'
+
 export default {
   name: 'DefaultLayout',
   components: {
@@ -50,11 +70,21 @@ export default {
     SearchBox,
     AvatarMenu,
     AdvertModal,
+    LoginModal,
   },
   data() {
     return {
       advertModal: false,
+      isThereUser: false,
+      loginModal: false,
     }
   },
 }
 </script>
+<style >
+.myFont {
+  font-family: 'Oxygen';
+}
+</style>
+
+</style>
