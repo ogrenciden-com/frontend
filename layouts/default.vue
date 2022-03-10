@@ -1,5 +1,5 @@
 <template>
-  <v-app class="myFont">
+  <v-app>
     <v-container>
       <v-main>
         <v-app-bar width="1157" color="white" height="72" elevation="0">
@@ -70,21 +70,14 @@ export default {
     SearchBox,
     AvatarMenu,
     AdvertModal,
-    LoginModal,
+    LoginModal
   },
   data() {
     return {
       advertModal: false,
       isThereUser: false,
-      loginModal: false,
+      loginModal: false
     }
-  },
+  }
 }
 </script>
-<style >
-.myFont {
-  font-family: 'Oxygen';
-}
-</style>
-
-</style>
