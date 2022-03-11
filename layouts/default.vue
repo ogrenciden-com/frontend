@@ -19,7 +19,7 @@
             width="150"
             elevation="0"
             class="rounded-lg d-none d-sm-flex mr-7"
-            @click="advertModal = !advertModal"
+            @click="advertToggle"
             >İlan oluştur</v-btn
           >
           <avatar-menu v-if="isThereUser" />
@@ -30,7 +30,7 @@
             height="48"
             elevation="0"
             class="rounded-lg"
-            @click="loginModal = !loginModal"
+            @click="loginToggle()"
             >Giriş yap / Kayıt ol</v-btn
           >
         </v-app-bar>
@@ -39,7 +39,13 @@
           color="secondary"
           :style="{ marginBottom: '100px' }"
         ></v-sheet>
-        <v-dialog v-model="advertModal" max-width="680" width="100%">
+        <v-dialog
+          v-model="advertModal"
+          max-width="680"
+          width="100%"
+          @click:outside="advertToggle"
+          @keydown="advertToggle"
+        >
           <advert-modal />
         </v-dialog>
         <v-dialog
@@ -47,6 +53,8 @@
           max-width="1000"
           class="rounded-xl"
           hide-overlay
+          @click:outside="loginToggle"
+          @keydown="loginToggle"
         >
           <login-modal />
         </v-dialog>
@@ -62,7 +70,7 @@ import SearchBox from '@/components/SearchBox.vue'
 import AvatarMenu from '@/components/AvatarMenu.vue'
 import AdvertModal from '@/components/AdvertModal.vue'
 import LoginModal from '@/components/LoginModal.vue'
-
+import { mapMutations } from 'vuex'
 export default {
   name: 'DefaultLayout',
   components: {
@@ -70,14 +78,26 @@ export default {
     SearchBox,
     AvatarMenu,
     AdvertModal,
-    LoginModal
+    LoginModal,
   },
   data() {
     return {
-      advertModal: false,
       isThereUser: false,
-      loginModal: false
     }
-  }
+  },
+  methods: {
+    ...mapMutations({
+      loginToggle: 'loginToggle',
+      advertToggle: 'advertToggle',
+    }),
+  },
+  computed: {
+    loginModal() {
+      return this.$store.state.loginModal
+    },
+    advertModal() {
+      return this.$store.state.advertModal
+    },
+  },
 }
 </script>

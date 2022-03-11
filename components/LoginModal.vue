@@ -14,7 +14,7 @@
       >
         <div class="d-flex justify-space-between align-center">
           <v-spacer></v-spacer>
-          <v-btn class="mt-3" icon>
+          <v-btn class="mt-3" icon @click="loginToggle">
             <v-icon color="black">mdi-close</v-icon>
           </v-btn>
         </div>
@@ -124,7 +124,7 @@ import MailIcon from '@/components/Icons/MailIcon.vue'
 import EyeIcon from '@/components/Icons/EyeIcon.vue'
 import EyeHiddenIcon from '@/components/Icons/EyeHiddenIcon.vue'
 import BrandLogo from '@/components/BrandLogo.vue'
-
+import { mapMutations } from 'vuex'
 export default {
   components: {
     IconVektor,
@@ -139,6 +139,11 @@ export default {
       password: '',
       email: '',
     }
+  },
+  methods: {
+    ...mapMutations({
+      loginToggle: 'loginToggle',
+    }),
   },
 }
 </script>
