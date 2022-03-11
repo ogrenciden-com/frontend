@@ -26,11 +26,12 @@
           <v-btn
             v-else
             outlined
+            nuxt
+            to="/auth/login"
             color="primary"
             height="48"
             elevation="0"
             class="rounded-lg"
-            @click="loginToggle()"
             >Giriş yap / Kayıt ol</v-btn
           >
         </v-app-bar>
@@ -47,16 +48,6 @@
           @keydown="advertToggle"
         >
           <advert-modal />
-        </v-dialog>
-        <v-dialog
-          v-model="loginModal"
-          max-width="1000"
-          class="rounded-xl"
-          hide-overlay
-          @click:outside="loginToggle"
-          @keydown="loginToggle"
-        >
-          <login-modal />
         </v-dialog>
         <Nuxt />
       </v-main>
@@ -87,14 +78,10 @@ export default {
   },
   methods: {
     ...mapMutations({
-      loginToggle: 'loginToggle',
       advertToggle: 'advertToggle',
     }),
   },
   computed: {
-    loginModal() {
-      return this.$store.state.loginModal
-    },
     advertModal() {
       return this.$store.state.advertModal
     },
