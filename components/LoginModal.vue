@@ -14,7 +14,7 @@
       >
         <div class="d-flex justify-space-between align-center">
           <v-spacer></v-spacer>
-          <v-btn class="mt-3" icon>
+          <v-btn class="mt-3" icon @click="loginToggle">
             <v-icon color="black">mdi-close</v-icon>
           </v-btn>
         </div>
@@ -73,6 +73,7 @@
             >
             </v-text-field>
             <nuxt-link
+              v-if="false"
               to="/sifremi-unuttum"
               class="
                 primary--text
@@ -84,7 +85,7 @@
               "
               >Şifremi unuttum</nuxt-link
             >
-            <div class="d-flex justify-center mt-3">
+            <div class="d-flex justify-center mt-8">
               <v-btn
                 class="
                   text-body-1
@@ -95,6 +96,7 @@
                 "
                 color="primary"
                 elevation="0"
+                @click="submit()"
               >
                 Giriş yap
               </v-btn>
@@ -104,10 +106,7 @@
               :style="{ position: 'absolute', bottom: '30px' }"
             >
               Hesabın yok mu?
-              <nuxt-link
-                to="/giris-yap"
-                class="primary--text text-decoration-none"
-              >
+              <nuxt-link to="/" class="primary--text text-decoration-none">
                 Hesap oluştur.
               </nuxt-link>
             </span>
@@ -124,7 +123,7 @@ import MailIcon from '@/components/Icons/MailIcon.vue'
 import EyeIcon from '@/components/Icons/EyeIcon.vue'
 import EyeHiddenIcon from '@/components/Icons/EyeHiddenIcon.vue'
 import BrandLogo from '@/components/BrandLogo.vue'
-
+import { mapMutations } from 'vuex'
 export default {
   components: {
     IconVektor,
@@ -139,6 +138,17 @@ export default {
       password: '',
       email: '',
     }
+  },
+  methods: {
+    ...mapMutations({
+      loginToggle: 'loginToggle',
+    }),
+    submit() {
+      const form = { email: this.email, password: this.password }
+      this.email = ''
+      this.password = ''
+      console.log(form)
+    },
   },
 }
 </script>
