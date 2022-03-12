@@ -45,7 +45,7 @@
           max-width="680"
           width="100%"
           @click:outside="advertToggle"
-          @keydown="advertToggle"
+          @keydown.esc="advertToggle"
         >
           <advert-modal />
         </v-dialog>
@@ -73,7 +73,7 @@ export default {
   },
   data() {
     return {
-      isThereUser: false,
+      isThereUser: true,
     }
   },
   methods: {

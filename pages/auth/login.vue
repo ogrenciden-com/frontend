@@ -36,6 +36,7 @@
         outlined
         solo
         flat
+        autofocus
         placeholder="Lütfen E-posta adresinizi girin"
         height="32"
         color="darkGrey"
@@ -125,6 +126,7 @@ export default {
   methods: {
     submit() {
       console.log(this.form)
+      this.$router.push('/')
     },
   },
 }

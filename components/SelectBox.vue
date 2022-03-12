@@ -9,6 +9,7 @@
     flat
     solo
     dense
+    :outlined="outlined"
   ></v-select>
 </template>
 <script>
@@ -25,6 +26,10 @@ export default {
     classes: {
       type: String,
       default: 'mb-8',
+    },
+    outlined: {
+      type: Boolean,
+      default: false,
     },
   },
 }

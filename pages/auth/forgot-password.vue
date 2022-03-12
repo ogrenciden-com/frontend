@@ -15,6 +15,7 @@
       <v-text-field
         v-model="email"
         outlined
+        autofocus
         solo
         flat
         placeholder="Lütfen E-posta adresinizi girin"
