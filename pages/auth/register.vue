@@ -35,6 +35,7 @@
           v-model="form.name"
           outlined
           solo
+          autofocus
           flat
           placeholder="Ad"
           height="32"
