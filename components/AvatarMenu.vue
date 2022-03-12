@@ -32,7 +32,6 @@
           dense
           to="/profile"
           :style="{
-            color: '#2D7BF0',
             textAlign: 'center',
             fontSize: '14px',
           }"
@@ -48,9 +47,8 @@
         <v-list-item
           color="primary"
           dense
-          to="/ilan"
+          @click="advertToggle"
           :style="{
-            color: '#2D7BF0',
             textAlign: 'center',
             fontSize: '14px',
           }"
@@ -68,3 +66,13 @@
   </v-menu>
 </template>
 <script>
+import { mapMutations } from 'vuex'
+
+export default {
+  methods: {
+    ...mapMutations({
+      advertToggle: 'advertToggle',
+    }),
+  },
+}
+</script>
