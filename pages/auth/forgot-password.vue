@@ -3,7 +3,7 @@
     flat
     color="white"
     rounded="lg"
-    max-width="410"
+    max-width="510"
     width="100%"
     height="270"
     class="px-4 py-2"
@@ -43,12 +43,13 @@
       >
       <div class="d-flex justify-center mt-4">
         <v-btn
-          class="text-body-1 font-weight-bold text-transform-none py-6 px-10"
+          class="text-body-1 font-weight-bold text-transform-none py-4"
+          width="100%"
           color="primary"
           elevation="0"
           @click="submit()"
         >
-          E-mail Yolla
+          E-mail gönder
         </v-btn>
       </div>
     </form>

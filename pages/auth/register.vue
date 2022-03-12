@@ -16,7 +16,10 @@
       color="primary"
       width="100%"
       class="font-weight-bold mt-2 text-transform-none"
-      >Google ile giriş yap</v-btn
+      :style="{ position: 'relative' }"
+    >
+      <google-icon :style="{ position: 'absolute', left: '4px' }" />
+      Google ile giriş yap</v-btn
     >
     <div class="mt-8 mb-2">
       <v-divider></v-divider>
@@ -117,11 +120,14 @@ import MailIcon from '@/components/Icons/MailIcon.vue'
 import EyeIcon from '@/components/Icons/EyeIcon.vue'
 import EyeHiddenIcon from '@/components/Icons/EyeHiddenIcon.vue'
 import BrandLogo from '@/components/BrandLogo.vue'
+import GoogleIcon from '@/components/Icons/GoogleIcon.vue'
+
 export default {
   layout: 'auth',
   components: {
     BrandLogo,
     MailIcon,
+    GoogleIcon,
     EyeHiddenIcon,
     EyeIcon,
   },
