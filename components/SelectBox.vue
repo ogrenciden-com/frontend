@@ -2,14 +2,16 @@
   <v-select
     :items="items"
     :label="label"
+    :outlined="outlined"
+    :class="classes"
+    v-model="item"
+    @change="updateValue"
     background-color="secondary"
     color="darkGrey"
-    :class="classes"
     hide-details
     flat
     solo
     dense
-    :outlined="outlined"
   ></v-select>
 </template>
 <script>
@@ -18,6 +20,10 @@ export default {
     items: {
       type: Array,
       default: undefined,
+    },
+    value: {
+      type: String,
+      default: '',
     },
     label: {
       type: String,
@@ -30,6 +36,26 @@ export default {
     outlined: {
       type: Boolean,
       default: false,
+    },
+  },
+  data() {
+    return {
+      item: '',
+    }
+  },
+  created() {
+    if (this.value) {
+      this.item = this.value
+    }
+  },
+  watch: {
+    value(val) {
+      this.item = val
+    },
+  },
+  methods: {
+    updateValue(value) {
+      this.$emit('input', value)
     },
   },
 }

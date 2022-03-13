@@ -17,6 +17,7 @@
             height="190"
             class="mx-auto rounded"
             :src="link"
+            :lazy-src="link"
           ></v-img>
         </v-carousel-item>
       </v-carousel>
