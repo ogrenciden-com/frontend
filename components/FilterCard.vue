@@ -4,9 +4,10 @@
     <select-box
       :items="university"
       label="Üniversite"
-      classes="mb-8 text-caption"
+      v-model="universityName"
+      classes="mb-8 text-caption text-md-body-2"
     />
-    <select-box :items="items" label="Kampüs" />
+    <select-box :items="campuses" v-model="campus" label="Kampüs" />
 
     <div class="d-flex">
       <v-text-field
@@ -45,18 +46,37 @@
 </template>
 <script>
 import SelectBox from '@/components/SelectBox.vue'
+
+import { mapMutations } from 'vuex'
+
 export default {
   components: {
     SelectBox,
   },
   data() {
     return {
+      universityName: '',
+      campus: '',
       items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
     }
+  },
+  watch: {
+    universityName() {
+      this.findCampusByUniversityName(this.universityName)
+    },
+  },
+  methods: {
+    ...mapMutations({
+      findCampusByUniversityName:
+        'UniversityAndCampus/findCampusByUniversityName',
+    }),
   },
   computed: {
     university() {
       return this.$store.state.university.list
+    },
+    campuses() {
+      return this.$store.state.UniversityAndCampus.selectedCampuses
     },
   },
 }
