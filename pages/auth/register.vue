@@ -8,14 +8,15 @@
     height="550"
     class="px-4 py-2"
   >
-    <v-card-title class="justify-center mt-8">
+    <v-card-title class="justify-center mt-4">
       <brand-logo />
     </v-card-title>
     <v-btn
       outlined
+      block
       color="primary"
       width="100%"
-      class="font-weight-bold mt-2 text-transform-none"
+      class="font-weight-bold mt-2 text-transform-none mt-6"
       :style="{ position: 'relative' }"
     >
       <google-icon :style="{ position: 'absolute', left: '4px' }" />
@@ -29,7 +30,7 @@
         >Veya</span
       >
     </div>
-    <form>
+    <v-form>
       <div>
         <v-row dense>
           <v-col
@@ -110,7 +111,7 @@
           Giriş yap
         </v-btn>
       </div>
-    </form>
+    </v-form>
     <span
       class="text-body-2 font-weight-bold"
       :style="{ position: 'absolute', bottom: '30px' }"
