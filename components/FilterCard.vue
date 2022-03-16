@@ -1,18 +1,28 @@
 <template>
   <v-card outlined flat class="px-5 py-3" width="100%">
+    <!--sort -->
     <select-box
       :items="items"
+      v-model="form.sort"
       label="Sıralama"
       classes="mb-8 text-caption text-md-body-2"
     />
+    <!-- categories -->
+    <select-box
+      :items="items"
+      v-model="form.category"
+      label="Kategori"
+      classes="mb-8 text-caption text-md-body-2"
+    />
+    <!-- university -->
     <select-box
       :items="university"
-      v-model="universityName"
+      v-model="form.universityName"
       label="Üniversite"
       classes="mb-8 text-caption text-md-body-2"
     />
-
-    <v-autocomplete
+    <!-- university autocomplete -->
+    <!-- <v-autocomplete
       :items="university"
       v-model="universityName"
       label="Üniversite"
@@ -23,17 +33,18 @@
       flat
       solo
       dense
-    ></v-autocomplete>
-
+    ></v-autocomplete> -->
+    <!-- campuses -->
     <select-box
       classes="mb-8 text-caption text-md-body-2"
       :items="campuses"
-      v-model="campus"
+      v-model="form.campus"
       label="Kampüs"
     />
-
+    <!-- price inputs -->
     <div class="d-flex">
       <v-text-field
+        v-model="form.minPrice"
         placeholder="En Az"
         class="mb-8 mr-1 text-caption text-md-body-2"
         type="number"
@@ -47,6 +58,7 @@
         outlined
       ></v-text-field>
       <v-text-field
+        v-model="form.maxPrice"
         placeholder="En Çok"
         append-icon="mdi-currency-try"
         class="mb-8 ml-1 text-caption text-md-body-2"
@@ -60,13 +72,10 @@
         color="darkGrey"
       ></v-text-field>
     </div>
-    <select-box
-      :items="items"
-      label="Kategori"
-      classes="mb-8 text-caption text-md-body-2"
-    />
 
-    <v-btn color="primary" elevation="0" width="100%"> Uygula </v-btn>
+    <v-btn color="primary" elevation="0" width="100%" @click="submit">
+      Uygula
+    </v-btn>
   </v-card>
 </template>
 <script>
@@ -80,21 +89,32 @@ export default {
   },
   data() {
     return {
-      universityName: '',
-      campus: '',
+      form: {
+        sort: '',
+        category: '',
+        universityName: '',
+        campus: undefined,
+        minPrice: undefined,
+        maxPrice: undefined,
+      },
       items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
     }
   },
   watch: {
-    universityName() {
-      this.findCampusByUniversityName(this.universityName)
+    'form.universityName'() {
+      this.form.campus = undefined
+      this.findCampusByUniversityName(this.form.universityName)
     },
   },
+
   methods: {
     ...mapMutations({
       findCampusByUniversityName:
         'UniversityAndCampus/findCampusByUniversityName',
     }),
+    submit() {
+      console.log(this.form)
+    },
   },
   computed: {
     university() {
