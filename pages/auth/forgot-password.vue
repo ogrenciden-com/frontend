@@ -5,13 +5,13 @@
     rounded="lg"
     max-width="510"
     width="100%"
-    height="270"
+    height="210"
     class="px-4 py-2"
   >
     <v-card-title class="justify-center mt-2">
       <brand-logo />
     </v-card-title>
-    <form>
+    <v-form>
       <v-text-field
         v-model="email"
         outlined
@@ -30,30 +30,31 @@
           <mail-icon />
         </template>
       </v-text-field>
-      <nuxt-link
-        to="/auth/login"
-        class="
-          primary--text
-          text-decoration-underline text-caption
-          font-weight-light
-          d-block
-          mt-2
-          text-right
-        "
-        >Giriş yap</nuxt-link
-      >
+      <!-- <small class="d-block">
+        <nuxt-link
+          to="/auth/login"
+          class="
+            primary--text
+            text-decoration-underline text-caption
+            font-weight-light
+            mt-2
+            text-right
+          "
+          >Giriş yap</nuxt-link
+        >
+      </small> -->
       <div class="d-flex justify-center mt-4">
         <v-btn
-          class="text-body-1 font-weight-bold text-transform-none py-4"
+          class="text-body-1 text-transform-none py-4"
           width="100%"
           color="primary"
           elevation="0"
-          @click="submit()"
+          @click="submit"
         >
           E-mail gönder
         </v-btn>
       </div>
-    </form>
+    </v-form>
   </v-card>
 </template>
 <script>
