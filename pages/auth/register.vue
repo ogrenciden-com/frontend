@@ -5,7 +5,7 @@
     rounded="lg"
     max-width="410"
     width="100%"
-    height="600"
+    height="550"
     class="px-4 py-2"
   >
     <v-card-title class="justify-center mt-8">
@@ -25,48 +25,54 @@
       <v-divider></v-divider>
       <span
         class="text-caption darkGrey--text white px-2"
-        :style="{ position: 'relative', top: '-13px', left: '170px' }"
+        :style="{ position: 'relative', top: '-13px', left: '167px' }"
         >Veya</span
       >
     </div>
     <form>
       <div>
-        <v-text-field
-          v-model="form.name"
-          outlined
-          solo
-          autofocus
-          flat
-          placeholder="Ad"
-          height="32"
-          color="darkGrey"
-          class="text-body-2 mb-5"
-          type="text"
-          dense
-          hide-details
-        >
-        </v-text-field>
-        <v-text-field
-          v-model="form.lastname"
-          outlined
-          solo
-          flat
-          placeholder="Soyad"
-          height="32"
-          color="darkGrey"
-          class="text-body-2 mb-5"
-          type="text"
-          dense
-          hide-details
-        >
-        </v-text-field>
+        <v-row dense>
+          <v-col
+            ><v-text-field
+              v-model="form.name"
+              outlined
+              solo
+              autofocus
+              flat
+              placeholder="Ad"
+              height="32"
+              color="darkGrey"
+              class="text-body-2 mb-5"
+              type="text"
+              dense
+              hide-details
+            >
+            </v-text-field>
+          </v-col>
+          <v-col>
+            <v-text-field
+              v-model="form.lastname"
+              outlined
+              solo
+              flat
+              placeholder="Soyad"
+              height="32"
+              color="darkGrey"
+              class="text-body-2 mb-5"
+              type="text"
+              dense
+              hide-details
+            >
+            </v-text-field>
+          </v-col>
+        </v-row>
       </div>
       <v-text-field
         v-model="form.email"
         outlined
         solo
         flat
-        placeholder="Lütfen E-posta adresinizi girin"
+        placeholder="Lütfen E-posta adresinizi giriniz"
         height="32"
         color="darkGrey"
         class="text-body-2 mb-5"
@@ -82,7 +88,7 @@
         outlined
         solo
         flat
-        placeholder="Lütfen şifrenizi oluşturunuz."
+        placeholder="Lütfen şifrenizi oluşturunuz"
         v-model="form.password"
         :append-icon="isShow ? 'mdi-eye-off-outline' : 'mdi-eye-outline'"
         height="32"
@@ -99,7 +105,7 @@
           class="text-body-1 font-weight-bold text-transform-none py-6 px-10"
           color="primary"
           elevation="0"
-          @click="submit()"
+          @click="submit"
         >
           Giriş yap
         </v-btn>

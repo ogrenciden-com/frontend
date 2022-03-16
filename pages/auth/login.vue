@@ -26,7 +26,7 @@
       <v-divider></v-divider>
       <span
         class="text-caption darkGrey--text white px-2"
-        :style="{ position: 'relative', top: '-13px', left: '170px' }"
+        :style="{ position: 'relative', top: '-13px', left: '167px' }"
         >Veya</span
       >
     </div>
@@ -53,7 +53,7 @@
         outlined
         solo
         flat
-        placeholder="Lütfen şifrenizi oluşturunuz."
+        placeholder="Lütfen şifrenizi giriniz."
         v-model="form.password"
         :append-icon="isShow ? 'mdi-eye-off-outline' : 'mdi-eye-outline'"
         height="32"
@@ -82,7 +82,7 @@
           class="text-body-1 font-weight-bold text-transform-none py-6 px-10"
           color="primary"
           elevation="0"
-          @click="submit()"
+          @click="submit"
         >
           Giriş yap
         </v-btn>
