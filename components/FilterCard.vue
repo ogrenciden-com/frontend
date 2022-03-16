@@ -1,13 +1,22 @@
 <template>
   <v-card outlined flat class="px-5 py-3" width="100%">
-    <select-box :items="items" label="Sıralama" />
+    <select-box
+      :items="items"
+      label="Sıralama"
+      classes="mb-8 text-caption text-md-body-1"
+    />
     <select-box
       :items="university"
       label="Üniversite"
       v-model="universityName"
       classes="mb-8 text-caption text-md-body-2"
     />
-    <select-box :items="campuses" v-model="campus" label="Kampüs" />
+    <select-box
+      classes="mb-8 text-caption text-md-body-1"
+      :items="campuses"
+      v-model="campus"
+      label="Kampüs"
+    />
 
     <div class="d-flex">
       <v-text-field
@@ -39,7 +48,11 @@
         color="darkGrey"
       ></v-text-field>
     </div>
-    <select-box :items="items" label="Kategori" />
+    <select-box
+      :items="items"
+      label="Kategori"
+      classes="mb-8 text-caption text-md-body-1"
+    />
 
     <v-btn color="primary" elevation="0" width="100%"> Uygula </v-btn>
   </v-card>
