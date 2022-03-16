@@ -25,6 +25,10 @@ export default {
       type: String,
       default: '',
     },
+    height: {
+      type: [String, Number],
+      default: '',
+    },
     label: {
       type: String,
       default: '',
