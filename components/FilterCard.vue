@@ -3,16 +3,30 @@
     <select-box
       :items="items"
       label="Sıralama"
-      classes="mb-8 text-caption text-md-body-1"
-    />
-    <select-box
-      :items="university"
-      label="Üniversite"
-      v-model="universityName"
       classes="mb-8 text-caption text-md-body-2"
     />
     <select-box
-      classes="mb-8 text-caption text-md-body-1"
+      :items="university"
+      v-model="universityName"
+      label="Üniversite"
+      classes="mb-8 text-caption text-md-body-2"
+    />
+
+    <v-autocomplete
+      :items="university"
+      v-model="universityName"
+      label="Üniversite"
+      class="mb-8 text-caption text-md-body-2"
+      background-color="secondary"
+      color="darkGrey"
+      hide-details
+      flat
+      solo
+      dense
+    ></v-autocomplete>
+
+    <select-box
+      classes="mb-8 text-caption text-md-body-2"
       :items="campuses"
       v-model="campus"
       label="Kampüs"
@@ -21,24 +35,22 @@
     <div class="d-flex">
       <v-text-field
         placeholder="En Az"
-        class="mb-8 mr-1 text-left"
-        type="currency"
+        class="mb-8 mr-1 text-caption text-md-body-2"
+        type="number"
         append-icon="mdi-currency-try"
         background-color="white"
         color="darkGrey"
+        dense
         hide-details
         hide-spin-buttons
         flat
-        reverse
-        dense
         outlined
       ></v-text-field>
       <v-text-field
         placeholder="En Çok"
         append-icon="mdi-currency-try"
-        class="mb-8 ml-1"
+        class="mb-8 ml-1 text-caption text-md-body-2"
         type="number"
-        reverse
         outlined
         flat
         hide-details
@@ -51,7 +63,7 @@
     <select-box
       :items="items"
       label="Kategori"
-      classes="mb-8 text-caption text-md-body-1"
+      classes="mb-8 text-caption text-md-body-2"
     />
 
     <v-btn color="primary" elevation="0" width="100%"> Uygula </v-btn>
