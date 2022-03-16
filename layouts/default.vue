@@ -40,6 +40,19 @@
           color="secondary"
           :style="{ marginBottom: '100px' }"
         ></v-sheet>
+        <v-btn
+          v-scroll="onScroll"
+          v-show="fab"
+          fab
+          dark
+          fixed
+          bottom
+          right
+          color="primary"
+          @click="$vuetify.goTo(0)"
+        >
+          <v-icon>mdi-arrow-up</v-icon>
+        </v-btn>
         <v-dialog
           v-model="advertModal"
           max-width="680"
@@ -74,12 +87,18 @@ export default {
   data() {
     return {
       isThereUser: true,
+      fab: false,
     }
   },
   methods: {
     ...mapMutations({
       advertToggle: 'advertToggle',
     }),
+    onScroll(e) {
+      if (typeof window === 'undefined') return
+      const top = window.pageYOffset || e.target.scrollTop || 0
+      this.fab = top > 20
+    },
   },
   computed: {
     advertModal() {
