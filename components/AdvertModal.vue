@@ -215,13 +215,13 @@ export default {
   },
   computed: {
     university() {
-      return this.$store.state.university.list
+      return this.$store.state.university?.list
     },
     campuses() {
-      return this.$store.state.universityAndCampus.selectedCampuses
+      return this.$store.state.universityAndCampus?.selectedCampuses
     },
     cities() {
-      return this.$store.state.cities.list
+      return this.$store.state.cities?.list
     },
   },
 }
