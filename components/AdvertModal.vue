@@ -62,7 +62,7 @@
       <v-row no-gutters>
         <v-col>
           <select-box
-            :items="items"
+            :items="cities"
             v-model="form.city"
             label="Şehir"
             :outlined="true"
@@ -84,7 +84,7 @@
       <v-row no-gutters>
         <v-col>
           <select-box
-            :items="items"
+            :items="campuses"
             v-model="form.campus"
             label="Kampüs"
             :outlined="true"
@@ -194,9 +194,17 @@ export default {
       image: [],
     }
   },
+  watch: {
+    'form.university'() {
+      this.form.campus = undefined
+      this.findCampusByUniversityName(this.form.university)
+    },
+  },
   methods: {
     ...mapMutations({
       advertToggle: 'advertToggle',
+      findCampusByUniversityName:
+        'UniversityAndCampus/findCampusByUniversityName',
     }),
     previewImage(index) {
       this.form.url[index] = URL.createObjectURL(this.image)
@@ -207,7 +215,13 @@ export default {
   },
   computed: {
     university() {
-      return this.$store.state.university.list
+      return this.$store.state.University.list
+    },
+    campuses() {
+      return this.$store.state.UniversityAndCampus.selectedCampuses
+    },
+    cities() {
+      return this.$store.state.Cities.list
     },
   },
 }
