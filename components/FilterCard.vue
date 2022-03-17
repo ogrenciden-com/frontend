@@ -2,7 +2,7 @@
   <v-card outlined flat class="px-5 py-3" width="100%">
     <!--sort -->
     <select-box
-      :items="items"
+      :items="order"
       v-model="form.sort"
       label="Sıralama"
       classes="mb-8 text-caption text-md-body-2"
@@ -117,8 +117,11 @@ export default {
     },
   },
   computed: {
+    order() {
+      return this.$store.state.Order?.list
+    },
     university() {
-      return this.$store.state.university.list
+      return this.$store.state.University?.list
     },
     campuses() {
       return this.$store.state.UniversityAndCampus.selectedCampuses
