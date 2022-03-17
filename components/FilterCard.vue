@@ -110,7 +110,7 @@ export default {
   methods: {
     ...mapMutations({
       findCampusByUniversityName:
-        'UniversityAndCampus/findCampusByUniversityName',
+        'universityAndCampus/findCampusByUniversityName',
     }),
     submit() {
       console.log(this.form)
@@ -118,13 +118,13 @@ export default {
   },
   computed: {
     order() {
-      return this.$store.state.Order?.list
+      return this.$store.state.order?.list
     },
     university() {
-      return this.$store.state.University?.list
+      return this.$store.state.university?.list
     },
     campuses() {
-      return this.$store.state.UniversityAndCampus.selectedCampuses
+      return this.$store.state.universityAndCampus.selectedCampuses
     },
   },
 }

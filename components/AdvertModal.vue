@@ -204,7 +204,7 @@ export default {
     ...mapMutations({
       advertToggle: 'advertToggle',
       findCampusByUniversityName:
-        'UniversityAndCampus/findCampusByUniversityName',
+        'universityAndCampus/findCampusByUniversityName',
     }),
     previewImage(index) {
       this.form.url[index] = URL.createObjectURL(this.image)
@@ -215,13 +215,13 @@ export default {
   },
   computed: {
     university() {
-      return this.$store.state.University.list
+      return this.$store.state.university.list
     },
     campuses() {
-      return this.$store.state.UniversityAndCampus.selectedCampuses
+      return this.$store.state.universityAndCampus.selectedCampuses
     },
     cities() {
-      return this.$store.state.Cities.list
+      return this.$store.state.cities.list
     },
   },
 }
