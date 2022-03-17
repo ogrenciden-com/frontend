@@ -74,7 +74,7 @@
         <v-col>
           <select-box
             :items="university"
-            v-model="form.university"
+            v-model="form.universityName"
             label="Üniversite"
             :outlined="true"
             classes="mb-6 text-caption text-sm-body-2"
@@ -181,7 +181,7 @@ export default {
     return {
       form: {
         title: '',
-        university: '',
+        universityName: '',
         campus: '',
         description: '',
         tel: '',
@@ -195,16 +195,16 @@ export default {
     }
   },
   watch: {
-    'form.university'() {
+    'form.universityName'() {
       this.form.campus = undefined
-      this.findCampusByUniversityName(this.form.university)
+      this.findCampusByUniversityName(this.form.universityName)
     },
   },
   methods: {
     ...mapMutations({
       advertToggle: 'advertToggle',
       findCampusByUniversityName:
-        'universityAndCampus/findCampusByUniversityName',
+        'UniversityAndCampus/findCampusByUniversityName',
     }),
     previewImage(index) {
       this.form.url[index] = URL.createObjectURL(this.image)
@@ -218,10 +218,10 @@ export default {
       return this.$store.state.university?.list
     },
     campuses() {
-      return this.$store.state.universityAndCampus?.selectedCampuses
+      return this.$store.state.UniversityAndCampus?.selectedCampuses
     },
     cities() {
-      return this.$store.state.cities?.list
+      return this.$store.state.Cities?.list
     },
   },
 }
