@@ -2,6 +2,11 @@
   <v-app>
     <v-container>
       <v-main>
+        <nuxt-link to="/">
+          <brand-logo
+            class="d-flex justify-start mx-auto mt-6 mb-4 d-sm-none ma-sm-0"
+          />
+        </nuxt-link>
         <v-app-bar width="1157" color="white" height="72" elevation="0">
           <!-- 
             TODO
@@ -10,7 +15,7 @@
             responsive tasarımda düzgün görünsün
            -->
           <nuxt-link to="/" class="mr-lg-10 mr-3">
-            <brand-logo class="d-block" />
+            <brand-logo class="d-none d-sm-block" />
           </nuxt-link>
           <search-box class="mr-lg-12 mr-3" />
           <v-btn
