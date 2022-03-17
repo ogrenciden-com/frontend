@@ -80,7 +80,6 @@
 </template>
 <script>
 import SelectBox from '@/components/SelectBox.vue'
-
 import { mapMutations } from 'vuex'
 
 export default {
@@ -124,7 +123,7 @@ export default {
       return this.$store.state.university?.list
     },
     campuses() {
-      return this.$store.state.universityAndCampus.selectedCampuses
+      return this.$store.state.universityAndCampus?.selectedCampuses
     },
   },
 }
