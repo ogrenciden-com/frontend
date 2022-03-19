@@ -67,6 +67,15 @@
         >
           <advert-modal />
         </v-dialog>
+        <v-dialog
+          v-model="profileModal"
+          max-width="680"
+          width="100%"
+          @click:outside="profileToggle"
+          @keydown.esc="profileToggle"
+        >
+          <profile-modal />
+        </v-dialog>
         <Nuxt />
       </v-main>
     </v-container>
@@ -78,7 +87,8 @@ import BrandLogo from '@/components/BrandLogo.vue'
 import SearchBox from '@/components/SearchBox.vue'
 import AvatarMenu from '@/components/AvatarMenu.vue'
 import AdvertModal from '@/components/AdvertModal.vue'
-import LoginModal from '@/components/LoginModal.vue'
+import ProfileModal from '@/components/ProfileModal.vue'
+
 import { mapMutations } from 'vuex'
 export default {
   name: 'DefaultLayout',
@@ -87,7 +97,7 @@ export default {
     SearchBox,
     AvatarMenu,
     AdvertModal,
-    LoginModal,
+    ProfileModal,
   },
   data() {
     return {
@@ -98,6 +108,7 @@ export default {
   methods: {
     ...mapMutations({
       advertToggle: 'advertToggle',
+      profileToggle: 'profileToggle',
     }),
     onScroll(e) {
       if (typeof window === 'undefined') return
@@ -108,6 +119,9 @@ export default {
   computed: {
     advertModal() {
       return this.$store.state.advertModal
+    },
+    profileModal() {
+      return this.$store.state.profileModal
     },
   },
 }
