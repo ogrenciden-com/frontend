@@ -2,8 +2,12 @@
   <v-row>
     <v-col order="last" order-md="first" cols="8" class="col-12 col-md-8">
       <v-row>
-        <v-col v-for="j in 100" :key="j">
-          <item-card class="mx-auto" />
+        <v-col
+          v-for="j in 100"
+          :key="j"
+          class="d-flex justify-center justify-sm-start"
+        >
+          <item-card />
         </v-col>
       </v-row>
     </v-col>

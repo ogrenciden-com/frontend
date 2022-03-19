@@ -22,11 +22,11 @@
         </v-carousel-item>
       </v-carousel>
 
-      <v-card-title class="pa-0 pt-1 text-body-2 font-weight-medium">
+      <v-card-title class="pa-0 pt-1 mt-2 text-body-2 font-weight-medium">
         İyi durumda damacana pompası
       </v-card-title>
       <v-card-subtitle
-        class="pa-0 pt-3 text-caption font-weight-medium dark-grey--text"
+        class="pa-0 mt-1 text-caption font-weight-medium dark-grey--text"
       >
         Ev eşyası
       </v-card-subtitle>

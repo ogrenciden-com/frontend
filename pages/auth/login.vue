@@ -8,14 +8,15 @@
     height="500"
     class="px-4 py-2"
   >
-    <v-card-title class="justify-center mt-8">
+    <v-card-title class="justify-center mt-4">
       <brand-logo />
     </v-card-title>
     <v-btn
       outlined
+      block
       color="primary"
       width="100%"
-      class="font-weight-bold mt-2 text-transform-none text-center"
+      class="font-weight-bold mt-2 text-transform-none text-center mt-6"
       :style="{ position: 'relative' }"
     >
       <google-icon :style="{ position: 'absolute', left: '4px' }" />
@@ -26,11 +27,11 @@
       <v-divider></v-divider>
       <span
         class="text-caption darkGrey--text white px-2"
-        :style="{ position: 'relative', top: '-13px', left: '170px' }"
+        :style="{ position: 'relative', top: '-13px', left: '167px' }"
         >Veya</span
       >
     </div>
-    <form>
+    <v-form>
       <v-text-field
         v-model="form.email"
         outlined
@@ -53,7 +54,7 @@
         outlined
         solo
         flat
-        placeholder="Lütfen şifrenizi oluşturunuz."
+        placeholder="Lütfen şifrenizi giriniz."
         v-model="form.password"
         :append-icon="isShow ? 'mdi-eye-off-outline' : 'mdi-eye-outline'"
         height="32"
@@ -82,12 +83,12 @@
           class="text-body-1 font-weight-bold text-transform-none py-6 px-10"
           color="primary"
           elevation="0"
-          @click="submit()"
+          @click="submit"
         >
           Giriş yap
         </v-btn>
       </div>
-    </form>
+    </v-form>
     <span
       class="text-body-2 font-weight-bold"
       :style="{ position: 'absolute', bottom: '30px' }"

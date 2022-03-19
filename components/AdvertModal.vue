@@ -1,5 +1,5 @@
 <template>
-  <v-card flat rounded="lg" class="px-10">
+  <v-card flat rounded="lg" class="px-sm-10 px-4">
     <div class="d-flex justify-space-between align-center">
       <div>
         <v-card-title class="px-0">Yeni ilan ekle</v-card-title>
@@ -8,7 +8,7 @@
           oluşturabilirsiniz.</v-card-subtitle
         >
       </div>
-      <v-btn icon class="mr-n4 mt-n4" @click="advertToggle">
+      <v-btn icon class="mr-sm-n4 mt-n4" @click="advertToggle">
         <v-icon color="black">mdi-close</v-icon>
       </v-btn>
     </div>
@@ -21,7 +21,9 @@
             placeholder="İlan başlığı giriniz."
             height="42"
             color="darkGrey"
+            class="text-caption text-sm-body-2 text-md-body-1"
             outlined
+            autofocus
             flat
             solo
             dense
@@ -30,7 +32,7 @@
         </v-col>
       </v-row>
       <v-row>
-        <v-col cols="4">
+        <v-col cols="5" sm="4">
           <v-text-field
             v-model="form.price"
             placeholder="Fiyat"
@@ -38,6 +40,7 @@
             type="number"
             background-color="secondary"
             color="darkGrey"
+            class="text-caption text-sm-body-2 text-md-body-1"
             reverse
             outlined
             flat
@@ -46,24 +49,24 @@
             dense
           ></v-text-field>
         </v-col>
-        <v-col cols="8">
+        <v-col cols="7" sm="8">
           <select-box
             :items="items"
             v-model="form.category"
             label="Kategori"
             :outlined="true"
-            classes="mb-6"
+            classes="mb-6 text-caption text-sm-body-2 text-md-body-1"
           ></select-box>
         </v-col>
       </v-row>
       <v-row no-gutters>
         <v-col>
           <select-box
-            :items="items"
+            :items="cities"
             v-model="form.city"
             label="Şehir"
             :outlined="true"
-            classes="mb-6"
+            classes="mb-6 text-caption text-sm-body-2 text-md-body-1"
           ></select-box>
         </v-col>
       </v-row>
@@ -71,23 +74,22 @@
         <v-col>
           <select-box
             :items="university"
-            v-model="form.university"
+            v-model="form.universityName"
             label="Üniversite"
             :outlined="true"
-            classes="mb-6"
+            classes="mb-6 text-caption text-sm-body-2"
           ></select-box>
         </v-col>
       </v-row>
       <v-row no-gutters>
         <v-col>
           <select-box
-            :items="items"
+            :items="campuses"
             v-model="form.campus"
             label="Kampüs"
             :outlined="true"
-            classes="mb-6"
+            classes="mb-6 text-caption text-sm-body-2 text-md-body-1"
           ></select-box>
-          <!-- <v-select v-model="form.campus" :items="items"></v-select> -->
         </v-col>
       </v-row>
       <v-row no-gutters>
@@ -98,6 +100,7 @@
             type="number"
             background-color="secondary"
             color="darkGrey"
+            class="text-caption text-sm-body-2 text-md-body-1"
             outlined
             flat
             hide-details
@@ -119,14 +122,16 @@
         </v-col>
       </v-row>
       <v-row no-gutters>
-        <v-col class="d-flex justify-space-between mt-n2">
+        <v-col
+          class="d-flex justify-center justify-sm-space-between mt-n2 flex-wrap"
+        >
           <v-sheet
             v-for="(i, index) in 5"
             :key="index"
             width="110px"
             height="110px"
             color="secondary"
-            class="border"
+            class="border ma-1 ma-sm-0"
             outlined
             flat
             :style="{ position: 'relative' }"
@@ -176,7 +181,7 @@ export default {
     return {
       form: {
         title: '',
-        university: '',
+        universityName: '',
         campus: '',
         description: '',
         tel: '',
@@ -189,9 +194,17 @@ export default {
       image: [],
     }
   },
+  watch: {
+    'form.universityName'() {
+      this.form.campus = undefined
+      this.findCampusByUniversityName(this.form.universityName)
+    },
+  },
   methods: {
     ...mapMutations({
       advertToggle: 'advertToggle',
+      findCampusByUniversityName:
+        'UniversityAndCampus/findCampusByUniversityName',
     }),
     previewImage(index) {
       this.form.url[index] = URL.createObjectURL(this.image)
@@ -202,7 +215,13 @@ export default {
   },
   computed: {
     university() {
-      return this.$store.state.university.list
+      return this.$store.state.university?.list
+    },
+    campuses() {
+      return this.$store.state.UniversityAndCampus?.selectedCampuses
+    },
+    cities() {
+      return this.$store.state.Cities?.list
     },
   },
 }
