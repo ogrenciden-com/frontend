@@ -12,14 +12,14 @@
       </v-btn>
     </div>
     <form>
-      <v-row class="mb-5" no-gutters>
+      <v-row no-gutters>
         <!-- change image -->
-        <v-col class="mr-6" cols="3">
+        <v-col class="mr-sm-12 mr-0" cols="12" sm="3">
           <v-sheet
             width="160px"
             height="160px"
             color="secondary"
-            class="border ma-1 ma-sm-0"
+            class="border mx-auto mx-sm-0"
             outlined
             flat
             :style="{ position: 'relative' }"
@@ -37,7 +37,7 @@
           </v-sheet>
         </v-col>
         <!-- name & surname -->
-        <v-col cols="8">
+        <v-col class="mt-5 mt-sm-0" cols="12" sm="8">
           <v-row class="mb-3" dense>
             <v-col>
               <v-text-field
@@ -109,6 +109,9 @@
           </v-row>
         </v-col>
       </v-row>
+      <!-- divider -->
+      <v-divider class="mb-3 mt-n2 mb-sm-0 mt-sm-0 d-sm-none"></v-divider>
+
       <!-- cities -->
       <v-row no-gutters>
         <v-col>
