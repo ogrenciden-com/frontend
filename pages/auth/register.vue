@@ -125,8 +125,6 @@
 </template>
 <script>
 import MailIcon from '@/components/Icons/MailIcon.vue'
-import EyeIcon from '@/components/Icons/EyeIcon.vue'
-import EyeHiddenIcon from '@/components/Icons/EyeHiddenIcon.vue'
 import BrandLogo from '@/components/BrandLogo.vue'
 import GoogleIcon from '@/components/Icons/GoogleIcon.vue'
 
@@ -136,8 +134,6 @@ export default {
     BrandLogo,
     MailIcon,
     GoogleIcon,
-    EyeHiddenIcon,
-    EyeIcon,
   },
   data() {
     return {
