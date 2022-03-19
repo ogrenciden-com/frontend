@@ -30,7 +30,7 @@
         <v-list-item
           color="primary"
           dense
-          to="/profile"
+          @click="profileToggle"
           :style="{
             textAlign: 'center',
             fontSize: '14px',
@@ -72,6 +72,7 @@ export default {
   methods: {
     ...mapMutations({
       advertToggle: 'advertToggle',
+      profileToggle: 'profileToggle',
     }),
   },
 }
