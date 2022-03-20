@@ -66,18 +66,19 @@
         @click:append="isShow = !isShow"
       >
       </v-text-field>
-      <nuxt-link
-        to="/auth/forgot-password"
-        class="
-          primary--text
-          text-decoration-underline text-caption
-          font-weight-light
-          d-block
-          mt-4
-          text-right
-        "
-        >Şifremi unuttum</nuxt-link
-      >
+      <div class="d-flex justify-end">
+        <nuxt-link
+          to="/auth/forgot-password"
+          class="
+            primary--text
+            text-decoration-underline text-caption
+            font-weight-light
+            mt-4
+            text-right
+          "
+          >Şifremi unuttum</nuxt-link
+        >
+      </div>
       <div class="d-flex justify-center mt-8">
         <v-btn
           class="text-body-1 font-weight-bold text-transform-none py-6 px-10"

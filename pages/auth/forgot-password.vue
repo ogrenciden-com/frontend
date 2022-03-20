@@ -5,7 +5,7 @@
     rounded="lg"
     max-width="510"
     width="100%"
-    height="210"
+    height="240"
     class="px-4 py-2"
   >
     <v-card-title class="justify-center mt-2">
@@ -21,7 +21,7 @@
         placeholder="Lütfen E-posta adresinizi girin"
         height="32"
         color="darkGrey"
-        class="text-body-2 mb-5 mt-5"
+        class="text-body-2 my-5"
         type="email"
         dense
         hide-details
@@ -30,19 +30,19 @@
           <mail-icon />
         </template>
       </v-text-field>
-      <!-- <small class="d-block">
+
+      <small class="d-flex justify-end">
         <nuxt-link
           to="/auth/login"
           class="
             primary--text
             text-decoration-underline text-caption
             font-weight-light
-            mt-2
             text-right
           "
           >Giriş yap</nuxt-link
         >
-      </small> -->
+      </small>
       <div class="d-flex justify-center mt-4">
         <v-btn
           class="text-body-1 text-transform-none py-4"
