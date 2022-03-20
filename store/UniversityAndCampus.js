@@ -1184,7 +1184,8 @@ export const state = () => ({
 })
 export const mutations = {
 	findCampusByUniversityName(state, name) {
-		for (const [value] of Object.entries(state.university)) {
+		// eslint-disable-next-line
+		for (const [key, value] of Object.entries(state.university)) {
 			if (value.name === name) {
 				state.selectedCampuses = value.campus
 			}
