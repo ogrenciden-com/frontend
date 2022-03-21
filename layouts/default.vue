@@ -40,11 +40,7 @@
 						>Giriş yap / Kayıt ol</v-btn
 					>
 				</v-app-bar>
-				<v-sheet
-					height="2px"
-					color="secondary"
-					:style="{ marginBottom: '100px' }"
-				></v-sheet>
+				<v-sheet height="2px" color="secondary" class="mb-10"></v-sheet>
 				<v-btn
 					v-show="fab"
 					v-scroll="onScroll"
@@ -105,6 +101,14 @@ export default {
 			fab: false,
 		}
 	},
+	computed: {
+		advertModal() {
+			return this.$store.state.advertModal
+		},
+		profileModal() {
+			return this.$store.state.profileModal
+		},
+	},
 	methods: {
 		...mapMutations({
 			advertToggle: 'advertToggle',
@@ -114,14 +118,6 @@ export default {
 			if (typeof window === 'undefined') return
 			const top = window.pageYOffset || e.target.scrollTop || 0
 			this.fab = top > 20
-		},
-	},
-	computed: {
-		advertModal() {
-			return this.$store.state.advertModal
-		},
-		profileModal() {
-			return this.$store.state.profileModal
 		},
 	},
 }
