@@ -110,7 +110,7 @@ export default {
 		MailIcon,
 		GoogleIcon,
 	},
-	layout: 'Auth',
+	layout: 'auth',
 	data() {
 		return {
 			isShow: false,
@@ -128,9 +128,3 @@ export default {
 	},
 }
 </script>
-
-<style>
-.text-transform-none {
-	text-transform: none !important;
-}
-</style>

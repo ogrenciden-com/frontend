@@ -60,7 +60,7 @@ export default {
 		BrandLogo,
 		MailIcon,
 	},
-	layout: 'Auth',
+	layout: 'auth',
 	data() {
 		return {
 			email: '',

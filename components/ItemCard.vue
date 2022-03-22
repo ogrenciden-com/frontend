@@ -11,7 +11,12 @@
 				}"
 				height="190"
 			>
-				<v-carousel-item v-for="link in links" :key="link">
+				<v-carousel-item
+					v-for="link in links"
+					:key="link"
+					nuxt
+					to="/product/maxbook-air-m1"
+				>
 					<v-img
 						width="210"
 						height="190"
@@ -21,19 +26,23 @@
 					></v-img>
 				</v-carousel-item>
 			</v-carousel>
-
-			<v-card-title class="pa-0 pt-1 mt-2 text-body-2 font-weight-medium">
-				İyi durumda damacana pompası
+			<v-card-title class="pa-0 pt-1 mt-2">
+				<nuxt-link
+					to="/product/maxbook-air-m1"
+					class="text-body-2 font-weight-medium black--text text-decoration-none"
+				>
+					Macbook Air M1 (2020)
+				</nuxt-link>
 			</v-card-title>
 			<v-card-subtitle
 				class="pa-0 mt-1 text-caption font-weight-medium dark-grey--text"
 			>
-				Ev eşyası
+				Teknoloji
 			</v-card-subtitle>
 			<v-card-subtitle
 				class="pa-0 pt-2 text-body-1 font-weight-bold primary--text"
 			>
-				250 TL
+				17.250 TL
 			</v-card-subtitle>
 			<v-card-text
 				class="pa-0 pt-1 text-caption font-weight-light dark-grey--text d-flex align-center justify-space-between"
@@ -55,10 +64,9 @@ export default {
 			saveFavorite: false,
 			model: 0,
 			links: [
-				'https://img.letgo.com/images/55/f6/84/55/55f684554bf3a8e081f43c75b99e1c99.jpeg?impolicy=img_384',
-				'https://img.letgo.com/images/b2/a2/56/33/b2a25633c0a006d317ac510297d9dd7f.jpeg?impolicy=img_384',
-				'https://img.letgo.com/images/29/b2/43/1b/29b2431b61a851c7fd9b347f886ef18c.jpeg?impolicy=img_256',
-				'https://img.letgo.com/images/a8/1d/ba/ab/a81dbaab44ec87ba295d550d0f518aea.jpeg?impolicy=img_256',
+				'https://img.letgo.com/images/6e/77/b0/0f/6e77b00fe56972c0ffbeb3a7edba1b8a.jpg?impolicy=img_600',
+				'https://img.letgo.com/images/59/7b/f0/19/597bf019424a92bbb974cf7e43e91542.jpg?impolicy=img_600',
+				'https://img.letgo.com/images/d1/69/60/c7/d16960c77899a052da7de378ff68f663.jpg?impolicy=img_600',
 			],
 		}
 	},

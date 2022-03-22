@@ -139,7 +139,7 @@ export default {
 		MailIcon,
 		GoogleIcon,
 	},
-	layout: 'Auth',
+	layout: 'auth',
 
 	data() {
 		return {

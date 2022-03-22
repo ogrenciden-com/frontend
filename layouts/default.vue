@@ -1,7 +1,7 @@
 <template>
 	<v-app>
 		<v-container>
-			<v-main>
+			<v-main class="mb-10">
 				<nuxt-link to="/">
 					<brand-logo
 						class="d-flex justify-start mx-auto mt-6 mb-4 d-sm-none ma-sm-0"
@@ -9,21 +9,21 @@
 				</nuxt-link>
 				<v-app-bar width="1157" color="white" height="72" elevation="0">
 					<!-- 
-            TODO
-            logo tasarımları geldiğinde 
-            küçük logo ve büyük logo olarak iki farklı şekilde yapki 
-            responsive tasarımda düzgün görünsün
-           -->
+            		TODO
+		            logo tasarımları geldiğinde 
+        		    küçük logo ve büyük logo olarak iki farklı şekilde yapki 
+           			 responsive tasarımda düzgün görünsün
+           			-->
 					<nuxt-link to="/" class="mr-lg-10 mr-3">
 						<brand-logo class="d-none d-sm-block" />
 					</nuxt-link>
-					<search-box class="mr-lg-12 mr-3" />
+					<search-box class="mr-lg-8 mr-3" />
 					<v-btn
 						color="primary"
 						height="48"
-						width="150"
+						width="160"
 						elevation="0"
-						class="rounded-lg d-none d-sm-flex mr-7"
+						class="rounded-lg d-none d-sm-flex mr-7 font text-transform-none"
 						@click="advertToggle"
 						>İlan oluştur</v-btn
 					>
@@ -40,11 +40,7 @@
 						>Giriş yap / Kayıt ol</v-btn
 					>
 				</v-app-bar>
-				<v-sheet
-					height="2px"
-					color="secondary"
-					:style="{ marginBottom: '100px' }"
-				></v-sheet>
+				<v-sheet height="2px" color="secondary" class="mb-10"></v-sheet>
 				<v-btn
 					v-show="fab"
 					v-scroll="onScroll"
@@ -105,6 +101,14 @@ export default {
 			fab: false,
 		}
 	},
+	computed: {
+		advertModal() {
+			return this.$store.state.advertModal
+		},
+		profileModal() {
+			return this.$store.state.profileModal
+		},
+	},
 	methods: {
 		...mapMutations({
 			advertToggle: 'advertToggle',
@@ -114,14 +118,6 @@ export default {
 			if (typeof window === 'undefined') return
 			const top = window.pageYOffset || e.target.scrollTop || 0
 			this.fab = top > 20
-		},
-	},
-	computed: {
-		advertModal() {
-			return this.$store.state.advertModal
-		},
-		profileModal() {
-			return this.$store.state.profileModal
 		},
 	},
 }
