@@ -1,7 +1,7 @@
 <template>
 	<v-app>
 		<v-container>
-			<v-main>
+			<v-main class="mb-10">
 				<nuxt-link to="/">
 					<brand-logo
 						class="d-flex justify-start mx-auto mt-6 mb-4 d-sm-none ma-sm-0"
@@ -9,11 +9,11 @@
 				</nuxt-link>
 				<v-app-bar width="1157" color="white" height="72" elevation="0">
 					<!-- 
-            TODO
-            logo tasarımları geldiğinde 
-            küçük logo ve büyük logo olarak iki farklı şekilde yapki 
-            responsive tasarımda düzgün görünsün
-           -->
+            		TODO
+		            logo tasarımları geldiğinde 
+        		    küçük logo ve büyük logo olarak iki farklı şekilde yapki 
+           			 responsive tasarımda düzgün görünsün
+           			-->
 					<nuxt-link to="/" class="mr-lg-10 mr-3">
 						<brand-logo class="d-none d-sm-block" />
 					</nuxt-link>

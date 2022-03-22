@@ -5,7 +5,7 @@
 			divider=">"
 			:items="items"
 		></v-breadcrumbs>
-		<v-sheet class="d-flex" outlined rounded="lg">
+		<v-sheet class="d-md-flex d-block" outlined rounded="lg">
 			<v-carousel
 				v-model="model"
 				class="rounded"
@@ -19,8 +19,10 @@
 			>
 				<v-carousel-item v-for="link in links" :key="link">
 					<v-img
-						width="600"
-						height="600"
+						max-width="600"
+						max-height="600"
+						width="100%"
+						height="100%"
 						contain
 						class="mx-auto rounded"
 						:src="link"
@@ -32,7 +34,7 @@
 				width="100%"
 				flat
 				color="secondary"
-				class="pl-5 rounded-r-lg rounded-l-0"
+				class="pl-5 rounded-r-lg rounded-l-0 mx-auto mx-md-0"
 			>
 				<v-card-subtitle
 					class="font-weight-bold text-h6 black--text pl-0 pb-0"
