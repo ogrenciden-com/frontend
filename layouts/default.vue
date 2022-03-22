@@ -17,13 +17,13 @@
 					<nuxt-link to="/" class="mr-lg-10 mr-3">
 						<brand-logo class="d-none d-sm-block" />
 					</nuxt-link>
-					<search-box class="mr-lg-12 mr-3" />
+					<search-box class="mr-lg-8 mr-3" />
 					<v-btn
 						color="primary"
 						height="48"
-						width="150"
+						width="160"
 						elevation="0"
-						class="rounded-lg d-none d-sm-flex mr-7"
+						class="rounded-lg d-none d-sm-flex mr-7 font text-transform-none"
 						@click="advertToggle"
 						>İlan oluştur</v-btn
 					>
