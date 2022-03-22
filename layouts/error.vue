@@ -1,14 +1,14 @@
 <template>
 	<v-app>
-		<v-container class="d-flex justify-center">
+		<v-container class="d-flex justify-center font">
 			<div v-if="error.statusCode === 404">
 				<h1
-					class="d-block primary--text font"
+					class="d-block primary--text font-weight-regular"
 					:style="{ fontSize: '200px' }"
 				>
 					404
 				</h1>
-				<span class="d-block text-h4 text-center font">
+				<span class="d-block text-h4 text-center black--text">
 					{{ pageNotFound }}
 				</span>
 				<v-btn
@@ -22,12 +22,12 @@
 			</div>
 			<div v-else>
 				<h1
-					class="d-block primary--text font"
+					class="d-block primary--text font-weight-regular"
 					:style="{ fontSize: '200px' }"
 				>
 					500
 				</h1>
-				<span class="d-block text-h4 text-center font">
+				<span class="d-block text-h4 text-center black--text">
 					{{ otherError }}
 				</span>
 				<v-btn
@@ -68,11 +68,3 @@ export default {
 	},
 }
 </script>
-
-<style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
-
-.font {
-	font-family: 'Quicksand', sans-serif !important;
-}
-</style>

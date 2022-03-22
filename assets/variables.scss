@@ -17,6 +17,11 @@ $container-max-widths: (
 	padding: 0px 8px;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap');
+.font {
+	font-family: 'Quicksand', sans-serif;
+}
+
 $body-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
 	'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
 	sans-serif;
