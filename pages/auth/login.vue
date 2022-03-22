@@ -128,9 +128,3 @@ export default {
 	},
 }
 </script>
-
-<style>
-.text-transform-none {
-	text-transform: none !important;
-}
-</style>
