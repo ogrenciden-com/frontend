@@ -6,12 +6,13 @@
 				outlined
 				elevation="0"
 				height="48"
-				class="rounded-lg pr-3 pl-4"
-				:style="{ lineHeight: '18px' }"
+				class="rounded-lg pr-2 pl-3"
 				v-bind="attrs"
 				v-on="on"
 			>
-				<div class="mr-2 font-weight-bold d-none d-md-block">
+				<div
+					class="font-weight-bold black--text mr-2 d-none d-md-block text-transform-none"
+				>
 					Ahmet ÇAKIR
 				</div>
 				<v-avatar size="38">
