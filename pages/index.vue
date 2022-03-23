@@ -18,7 +18,11 @@
 		</v-col>
 	</v-row>
 </template>
-
+<router>
+  {
+    path: '/:university?/:campus?/:category?'
+  }
+</router>
 <script>
 import ItemCard from '@/components/ItemCard.vue'
 import FilterCard from '@/components/FilterCard.vue'

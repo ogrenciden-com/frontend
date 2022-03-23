@@ -90,9 +90,9 @@ export default {
 	data() {
 		return {
 			form: {
-				sort: '',
-				category: '',
-				universityName: '',
+				sort: undefined,
+				category: undefined,
+				universityName: undefined,
 				campus: undefined,
 				minPrice: undefined,
 				maxPrice: undefined,
@@ -124,7 +124,19 @@ export default {
 				'UniversityAndCampus/findCampusByUniversityName',
 		}),
 		submit() {
-			console.log(this.form)
+			this.$router.push({
+				name: 'index',
+				params: {
+					university: 'beun' || undefined,
+					campus: this.form.campus || undefined,
+					category: this.form.category || undefined,
+				},
+				query: {
+					order: this.form.sort || undefined,
+					minPrice: this.form.minPrice || undefined,
+					maxPrice: this.form.maxPrice || undefined,
+				},
+			})
 		},
 	},
 }
