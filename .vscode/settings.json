@@ -1,1 +1,8 @@
-{ "eslint.workingDirectories": [{ "mode": "auto" }] }
+{
+	"eslint.workingDirectories": [{ "mode": "auto" }],
+	"vetur.grammar.customBlocks": {
+		"docs": "md",
+		"i18n": "json",
+		"router": "js"
+	}
+}
