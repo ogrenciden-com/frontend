@@ -39,15 +39,15 @@
 				<v-card-subtitle
 					class="font-weight-bold text-h6 black--text pl-0 pb-0"
 				>
-					İyi durumda damacana pompası
+					Macbook Air M1 (2020)
 				</v-card-subtitle>
 				<v-card-title
 					class="font-weight-bold text-h5 primary--text pl-0 pt-2 pb-0"
 				>
-					49.99 TL
+					17.250 TL
 				</v-card-title>
 				<div class="text-body-2 darkGrey--text d-flex align-center">
-					<span class="mr-1"> Ev eşyası </span>
+					<span class="mr-1"> Teknoloji </span>
 					<span class="font-weight-bold text-h6 mr-1"> • </span>
 					<time class="text-caption font-weight-light"
 						>19.02.2022</time
@@ -58,7 +58,7 @@
 					<span class="font-weight-bold text-h6 mr-1"> • </span>
 					<time class="font-weight-regular">Farabi</time>
 				</div>
-				<p class="text-body-2 mt-2">
+				<p class="text-body-2 mt-2 black--text">
 					Lorem ipsum dolor sit amet consectetur, adipisicing elit.
 					Soluta, corporis adipisci. Eaque cumque illum provident quod
 					iure dolorem cum laudantium reprehenderit possimus nulla
@@ -68,7 +68,9 @@
 					soluta vel, aliquid a veritatis ipsam qui fugit temporibus
 					dolore consequatur architecto sed iste?
 				</p>
-				<span class="text-caption darkGrey--text">
+				<span
+					class="text-caption darkGrey--text pb-4 pb-sm-0 d-flex d-sm-inline"
+				>
 					Bu ilan 181 kez görüntülendi
 				</span>
 			</v-card>
