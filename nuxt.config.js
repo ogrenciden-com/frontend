@@ -34,12 +34,14 @@ export default {
 		// https://go.nuxtjs.dev/eslint
 		// '@nuxtjs/eslint-module',
 		// https://go.nuxtjs.dev/vuetify
+
 		'@nuxtjs/vuetify',
 	],
 
 	// Modules: https://go.nuxtjs.dev/config-modules
 	modules: [
 		// https://go.nuxtjs.dev/axios
+		'@nuxtjs/router-extras',
 		'@nuxtjs/axios',
 	],
 
