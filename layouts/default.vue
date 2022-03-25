@@ -3,9 +3,7 @@
 		<v-container>
 			<v-main class="mb-10">
 				<nuxt-link to="/">
-					<brand-logo
-						class="d-flex mx-auto mt-6 mb-4 d-sm-none ma-sm-0"
-					/>
+					<brand-logo class="d-flex mt-6 mb-4 mx-auto d-sm-none" />
 				</nuxt-link>
 				<v-app-bar width="1157" color="white" height="72" elevation="0">
 					<!-- 
