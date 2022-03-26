@@ -1,8 +1,8 @@
 <template>
 	<v-card outlined flat class="px-5 py-3" width="100%">
-		<!--sort -->
+		<!--order -->
 		<select-box
-			v-model="form.sort"
+			v-model="form.order"
 			:items="order"
 			label="Sıralama"
 			classes="mb-8 text-caption text-md-body-2"
@@ -17,7 +17,7 @@
 		<!-- university -->
 		<select-box
 			v-model="form.universityName"
-			:items="university"
+			:items="universities"
 			label="Üniversite"
 			classes="mb-8 text-caption text-md-body-2"
 		/>
@@ -80,9 +80,9 @@
 	</v-card>
 </template>
 <script>
+import slugify from 'slugify'
 import { mapMutations } from 'vuex'
 import SelectBox from '@/components/SelectBox.vue'
-
 export default {
 	components: {
 		SelectBox,
@@ -90,7 +90,7 @@ export default {
 	data() {
 		return {
 			form: {
-				sort: undefined,
+				order: undefined,
 				category: undefined,
 				universityName: undefined,
 				campus: undefined,
@@ -104,7 +104,7 @@ export default {
 		order() {
 			return this.$store.state.Order?.list
 		},
-		university() {
+		universities() {
 			return this.$store.state.university?.list
 		},
 		campuses() {
@@ -113,28 +113,102 @@ export default {
 	},
 	watch: {
 		'form.universityName'() {
-			this.form.campus = undefined
+			if (!this.form.universityName) {
+				this.form.campus = undefined
+			}
 			this.findCampusByUniversityName(this.form.universityName)
 		},
 	},
-
+	created() {
+		if (this.$route.params.campus) {
+			this.form.campus = this.titleCase(this.$route.params.campus)
+		}
+		if (this.$route.params.university) {
+			this.form.universityName = this.$route.params.university
+				.toLocaleUpperCase('tr-TR')
+				.split('-')
+				.join(' ')
+				.replace('U', 'Ü')
+		}
+		if (this.$route.params.category) {
+			this.form.category =
+				this.$route.params.category[0].toUpperCase() +
+				this.$route.params.category.slice(1)
+		}
+		if (this.$route.query.maxPrice) {
+			this.form.maxPrice = this.$route.query.maxPrice
+		}
+		if (this.$route.query.minPrice) {
+			this.form.minPrice = this.$route.query.minPrice
+		}
+		if (this.$route.query.order) {
+			this.form.order =
+				this.$route.query.order[0].toUpperCase() +
+				this.$route.query.order
+					.toLocaleLowerCase('tr-TR')
+					.split('-')
+					.join(' ')
+					.slice(1)
+					.replace('o', 'ö')
+		}
+	},
 	methods: {
 		...mapMutations({
 			findCampusByUniversityName:
 				'UniversityAndCampus/findCampusByUniversityName',
 		}),
+		titleCase(str) {
+			let splitStr = str.toLowerCase().split('-')
+			for (let i = 0; i < splitStr.length; i++) {
+				// You do not need to check if i is larger than splitStr length, as your for does that for you
+				// Assign it back to the array
+				splitStr[i] =
+					splitStr[i].charAt(0).toUpperCase() +
+					splitStr[i].substring(1)
+			}
+			// Directly return the joined string
+			splitStr = splitStr.join(' ')
+			return splitStr
+		},
 		submit() {
 			this.$router.push({
 				name: 'index',
 				params: {
-					university: 'beun' || undefined,
-					campus: this.form.campus || undefined,
-					category: this.form.category || undefined,
+					university: this.form.universityName
+						? slugify(this.form.universityName, {
+								lower: true,
+								locale: 'tr',
+						  })
+						: undefined,
+					campus: this.form.campus
+						? slugify(this.form.campus, {
+								lower: true,
+								locale: 'tr',
+						  })
+						: undefined,
+					category: this.form.category
+						? slugify(this.form.category, {
+								lower: true,
+								locale: 'tr',
+						  })
+						: undefined,
 				},
 				query: {
-					order: this.form.sort || undefined,
-					minPrice: this.form.minPrice || undefined,
-					maxPrice: this.form.maxPrice || undefined,
+					order: this.form.order
+						? slugify(this.form.order, {
+								lower: true,
+						  })
+						: undefined,
+					minPrice: this.form.minPrice
+						? slugify(this.form.minPrice, {
+								lower: true,
+						  })
+						: undefined,
+					maxPrice: this.form.maxPrice
+						? slugify(this.form.maxPrice, {
+								lower: true,
+						  })
+						: undefined,
 				},
 			})
 		},
