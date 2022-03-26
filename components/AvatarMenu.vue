@@ -64,6 +64,23 @@
 					color="secondary"
 					class="ml-4"
 				></v-sheet>
+				<v-list-item
+					color="primary"
+					dense
+					:style="{
+						textAlign: 'center',
+						fontSize: '14px',
+					}"
+					@click="userToggle"
+				>
+					<span class="mx-auto"> Çıkış Yap </span>
+				</v-list-item>
+				<v-sheet
+					height="1"
+					width="129"
+					color="secondary"
+					class="ml-4"
+				></v-sheet>
 			</v-list>
 		</v-card>
 	</v-menu>
@@ -76,6 +93,7 @@ export default {
 		...mapMutations({
 			advertToggle: 'advertToggle',
 			profileToggle: 'profileToggle',
+			userToggle: 'userToggle',
 		}),
 	},
 }
