@@ -117,7 +117,7 @@ export default {
 	},
 	computed: {
 		shareLink() {
-			return `whatsapp://send?text=http://localhost:3000${this.$route.fullPath}`
+			return `whatsapp://send?text=https://frontend-git-dev-aahmetcakir.vercel.app${this.$route.fullPath}`
 		},
 	},
 }
