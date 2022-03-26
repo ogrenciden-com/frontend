@@ -34,7 +34,7 @@
 						color="primary"
 						height="48"
 						elevation="0"
-						class="rounded-lg"
+						class="rounded-lg text-transform-none"
 						>Giriş yap / Kayıt ol</v-btn
 					>
 				</v-app-bar>

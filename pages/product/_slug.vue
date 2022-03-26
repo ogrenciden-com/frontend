@@ -68,11 +68,20 @@
 					soluta vel, aliquid a veritatis ipsam qui fugit temporibus
 					dolore consequatur architecto sed iste?
 				</p>
-				<span
-					class="text-caption darkGrey--text pb-4 pb-sm-0 d-flex d-sm-inline"
-				>
-					Bu ilan 181 kez görüntülendi
-				</span>
+				<div class="pb-4 pb-sm-0 d-flex d-sm-inline align-center">
+					<span class="text-caption darkGrey--text mr-4">
+						Bu ilan 181 kez görüntülendi
+					</span>
+					<a
+						:href="shareLink"
+						data-action="share/whatsapp/share"
+						target="_blank"
+						class="text-decoration-none mr-2"
+					>
+						<v-icon>mdi-whatsapp</v-icon>
+					</a>
+					<v-icon>mdi-facebook</v-icon>
+				</div>
 			</v-card>
 		</v-sheet>
 	</div>
@@ -105,6 +114,11 @@ export default {
 				},
 			],
 		}
+	},
+	computed: {
+		shareLink() {
+			return `whatsapp://send?text=http://localhost:3000${this.$route.fullPath}`
+		},
 	},
 }
 </script>
