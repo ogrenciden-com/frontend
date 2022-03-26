@@ -25,7 +25,7 @@
 						@click="advertToggle"
 						>İlan oluştur</v-btn
 					>
-					<avatar-menu v-if="isThereUser" />
+					<avatar-menu v-if="hasUser" />
 					<v-btn
 						v-else
 						outlined
@@ -70,7 +70,7 @@
 				>
 					<profile-modal />
 				</v-dialog>
-				<Nuxt />
+				<Nuxt :key="$route.fullPath" />
 			</v-main>
 		</v-container>
 	</v-app>
@@ -83,7 +83,6 @@ import SearchBox from '@/components/SearchBox.vue'
 import AvatarMenu from '@/components/AvatarMenu.vue'
 import AdvertModal from '@/components/AdvertModal.vue'
 import ProfileModal from '@/components/ProfileModal.vue'
-
 export default {
 	name: 'DefaultLayout',
 	components: {
@@ -95,7 +94,6 @@ export default {
 	},
 	data() {
 		return {
-			isThereUser: true,
 			fab: false,
 		}
 	},
@@ -106,11 +104,15 @@ export default {
 		profileModal() {
 			return this.$store.state.profileModal
 		},
+		hasUser() {
+			return this.$store.state.hasUser
+		},
 	},
 	methods: {
 		...mapMutations({
 			advertToggle: 'advertToggle',
 			profileToggle: 'profileToggle',
+			userToggle: 'userToggle',
 		}),
 		onScroll(e) {
 			if (typeof window === 'undefined') return
