@@ -76,7 +76,7 @@
 					</span>
 					<div class="mr-4">
 						<a
-							:href="shareWhatsAppLink()"
+							:href="shareWhatsAppLink"
 							data-action="share/whatsapp/share"
 							target="_blank"
 							class="text-decoration-none"
@@ -160,15 +160,11 @@ export default {
 		shareTelegramLink() {
 			return `https://t.me/share/url?url=https://frontend-git-dev-aahmetcakir.vercel.app${this.$route.fullPath}&text=Macbook Air M1 (2020) Fiyatı: 17.250TL`
 		},
-	},
-	methods: {
 		shareWhatsAppLink() {
-			if (process.client) {
-				if (window.navigator.userAgentData.mobile) {
-					return `whatsapp://send?text=https://frontend-git-dev-aahmetcakir.vercel.app${this.$route.fullPath}`
-				} else
-					return `https://web.whatsapp.com/send?text=https://frontend-git-dev-aahmetcakir.vercel.app${this.$route.fullPath}`
-			}
+			if (process.client && window.navigator.userAgentData.mobile) {
+				return `whatsapp://send?text=https://frontend-git-dev-aahmetcakir.vercel.app${this.$route.fullPath}`
+			} else
+				return `https://web.whatsapp.com/send?text=https://frontend-git-dev-aahmetcakir.vercel.app${this.$route.fullPath}`
 		},
 	},
 }
