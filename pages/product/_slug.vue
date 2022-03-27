@@ -48,7 +48,7 @@
 				</v-card-title>
 				<div class="text-body-2 darkGrey--text d-flex align-center">
 					<span class="mr-1"> Teknoloji </span>
-					<span class="font-weight-bold text-h6 mr-1"> • </span>
+					<span class="font-weight-bold text-h6 mr-1">•</span>
 					<time class="text-caption font-weight-light"
 						>19.02.2022</time
 					>
@@ -68,26 +68,57 @@
 					soluta vel, aliquid a veritatis ipsam qui fugit temporibus
 					dolore consequatur architecto sed iste?
 				</p>
-				<div class="pb-4 pb-sm-0 d-flex d-sm-inline align-center">
+				<div
+					class="pb-4 pb-sm-0 d-flex align-center justify-space-between"
+				>
 					<span class="text-caption darkGrey--text mr-4">
 						Bu ilan 181 kez görüntülendi
 					</span>
-					<a
-						:href="shareLink"
-						data-action="share/whatsapp/share"
-						target="_blank"
-						class="text-decoration-none mr-2"
-					>
-						<v-icon>mdi-whatsapp</v-icon>
-					</a>
-					<v-icon>mdi-facebook</v-icon>
+					<div class="mr-4">
+						<a
+							:href="shareWhatsAppLink"
+							data-action="share/whatsapp/share"
+							target="_blank"
+							class="text-decoration-none"
+						>
+							<v-hover v-slot="{ hover }">
+								<v-btn icon>
+									<v-icon :class="hover ? 'green--text' : ''"
+										>mdi-whatsapp</v-icon
+									>
+								</v-btn>
+							</v-hover>
+						</a>
+						<a
+							:href="shareTelegramLink"
+							data-action="share/whatsapp/share"
+							target="_blank"
+							class="text-decoration-none"
+						>
+							<v-hover v-slot="{ hover }">
+								<v-btn icon>
+									<telegram-icon
+										:class="
+											hover
+												? 'blue--text'
+												: '#E1E9E9--text'
+										"
+									/>
+								</v-btn>
+							</v-hover>
+						</a>
+					</div>
 				</div>
 			</v-card>
 		</v-sheet>
 	</div>
 </template>
 <script>
+import TelegramIcon from '@/components/Icons/TelegramIcon.vue'
 export default {
+	components: {
+		TelegramIcon,
+	},
 	data() {
 		return {
 			model: 0,
@@ -116,8 +147,15 @@ export default {
 		}
 	},
 	computed: {
-		shareLink() {
-			return `whatsapp://send?text=https://frontend-git-dev-aahmetcakir.vercel.app${this.$route.fullPath}`
+		shareWhatsAppLink() {
+			return process.client && window.navigator.userAgentData.mobile
+				? `whatsapp://send?text=https://frontend-git-dev-aahmetcakir.vercel.app${this.$route.fullPath}`
+				: `https://web.whatsapp.com/send?text=https://frontend-git-dev-aahmetcakir.vercel.app${this.$route.fullPath}`
+		},
+		shareTelegramLink() {
+			return process.client && window.navigator.userAgentData.mobile
+				? `https://t.me/share/url?url=https://frontend-git-dev-aahmetcakir.vercel.app${this.$route.fullPath}&text=Macbook Air M1 (2020) Fiyatı: 17.250TL`
+				: `https://t.me/share/url?url=https://frontend-git-dev-aahmetcakir.vercel.app${this.$route.fullPath}&text=Macbook Air M1 (2020) Fiyatı: 17.250TL`
 		},
 	},
 }
