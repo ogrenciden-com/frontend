@@ -3,7 +3,7 @@
 		<v-breadcrumbs
 			class="pa-0 mb-2"
 			divider=">"
-			:items="items"
+			:items="breadcrumbs"
 		></v-breadcrumbs>
 		<v-sheet class="d-md-flex d-block mb-10 mb-sm-0" outlined rounded="lg">
 			<v-carousel
@@ -132,7 +132,7 @@ export default {
 				'https://img.letgo.com/images/59/7b/f0/19/597bf019424a92bbb974cf7e43e91542.jpg?impolicy=img_600',
 				'https://img.letgo.com/images/d1/69/60/c7/d16960c77899a052da7de378ff68f663.jpg?impolicy=img_600',
 			],
-			items: [
+			breadcrumbs: [
 				{
 					text: 'Ana Sayfa',
 					disabled: false,
@@ -141,12 +141,17 @@ export default {
 				{
 					text: 'Bülent Ecevit Üniversitesi',
 					disabled: false,
-					href: `/${this.$route.params?.university}`,
+					href: `/zonguldak-bulent-ecevit-universitesi`,
 				},
 				{
 					text: 'Farabi',
 					disabled: false,
-					href: `/${this.$route.params?.campus}`,
+					href: `/zonguldak-bulent-ecevit-universitesi/farabi`,
+				},
+				{
+					text: 'Teknoloji',
+					disabled: false,
+					href: `/zonguldak-bulent-ecevit-universitesi/farabi/bar`,
 				},
 			],
 		}
@@ -162,9 +167,6 @@ export default {
 				? `https://t.me/share/url?url=https://frontend-git-dev-aahmetcakir.vercel.app${this.$route.fullPath}&text=Macbook Air M1 (2020) Fiyatı: 17.250TL`
 				: `https://t.me/share/url?url=https://frontend-git-dev-aahmetcakir.vercel.app${this.$route.fullPath}&text=Macbook Air M1 (2020) Fiyatı: 17.250TL`
 		},
-	},
-	created() {
-		console.log(this.items)
 	},
 }
 </script>
