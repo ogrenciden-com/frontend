@@ -75,7 +75,7 @@
 						Bu ilan 181 kez görüntülendi
 					</span>
 					<div class="mr-4">
-						<a
+						<!-- <a
 							:href="shareWhatsAppLink"
 							data-action="share/whatsapp/share"
 							target="_blank"
@@ -88,7 +88,7 @@
 									>
 								</v-btn>
 							</v-hover>
-						</a>
+						</a> -->
 						<a
 							:href="shareTelegramLink"
 							data-action="share/whatsapp/share"
@@ -157,11 +157,11 @@ export default {
 		}
 	},
 	computed: {
-		shareWhatsAppLink() {
-			return process.client && window.navigator.userAgentData.mobile
-				? `whatsapp://send?text=https://frontend-git-dev-aahmetcakir.vercel.app${this.$route.fullPath}`
-				: `https://web.whatsapp.com/send?text=https://frontend-git-dev-aahmetcakir.vercel.app${this.$route.fullPath}`
-		},
+		// shareWhatsAppLink() {
+		// 	return process.client && window.navigator.userAgentData.mobile
+		// 		? `whatsapp://send?text=https://frontend-git-dev-aahmetcakir.vercel.app${this.$route.fullPath}`
+		// 		: `https://web.whatsapp.com/send?text=https://frontend-git-dev-aahmetcakir.vercel.app${this.$route.fullPath}`
+		// },
 		shareTelegramLink() {
 			return `https://t.me/share/url?url=https://frontend-git-dev-aahmetcakir.vercel.app${this.$route.fullPath}&text=Macbook Air M1 (2020) Fiyatı: 17.250TL`
 		},
