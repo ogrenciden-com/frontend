@@ -113,6 +113,11 @@
 		</v-sheet>
 	</div>
 </template>
+<router>
+  {
+    path: '/product/:university?/:campus?/:category?/:slug'
+  }
+</router>
 <script>
 import TelegramIcon from '@/components/Icons/TelegramIcon.vue'
 export default {
@@ -129,19 +134,27 @@ export default {
 			],
 			items: [
 				{
-					text: 'Dashboard',
+					text: 'Ana Sayfa',
 					disabled: false,
-					href: 'breadcrumbs_dashboard',
+					href: '/',
 				},
 				{
-					text: 'Link 1',
+					text: 'Bülent Ecevit Üniversitesi',
 					disabled: false,
-					href: 'breadcrumbs_link_1',
+					href: `/${
+						this.$route.params?.university
+							? this.$route.params?.university
+							: ''
+					}`,
 				},
 				{
-					text: 'Link 2',
-					disabled: true,
-					href: 'breadcrumbs_link_2',
+					text: 'Farabi',
+					disabled: false,
+					href: `/${
+						this.$route.params?.campus
+							? this.$route.params?.campus
+							: ''
+					}`,
 				},
 			],
 		}
@@ -157,6 +170,9 @@ export default {
 				? `https://t.me/share/url?url=https://frontend-git-dev-aahmetcakir.vercel.app${this.$route.fullPath}&text=Macbook Air M1 (2020) Fiyatı: 17.250TL`
 				: `https://t.me/share/url?url=https://frontend-git-dev-aahmetcakir.vercel.app${this.$route.fullPath}&text=Macbook Air M1 (2020) Fiyatı: 17.250TL`
 		},
+	},
+	created() {
+		console.log(this.items)
 	},
 }
 </script>
