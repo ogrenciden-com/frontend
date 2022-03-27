@@ -82,7 +82,7 @@ export default {
 				this.$route.params.category
 					? this.$route.params.category + '/'
 					: ''
-			}macbook-air-2020`
+			}macbook-air-m1-2020`
 		},
 	},
 }
