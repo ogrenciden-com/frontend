@@ -5,7 +5,7 @@
 			divider=">"
 			:items="items"
 		></v-breadcrumbs>
-		<v-sheet class="d-md-flex d-block" outlined rounded="lg">
+		<v-sheet class="d-md-flex d-block mb-10 mb-sm-0" outlined rounded="lg">
 			<v-carousel
 				v-model="model"
 				class="rounded"
@@ -141,20 +141,12 @@ export default {
 				{
 					text: 'Bülent Ecevit Üniversitesi',
 					disabled: false,
-					href: `/${
-						this.$route.params?.university
-							? this.$route.params?.university
-							: ''
-					}`,
+					href: `/${this.$route.params?.university}`,
 				},
 				{
 					text: 'Farabi',
 					disabled: false,
-					href: `/${
-						this.$route.params?.campus
-							? this.$route.params?.campus
-							: ''
-					}`,
+					href: `/${this.$route.params?.campus}`,
 				},
 			],
 		}
