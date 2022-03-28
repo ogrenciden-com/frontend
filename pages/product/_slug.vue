@@ -119,6 +119,15 @@
 						</a>
 					</div>
 				</div>
+				<v-btn icon absolute bottom right>
+					<v-hover v-slot="{ hover }">
+						<v-btn icon>
+							<v-icon :class="hover ? 'primary--text' : ''"
+								>mdi-pencil-circle</v-icon
+							>
+						</v-btn>
+					</v-hover>
+				</v-btn>
 			</v-card>
 		</v-sheet>
 	</div>
