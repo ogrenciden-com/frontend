@@ -17,7 +17,7 @@
 				}"
 				height="600"
 			>
-				<v-carousel-item v-for="link in links" :key="link">
+				<v-carousel-item v-for="image in item.images" :key="image">
 					<v-img
 						max-width="600"
 						max-height="600"
@@ -25,7 +25,7 @@
 						height="100%"
 						contain
 						class="mx-auto rounded"
-						:src="link"
+						:src="image"
 					></v-img>
 				</v-carousel-item>
 			</v-carousel>
@@ -39,34 +39,31 @@
 				<v-card-subtitle
 					class="font-weight-bold text-h6 black--text pl-0 pb-0"
 				>
-					Macbook Air M1 (2020)
+					{{ item.title }}
 				</v-card-subtitle>
 				<v-card-title
 					class="font-weight-bold text-h5 primary--text pl-0 pt-2 pb-0"
 				>
-					17.250 TL
+					{{ item.price }} TL
 				</v-card-title>
-				<div class="text-body-2 darkGrey--text d-flex align-center">
-					<span class="mr-1"> Teknoloji </span>
-					<span class="font-weight-bold text-h6 mr-1">•</span>
-					<time class="text-caption font-weight-light"
-						>19.02.2022</time
-					>
+				<div
+					class="text-body-2 darkGrey--text d-flex align-center mt-1"
+				>
+					<span class="mr-1"> {{ item.category }} </span>
+					<span class="d-block mr-1 dot"></span>
+					<time class="text-caption font-weight-light">
+						{{ item.publisedDate }}
+					</time>
 				</div>
-				<div class="text-body-2 darkGrey--text d-flex align-center">
-					<span class="mr-1"> Bülent Ecevit Universitesi </span>
-					<span class="font-weight-bold text-h6 mr-1"> • </span>
-					<time class="font-weight-regular">Farabi</time>
+				<div
+					class="text-body-2 darkGrey--text d-flex align-center mt-1"
+				>
+					<span class="mr-1"> {{ item.university }} </span>
+					<span class="d-block mr-1 dot"> </span>
+					<time class="font-weight-regular">{{ item.campus }}</time>
 				</div>
 				<p class="text-body-2 mt-2 black--text">
-					Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-					Soluta, corporis adipisci. Eaque cumque illum provident quod
-					iure dolorem cum laudantium reprehenderit possimus nulla
-					neque hic repudiandae officiis, tempora perspiciatis saepe.
-					Lorem ipsum dolor sit amet consectetur adipisicing elit.
-					Nesciunt quo facilis libero optio sequi, numquam velit
-					soluta vel, aliquid a veritatis ipsam qui fugit temporibus
-					dolore consequatur architecto sed iste?
+					{{ item.description }}
 				</p>
 				<div
 					class="pb-4 pb-sm-0 d-flex align-center justify-space-between"
@@ -106,6 +103,20 @@
 								</v-btn>
 							</v-hover>
 						</a>
+						<a
+							:href="shareTwitterLink"
+							data-action="share/whatsapp/share"
+							target="_blank"
+							class="text-decoration-none"
+						>
+							<v-hover v-slot="{ hover }">
+								<v-btn icon>
+									<v-icon :class="hover ? 'blue--text' : ''"
+										>mdi-twitter</v-icon
+									>
+								</v-btn>
+							</v-hover>
+						</a>
 					</div>
 				</div>
 			</v-card>
@@ -126,11 +137,6 @@ export default {
 	data() {
 		return {
 			model: 0,
-			links: [
-				'https://img.letgo.com/images/6e/77/b0/0f/6e77b00fe56972c0ffbeb3a7edba1b8a.jpg?impolicy=img_600',
-				'https://img.letgo.com/images/59/7b/f0/19/597bf019424a92bbb974cf7e43e91542.jpg?impolicy=img_600',
-				'https://img.letgo.com/images/d1/69/60/c7/d16960c77899a052da7de378ff68f663.jpg?impolicy=img_600',
-			],
 			breadcrumbs: [
 				{
 					text: 'Ana Sayfa',
@@ -153,11 +159,30 @@ export default {
 					href: `/zonguldak-bulent-ecevit-universitesi/farabi/bar`,
 				},
 			],
+			item: {
+				title: 'Macbook Air M1 (2020)',
+				description:
+					'		Lorem ipsum dolor sit amet consectetur, adipisicing elit. Soluta, corporis adipisci. Eaque cumque illum provident quod iure dolorem cum laudantium reprehenderit possimus nulla neque hic repudiandae officiis, tempora perspiciatis saepe. Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt quo facilis libero optio sequi, numquam velit soluta vel, aliquid a veritatis ipsam qui fugit temporibus dolore consequatur architecto sed iste?',
+				price: '17.250',
+				category: 'Teknoloji',
+				university: 'Zonguldak Bülent Ecevit Universitesi',
+				campus: 'Farabi',
+				contact: '',
+				publisedDate: '19.02.2022',
+				images: [
+					'https://img.letgo.com/images/6e/77/b0/0f/6e77b00fe56972c0ffbeb3a7edba1b8a.jpg?impolicy=img_600',
+					'https://img.letgo.com/images/59/7b/f0/19/597bf019424a92bbb974cf7e43e91542.jpg?impolicy=img_600',
+					'https://img.letgo.com/images/d1/69/60/c7/d16960c77899a052da7de378ff68f663.jpg?impolicy=img_600',
+				],
+			},
 		}
 	},
 	computed: {
 		shareTelegramLink() {
-			return `https://t.me/share/url?url=https://frontend-git-dev-aahmetcakir.vercel.app${this.$route.fullPath}&text=Macbook Air M1 (2020) Fiyatı: 17.250TL`
+			return `https://t.me/share/url?url=https://frontend-git-dev-aahmetcakir.vercel.app${this.$route.fullPath}&text=${this.item.title} ${this.item.price}TL `
+		},
+		shareTwitterLink() {
+			return `https://twitter.com/intent/tweet?text=İlanıma göz atın. ${this.item.title} ${this.item.price}TL &url=https://frontend-git-dev-aahmetcakir.vercel.app${this.$route.fullPath}`
 		},
 		shareWhatsAppLink() {
 			return this.$device.isMobile
@@ -167,3 +192,11 @@ export default {
 	},
 }
 </script>
+<style scoped>
+.dot {
+	width: 5px;
+	height: 5px;
+	background-color: #a6a2a2;
+	border-radius: 100px;
+}
+</style>
