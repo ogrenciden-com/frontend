@@ -119,7 +119,7 @@
 						</a>
 					</div>
 				</div>
-				<v-btn v-if="$store.state.hasUser" icon absolute bottom right>
+				<v-btn v-if="$store.state.hasUser" icon absolute top right>
 					<v-hover v-slot="{ hover }">
 						<v-btn icon>
 							<v-icon :class="hover ? 'primary--text' : ''"
