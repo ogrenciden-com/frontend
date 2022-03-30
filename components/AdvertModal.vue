@@ -98,7 +98,7 @@
 						<v-text-field
 							v-model="form.tel"
 							placeholder="(+90) İletişim bilgisi"
-							type="number"
+							type="tel"
 							background-color="secondary"
 							color="darkGrey"
 							class="text-caption text-sm-body-2 text-md-body-1"

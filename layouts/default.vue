@@ -2,10 +2,8 @@
 	<v-app>
 		<v-container>
 			<v-main class="mb-10">
-				<nuxt-link to="/">
-					<brand-logo
-						class="d-flex justify-start mx-auto mt-6 mb-4 d-sm-none ma-sm-0"
-					/>
+				<nuxt-link to="/" class="d-flex justify-center align-center">
+					<brand-logo class="mt-6 mb-4 d-sm-none" />
 				</nuxt-link>
 				<v-app-bar width="1157" color="white" height="72" elevation="0">
 					<!-- 
@@ -27,7 +25,7 @@
 						@click="advertToggle"
 						>İlan oluştur</v-btn
 					>
-					<avatar-menu v-if="isThereUser" />
+					<avatar-menu v-if="hasUser" />
 					<v-btn
 						v-else
 						outlined
@@ -36,7 +34,7 @@
 						color="primary"
 						height="48"
 						elevation="0"
-						class="rounded-lg"
+						class="rounded-lg text-transform-none"
 						>Giriş yap / Kayıt ol</v-btn
 					>
 				</v-app-bar>
@@ -72,7 +70,7 @@
 				>
 					<profile-modal />
 				</v-dialog>
-				<Nuxt />
+				<Nuxt :key="$route.fullPath" />
 			</v-main>
 		</v-container>
 	</v-app>
@@ -85,7 +83,6 @@ import SearchBox from '@/components/SearchBox.vue'
 import AvatarMenu from '@/components/AvatarMenu.vue'
 import AdvertModal from '@/components/AdvertModal.vue'
 import ProfileModal from '@/components/ProfileModal.vue'
-
 export default {
 	name: 'DefaultLayout',
 	components: {
@@ -97,7 +94,6 @@ export default {
 	},
 	data() {
 		return {
-			isThereUser: true,
 			fab: false,
 		}
 	},
@@ -108,16 +104,20 @@ export default {
 		profileModal() {
 			return this.$store.state.profileModal
 		},
+		hasUser() {
+			return this.$store.state.hasUser
+		},
 	},
 	methods: {
 		...mapMutations({
 			advertToggle: 'advertToggle',
 			profileToggle: 'profileToggle',
+			userToggle: 'userToggle',
 		}),
 		onScroll(e) {
 			if (typeof window === 'undefined') return
 			const top = window.pageYOffset || e.target.scrollTop || 0
-			this.fab = top > 20
+			this.fab = top > 150
 		},
 	},
 }

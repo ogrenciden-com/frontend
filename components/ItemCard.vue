@@ -15,7 +15,7 @@
 					v-for="link in links"
 					:key="link"
 					nuxt
-					to="/product/maxbook-air-m1"
+					:to="detailLink"
 				>
 					<v-img
 						width="210"
@@ -28,7 +28,7 @@
 			</v-carousel>
 			<v-card-title class="pa-0 pt-1 mt-2">
 				<nuxt-link
-					to="/product/maxbook-air-m1"
+					:to="detailLink"
 					class="text-body-2 font-weight-medium black--text text-decoration-none"
 				>
 					Macbook Air M1 (2020)
@@ -69,6 +69,21 @@ export default {
 				'https://img.letgo.com/images/d1/69/60/c7/d16960c77899a052da7de378ff68f663.jpg?impolicy=img_600',
 			],
 		}
+	},
+	computed: {
+		detailLink() {
+			return `/product/${
+				this.$route.params.university
+					? this.$route.params.university + '/'
+					: ''
+			}${
+				this.$route.params.campus ? this.$route.params.campus + '/' : ''
+			}${
+				this.$route.params.category
+					? this.$route.params.category + '/'
+					: ''
+			}macbook-air-m1-2020`
+		},
 	},
 }
 </script>
