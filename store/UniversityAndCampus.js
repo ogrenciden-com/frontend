@@ -3685,6 +3685,8 @@ export const state = () => ({
 		},
 	],
 	selectedCampuses: [],
+	routeUniversityName: '',
+	routeCampusName: '',
 })
 export const mutations = {
 	// generateUniversityList(state) {
@@ -3730,13 +3732,47 @@ export const mutations = {
 	// 	// eslint-disable-next-line
 	// 	console.log(newUniversityList)
 	// },
+
 	findCampusByUniversityName(state, name) {
+		state.selectedCampuses = []
 		// eslint-disable-next-line
 		for (const [key, value] of Object.entries(state.universities)) {
 			if (value.name === name) {
-				state.selectedCampuses = value.campus
+				value.campuses.forEach((campus) => {
+					state.selectedCampuses.push(campus.name)
+				})
 			}
 		}
 		return state.selectedCampuses
+	},
+	findCampusNameBySlug(state, slug) {
+		// eslint-disable-next-line
+		state.universities.forEach((university) => {
+			university.campuses.forEach((campus) => {
+				if (campus.slug === slug) {
+					state.routeCampusName = campus.name
+				}
+			})
+		})
+		return state.routeCampusName
+	},
+	findUniversityNameByUniversitySlug(state, slug) {
+		// eslint-disable-next-line
+		for (const [key, value] of Object.entries(state.universities)) {
+			if (value.slug === slug) {
+				state.routeUniversityName = value.name
+			}
+		}
+		return state.routeUniversityName
+	},
+}
+export const getters = {
+	getUniversitiesName(state) {
+		const universities = []
+		// eslint-disable-next-line
+		for (const [key, value] of Object.entries(state.universities)) {
+			universities.push(value.name)
+		}
+		return universities
 	},
 }

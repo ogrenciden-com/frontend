@@ -17,7 +17,7 @@
 		<!-- university -->
 		<select-box
 			v-model="form.universityName"
-			:items="universities"
+			:items="getUniversitiesName()"
 			label="Üniversite"
 			classes="mb-8 text-caption text-md-body-2"
 		/>
@@ -74,14 +74,21 @@
 			></v-text-field>
 		</div>
 
-		<v-btn color="primary" elevation="0" width="100%" @click="submit">
+		<v-btn
+			class="text-transform-none"
+			color="primary"
+			elevation="0"
+			width="100%"
+			@click="submit"
+		>
 			Uygula
 		</v-btn>
 	</v-card>
 </template>
 <script>
 import slugify from 'slugify'
-import { mapMutations } from 'vuex'
+import { mapMutations, mapGetters } from 'vuex'
+
 import SelectBox from '@/components/SelectBox.vue'
 export default {
 	components: {
@@ -120,27 +127,39 @@ export default {
 		},
 	},
 	created() {
-		if (this.$route.params.campus) {
-			this.form.campus = this.titleCase(this.$route.params.campus)
-		}
+		// university router name
 		if (this.$route.params.university) {
-			this.form.universityName = this.$route.params.university
-				.toLocaleUpperCase('tr-TR')
-				.split('-')
-				.join(' ')
-				.replace('U', 'Ü')
+			this.findUniversityNameByUniversitySlug(
+				this.$route.params.university,
+			)
+			this.findCampusByUniversityName(this.form.universityName)
+			this.form.universityName =
+				this.$store.state.UniversityAndCampus?.routeUniversityName
 		}
+		// campus router name
+
+		if (this.$route.params.campus) {
+			this.findCampusNameBySlug(this.$route.params.campus)
+			this.form.campus =
+				this.$store.state.UniversityAndCampus?.routeCampusName
+		}
+
+		// category router name
 		if (this.$route.params.category) {
 			this.form.category =
 				this.$route.params.category[0].toUpperCase() +
 				this.$route.params.category.slice(1)
 		}
+		// max price router value
+
 		if (this.$route.query.maxPrice) {
 			this.form.maxPrice = this.$route.query.maxPrice
 		}
+		// min price router value
 		if (this.$route.query.minPrice) {
 			this.form.minPrice = this.$route.query.minPrice
 		}
+		// order (sort) router value
 		if (this.$route.query.order) {
 			this.form.order =
 				this.$route.query.order[0].toUpperCase() +
@@ -156,19 +175,13 @@ export default {
 		...mapMutations({
 			findCampusByUniversityName:
 				'UniversityAndCampus/findCampusByUniversityName',
+			findUniversityNameByUniversitySlug:
+				'UniversityAndCampus/findUniversityNameByUniversitySlug',
+			findCampusNameBySlug: 'UniversityAndCampus/findCampusNameBySlug',
 		}),
-		// linkleri store'a taşıdığında bunları sil
-		titleCase(str) {
-			let splitStr = str.toLowerCase().split('-')
-			for (let i = 0; i < splitStr.length; i++) {
-				splitStr[i] =
-					splitStr[i].charAt(0).toUpperCase() +
-					splitStr[i].substring(1)
-			}
-			// Directly return the joined string
-			splitStr = splitStr.join(' ')
-			return splitStr
-		},
+		...mapGetters({
+			getUniversitiesName: 'UniversityAndCampus/getUniversitiesName',
+		}),
 		submit() {
 			this.$router.push({
 				name: 'index',
@@ -176,7 +189,7 @@ export default {
 					university: this.form.universityName
 						? slugify(this.form.universityName, {
 								lower: true,
-								locale: 'tr',
+								locale: 'tr-TR',
 						  })
 						: undefined,
 					campus: this.form.campus
