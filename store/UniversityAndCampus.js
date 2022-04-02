@@ -3712,25 +3712,6 @@ export const mutations = {
 	// 		})
 	// 		newUniversityList.push({ ...name, campuses })
 	// 	}
-	// 	// state.universities.forEach((university, index) => {
-	// 	// 	// const universityList = {
-	// 	// 	// 	name: university.name,
-	// 	// 	// 	slug: slugify(university.name, {
-	// 	// 	// 		lower: true,
-	// 	// 	// 		locale: 'tr-TR',
-	// 	// 	// 	}),
-	// 	// 	// 	campus: {
-	// 	// 	// 		name: university.campus[index],
-	// 	// 	// 		slug: slugify(university.campus[index], {
-	// 	// 	// 			lower: true,
-	// 	// 	// 			locale: 'tr-TR',
-	// 	// 	// 		}),
-	// 	// 	// 	},
-	// 	// 	// }
-	// 	// 	// newUniversityList.push(universityList)
-	// 	// })
-	// 	// eslint-disable-next-line
-	// 	console.log(newUniversityList)
 	// },
 
 	findCampusByUniversityName(state, name) {
