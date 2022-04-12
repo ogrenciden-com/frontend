@@ -1,1195 +1,3759 @@
+// import slugify from 'slugify'
 export const state = () => ({
-	university: {
-		0: {
+	universities: [
+		{
 			name: 'ABDULLAH GÜL ÜNİVERSİTESİ',
-			campus: ['Mimar Sinan', 'Sümer'],
+			slug: 'abdullah-gul-universitesi',
+			campuses: [
+				{
+					name: 'Mimar Sinan',
+					slug: 'mimar-sinan',
+				},
+				{
+					name: 'Sümer',
+					slug: 'sumer',
+				},
+			],
 		},
-		1: {
+		{
 			name: 'ACIBADEM MEHMET ALİ AYDINLAR ÜNİVERSİTESİ',
-			campus: ['Kerem Aydınlar'],
+			slug: 'acibadem-mehmet-ali-aydinlar-universitesi',
+			campuses: [
+				{
+					name: 'Kerem Aydınlar',
+					slug: 'kerem-aydinlar',
+				},
+			],
 		},
-		2: {
+		{
 			name: 'ADANA ALPARSLAN TÜRKEŞ BİLİM VE TEKNOLOJİ ÜNİVERSİTESİ',
-			campus: ['Sarıçam'],
+			slug: 'adana-alparslan-turkes-bilim-ve-teknoloji-universitesi',
+			campuses: [
+				{
+					name: 'Sarıçam',
+					slug: 'saricam',
+				},
+			],
 		},
-		3: {
+		{
 			name: 'ADIYAMAN ÜNİVERSİTESİ',
-			campus: ['Merkez', 'Kâhta', 'Besni', 'Gölbaşı'],
+			slug: 'adiyaman-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+				{
+					name: 'Kâhta',
+					slug: 'kahta',
+				},
+				{
+					name: 'Besni',
+					slug: 'besni',
+				},
+				{
+					name: 'Gölbaşı',
+					slug: 'golbasi',
+				},
+			],
 		},
-		4: {
+		{
 			name: 'AFYON KOCATEPE ÜNİVERSİTESİ',
-			campus: [
-				'Ahmet Necdet Sezer',
-				'Sandıklı Yunus Emre',
-				'Bolvadin Kırkgöz',
-				'Ahmet Karahisari İlahiyat',
+			slug: 'afyon-kocatepe-universitesi',
+			campuses: [
+				{
+					name: 'Ahmet Necdet Sezer',
+					slug: 'ahmet-necdet-sezer',
+				},
+				{
+					name: 'Sandıklı Yunus Emre',
+					slug: 'sandikli-yunus-emre',
+				},
+				{
+					name: 'Bolvadin Kırkgöz',
+					slug: 'bolvadin-kirkgoz',
+				},
+				{
+					name: 'Ahmet Karahisari İlahiyat',
+					slug: 'ahmet-karahisari-ilahiyat',
+				},
 			],
 		},
-		5: {
+		{
 			name: 'AFYONKARAHİSAR SAĞLIK BİLİMLERİ ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'afyonkarahisar-saglik-bilimleri-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		6: {
+		{
 			name: 'AĞRI İBRAHİM ÇEÇEN ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'agri-ibrahim-cecen-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		7: {
+		{
 			name: 'AKDENİZ ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'akdeniz-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		8: {
+		{
 			name: 'AKSARAY ÜNİVERSİTESİ',
-			campus: [
-				'Merkez',
-				'Zafer',
-				'Eskil',
-				'Güzelyurt',
-				'Ortaköy',
-				'Sultanhanı',
-				'Taşpazar',
+			slug: 'aksaray-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+				{
+					name: 'Zafer',
+					slug: 'zafer',
+				},
+				{
+					name: 'Eskil',
+					slug: 'eskil',
+				},
+				{
+					name: 'Güzelyurt',
+					slug: 'guzelyurt',
+				},
+				{
+					name: 'Ortaköy',
+					slug: 'ortakoy',
+				},
+				{
+					name: 'Sultanhanı',
+					slug: 'sultanhani',
+				},
+				{
+					name: 'Taşpazar',
+					slug: 'taspazar',
+				},
 			],
 		},
-		9: {
+		{
 			name: 'ALANYA ALAADDİN KEYKUBAT ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'alanya-alaaddin-keykubat-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		10: {
+		{
 			name: 'ALANYA HAMDULLAH EMİN PAŞA ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'alanya-hamdullah-emin-pasa-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		11: {
+		{
 			name: 'ALTINBAŞ ÜNİVERSİTESİ',
-			campus: ['Mahmutbey', 'Gayrettepe', 'Bakırköy'],
+			slug: 'altinbas-universitesi',
+			campuses: [
+				{
+					name: 'Mahmutbey',
+					slug: 'mahmutbey',
+				},
+				{
+					name: 'Gayrettepe',
+					slug: 'gayrettepe',
+				},
+				{
+					name: 'Bakırköy',
+					slug: 'bakirkoy',
+				},
+			],
 		},
-		12: {
+		{
 			name: 'AMASYA ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'amasya-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		13: {
+		{
 			name: 'ANADOLU ÜNİVERSİTESİ',
-			campus: ['Yunus Emre'],
+			slug: 'anadolu-universitesi',
+			campuses: [
+				{
+					name: 'Yunus Emre',
+					slug: 'yunus-emre',
+				},
+			],
 		},
-		14: {
+		{
 			name: 'ANKARA BİLİM ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'ankara-bilim-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		15: {
+		{
 			name: 'ANKARA HACI BAYRAM VELİ ÜNİVERSİTESİ',
-			campus: ['Merkez', 'Beşevler', 'Polatlı', 'Gölbaşı', 'Çankaya'],
+			slug: 'ankara-haci-bayram-veli-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+				{
+					name: 'Beşevler',
+					slug: 'besevler',
+				},
+				{
+					name: 'Polatlı',
+					slug: 'polatli',
+				},
+				{
+					name: 'Gölbaşı',
+					slug: 'golbasi',
+				},
+				{
+					name: 'Çankaya',
+					slug: 'cankaya',
+				},
+			],
 		},
-		16: {
+		{
 			name: 'ANKARA MEDİPOL ÜNİVERSİTESİ',
-			campus: ['Anafartalar'],
+			slug: 'ankara-medipol-universitesi',
+			campuses: [
+				{
+					name: 'Anafartalar',
+					slug: 'anafartalar',
+				},
+			],
 		},
-		17: {
+		{
 			name: 'ANKARA MÜZİK VE GÜZEL SANATLAR ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'ankara-muzik-ve-guzel-sanatlar-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		18: {
+		{
 			name: 'ANKARA SOSYAL BİLİMLER ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'ankara-sosyal-bilimler-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		19: {
+		{
 			name: 'ANKARA ÜNİVERSİTESİ',
-			campus: ['Cebeci', 'Sıhhiye', 'Tandoğan'],
+			slug: 'ankara-universitesi',
+			campuses: [
+				{
+					name: 'Cebeci',
+					slug: 'cebeci',
+				},
+				{
+					name: 'Sıhhiye',
+					slug: 'sihhiye',
+				},
+				{
+					name: 'Tandoğan',
+					slug: 'tandogan',
+				},
+			],
 		},
-		20: {
+		{
 			name: 'ANKARA YILDIRIM BEYAZIT ÜNİVERSİTESİ',
-			campus: [
-				'Bilkent',
-				'Cinnah',
-				'Çubuk',
-				'Esenboğa',
-				'Keçiören',
-				'Tuz Gölü',
+			slug: 'ankara-yildirim-beyazit-universitesi',
+			campuses: [
+				{
+					name: 'Bilkent',
+					slug: 'bilkent',
+				},
+				{
+					name: 'Cinnah',
+					slug: 'cinnah',
+				},
+				{
+					name: 'Çubuk',
+					slug: 'cubuk',
+				},
+				{
+					name: 'Esenboğa',
+					slug: 'esenboga',
+				},
+				{
+					name: 'Keçiören',
+					slug: 'kecioren',
+				},
+				{
+					name: 'Tuz Gölü',
+					slug: 'tuz-golu',
+				},
 			],
 		},
-		21: {
+		{
 			name: 'ANTALYA AKEV ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'antalya-akev-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		22: {
+		{
 			name: 'ANTALYA BİLİM ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'antalya-bilim-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		23: {
+		{
 			name: 'ARDAHAN ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'ardahan-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		24: {
+		{
 			name: 'ARTVİN ÇORUH ÜNİVERSİTESİ',
-			campus: ['Merkez', 'Seyitler', 'Arhavi', 'Hopa'],
+			slug: 'artvin-coruh-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+				{
+					name: 'Seyitler',
+					slug: 'seyitler',
+				},
+				{
+					name: 'Arhavi',
+					slug: 'arhavi',
+				},
+				{
+					name: 'Hopa',
+					slug: 'hopa',
+				},
+			],
 		},
-		25: {
+		{
 			name: 'ATAŞEHİR ADIGÜZEL MESLEK YÜKSEKOKULU',
-			campus: ['Merkez'],
+			slug: 'atasehir-adiguzel-meslek-yuksekokulu',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		26: {
+		{
 			name: 'ATATÜRK ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'ataturk-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		27: {
+		{
 			name: 'ATILIM ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'atilim-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		28: {
+		{
 			name: 'AVRASYA ÜNİVERSİTESİ',
-			campus: ['Pelitli', 'Yomra', 'Ömer Yıldız', 'Kaşüstü'],
+			slug: 'avrasya-universitesi',
+			campuses: [
+				{
+					name: 'Pelitli',
+					slug: 'pelitli',
+				},
+				{
+					name: 'Yomra',
+					slug: 'yomra',
+				},
+				{
+					name: 'Ömer Yıldız',
+					slug: 'omer-yildiz',
+				},
+				{
+					name: 'Kaşüstü',
+					slug: 'kasustu',
+				},
+			],
 		},
-		29: {
+		{
 			name: 'AYDIN ADNAN MENDERES ÜNİVERSİTESİ',
-			campus: [
-				'Merkez',
-				'Çakmar',
-				'Işıklı',
-				'İsabeyli',
-				'Didim Akbük',
-				'Nazilli Sümer',
-				'Çine Süleyman Pekgüzel',
-				'Karacasu Muzaffer Özuysal',
-				'Kuşadası',
-				'Atça',
-				'Sultanhisar',
-				'Yenipazar',
-				'Söke',
-				'Davutlar',
-				'Bozdoğan',
-				'Köşk',
-				'Buharkent',
+			slug: 'aydin-adnan-menderes-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+				{
+					name: 'Çakmar',
+					slug: 'cakmar',
+				},
+				{
+					name: 'Işıklı',
+					slug: 'isikli',
+				},
+				{
+					name: 'İsabeyli',
+					slug: 'isabeyli',
+				},
+				{
+					name: 'Didim Akbük',
+					slug: 'didim-akbuk',
+				},
+				{
+					name: 'Nazilli Sümer',
+					slug: 'nazilli-sumer',
+				},
+				{
+					name: 'Çine Süleyman Pekgüzel',
+					slug: 'cine-suleyman-pekguzel',
+				},
+				{
+					name: 'Karacasu Muzaffer Özuysal',
+					slug: 'karacasu-muzaffer-ozuysal',
+				},
+				{
+					name: 'Kuşadası',
+					slug: 'kusadasi',
+				},
+				{
+					name: 'Atça',
+					slug: 'atca',
+				},
+				{
+					name: 'Sultanhisar',
+					slug: 'sultanhisar',
+				},
+				{
+					name: 'Yenipazar',
+					slug: 'yenipazar',
+				},
+				{
+					name: 'Söke',
+					slug: 'soke',
+				},
+				{
+					name: 'Davutlar',
+					slug: 'davutlar',
+				},
+				{
+					name: 'Bozdoğan',
+					slug: 'bozdogan',
+				},
+				{
+					name: 'Köşk',
+					slug: 'kosk',
+				},
+				{
+					name: 'Buharkent',
+					slug: 'buharkent',
+				},
 			],
 		},
-		30: {
+		{
 			name: 'BAHÇEŞEHİR ÜNİVERSİTESİ',
-			campus: [
-				'Beşiktaş Güney',
-				'Beşiktaş Kuzey',
-				'Galata',
-				'Göztepe',
-				'Future',
-				'Pera',
+			slug: 'bahcesehir-universitesi',
+			campuses: [
+				{
+					name: 'Beşiktaş Güney',
+					slug: 'besiktas-guney',
+				},
+				{
+					name: 'Beşiktaş Kuzey',
+					slug: 'besiktas-kuzey',
+				},
+				{
+					name: 'Galata',
+					slug: 'galata',
+				},
+				{
+					name: 'Göztepe',
+					slug: 'goztepe',
+				},
+				{
+					name: 'Future',
+					slug: 'future',
+				},
+				{
+					name: 'Pera',
+					slug: 'pera',
+				},
 			],
 		},
-		31: {
+		{
 			name: 'BALIKESİR ÜNİVERSİTESİ',
-			campus: ['Çağış'],
+			slug: 'balikesir-universitesi',
+			campuses: [
+				{
+					name: 'Çağış',
+					slug: 'cagis',
+				},
+			],
 		},
-		32: {
+		{
 			name: 'BANDIRMA ONYEDİ EYLÜL ÜNİVERSİTESİ',
-			campus: [
-				'Merkez',
-				'Sağlık Bilimleri',
-				'Bandırma & Denizcilik',
-				'Gönen',
-				'Manyas',
-				'Erdek',
-				'Susurluk',
-				'Edincik',
-				'',
+			slug: 'bandirma-onyedi-eylul-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+				{
+					name: 'Sağlık Bilimleri',
+					slug: 'saglik-bilimleri',
+				},
+				{
+					name: 'Bandırma & Denizcilik',
+					slug: 'bandirma-and-denizcilik',
+				},
+				{
+					name: 'Gönen',
+					slug: 'gonen',
+				},
+				{
+					name: 'Manyas',
+					slug: 'manyas',
+				},
+				{
+					name: 'Erdek',
+					slug: 'erdek',
+				},
+				{
+					name: 'Susurluk',
+					slug: 'susurluk',
+				},
+				{
+					name: 'Edincik',
+					slug: 'edincik',
+				},
+				{
+					name: '',
+					slug: '',
+				},
 			],
 		},
-		33: {
+		{
 			name: 'BARTIN ÜNİVERSİTESİ',
-			campus: ['Ağdacı', 'Kutlubey'],
+			slug: 'bartin-universitesi',
+			campuses: [
+				{
+					name: 'Ağdacı',
+					slug: 'agdaci',
+				},
+				{
+					name: 'Kutlubey',
+					slug: 'kutlubey',
+				},
+			],
 		},
-		34: {
+		{
 			name: 'BAŞKENT ÜNİVERSİTESİ',
-			campus: ['Bağlıca', 'Bahçelievler', 'Kazan'],
+			slug: 'baskent-universitesi',
+			campuses: [
+				{
+					name: 'Bağlıca',
+					slug: 'baglica',
+				},
+				{
+					name: 'Bahçelievler',
+					slug: 'bahcelievler',
+				},
+				{
+					name: 'Kazan',
+					slug: 'kazan',
+				},
+			],
 		},
-		35: {
+		{
 			name: 'BATMAN ÜNİVERSİTESİ',
-			campus: ['Batı Raman', 'Merkez', 'Hasankeyf', 'Kozluk', 'Sason'],
+			slug: 'batman-universitesi',
+			campuses: [
+				{
+					name: 'Batı Raman',
+					slug: 'bati-raman',
+				},
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+				{
+					name: 'Hasankeyf',
+					slug: 'hasankeyf',
+				},
+				{
+					name: 'Kozluk',
+					slug: 'kozluk',
+				},
+				{
+					name: 'Sason',
+					slug: 'sason',
+				},
+			],
 		},
-		36: {
+		{
 			name: 'BAYBURT ÜNİVERSİTESİ',
-			campus: ['Dede Korkut'],
+			slug: 'bayburt-universitesi',
+			campuses: [
+				{
+					name: 'Dede Korkut',
+					slug: 'dede-korkut',
+				},
+			],
 		},
-		37: {
+		{
 			name: 'BEYKENT ÜNİVERSİTESİ',
-			campus: ['Ayazağa', 'Beylikdüzü', 'Hadımköy', 'Taksim'],
+			slug: 'beykent-universitesi',
+			campuses: [
+				{
+					name: 'Ayazağa',
+					slug: 'ayazaga',
+				},
+				{
+					name: 'Beylikdüzü',
+					slug: 'beylikduzu',
+				},
+				{
+					name: 'Hadımköy',
+					slug: 'hadimkoy',
+				},
+				{
+					name: 'Taksim',
+					slug: 'taksim',
+				},
+			],
 		},
-		38: {
+		{
 			name: 'BEYKOZ ÜNİVERSİTESİ',
-			campus: [
-				'Kavacık',
-				'Lisans',
-				'Çubuklu',
-				'Hazırlık',
-				'Mahmut Şevket Paşa',
+			slug: 'beykoz-universitesi',
+			campuses: [
+				{
+					name: 'Kavacık',
+					slug: 'kavacik',
+				},
+				{
+					name: 'Lisans',
+					slug: 'lisans',
+				},
+				{
+					name: 'Çubuklu',
+					slug: 'cubuklu',
+				},
+				{
+					name: 'Hazırlık',
+					slug: 'hazirlik',
+				},
+				{
+					name: 'Mahmut Şevket Paşa',
+					slug: 'mahmut-sevket-pasa',
+				},
 			],
 		},
-		39: {
+		{
 			name: 'BEZM-İ ÂLEM VAKIF ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'bezm-i-alem-vakif-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		40: {
+		{
 			name: 'BİLECİK ŞEYH EDEBALİ ÜNİVERSİTESİ',
-			campus: [
-				'Gülembe',
-				'Osmaneli',
-				'Pazaryeri',
-				'Bozüyük',
-				'Söğüt',
-				'Gölpazarı',
+			slug: 'bilecik-seyh-edebali-universitesi',
+			campuses: [
+				{
+					name: 'Gülembe',
+					slug: 'gulembe',
+				},
+				{
+					name: 'Osmaneli',
+					slug: 'osmaneli',
+				},
+				{
+					name: 'Pazaryeri',
+					slug: 'pazaryeri',
+				},
+				{
+					name: 'Bozüyük',
+					slug: 'bozuyuk',
+				},
+				{
+					name: 'Söğüt',
+					slug: 'sogut',
+				},
+				{
+					name: 'Gölpazarı',
+					slug: 'golpazari',
+				},
 			],
 		},
-		41: {
+		{
 			name: 'BİNGÖL ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'bingol-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		42: {
+		{
 			name: 'BİRUNİ ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'biruni-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		43: {
+		{
 			name: 'BİTLİS EREN ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'bitlis-eren-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		44: {
+		{
 			name: 'BOĞAZİÇİ ÜNİVERSİTESİ',
-			campus: [
-				'Güney',
-				'Kuzey',
-				'Hisar',
-				'Uçaksavar',
-				'Kandilli',
-				'Sarıtepe',
+			slug: 'bogazici-universitesi',
+			campuses: [
+				{
+					name: 'Güney',
+					slug: 'guney',
+				},
+				{
+					name: 'Kuzey',
+					slug: 'kuzey',
+				},
+				{
+					name: 'Hisar',
+					slug: 'hisar',
+				},
+				{
+					name: 'Uçaksavar',
+					slug: 'ucaksavar',
+				},
+				{
+					name: 'Kandilli',
+					slug: 'kandilli',
+				},
+				{
+					name: 'Sarıtepe',
+					slug: 'saritepe',
+				},
 			],
 		},
-		45: {
+		{
 			name: 'BOLU ABANT İZZET BAYSAL ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'bolu-abant-izzet-baysal-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		46: {
+		{
 			name: 'BURDUR MEHMET AKİF ERSOY ÜNİVERSİTESİ',
-			campus: ['İstiklal', 'Oğuzhan'],
+			slug: 'burdur-mehmet-akif-ersoy-universitesi',
+			campuses: [
+				{
+					name: 'İstiklal',
+					slug: 'istiklal',
+				},
+				{
+					name: 'Oğuzhan',
+					slug: 'oguzhan',
+				},
+			],
 		},
-		47: {
+		{
 			name: 'BURSA TEKNİK ÜNİVERSİTESİ',
-			campus: ['Mimar Sinan', 'Yıldırım Beyazid'],
+			slug: 'bursa-teknik-universitesi',
+			campuses: [
+				{
+					name: 'Mimar Sinan',
+					slug: 'mimar-sinan',
+				},
+				{
+					name: 'Yıldırım Beyazid',
+					slug: 'yildirim-beyazid',
+				},
+			],
 		},
-		48: {
+		{
 			name: 'BURSA ULUDAĞ ÜNİVERSİTESİ',
-			campus: [
-				'Görükle',
-				'Fethiye-Faik Çelik',
-				'Ali Osman Sönmez',
-				'Gemlik Suni İpek',
-				'Mudanya',
-				'İnegöl',
-				'Meslek Yüksek Okulu',
+			slug: 'bursa-uludag-universitesi',
+			campuses: [
+				{
+					name: 'Görükle',
+					slug: 'gorukle',
+				},
+				{
+					name: 'Fethiye-Faik Çelik',
+					slug: 'fethiye-faik-celik',
+				},
+				{
+					name: 'Ali Osman Sönmez',
+					slug: 'ali-osman-sonmez',
+				},
+				{
+					name: 'Gemlik Suni İpek',
+					slug: 'gemlik-suni-ipek',
+				},
+				{
+					name: 'Mudanya',
+					slug: 'mudanya',
+				},
+				{
+					name: 'İnegöl',
+					slug: 'inegol',
+				},
+				{
+					name: 'Meslek Yüksek Okulu',
+					slug: 'meslek-yuksek-okulu',
+				},
 			],
 		},
-		49: {
+		{
 			name: 'ÇAĞ ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'cag-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		50: {
+		{
 			name: 'ÇANAKKALE ONSEKİZ MART ÜNİVERSİTESİ',
-			campus: [
-				'Terzioğlu',
-				'Çanakkale Şehitleri',
-				'Anafartalar',
-				'İskele',
-				'Kepez',
-				'Nedime Hanım',
-				'Biga Ramazan Aydın',
-				'Sarıcaeli',
-				'Ulupınar',
-				'Dardanos',
+			slug: 'canakkale-onsekiz-mart-universitesi',
+			campuses: [
+				{
+					name: 'Terzioğlu',
+					slug: 'terzioglu',
+				},
+				{
+					name: 'Çanakkale Şehitleri',
+					slug: 'canakkale-sehitleri',
+				},
+				{
+					name: 'Anafartalar',
+					slug: 'anafartalar',
+				},
+				{
+					name: 'İskele',
+					slug: 'iskele',
+				},
+				{
+					name: 'Kepez',
+					slug: 'kepez',
+				},
+				{
+					name: 'Nedime Hanım',
+					slug: 'nedime-hanim',
+				},
+				{
+					name: 'Biga Ramazan Aydın',
+					slug: 'biga-ramazan-aydin',
+				},
+				{
+					name: 'Sarıcaeli',
+					slug: 'saricaeli',
+				},
+				{
+					name: 'Ulupınar',
+					slug: 'ulupinar',
+				},
+				{
+					name: 'Dardanos',
+					slug: 'dardanos',
+				},
 			],
 		},
-		51: {
+		{
 			name: 'ÇANKAYA ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'cankaya-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		52: {
+		{
 			name: 'ÇANKIRI KARATEKİN ÜNİVERSİTESİ',
-			campus: [
-				'Uluyazı',
-				'Taş Mescit',
-				'Ballıca',
-				'Güzel Sanatlar Fakültesi',
-				'Orman Fakültesi',
-				'Ilgaz',
-				'Kızılırmak',
-				'Eldivan',
-				'Yapraklı',
-				'Çerkeş',
+			slug: 'cankiri-karatekin-universitesi',
+			campuses: [
+				{
+					name: 'Uluyazı',
+					slug: 'uluyazi',
+				},
+				{
+					name: 'Taş Mescit',
+					slug: 'tas-mescit',
+				},
+				{
+					name: 'Ballıca',
+					slug: 'ballica',
+				},
+				{
+					name: 'Güzel Sanatlar Fakültesi',
+					slug: 'guzel-sanatlar-fakultesi',
+				},
+				{
+					name: 'Orman Fakültesi',
+					slug: 'orman-fakultesi',
+				},
+				{
+					name: 'Ilgaz',
+					slug: 'ilgaz',
+				},
+				{
+					name: 'Kızılırmak',
+					slug: 'kizilirmak',
+				},
+				{
+					name: 'Eldivan',
+					slug: 'eldivan',
+				},
+				{
+					name: 'Yapraklı',
+					slug: 'yaprakli',
+				},
+				{
+					name: 'Çerkeş',
+					slug: 'cerkes',
+				},
 			],
 		},
-		53: {
+		{
 			name: 'ÇUKUROVA ÜNİVERSİTESİ',
-			campus: ['Balcalı'],
+			slug: 'cukurova-universitesi',
+			campuses: [
+				{
+					name: 'Balcalı',
+					slug: 'balcali',
+				},
+			],
 		},
-		54: {
+		{
 			name: 'DEMİROĞLU BİLİM ÜNİVERSİTESİ',
-			campus: ['Esentepe', 'Şişli'],
+			slug: 'demiroglu-bilim-universitesi',
+			campuses: [
+				{
+					name: 'Esentepe',
+					slug: 'esentepe',
+				},
+				{
+					name: 'Şişli',
+					slug: 'sisli',
+				},
+			],
 		},
-		55: {
+		{
 			name: 'DİCLE ÜNİVERSİTESİ',
-			campus: ['Kıtilbil'],
+			slug: 'dicle-universitesi',
+			campuses: [
+				{
+					name: 'Kıtilbil',
+					slug: 'kitilbil',
+				},
+			],
 		},
-		56: {
+		{
 			name: 'DOĞUŞ ÜNİVERSİTESİ',
-			campus: ['Dudullu', 'Çengelköy'],
+			slug: 'dogus-universitesi',
+			campuses: [
+				{
+					name: 'Dudullu',
+					slug: 'dudullu',
+				},
+				{
+					name: 'Çengelköy',
+					slug: 'cengelkoy',
+				},
+			],
 		},
-		57: {
+		{
 			name: 'DOKUZ EYLÜL ÜNİVERSİTESİ',
-			campus: [
-				'Alsancak',
-				'Tınaztepe',
-				'15 Temmuz Sağlık ve Sanat',
-				'Buca',
-				'Dokuz Çeşmeler',
-				'İlahiyat',
-				'Seferihisar',
-				'Kiraz',
-				'Bergama',
-				'Selçuk',
-				'Torbalı',
+			slug: 'dokuz-eylul-universitesi',
+			campuses: [
+				{
+					name: 'Alsancak',
+					slug: 'alsancak',
+				},
+				{
+					name: 'Tınaztepe',
+					slug: 'tinaztepe',
+				},
+				{
+					name: '15 Temmuz Sağlık ve Sanat',
+					slug: '15-temmuz-saglik-ve-sanat',
+				},
+				{
+					name: 'Buca',
+					slug: 'buca',
+				},
+				{
+					name: 'Dokuz Çeşmeler',
+					slug: 'dokuz-cesmeler',
+				},
+				{
+					name: 'İlahiyat',
+					slug: 'ilahiyat',
+				},
+				{
+					name: 'Seferihisar',
+					slug: 'seferihisar',
+				},
+				{
+					name: 'Kiraz',
+					slug: 'kiraz',
+				},
+				{
+					name: 'Bergama',
+					slug: 'bergama',
+				},
+				{
+					name: 'Selçuk',
+					slug: 'selcuk',
+				},
+				{
+					name: 'Torbalı',
+					slug: 'torbali',
+				},
 			],
 		},
-		58: {
+		{
 			name: 'DÜZCE ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'duzce-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		59: {
+		{
 			name: 'EGE ÜNİVERSİTESİ',
-			campus: [
-				'Merkez',
-				'Gaziemir',
-				'Karşıyaka',
-				'Aliağa',
-				'Bayındır',
-				'Bergama',
-				'Çeşme',
-				'Ödemiş',
-				'Tire Kutsan',
-				'Urla',
+			slug: 'ege-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+				{
+					name: 'Gaziemir',
+					slug: 'gaziemir',
+				},
+				{
+					name: 'Karşıyaka',
+					slug: 'karsiyaka',
+				},
+				{
+					name: 'Aliağa',
+					slug: 'aliaga',
+				},
+				{
+					name: 'Bayındır',
+					slug: 'bayindir',
+				},
+				{
+					name: 'Bergama',
+					slug: 'bergama',
+				},
+				{
+					name: 'Çeşme',
+					slug: 'cesme',
+				},
+				{
+					name: 'Ödemiş',
+					slug: 'odemis',
+				},
+				{
+					name: 'Tire Kutsan',
+					slug: 'tire-kutsan',
+				},
+				{
+					name: 'Urla',
+					slug: 'urla',
+				},
 			],
 		},
-		60: {
+		{
 			name: 'ERCİYES ÜNİVERSİTESİ',
-			campus: [
-				'Merkez',
-				'Seyrani',
-				'Tomarza',
-				'Erciyes Üniversitesi 15 Temmuz',
+			slug: 'erciyes-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+				{
+					name: 'Seyrani',
+					slug: 'seyrani',
+				},
+				{
+					name: 'Tomarza',
+					slug: 'tomarza',
+				},
+				{
+					name: 'Erciyes Üniversitesi 15 Temmuz',
+					slug: 'erciyes-universitesi-15-temmuz',
+				},
 			],
 		},
-		61: {
+		{
 			name: 'ERZİNCAN BİNALİ YILDIRIM ÜNİVERSİTESİ',
-			campus: ['Yalnızbağ', 'Hacı Ali Akın', 'Hukuk'],
+			slug: 'erzincan-binali-yildirim-universitesi',
+			campuses: [
+				{
+					name: 'Yalnızbağ',
+					slug: 'yalnizbag',
+				},
+				{
+					name: 'Hacı Ali Akın',
+					slug: 'haci-ali-akin',
+				},
+				{
+					name: 'Hukuk',
+					slug: 'hukuk',
+				},
+			],
 		},
-		62: {
+		{
 			name: 'ERZURUM TEKNİK ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'erzurum-teknik-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		63: {
+		{
 			name: 'ESKİŞEHİR OSMANGAZİ ÜNİVERSİTESİ',
-			campus: [
-				'Meşelik',
-				'Çamlık',
-				'Bademlik',
-				'Eskişehir Organize Sanayi Bölgesi',
-				'Ali Numan Kıraç',
-				'Sivrihisar',
-				'Mahmudiye',
-				'Çifteler',
+			slug: 'eskisehir-osmangazi-universitesi',
+			campuses: [
+				{
+					name: 'Meşelik',
+					slug: 'meselik',
+				},
+				{
+					name: 'Çamlık',
+					slug: 'camlik',
+				},
+				{
+					name: 'Bademlik',
+					slug: 'bademlik',
+				},
+				{
+					name: 'Eskişehir Organize Sanayi Bölgesi',
+					slug: 'eskisehir-organize-sanayi-bolgesi',
+				},
+				{
+					name: 'Ali Numan Kıraç',
+					slug: 'ali-numan-kirac',
+				},
+				{
+					name: 'Sivrihisar',
+					slug: 'sivrihisar',
+				},
+				{
+					name: 'Mahmudiye',
+					slug: 'mahmudiye',
+				},
+				{
+					name: 'Çifteler',
+					slug: 'cifteler',
+				},
 			],
 		},
-		64: {
+		{
 			name: 'ESKİŞEHİR TEKNİK ÜNİVERSİTESİ',
-			campus: ['İki Eylül', 'Porsuk', 'Borabey'],
+			slug: 'eskisehir-teknik-universitesi',
+			campuses: [
+				{
+					name: 'İki Eylül',
+					slug: 'iki-eylul',
+				},
+				{
+					name: 'Porsuk',
+					slug: 'porsuk',
+				},
+				{
+					name: 'Borabey',
+					slug: 'borabey',
+				},
+			],
 		},
-		65: {
+		{
 			name: 'FATİH SULTAN MEHMET VAKIF ÜNİVERSİTESİ',
-			campus: [
-				'Fatih',
-				'Haliç',
-				'Topkapı',
-				'Üsküdar',
-				'Kandilli',
-				'Çamlıca',
+			slug: 'fatih-sultan-mehmet-vakif-universitesi',
+			campuses: [
+				{
+					name: 'Fatih',
+					slug: 'fatih',
+				},
+				{
+					name: 'Haliç',
+					slug: 'halic',
+				},
+				{
+					name: 'Topkapı',
+					slug: 'topkapi',
+				},
+				{
+					name: 'Üsküdar',
+					slug: 'uskudar',
+				},
+				{
+					name: 'Kandilli',
+					slug: 'kandilli',
+				},
+				{
+					name: 'Çamlıca',
+					slug: 'camlica',
+				},
 			],
 		},
-		66: {
+		{
 			name: 'FENERBAHÇE ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'fenerbahce-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		67: {
+		{
 			name: 'FIRAT ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'firat-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		68: {
+		{
 			name: 'GALATASARAY ÜNİVERSİTESİ',
-			campus: ['Yiğit Okur'],
+			slug: 'galatasaray-universitesi',
+			campuses: [
+				{
+					name: 'Yiğit Okur',
+					slug: 'yigit-okur',
+				},
+			],
 		},
-		69: {
+		{
 			name: 'GAZİ ÜNİVERSİTESİ',
-			campus: [
-				'Merkez',
-				'Emek',
-				'Maltepe',
-				'Çankaya',
-				'Çankaya',
-				'Gölbaşı',
-				'Ostim',
-				'Kahramankazan',
+			slug: 'gazi-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+				{
+					name: 'Emek',
+					slug: 'emek',
+				},
+				{
+					name: 'Maltepe',
+					slug: 'maltepe',
+				},
+				{
+					name: 'Çankaya',
+					slug: 'cankaya',
+				},
+				{
+					name: 'Çankaya',
+					slug: 'cankaya',
+				},
+				{
+					name: 'Gölbaşı',
+					slug: 'golbasi',
+				},
+				{
+					name: 'Ostim',
+					slug: 'ostim',
+				},
+				{
+					name: 'Kahramankazan',
+					slug: 'kahramankazan',
+				},
 			],
 		},
-		70: {
+		{
 			name: 'GAZİANTEP İSLAM BİLİM VE TEKNOLOJİ ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'gaziantep-islam-bilim-ve-teknoloji-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		71: {
+		{
 			name: 'GAZİANTEP ÜNİVERSİTESİ',
-			campus: ['Merkez', '15 Temmuz', 'Oğuzeli', 'Naci Topçuoğlu'],
+			slug: 'gaziantep-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+				{
+					name: '15 Temmuz',
+					slug: '15-temmuz',
+				},
+				{
+					name: 'Oğuzeli',
+					slug: 'oguzeli',
+				},
+				{
+					name: 'Naci Topçuoğlu',
+					slug: 'naci-topcuoglu',
+				},
+			],
 		},
-		72: {
+		{
 			name: 'GEBZE TEKNİK ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'gebze-teknik-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		73: {
+		{
 			name: 'GİRESUN ÜNİVERSİTESİ',
-			campus: [
-				'Güre',
-				'Gazipaşa',
-				'Nizamiye',
-				'Piraziz',
-				'Bulancak',
-				'Keşap',
-				'Espiye',
-				'Tirebolu',
-				'Görele',
-				'Eynesil',
-				'Dereli',
-				'Alucra',
-				'Şebinkarahisar',
+			slug: 'giresun-universitesi',
+			campuses: [
+				{
+					name: 'Güre',
+					slug: 'gure',
+				},
+				{
+					name: 'Gazipaşa',
+					slug: 'gazipasa',
+				},
+				{
+					name: 'Nizamiye',
+					slug: 'nizamiye',
+				},
+				{
+					name: 'Piraziz',
+					slug: 'piraziz',
+				},
+				{
+					name: 'Bulancak',
+					slug: 'bulancak',
+				},
+				{
+					name: 'Keşap',
+					slug: 'kesap',
+				},
+				{
+					name: 'Espiye',
+					slug: 'espiye',
+				},
+				{
+					name: 'Tirebolu',
+					slug: 'tirebolu',
+				},
+				{
+					name: 'Görele',
+					slug: 'gorele',
+				},
+				{
+					name: 'Eynesil',
+					slug: 'eynesil',
+				},
+				{
+					name: 'Dereli',
+					slug: 'dereli',
+				},
+				{
+					name: 'Alucra',
+					slug: 'alucra',
+				},
+				{
+					name: 'Şebinkarahisar',
+					slug: 'sebinkarahisar',
+				},
 			],
 		},
-		74: {
+		{
 			name: 'GÜMÜŞHANE ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'gumushane-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		75: {
+		{
 			name: 'HACETTEPE ÜNİVERSİTESİ',
-			campus: [
-				'Balâ Kemal Şahin',
-				'Beşevler',
-				'Polatlı',
-				'Sıhhiye',
-				'Sincan',
+			slug: 'hacettepe-universitesi',
+			campuses: [
+				{
+					name: 'Balâ Kemal Şahin',
+					slug: 'bala-kemal-sahin',
+				},
+				{
+					name: 'Beşevler',
+					slug: 'besevler',
+				},
+				{
+					name: 'Polatlı',
+					slug: 'polatli',
+				},
+				{
+					name: 'Sıhhiye',
+					slug: 'sihhiye',
+				},
+				{
+					name: 'Sincan',
+					slug: 'sincan',
+				},
 			],
 		},
-		76: {
+		{
 			name: 'HAKKARİ ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'hakkari-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		77: {
+		{
 			name: 'HALİÇ ÜNİVERSİTESİ',
-			campus: ['Sütlüce', 'Levent', 'Beylerbeyi', 'Vatan'],
+			slug: 'halic-universitesi',
+			campuses: [
+				{
+					name: 'Sütlüce',
+					slug: 'sutluce',
+				},
+				{
+					name: 'Levent',
+					slug: 'levent',
+				},
+				{
+					name: 'Beylerbeyi',
+					slug: 'beylerbeyi',
+				},
+				{
+					name: 'Vatan',
+					slug: 'vatan',
+				},
+			],
 		},
-		78: {
+		{
 			name: 'HARRAN ÜNİVERSİTESİ',
-			campus: ['Yenişehir', 'Osmanbey', 'Eyyübiye'],
+			slug: 'harran-universitesi',
+			campuses: [
+				{
+					name: 'Yenişehir',
+					slug: 'yenisehir',
+				},
+				{
+					name: 'Osmanbey',
+					slug: 'osmanbey',
+				},
+				{
+					name: 'Eyyübiye',
+					slug: 'eyyubiye',
+				},
+			],
 		},
-		79: {
+		{
 			name: 'HASAN KALYONCU ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'hasan-kalyoncu-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		80: {
+		{
 			name: 'HATAY MUSTAFA KEMAL ÜNİVERSİTESİ',
-			campus: [
-				'Merkez',
-				'Tayfur Sökmen',
-				'Antakya Eski Hastane',
-				'Altınözü',
-				'Antakya Meslek Yüksekokulu',
-				'Antakya',
-				'Hassa',
-				'Reyhanlı',
-				'Kırıkhan',
-				'Yayladağı',
+			slug: 'hatay-mustafa-kemal-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+				{
+					name: 'Tayfur Sökmen',
+					slug: 'tayfur-sokmen',
+				},
+				{
+					name: 'Antakya Eski Hastane',
+					slug: 'antakya-eski-hastane',
+				},
+				{
+					name: 'Altınözü',
+					slug: 'altinozu',
+				},
+				{
+					name: 'Antakya Meslek Yüksekokulu',
+					slug: 'antakya-meslek-yuksekokulu',
+				},
+				{
+					name: 'Antakya',
+					slug: 'antakya',
+				},
+				{
+					name: 'Hassa',
+					slug: 'hassa',
+				},
+				{
+					name: 'Reyhanlı',
+					slug: 'reyhanli',
+				},
+				{
+					name: 'Kırıkhan',
+					slug: 'kirikhan',
+				},
+				{
+					name: 'Yayladağı',
+					slug: 'yayladagi',
+				},
 			],
 		},
-		81: {
+		{
 			name: 'HİTİT ÜNİVERSİTESİ',
-			campus: ['Kuzey', 'Güney'],
+			slug: 'hitit-universitesi',
+			campuses: [
+				{
+					name: 'Kuzey',
+					slug: 'kuzey',
+				},
+				{
+					name: 'Güney',
+					slug: 'guney',
+				},
+			],
 		},
-		82: {
+		{
 			name: 'IĞDIR ÜNİVERSİTESİ',
-			campus: ['Şehit Bülent Yurtseven', 'Suveren', 'Karaağaç'],
+			slug: 'igdir-universitesi',
+			campuses: [
+				{
+					name: 'Şehit Bülent Yurtseven',
+					slug: 'sehit-bulent-yurtseven',
+				},
+				{
+					name: 'Suveren',
+					slug: 'suveren',
+				},
+				{
+					name: 'Karaağaç',
+					slug: 'karaagac',
+				},
+			],
 		},
-		83: {
+		{
 			name: 'ISPARTA UYGULAMALI BİLİMLER ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'isparta-uygulamali-bilimler-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		84: {
+		{
 			name: 'IŞIK ÜNİVERSİTESİ',
-			campus: ['Şile', 'Maslak'],
+			slug: 'isik-universitesi',
+			campuses: [
+				{
+					name: 'Şile',
+					slug: 'sile',
+				},
+				{
+					name: 'Maslak',
+					slug: 'maslak',
+				},
+			],
 		},
-		85: {
+		{
 			name: 'İBN HALDUN ÜNİVERSİTESİ',
-			campus: ['Güney', 'Kuzey'],
+			slug: 'ibn-haldun-universitesi',
+			campuses: [
+				{
+					name: 'Güney',
+					slug: 'guney',
+				},
+				{
+					name: 'Kuzey',
+					slug: 'kuzey',
+				},
+			],
 		},
-		86: {
+		{
 			name: 'İHSAN DOĞRAMACI BİLKENT ÜNİVERSİTESİ',
-			campus: ['Merkez', 'Orta', 'Doğu'],
+			slug: 'ihsan-dogramaci-bilkent-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+				{
+					name: 'Orta',
+					slug: 'orta',
+				},
+				{
+					name: 'Doğu',
+					slug: 'dogu',
+				},
+			],
 		},
-		87: {
+		{
 			name: 'İNÖNÜ ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'inonu-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		88: {
+		{
 			name: 'İSKENDERUN TEKNİK ÜNİVERSİTESİ',
-			campus: [
-				'Merkez',
-				'Deniz Bilimleri ve Teknoloji Fakültesi',
-				'İskenderun Meslek Yüksekokulu',
-				'Mustafa Yazıcı Devlet Konservatuvarı',
-				'Dörtyol Meslek Yüksekokulu',
+			slug: 'iskenderun-teknik-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+				{
+					name: 'Deniz Bilimleri ve Teknoloji Fakültesi',
+					slug: 'deniz-bilimleri-ve-teknoloji-fakultesi',
+				},
+				{
+					name: 'İskenderun Meslek Yüksekokulu',
+					slug: 'iskenderun-meslek-yuksekokulu',
+				},
+				{
+					name: 'Mustafa Yazıcı Devlet Konservatuvarı',
+					slug: 'mustafa-yazici-devlet-konservatuvari',
+				},
+				{
+					name: 'Dörtyol Meslek Yüksekokulu',
+					slug: 'dortyol-meslek-yuksekokulu',
+				},
 			],
 		},
-		89: {
+		{
 			name: 'İSTANBUL 29 MAYIS ÜNİVERSİTESİ',
-			campus: ['Elmalıkent', 'Yamanevler'],
+			slug: 'istanbul-29-mayis-universitesi',
+			campuses: [
+				{
+					name: 'Elmalıkent',
+					slug: 'elmalikent',
+				},
+				{
+					name: 'Yamanevler',
+					slug: 'yamanevler',
+				},
+			],
 		},
-		90: {
+		{
 			name: 'İSTANBUL AREL ÜNİVERSİTESİ',
-			campus: ['Kemal Gözükara', 'Sefaköy', 'Cevizlibağ'],
+			slug: 'istanbul-arel-universitesi',
+			campuses: [
+				{
+					name: 'Kemal Gözükara',
+					slug: 'kemal-gozukara',
+				},
+				{
+					name: 'Sefaköy',
+					slug: 'sefakoy',
+				},
+				{
+					name: 'Cevizlibağ',
+					slug: 'cevizlibag',
+				},
+			],
 		},
-		91: {
+		{
 			name: 'İSTANBUL ATLAS ÜNİVERSİTESİ',
-			campus: ['Vadi'],
+			slug: 'istanbul-atlas-universitesi',
+			campuses: [
+				{
+					name: 'Vadi',
+					slug: 'vadi',
+				},
+			],
 		},
-		92: {
+		{
 			name: 'İSTANBUL AYDIN ÜNİVERSİTESİ',
-			campus: [
-				'Bahçelievler',
-				'Florya',
-				'Beşiktaş',
-				'Kadıköy',
-				'Bakırköy',
-				'Tepekent',
-				'Büyükçekmece',
+			slug: 'istanbul-aydin-universitesi',
+			campuses: [
+				{
+					name: 'Bahçelievler',
+					slug: 'bahcelievler',
+				},
+				{
+					name: 'Florya',
+					slug: 'florya',
+				},
+				{
+					name: 'Beşiktaş',
+					slug: 'besiktas',
+				},
+				{
+					name: 'Kadıköy',
+					slug: 'kadikoy',
+				},
+				{
+					name: 'Bakırköy',
+					slug: 'bakirkoy',
+				},
+				{
+					name: 'Tepekent',
+					slug: 'tepekent',
+				},
+				{
+					name: 'Büyükçekmece',
+					slug: 'buyukcekmece',
+				},
 			],
 		},
-		93: {
+		{
 			name: 'İSTANBUL AYVANSARAY ÜNİVERSİTESİ',
-			campus: ['Kazlıçeşme', 'Balat', 'Şişli', 'Yenibosna'],
+			slug: 'istanbul-ayvansaray-universitesi',
+			campuses: [
+				{
+					name: 'Kazlıçeşme',
+					slug: 'kazlicesme',
+				},
+				{
+					name: 'Balat',
+					slug: 'balat',
+				},
+				{
+					name: 'Şişli',
+					slug: 'sisli',
+				},
+				{
+					name: 'Yenibosna',
+					slug: 'yenibosna',
+				},
+			],
 		},
-		94: {
+		{
 			name: 'İSTANBUL BİLGİ ÜNİVERSİTESİ',
-			campus: ['Kuştepe', 'Dolapdere', 'Santral İstanbul'],
+			slug: 'istanbul-bilgi-universitesi',
+			campuses: [
+				{
+					name: 'Kuştepe',
+					slug: 'kustepe',
+				},
+				{
+					name: 'Dolapdere',
+					slug: 'dolapdere',
+				},
+				{
+					name: 'Santral İstanbul',
+					slug: 'santral-istanbul',
+				},
+			],
 		},
-		95: {
+		{
 			name: 'İSTANBUL ESENYURT ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'istanbul-esenyurt-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		96: {
+		{
 			name: 'İSTANBUL GALATA ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'istanbul-galata-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		97: {
+		{
 			name: 'İSTANBUL GEDİK ÜNİVERSİTESİ',
-			campus: ['Kartal', 'Pendik', 'Çamlık', 'Aydınlı', 'Nişantaşı'],
+			slug: 'istanbul-gedik-universitesi',
+			campuses: [
+				{
+					name: 'Kartal',
+					slug: 'kartal',
+				},
+				{
+					name: 'Pendik',
+					slug: 'pendik',
+				},
+				{
+					name: 'Çamlık',
+					slug: 'camlik',
+				},
+				{
+					name: 'Aydınlı',
+					slug: 'aydinli',
+				},
+				{
+					name: 'Nişantaşı',
+					slug: 'nisantasi',
+				},
+			],
 		},
-		98: {
+		{
 			name: 'İSTANBUL GELİŞİM ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'istanbul-gelisim-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		99: {
+		{
 			name: 'İSTANBUL KENT ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'istanbul-kent-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		100: {
+		{
 			name: 'İSTANBUL KÜLTÜR ÜNİVERSİTESİ',
-			campus: ['Ataköy', 'Şirinevler', 'İncirli', 'Basın Ekspres'],
+			slug: 'istanbul-kultur-universitesi',
+			campuses: [
+				{
+					name: 'Ataköy',
+					slug: 'atakoy',
+				},
+				{
+					name: 'Şirinevler',
+					slug: 'sirinevler',
+				},
+				{
+					name: 'İncirli',
+					slug: 'incirli',
+				},
+				{
+					name: 'Basın Ekspres',
+					slug: 'basin-ekspres',
+				},
+			],
 		},
-		101: {
+		{
 			name: 'İSTANBUL MEDENİYET ÜNİVERSİTESİ',
-			campus: [
-				'Göztepe Güney',
-				'Göztepe Kuzey',
-				'Sağlık',
-				'Cevizli',
-				'Orhanlı',
-				'Altunizade',
+			slug: 'istanbul-medeniyet-universitesi',
+			campuses: [
+				{
+					name: 'Göztepe Güney',
+					slug: 'goztepe-guney',
+				},
+				{
+					name: 'Göztepe Kuzey',
+					slug: 'goztepe-kuzey',
+				},
+				{
+					name: 'Sağlık',
+					slug: 'saglik',
+				},
+				{
+					name: 'Cevizli',
+					slug: 'cevizli',
+				},
+				{
+					name: 'Orhanlı',
+					slug: 'orhanli',
+				},
+				{
+					name: 'Altunizade',
+					slug: 'altunizade',
+				},
 			],
 		},
-		102: {
+		{
 			name: 'İSTANBUL MEDİPOL ÜNİVERSİTESİ',
-			campus: ['Bağcılar', 'Kavacık', 'Haliç'],
+			slug: 'istanbul-medipol-universitesi',
+			campuses: [
+				{
+					name: 'Bağcılar',
+					slug: 'bagcilar',
+				},
+				{
+					name: 'Kavacık',
+					slug: 'kavacik',
+				},
+				{
+					name: 'Haliç',
+					slug: 'halic',
+				},
+			],
 		},
-		103: {
+		{
 			name: 'İSTANBUL OKAN ÜNİVERSİTESİ',
-			campus: ['Tuzla', 'Kadiköy', 'Mecidiyeköy', 'Bahçelievler'],
+			slug: 'istanbul-okan-universitesi',
+			campuses: [
+				{
+					name: 'Tuzla',
+					slug: 'tuzla',
+				},
+				{
+					name: 'Kadiköy',
+					slug: 'kadikoy',
+				},
+				{
+					name: 'Mecidiyeköy',
+					slug: 'mecidiyekoy',
+				},
+				{
+					name: 'Bahçelievler',
+					slug: 'bahcelievler',
+				},
+			],
 		},
-		104: {
+		{
 			name: 'İSTANBUL RUMELİ ÜNİVERSİTESİ',
-			campus: [
-				'Mehmet Balcı',
-				'Fikriye Balcı',
-				'Haliç',
-				'Bostancı',
-				'Esenyurt',
+			slug: 'istanbul-rumeli-universitesi',
+			campuses: [
+				{
+					name: 'Mehmet Balcı',
+					slug: 'mehmet-balci',
+				},
+				{
+					name: 'Fikriye Balcı',
+					slug: 'fikriye-balci',
+				},
+				{
+					name: 'Haliç',
+					slug: 'halic',
+				},
+				{
+					name: 'Bostancı',
+					slug: 'bostanci',
+				},
+				{
+					name: 'Esenyurt',
+					slug: 'esenyurt',
+				},
 			],
 		},
-		105: {
+		{
 			name: 'İSTANBUL SABAHATTİN ZAİM ÜNİVERSİTESİ',
-			campus: ['Halkalı Merkez', 'Altunizade'],
+			slug: 'istanbul-sabahattin-zaim-universitesi',
+			campuses: [
+				{
+					name: 'Halkalı Merkez',
+					slug: 'halkali-merkez',
+				},
+				{
+					name: 'Altunizade',
+					slug: 'altunizade',
+				},
+			],
 		},
-		106: {
+		{
 			name: 'İSTANBUL SAĞLIK VE TEKNOLOJİ ÜNİVERSİTESİ',
-			campus: ['Zeytinburnu'],
+			slug: 'istanbul-saglik-ve-teknoloji-universitesi',
+			campuses: [
+				{
+					name: 'Zeytinburnu',
+					slug: 'zeytinburnu',
+				},
+			],
 		},
-		107: {
+		{
 			name: 'İSTANBUL ŞİŞLİ MESLEK YÜKSEK OKULU',
-			campus: ['Maslak', 'Esentepe'],
+			slug: 'istanbul-sisli-meslek-yuksek-okulu',
+			campuses: [
+				{
+					name: 'Maslak',
+					slug: 'maslak',
+				},
+				{
+					name: 'Esentepe',
+					slug: 'esentepe',
+				},
+			],
 		},
-		108: {
+		{
 			name: 'İSTANBUL TEKNİK ÜNİVERSİTESİ',
-			campus: ['Ayazağa', 'Taşkışla', 'Maçka', 'Gümüşsuyu', 'Tuzla'],
+			slug: 'istanbul-teknik-universitesi',
+			campuses: [
+				{
+					name: 'Ayazağa',
+					slug: 'ayazaga',
+				},
+				{
+					name: 'Taşkışla',
+					slug: 'taskisla',
+				},
+				{
+					name: 'Maçka',
+					slug: 'macka',
+				},
+				{
+					name: 'Gümüşsuyu',
+					slug: 'gumussuyu',
+				},
+				{
+					name: 'Tuzla',
+					slug: 'tuzla',
+				},
+			],
 		},
-		109: {
+		{
 			name: 'İSTANBUL TİCARET ÜNİVERSİTESİ',
-			campus: ['Sütlüce', 'Küçükyalı'],
+			slug: 'istanbul-ticaret-universitesi',
+			campuses: [
+				{
+					name: 'Sütlüce',
+					slug: 'sutluce',
+				},
+				{
+					name: 'Küçükyalı',
+					slug: 'kucukyali',
+				},
+			],
 		},
-		110: {
+		{
 			name: 'İSTANBUL ÜNİVERSİTESİ',
-			campus: [
-				'Beyazıt',
-				'Vezneciler',
-				'Laleli',
-				'Çapa',
-				'Süleymaniye',
-				'Horhor',
-				'Kadıköy',
-				'Avcılar',
-				'Maslak',
+			slug: 'istanbul-universitesi',
+			campuses: [
+				{
+					name: 'Beyazıt',
+					slug: 'beyazit',
+				},
+				{
+					name: 'Vezneciler',
+					slug: 'vezneciler',
+				},
+				{
+					name: 'Laleli',
+					slug: 'laleli',
+				},
+				{
+					name: 'Çapa',
+					slug: 'capa',
+				},
+				{
+					name: 'Süleymaniye',
+					slug: 'suleymaniye',
+				},
+				{
+					name: 'Horhor',
+					slug: 'horhor',
+				},
+				{
+					name: 'Kadıköy',
+					slug: 'kadikoy',
+				},
+				{
+					name: 'Avcılar',
+					slug: 'avcilar',
+				},
+				{
+					name: 'Maslak',
+					slug: 'maslak',
+				},
 			],
 		},
-		111: {
+		{
 			name: 'İSTANBUL YENİ YÜZYIL ÜNİVERSİTESİ',
-			campus: ['Merkez', 'Şirinevler'],
+			slug: 'istanbul-yeni-yuzyil-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+				{
+					name: 'Şirinevler',
+					slug: 'sirinevler',
+				},
+			],
 		},
-		112: {
+		{
 			name: 'İSTİNYE ÜNİVERSİTESİ',
-			campus: ['Topkapı', 'Güney', 'İstanbul'],
+			slug: 'istinye-universitesi',
+			campuses: [
+				{
+					name: 'Topkapı',
+					slug: 'topkapi',
+				},
+				{
+					name: 'Güney',
+					slug: 'guney',
+				},
+				{
+					name: 'İstanbul',
+					slug: 'istanbul',
+				},
+			],
 		},
-		113: {
+		{
 			name: 'İZMİR BAKIRÇAY ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'izmir-bakircay-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		114: {
+		{
 			name: 'İZMİR DEMOKRASİ ÜNİVERSİTESİ',
-			campus: ['Üçkuyular', 'Güzelyalı Sağlık', 'Uzundere'],
+			slug: 'izmir-demokrasi-universitesi',
+			campuses: [
+				{
+					name: 'Üçkuyular',
+					slug: 'uckuyular',
+				},
+				{
+					name: 'Güzelyalı Sağlık',
+					slug: 'guzelyali-saglik',
+				},
+				{
+					name: 'Uzundere',
+					slug: 'uzundere',
+				},
+			],
 		},
-		115: {
+		{
 			name: 'İZMİR EKONOMİ ÜNİVERSİTESİ',
-			campus: ['Balçova', 'Güzelbahçe'],
+			slug: 'izmir-ekonomi-universitesi',
+			campuses: [
+				{
+					name: 'Balçova',
+					slug: 'balcova',
+				},
+				{
+					name: 'Güzelbahçe',
+					slug: 'guzelbahce',
+				},
+			],
 		},
-		116: {
+		{
 			name: 'İZMİR KATİP ÇELEBİ ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'izmir-katip-celebi-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		117: {
+		{
 			name: 'İZMİR KAVRAM MESLEK YÜKSEKOKULU',
-			campus: ['Çengelköy'],
+			slug: 'izmir-kavram-meslek-yuksekokulu',
+			campuses: [
+				{
+					name: 'Çengelköy',
+					slug: 'cengelkoy',
+				},
+			],
 		},
-		118: {
+		{
 			name: 'İZMİR TINAVTEPE ÜNİVERSİTESİ',
-			campus: ['Buca'],
+			slug: 'izmir-tinavtepe-universitesi',
+			campuses: [
+				{
+					name: 'Buca',
+					slug: 'buca',
+				},
+			],
 		},
-		119: {
+		{
 			name: 'İZMİR YÜKSEK TEKNOLOJİ ENSTİTÜSÜ',
-			campus: ['Merkez'],
+			slug: 'izmir-yuksek-teknoloji-enstitusu',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		120: {
+		{
 			name: 'KADİR HAS ÜNİVERSİTESİ',
-			campus: ['Kadir Has(Cibali)', 'Selimpaşa', 'Bahçelievler'],
+			slug: 'kadir-has-universitesi',
+			campuses: [
+				{
+					name: 'Kadir Has(Cibali)',
+					slug: 'kadir-has(cibali)',
+				},
+				{
+					name: 'Selimpaşa',
+					slug: 'selimpasa',
+				},
+				{
+					name: 'Bahçelievler',
+					slug: 'bahcelievler',
+				},
+			],
 		},
-		121: {
+		{
 			name: 'KAFKAS ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'kafkas-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		122: {
+		{
 			name: 'KAHRAMANMARAŞ İSTİKLAL ÜNİVERSİTESİ',
-			campus: ['Karacasu', 'Yamaçtepe', 'Elbistan', 'Türkoğlu'],
+			slug: 'kahramanmaras-istiklal-universitesi',
+			campuses: [
+				{
+					name: 'Karacasu',
+					slug: 'karacasu',
+				},
+				{
+					name: 'Yamaçtepe',
+					slug: 'yamactepe',
+				},
+				{
+					name: 'Elbistan',
+					slug: 'elbistan',
+				},
+				{
+					name: 'Türkoğlu',
+					slug: 'turkoglu',
+				},
+			],
 		},
-		123: {
+		{
 			name: 'KAHRAMANMARAŞ SÜTÇÜ İMAM ÜNİVERSİTESİ',
-			campus: ['Merkez', 'Bahçelievler', 'Karacasu', 'Avşar'],
+			slug: 'kahramanmaras-sutcu-imam-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+				{
+					name: 'Bahçelievler',
+					slug: 'bahcelievler',
+				},
+				{
+					name: 'Karacasu',
+					slug: 'karacasu',
+				},
+				{
+					name: 'Avşar',
+					slug: 'avsar',
+				},
+			],
 		},
-		124: {
+		{
 			name: 'KAPADOKYA ÜNİVERSİTESİ',
-			campus: ['Mustafapaşa', 'Ürgüp', 'Uçhisar Sanat'],
+			slug: 'kapadokya-universitesi',
+			campuses: [
+				{
+					name: 'Mustafapaşa',
+					slug: 'mustafapasa',
+				},
+				{
+					name: 'Ürgüp',
+					slug: 'urgup',
+				},
+				{
+					name: 'Uçhisar Sanat',
+					slug: 'uchisar-sanat',
+				},
+			],
 		},
-		125: {
+		{
 			name: 'KARABÜK ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'karabuk-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		126: {
+		{
 			name: 'KARADENİZ TEKNİK ÜNİVERSİTESİ',
-			campus: [
-				'Kanuni',
-				'Akçaabat',
-				'Sürmene',
-				'Muammer Dereli',
-				'Of',
-				'Araklı',
-				'Maçka',
-				'Arsin',
-				'Sahil',
+			slug: 'karadeniz-teknik-universitesi',
+			campuses: [
+				{
+					name: 'Kanuni',
+					slug: 'kanuni',
+				},
+				{
+					name: 'Akçaabat',
+					slug: 'akcaabat',
+				},
+				{
+					name: 'Sürmene',
+					slug: 'surmene',
+				},
+				{
+					name: 'Muammer Dereli',
+					slug: 'muammer-dereli',
+				},
+				{
+					name: 'Of',
+					slug: 'of',
+				},
+				{
+					name: 'Araklı',
+					slug: 'arakli',
+				},
+				{
+					name: 'Maçka',
+					slug: 'macka',
+				},
+				{
+					name: 'Arsin',
+					slug: 'arsin',
+				},
+				{
+					name: 'Sahil',
+					slug: 'sahil',
+				},
 			],
 		},
-		127: {
+		{
 			name: 'KARAMANOĞLU MEHMETBEY ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'karamanoglu-mehmetbey-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		128: {
+		{
 			name: 'KASTAMONU ÜNİVERSİTESİ',
-			campus: ['Kuzeykent', 'Tıp Fakültesi', 'Eğitim Fakültesi'],
+			slug: 'kastamonu-universitesi',
+			campuses: [
+				{
+					name: 'Kuzeykent',
+					slug: 'kuzeykent',
+				},
+				{
+					name: 'Tıp Fakültesi',
+					slug: 'tip-fakultesi',
+				},
+				{
+					name: 'Eğitim Fakültesi',
+					slug: 'egitim-fakultesi',
+				},
+			],
 		},
-		129: {
+		{
 			name: 'KAYSERİ ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'kayseri-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		130: {
+		{
 			name: 'KIRIKKALE ÜNİVERSİTESİ',
-			campus: ['Kırıkkale', 'Keskin', 'Delice', 'Hacılar'],
+			slug: 'kirikkale-universitesi',
+			campuses: [
+				{
+					name: 'Kırıkkale',
+					slug: 'kirikkale',
+				},
+				{
+					name: 'Keskin',
+					slug: 'keskin',
+				},
+				{
+					name: 'Delice',
+					slug: 'delice',
+				},
+				{
+					name: 'Hacılar',
+					slug: 'hacilar',
+				},
+			],
 		},
-		131: {
+		{
 			name: 'KIRKLARELİ ÜNİVERSİTESİ',
-			campus: ['Merkez', 'Kayalı', 'Kavaklı'],
+			slug: 'kirklareli-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+				{
+					name: 'Kayalı',
+					slug: 'kayali',
+				},
+				{
+					name: 'Kavaklı',
+					slug: 'kavakli',
+				},
+			],
 		},
-		132: {
+		{
 			name: 'KIRŞEHİR AHİ EVRAN ÜNİVERSİTESİ',
-			campus: ['Cacabey', 'Bağbaşı Merkez', 'Aşıkpaşa'],
+			slug: 'kirsehir-ahi-evran-universitesi',
+			campuses: [
+				{
+					name: 'Cacabey',
+					slug: 'cacabey',
+				},
+				{
+					name: 'Bağbaşı Merkez',
+					slug: 'bagbasi-merkez',
+				},
+				{
+					name: 'Aşıkpaşa',
+					slug: 'asikpasa',
+				},
+			],
 		},
-		133: {
+		{
 			name: 'KİLİS 7 ARALIK ÜNİVERSİTESİ',
-			campus: ['Merkez', 'Karataş', 'Mercidabık'],
+			slug: 'kilis-7-aralik-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+				{
+					name: 'Karataş',
+					slug: 'karatas',
+				},
+				{
+					name: 'Mercidabık',
+					slug: 'mercidabik',
+				},
+			],
 		},
-		134: {
+		{
 			name: 'KOCAELİ SAĞLIK VE TEKNOLOJİ ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'kocaeli-saglik-ve-teknoloji-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		135: {
+		{
 			name: 'KOCAELİ ÜNİVERSİTESİ',
-			campus: [
-				'Umuttepe',
-				'Anıtpark',
-				'Arslanbey',
-				'Hereke Borusan',
-				'Marshall',
-				'Değirmendere',
-				'Karamürsel',
-				'Derbent',
-				'Gölcük',
-				'Kandıra',
-				'Köseköy',
-				'Körfez',
-				'Uzunçiftlik',
-				'Şehit Astsb. Ömer Halisdemir',
-				'Yuvacık',
+			slug: 'kocaeli-universitesi',
+			campuses: [
+				{
+					name: 'Umuttepe',
+					slug: 'umuttepe',
+				},
+				{
+					name: 'Anıtpark',
+					slug: 'anitpark',
+				},
+				{
+					name: 'Arslanbey',
+					slug: 'arslanbey',
+				},
+				{
+					name: 'Hereke Borusan',
+					slug: 'hereke-borusan',
+				},
+				{
+					name: 'Marshall',
+					slug: 'marshall',
+				},
+				{
+					name: 'Değirmendere',
+					slug: 'degirmendere',
+				},
+				{
+					name: 'Karamürsel',
+					slug: 'karamursel',
+				},
+				{
+					name: 'Derbent',
+					slug: 'derbent',
+				},
+				{
+					name: 'Gölcük',
+					slug: 'golcuk',
+				},
+				{
+					name: 'Kandıra',
+					slug: 'kandira',
+				},
+				{
+					name: 'Köseköy',
+					slug: 'kosekoy',
+				},
+				{
+					name: 'Körfez',
+					slug: 'korfez',
+				},
+				{
+					name: 'Uzunçiftlik',
+					slug: 'uzunciftlik',
+				},
+				{
+					name: 'Şehit Astsb. Ömer Halisdemir',
+					slug: 'sehit-astsb.-omer-halisdemir',
+				},
+				{
+					name: 'Yuvacık',
+					slug: 'yuvacik',
+				},
 			],
 		},
-		136: {
+		{
 			name: 'KOÇ ÜNİVERSİTESİ',
-			campus: ['Batı', 'Koç', 'Sağlık'],
+			slug: 'koc-universitesi',
+			campuses: [
+				{
+					name: 'Batı',
+					slug: 'bati',
+				},
+				{
+					name: 'Koç',
+					slug: 'koc',
+				},
+				{
+					name: 'Sağlık',
+					slug: 'saglik',
+				},
+			],
 		},
-		137: {
+		{
 			name: 'KONYA GIDA VE TARIM ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'konya-gida-ve-tarim-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		138: {
+		{
 			name: 'KONYA TEKNİK ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'konya-teknik-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		139: {
+		{
 			name: 'KTO KARATAY ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'kto-karatay-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		140: {
+		{
 			name: 'KÜTAHYA DUMLUPINAR ÜNİVERSİTESİ',
-			campus: [
-				'Evliya Çelebi',
-				'Germiyan',
-				'Simav Dr. İbrahim Naci Eren',
+			slug: 'kutahya-dumlupinar-universitesi',
+			campuses: [
+				{
+					name: 'Evliya Çelebi',
+					slug: 'evliya-celebi',
+				},
+				{
+					name: 'Germiyan',
+					slug: 'germiyan',
+				},
+				{
+					name: 'Simav Dr. İbrahim Naci Eren',
+					slug: 'simav-dr.-ibrahim-naci-eren',
+				},
 			],
 		},
-		141: {
+		{
 			name: 'KÜTAHYA SAĞLIK BİLİMLERİ ÜNİVERSİTESİ',
-			campus: [
-				'Evliya Çelebi',
-				'Germiyan',
-				'Simav Dr. İbrahim Naci Eren',
+			slug: 'kutahya-saglik-bilimleri-universitesi',
+			campuses: [
+				{
+					name: 'Evliya Çelebi',
+					slug: 'evliya-celebi',
+				},
+				{
+					name: 'Germiyan',
+					slug: 'germiyan',
+				},
+				{
+					name: 'Simav Dr. İbrahim Naci Eren',
+					slug: 'simav-dr.-ibrahim-naci-eren',
+				},
 			],
 		},
-		142: {
+		{
 			name: 'LOKMAN HEKİM ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'lokman-hekim-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		143: {
+		{
 			name: 'MALATYA TURGUT ÖZAL ÜNİVERSİTESİ',
-			campus: [
-				'Etlik',
-				'Beştepe',
-				'Gimat',
-				'Ostim',
-				'Hoşdere',
-				'Demetevler',
+			slug: 'malatya-turgut-ozal-universitesi',
+			campuses: [
+				{
+					name: 'Etlik',
+					slug: 'etlik',
+				},
+				{
+					name: 'Beştepe',
+					slug: 'bestepe',
+				},
+				{
+					name: 'Gimat',
+					slug: 'gimat',
+				},
+				{
+					name: 'Ostim',
+					slug: 'ostim',
+				},
+				{
+					name: 'Hoşdere',
+					slug: 'hosdere',
+				},
+				{
+					name: 'Demetevler',
+					slug: 'demetevler',
+				},
 			],
 		},
-		144: {
+		{
 			name: 'MALTEPE ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'maltepe-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		145: {
+		{
 			name: 'MANİSA CELÂL BAYAR ÜNİVERSİTESİ',
-			campus: ['Şehit Prof.Dr. İlhan Varank', 'Uncubozköy'],
+			slug: 'manisa-celal-bayar-universitesi',
+			campuses: [
+				{
+					name: 'Şehit Prof.Dr. İlhan Varank',
+					slug: 'sehit-prof.dr.-ilhan-varank',
+				},
+				{
+					name: 'Uncubozköy',
+					slug: 'uncubozkoy',
+				},
+			],
 		},
-		146: {
+		{
 			name: 'MARDİN ARTUKLU ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'mardin-artuklu-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		147: {
+		{
 			name: 'MARMARA ÜNİVERSİTESİ',
-			campus: [
-				'Acibadem',
-				'Anadoluhisarı',
-				'Bağlarbaşı',
-				'Göztepe',
-				'Kartal',
-				'Maletepe',
-				'Sultanahmet',
+			slug: 'marmara-universitesi',
+			campuses: [
+				{
+					name: 'Acibadem',
+					slug: 'acibadem',
+				},
+				{
+					name: 'Anadoluhisarı',
+					slug: 'anadoluhisari',
+				},
+				{
+					name: 'Bağlarbaşı',
+					slug: 'baglarbasi',
+				},
+				{
+					name: 'Göztepe',
+					slug: 'goztepe',
+				},
+				{
+					name: 'Kartal',
+					slug: 'kartal',
+				},
+				{
+					name: 'Maletepe',
+					slug: 'maletepe',
+				},
+				{
+					name: 'Sultanahmet',
+					slug: 'sultanahmet',
+				},
 			],
 		},
-		148: {
+		{
 			name: 'MEF ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'mef-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		149: {
+		{
 			name: 'MERSİN ÜNİVERSİTESİ',
-			campus: ['Çiftlikköy', 'Yenişehir', 'Tece'],
+			slug: 'mersin-universitesi',
+			campuses: [
+				{
+					name: 'Çiftlikköy',
+					slug: 'ciftlikkoy',
+				},
+				{
+					name: 'Yenişehir',
+					slug: 'yenisehir',
+				},
+				{
+					name: 'Tece',
+					slug: 'tece',
+				},
+			],
 		},
-		151: {
+		{
 			name: 'MİMAR SİNAN GÜZEL SANATLAR ÜNİVERSİTESİ',
-			campus: ['Fındıklı', 'Bomonti', 'Beşiktaş'],
+			slug: 'mimar-sinan-guzel-sanatlar-universitesi',
+			campuses: [
+				{
+					name: 'Fındıklı',
+					slug: 'findikli',
+				},
+				{
+					name: 'Bomonti',
+					slug: 'bomonti',
+				},
+				{
+					name: 'Beşiktaş',
+					slug: 'besiktas',
+				},
+			],
 		},
-		152: {
+		{
 			name: 'MUĞLA SITKI KOÇMAN ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'mugla-sitki-kocman-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		153: {
+		{
 			name: 'MUNZUR ÜNİVERSİTESİ',
-			campus: ['Aktuluk'],
+			slug: 'munzur-universitesi',
+			campuses: [
+				{
+					name: 'Aktuluk',
+					slug: 'aktuluk',
+				},
+			],
 		},
-		154: {
+		{
 			name: 'MUŞ ALPARSLAN ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'mus-alparslan-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		155: {
+		{
 			name: 'NECMETTİN ERBAKAN ÜNİVERSİTESİ',
-			campus: [
-				'15 Temmuz',
-				'Meram Sağlık',
-				'Ahmet Keleşoğlu',
-				'Ereğli',
-				'Köyceğiz',
-				'SeydiŞehir',
-				'Güzel Sanatlar ve Mimarlık',
+			slug: 'necmettin-erbakan-universitesi',
+			campuses: [
+				{
+					name: '15 Temmuz',
+					slug: '15-temmuz',
+				},
+				{
+					name: 'Meram Sağlık',
+					slug: 'meram-saglik',
+				},
+				{
+					name: 'Ahmet Keleşoğlu',
+					slug: 'ahmet-kelesoglu',
+				},
+				{
+					name: 'Ereğli',
+					slug: 'eregli',
+				},
+				{
+					name: 'Köyceğiz',
+					slug: 'koycegiz',
+				},
+				{
+					name: 'SeydiŞehir',
+					slug: 'seydisehir',
+				},
+				{
+					name: 'Güzel Sanatlar ve Mimarlık',
+					slug: 'guzel-sanatlar-ve-mimarlik',
+				},
 			],
 		},
-		156: {
+		{
 			name: 'NEVŞEHİR HACI BEKTAŞ VELİ ÜNİVERSİTESİ',
-			campus: [
-				'Merkez',
-				'Ürgüp',
-				'Avanos',
-				'Gülşehir',
-				'Hacıbektaş',
-				'Acıgöl',
-				'Kozaklı',
+			slug: 'nevsehir-haci-bektas-veli-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+				{
+					name: 'Ürgüp',
+					slug: 'urgup',
+				},
+				{
+					name: 'Avanos',
+					slug: 'avanos',
+				},
+				{
+					name: 'Gülşehir',
+					slug: 'gulsehir',
+				},
+				{
+					name: 'Hacıbektaş',
+					slug: 'hacibektas',
+				},
+				{
+					name: 'Acıgöl',
+					slug: 'acigol',
+				},
+				{
+					name: 'Kozaklı',
+					slug: 'kozakli',
+				},
 			],
 		},
-		157: {
+		{
 			name: 'NİĞDE ÖMER HALİSDEMİR ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'nigde-omer-halisdemir-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		158: {
+		{
 			name: 'NİŞANTAŞI ÜNİVERSİTESİ',
-			campus: ['Osmanbey', 'Sadabad', 'Maslak 1453 Neotech'],
+			slug: 'nisantasi-universitesi',
+			campuses: [
+				{
+					name: 'Osmanbey',
+					slug: 'osmanbey',
+				},
+				{
+					name: 'Sadabad',
+					slug: 'sadabad',
+				},
+				{
+					name: 'Maslak 1453 Neotech',
+					slug: 'maslak-1453-neotech',
+				},
+			],
 		},
-		159: {
+		{
 			name: 'NUH NACİ YAZGAN ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'nuh-naci-yazgan-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		160: {
+		{
 			name: 'ONDOKUZ MAYIS ÜNİVERSİTESİ',
-			campus: [
-				'Kurupelit',
-				'Güzel Sanatlar',
-				'Mustafa Kemal Güneşdoğdu',
-				'Bafra',
-				'Ballıca',
+			slug: 'ondokuz-mayis-universitesi',
+			campuses: [
+				{
+					name: 'Kurupelit',
+					slug: 'kurupelit',
+				},
+				{
+					name: 'Güzel Sanatlar',
+					slug: 'guzel-sanatlar',
+				},
+				{
+					name: 'Mustafa Kemal Güneşdoğdu',
+					slug: 'mustafa-kemal-gunesdogdu',
+				},
+				{
+					name: 'Bafra',
+					slug: 'bafra',
+				},
+				{
+					name: 'Ballıca',
+					slug: 'ballica',
+				},
 			],
 		},
-		161: {
+		{
 			name: 'ORDU ÜNİVERSİTESİ',
-			campus: [
-				'Cumhuriyet',
-				'Güzelyalı',
-				'Akyazı',
-				'Sosyal Bilimler Meslek Yüksekokulu',
-				'Ünye',
-				'Fatsa',
+			slug: 'ordu-universitesi',
+			campuses: [
+				{
+					name: 'Cumhuriyet',
+					slug: 'cumhuriyet',
+				},
+				{
+					name: 'Güzelyalı',
+					slug: 'guzelyali',
+				},
+				{
+					name: 'Akyazı',
+					slug: 'akyazi',
+				},
+				{
+					name: 'Sosyal Bilimler Meslek Yüksekokulu',
+					slug: 'sosyal-bilimler-meslek-yuksekokulu',
+				},
+				{
+					name: 'Ünye',
+					slug: 'unye',
+				},
+				{
+					name: 'Fatsa',
+					slug: 'fatsa',
+				},
 			],
 		},
-		162: {
+		{
 			name: 'ORTA DOĞU TEKNİK ÜNİVERSİTESİ',
-			campus: ['Merkez', 'Erdemli', 'Kuzey Kıbrıs'],
+			slug: 'orta-dogu-teknik-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+				{
+					name: 'Erdemli',
+					slug: 'erdemli',
+				},
+				{
+					name: 'Kuzey Kıbrıs',
+					slug: 'kuzey-kibris',
+				},
+			],
 		},
-		163: {
+		{
 			name: 'OSMANİYE KORKUT ATA ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'osmaniye-korkut-ata-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		164: {
+		{
 			name: 'OSTİM TEKNİK ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'ostim-teknik-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		165: {
+		{
 			name: 'ÖZYEĞİN ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'ozyegin-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		166: {
+		{
 			name: 'PAMUKKALE ÜNİVERSİTESİ',
-			campus: ['Kınıklı'],
+			slug: 'pamukkale-universitesi',
+			campuses: [
+				{
+					name: 'Kınıklı',
+					slug: 'kinikli',
+				},
+			],
 		},
-		167: {
+		{
 			name: 'PİRİ REİS ÜNİVERSİTESİ',
-			campus: ['Tuzla'],
+			slug: 'piri-reis-universitesi',
+			campuses: [
+				{
+					name: 'Tuzla',
+					slug: 'tuzla',
+				},
+			],
 		},
-		168: {
+		{
 			name: 'RECEP TAYYİP ERDOĞAN ÜNİVERSİTESİ',
-			campus: [
-				'Zihni Derin',
-				'İslampaşa',
-				'Çayeli',
-				'Pazar',
-				'Derepazarı',
-				'Güneysu',
-				'Atmeydanı',
-				'Kavaklı',
-				'Ardeşen',
-				'Fındıklı',
-				'İyidere',
+			slug: 'recep-tayyip-erdogan-universitesi',
+			campuses: [
+				{
+					name: 'Zihni Derin',
+					slug: 'zihni-derin',
+				},
+				{
+					name: 'İslampaşa',
+					slug: 'islampasa',
+				},
+				{
+					name: 'Çayeli',
+					slug: 'cayeli',
+				},
+				{
+					name: 'Pazar',
+					slug: 'pazar',
+				},
+				{
+					name: 'Derepazarı',
+					slug: 'derepazari',
+				},
+				{
+					name: 'Güneysu',
+					slug: 'guneysu',
+				},
+				{
+					name: 'Atmeydanı',
+					slug: 'atmeydani',
+				},
+				{
+					name: 'Kavaklı',
+					slug: 'kavakli',
+				},
+				{
+					name: 'Ardeşen',
+					slug: 'ardesen',
+				},
+				{
+					name: 'Fındıklı',
+					slug: 'findikli',
+				},
+				{
+					name: 'İyidere',
+					slug: 'iyidere',
+				},
 			],
 		},
-		169: {
+		{
 			name: 'SABANCI ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'sabanci-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		170: {
+		{
 			name: 'SAĞLIK BİLİMLERİ ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'saglik-bilimleri-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		171: {
+		{
 			name: 'SAKARYA UYGULAMALI BİLİMLER ÜNİVERSİTESİ',
-			campus: [
-				'Adapazarı',
-				'Akyazı',
-				'Arifiye',
-				'Ferizli',
-				'Geyve',
-				'Hendek',
-				'Karasu',
-				'Kaynarca',
-				'Pamukova',
-				'Sapanca',
-				'Karapürçek',
-				'Kocaali',
-				'Taraklı',
-				'Söğütlü',
+			slug: 'sakarya-uygulamali-bilimler-universitesi',
+			campuses: [
+				{
+					name: 'Adapazarı',
+					slug: 'adapazari',
+				},
+				{
+					name: 'Akyazı',
+					slug: 'akyazi',
+				},
+				{
+					name: 'Arifiye',
+					slug: 'arifiye',
+				},
+				{
+					name: 'Ferizli',
+					slug: 'ferizli',
+				},
+				{
+					name: 'Geyve',
+					slug: 'geyve',
+				},
+				{
+					name: 'Hendek',
+					slug: 'hendek',
+				},
+				{
+					name: 'Karasu',
+					slug: 'karasu',
+				},
+				{
+					name: 'Kaynarca',
+					slug: 'kaynarca',
+				},
+				{
+					name: 'Pamukova',
+					slug: 'pamukova',
+				},
+				{
+					name: 'Sapanca',
+					slug: 'sapanca',
+				},
+				{
+					name: 'Karapürçek',
+					slug: 'karapurcek',
+				},
+				{
+					name: 'Kocaali',
+					slug: 'kocaali',
+				},
+				{
+					name: 'Taraklı',
+					slug: 'tarakli',
+				},
+				{
+					name: 'Söğütlü',
+					slug: 'sogutlu',
+				},
 			],
 		},
-		172: {
+		{
 			name: 'SAKARYA ÜNİVERSİTESİ',
-			campus: [
-				'Esentepe',
-				'Hendek',
-				'Korucuk',
-				'Adapazarı Meslek Yüksekokulu',
-				'Sağlık Hizmetleri Meslek Yüksekokulu',
+			slug: 'sakarya-universitesi',
+			campuses: [
+				{
+					name: 'Esentepe',
+					slug: 'esentepe',
+				},
+				{
+					name: 'Hendek',
+					slug: 'hendek',
+				},
+				{
+					name: 'Korucuk',
+					slug: 'korucuk',
+				},
+				{
+					name: 'Adapazarı Meslek Yüksekokulu',
+					slug: 'adapazari-meslek-yuksekokulu',
+				},
+				{
+					name: 'Sağlık Hizmetleri Meslek Yüksekokulu',
+					slug: 'saglik-hizmetleri-meslek-yuksekokulu',
+				},
 			],
 		},
-		173: {
+		{
 			name: 'SAMSUN ÜNİVERSİTESİ',
-			campus: ['Canik', 'Ballıca'],
+			slug: 'samsun-universitesi',
+			campuses: [
+				{
+					name: 'Canik',
+					slug: 'canik',
+				},
+				{
+					name: 'Ballıca',
+					slug: 'ballica',
+				},
+			],
 		},
-		174: {
+		{
 			name: 'SANKO ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'sanko-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		175: {
+		{
 			name: 'SELÇUK ÜNİVERSİTESİ',
-			campus: ['Alaaddin Keykubat'],
+			slug: 'selcuk-universitesi',
+			campuses: [
+				{
+					name: 'Alaaddin Keykubat',
+					slug: 'alaaddin-keykubat',
+				},
+			],
 		},
-		176: {
+		{
 			name: 'SİİRT ÜNİVERSİTESİ',
-			campus: ['Kezer', 'Merkez', 'Kurtulan', 'Eruh'],
+			slug: 'siirt-universitesi',
+			campuses: [
+				{
+					name: 'Kezer',
+					slug: 'kezer',
+				},
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+				{
+					name: 'Kurtulan',
+					slug: 'kurtulan',
+				},
+				{
+					name: 'Eruh',
+					slug: 'eruh',
+				},
+			],
 		},
-		177: {
+		{
 			name: 'SİNOP ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'sinop-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		178: {
+		{
 			name: 'SİVAS BİLİM VE TEKNOLOJİ ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'sivas-bilim-ve-teknoloji-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		179: {
+		{
 			name: 'SİVAS CUMHURİYETİ ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'sivas-cumhuriyeti-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		180: {
+		{
 			name: 'SÜLEYMAN DEMİREL ÜNİVERSİTESİ',
-			campus: ['Doğu', 'Batı'],
+			slug: 'suleyman-demirel-universitesi',
+			campuses: [
+				{
+					name: 'Doğu',
+					slug: 'dogu',
+				},
+				{
+					name: 'Batı',
+					slug: 'bati',
+				},
+			],
 		},
-		181: {
+		{
 			name: 'ŞIRNAK ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'sirnak-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		182: {
+		{
 			name: 'TARSUS ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'tarsus-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		183: {
+		{
 			name: 'TED ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'ted-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		184: {
+		{
 			name: 'TEKİRDAĞ NAMIK KEMAL ÜNİVERSİTESİ',
-			campus: ['Değirmanaltı'],
+			slug: 'tekirdag-namik-kemal-universitesi',
+			campuses: [
+				{
+					name: 'Değirmanaltı',
+					slug: 'degirmanalti',
+				},
+			],
 		},
-		185: {
+		{
 			name: 'TOBB EKONOMİ VE TEKNOLOJİ ÜNİVERSİTESİ',
-			campus: ['Merkez', 'Diyarbakır'],
+			slug: 'tobb-ekonomi-ve-teknoloji-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+				{
+					name: 'Diyarbakır',
+					slug: 'diyarbakir',
+				},
+			],
 		},
-		186: {
+		{
 			name: 'TOKAT GAZİOSMANPAŞA ÜNİVERSİTESİ',
-			campus: ['Taşlıçiftlik', 'Ali Şevki Erek'],
+			slug: 'tokat-gaziosmanpasa-universitesi',
+			campuses: [
+				{
+					name: 'Taşlıçiftlik',
+					slug: 'tasliciftlik',
+				},
+				{
+					name: 'Ali Şevki Erek',
+					slug: 'ali-sevki-erek',
+				},
+			],
 		},
-		187: {
+		{
 			name: 'TOROS ÜNİVERSİTESİ',
-			campus: ['Bahçelievler', '45 Evler', 'Uray', 'Mezitli'],
+			slug: 'toros-universitesi',
+			campuses: [
+				{
+					name: 'Bahçelievler',
+					slug: 'bahcelievler',
+				},
+				{
+					name: '45 Evler',
+					slug: '45-evler',
+				},
+				{
+					name: 'Uray',
+					slug: 'uray',
+				},
+				{
+					name: 'Mezitli',
+					slug: 'mezitli',
+				},
+			],
 		},
-		188: {
+		{
 			name: 'TRABZON ÜNİVERSİTESİ',
-			campus: ['Merkez', 'Fatih'],
+			slug: 'trabzon-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+				{
+					name: 'Fatih',
+					slug: 'fatih',
+				},
+			],
 		},
-		189: {
+		{
 			name: 'TRAKYA ÜNİVERSİTESİ',
-			campus: [
-				'İsmail Hakkı Tonguç',
-				'Balkan',
-				'Ayşekadın',
-				'Kosova',
-				'Prof.Dr.Ahmet Karadeniz',
-				'Sarayiçi',
-				'Makedonya',
+			slug: 'trakya-universitesi',
+			campuses: [
+				{
+					name: 'İsmail Hakkı Tonguç',
+					slug: 'ismail-hakki-tonguc',
+				},
+				{
+					name: 'Balkan',
+					slug: 'balkan',
+				},
+				{
+					name: 'Ayşekadın',
+					slug: 'aysekadin',
+				},
+				{
+					name: 'Kosova',
+					slug: 'kosova',
+				},
+				{
+					name: 'Prof.Dr.Ahmet Karadeniz',
+					slug: 'prof.dr.ahmet-karadeniz',
+				},
+				{
+					name: 'Sarayiçi',
+					slug: 'sarayici',
+				},
+				{
+					name: 'Makedonya',
+					slug: 'makedonya',
+				},
 			],
 		},
-		190: {
+		{
 			name: 'TÜRK HAVA KURUMU ÜNİVERSİTESİ',
-			campus: ['Merkez', 'İskitler', 'Selçuk'],
+			slug: 'turk-hava-kurumu-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+				{
+					name: 'İskitler',
+					slug: 'iskitler',
+				},
+				{
+					name: 'Selçuk',
+					slug: 'selcuk',
+				},
+			],
 		},
-		191: {
+		{
 			name: 'TÜRK-ALMAN ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'turk-alman-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		192: {
+		{
 			name: 'UFUK ÜNİVERSİTESİ',
-			campus: ['Balgat', 'İncek'],
+			slug: 'ufuk-universitesi',
+			campuses: [
+				{
+					name: 'Balgat',
+					slug: 'balgat',
+				},
+				{
+					name: 'İncek',
+					slug: 'incek',
+				},
+			],
 		},
-		193: {
+		{
 			name: 'UŞAK ÜNİVERSİTESİ',
-			campus: ['1 Eylül'],
+			slug: 'usak-universitesi',
+			campuses: [
+				{
+					name: '1 Eylül',
+					slug: '1-eylul',
+				},
+			],
 		},
-		194: {
+		{
 			name: 'ÜSKÜDAR ÜNİVERSİTESİ',
-			campus: [
-				'Altunizade Merkez',
-				'Altunizade Güney',
-				'Üsküdar Çarşı',
-				'Tıp Fakültesi NP',
-				'NP Diş ve Sağlık',
+			slug: 'uskudar-universitesi',
+			campuses: [
+				{
+					name: 'Altunizade Merkez',
+					slug: 'altunizade-merkez',
+				},
+				{
+					name: 'Altunizade Güney',
+					slug: 'altunizade-guney',
+				},
+				{
+					name: 'Üsküdar Çarşı',
+					slug: 'uskudar-carsi',
+				},
+				{
+					name: 'Tıp Fakültesi NP',
+					slug: 'tip-fakultesi-np',
+				},
+				{
+					name: 'NP Diş ve Sağlık',
+					slug: 'np-dis-ve-saglik',
+				},
 			],
 		},
-		195: {
+		{
 			name: 'VAN YÜZÜNCÜ YIL ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'van-yuzuncu-yil-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		196: {
+		{
 			name: 'YALOVA ÜNİVERSİTESİ',
-			campus: [
-				'Merkez',
-				'Safran',
-				'Çınarcık',
-				'Armutlu',
-				'Termal',
-				'Altınova',
+			slug: 'yalova-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+				{
+					name: 'Safran',
+					slug: 'safran',
+				},
+				{
+					name: 'Çınarcık',
+					slug: 'cinarcik',
+				},
+				{
+					name: 'Armutlu',
+					slug: 'armutlu',
+				},
+				{
+					name: 'Termal',
+					slug: 'termal',
+				},
+				{
+					name: 'Altınova',
+					slug: 'altinova',
+				},
 			],
 		},
-		197: {
+		{
 			name: 'YAŞAR ÜNİVERSİTESİ',
-			campus: ['Merkez'],
+			slug: 'yasar-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+			],
 		},
-		198: {
+		{
 			name: 'YEDİTEPE ÜNİVERSİTESİ',
-			campus: ['26 Ağustos', 'Bağdat'],
+			slug: 'yeditepe-universitesi',
+			campuses: [
+				{
+					name: '26 Ağustos',
+					slug: '26-agustos',
+				},
+				{
+					name: 'Bağdat',
+					slug: 'bagdat',
+				},
+			],
 		},
-		199: {
+		{
 			name: 'YILDIZ TEKNİK ÜNİVERSİTESİ',
-			campus: ['Davutpaşa', 'Yıldız'],
+			slug: 'yildiz-teknik-universitesi',
+			campuses: [
+				{
+					name: 'Davutpaşa',
+					slug: 'davutpasa',
+				},
+				{
+					name: 'Yıldız',
+					slug: 'yildiz',
+				},
+			],
 		},
-		200: {
+		{
 			name: 'YOZGAT BOZOK ÜNİVERSİTESİ',
-			campus: [
-				'Merkez',
-				'Erdoğan Akdağ Doğu',
-				'Bilal Şahin Batı',
-				'Esentepe',
+			slug: 'yozgat-bozok-universitesi',
+			campuses: [
+				{
+					name: 'Merkez',
+					slug: 'merkez',
+				},
+				{
+					name: 'Erdoğan Akdağ Doğu',
+					slug: 'erdogan-akdag-dogu',
+				},
+				{
+					name: 'Bilal Şahin Batı',
+					slug: 'bilal-sahin-bati',
+				},
+				{
+					name: 'Esentepe',
+					slug: 'esentepe',
+				},
 			],
 		},
-		201: {
+		{
 			name: 'ZONGULDAK BÜLENT ECEVİT ÜNİVERSİTESİ',
-			campus: [
-				'Farabi',
-				'İbn-i Sina',
-				'İncirharmanı',
-				'Alaplı',
-				'Çaycuma',
-				'Devrek',
-				'Ereğli Doruk',
-				'Ereğli Kepez',
-				'Gökçebey',
-				'Kilimli',
+			slug: 'zonguldak-bulent-ecevit-universitesi',
+			campuses: [
+				{
+					name: 'Farabi',
+					slug: 'farabi',
+				},
+				{
+					name: 'İbn-i Sina',
+					slug: 'ibn-i-sina',
+				},
+				{
+					name: 'İncirharmanı',
+					slug: 'incirharmani',
+				},
+				{
+					name: 'Alaplı',
+					slug: 'alapli',
+				},
+				{
+					name: 'Çaycuma',
+					slug: 'caycuma',
+				},
+				{
+					name: 'Devrek',
+					slug: 'devrek',
+				},
+				{
+					name: 'Ereğli Doruk',
+					slug: 'eregli-doruk',
+				},
+				{
+					name: 'Ereğli Kepez',
+					slug: 'eregli-kepez',
+				},
+				{
+					name: 'Gökçebey',
+					slug: 'gokcebey',
+				},
+				{
+					name: 'Kilimli',
+					slug: 'kilimli',
+				},
 			],
 		},
-	},
-
+	],
 	selectedCampuses: [],
+	routeUniversityName: '',
+	routeCampusName: '',
 })
 export const mutations = {
+	// generateUniversityList(state) {
+	// 	const newUniversityList = []
+	// 	// eslint-disable-next-line
+	// 	for (const [key, value] of Object.entries(state.universities)) {
+	// 		const name = {
+	// 			name: value.name,
+	// 			slug: slugify(value.name, {
+	// 				lower: true,
+	// 				locale: 'tr-TR',
+	// 			}),
+	// 		}
+	// 		const campuses = []
+	// 		value.campus.forEach((c) => {
+	// 			campuses.push({
+	// 				name: c,
+	// 				slug: slugify(c, {
+	// 					lower: true,
+	// 					locale: 'tr-TR',
+	// 				}),
+	// 			})
+	// 		})
+	// 		newUniversityList.push({ ...name, campuses })
+	// 	}
+	// },
+
 	findCampusByUniversityName(state, name) {
+		state.selectedCampuses = []
 		// eslint-disable-next-line
-		for (const [key, value] of Object.entries(state.university)) {
+		for (const [key, value] of Object.entries(state.universities)) {
 			if (value.name === name) {
-				state.selectedCampuses = value.campus
+				value.campuses.forEach((campus) => {
+					state.selectedCampuses.push(campus.name)
+				})
 			}
 		}
 		return state.selectedCampuses
+	},
+	findCampusNameBySlug(state, slug) {
+		// eslint-disable-next-line
+		state.universities.forEach((university) => {
+			university.campuses.forEach((campus) => {
+				if (campus.slug === slug) {
+					state.routeCampusName = campus.name
+				}
+			})
+		})
+		return state.routeCampusName
+	},
+	findUniversityNameByUniversitySlug(state, slug) {
+		// eslint-disable-next-line
+		for (const [key, value] of Object.entries(state.universities)) {
+			if (value.slug === slug) {
+				state.routeUniversityName = value.name
+			}
+		}
+		return state.routeUniversityName
+	},
+}
+export const getters = {
+	getUniversitiesName(state) {
+		const universities = []
+		// eslint-disable-next-line
+		for (const [key, value] of Object.entries(state.universities)) {
+			universities.push(value.name)
+		}
+		return universities
 	},
 }
