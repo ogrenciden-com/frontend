@@ -1,6 +1,6 @@
 <template>
-	<v-sheet outlined color="darkGrey" rounded max-width="232px">
-		<v-card outlined color="secondary" flat class="px-2 py-3">
+	<v-sheet color="darkGrey" rounded="xl" max-width="232px">
+		<v-card outlined flat class="px-2 py-3">
 			<v-carousel
 				v-model="model"
 				hide-delimiters
