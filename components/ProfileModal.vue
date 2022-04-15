@@ -243,6 +243,7 @@ export default {
 			this.form.url = URL.createObjectURL(this.image)
 		},
 		submit() {
+			// eslint-disable-next-line no-console
 			console.log(this.form)
 		},
 	},
