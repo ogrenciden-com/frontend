@@ -8,7 +8,7 @@
 				cols="3"
 				class="col-md-4 col-lg-3 col-sm-6 col-12 d-flex justify-center justify-md-start"
 			>
-				<item-card />
+				<item-card :favorite="true" />
 			</v-col>
 		</v-row>
 	</div>
