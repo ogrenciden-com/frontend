@@ -30,57 +30,28 @@
 					color="secondary"
 					class="ml-4"
 				></v-sheet>
-				<v-list-item
-					color="primary"
-					dense
-					:style="{
-						textAlign: 'center',
-						fontSize: '14px',
-					}"
-					@click="profileToggle"
-				>
-					<span class="mx-auto"> Profil Düzenle </span>
-				</v-list-item>
-				<v-sheet
-					height="1"
-					width="129"
-					color="secondary"
-					class="ml-4"
-				></v-sheet>
-				<v-list-item
-					color="primary"
-					dense
-					:style="{
-						textAlign: 'center',
-						fontSize: '14px',
-					}"
-					@click="advertToggle"
-				>
-					<span class="mx-auto"> İlan oluştur </span>
-				</v-list-item>
-				<v-sheet
-					height="1"
-					width="129"
-					color="secondary"
-					class="ml-4"
-				></v-sheet>
-				<v-list-item
-					color="primary"
-					dense
-					:style="{
-						textAlign: 'center',
-						fontSize: '14px',
-					}"
-					@click="userToggle"
-				>
-					<span class="mx-auto"> Çıkış Yap </span>
-				</v-list-item>
-				<v-sheet
-					height="1"
-					width="129"
-					color="secondary"
-					class="ml-4"
-				></v-sheet>
+				<template v-for="(item, index) in menuItems">
+					<div :key="index">
+						<v-list-item
+							color="primary"
+							dense
+							:style="{
+								textAlign: 'center',
+								fontSize: '14px',
+							}"
+							:to="item.link"
+							@click="item.function"
+						>
+							<span class="mx-auto"> {{ item.text }} </span>
+						</v-list-item>
+						<v-sheet
+							height="1"
+							width="129"
+							color="secondary"
+							class="ml-4"
+						></v-sheet>
+					</div>
+				</template>
 			</v-list>
 		</v-card>
 	</v-menu>
@@ -89,6 +60,37 @@
 import { mapMutations } from 'vuex'
 
 export default {
+	data() {
+		return {
+			menuItems: [
+				{
+					text: 'Profil Düzenle',
+					function: this.profileToggle,
+					link: undefined,
+				},
+				{
+					text: 'İlanlarım',
+					function: () => {},
+					link: '/my-ads',
+				},
+				{
+					text: 'Favorilerim',
+					function: () => {},
+					link: '/favorite',
+				},
+				{
+					text: 'İlan oluştur',
+					function: this.advertToggle,
+					link: undefined,
+				},
+				{
+					text: 'Çıkış Yap',
+					function: this.userToggle,
+					link: undefined,
+				},
+			],
+		}
+	},
 	methods: {
 		...mapMutations({
 			advertToggle: 'advertToggle',

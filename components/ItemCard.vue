@@ -50,7 +50,7 @@
 				<span>Farabi</span>
 				<v-btn icon @click="saveFavorite = !saveFavorite">
 					<v-icon color="red"
-						>{{ saveFavorite ? 'mdi-heart' : 'mdi-heart-outline' }}
+						>{{ favorite ? 'mdi-heart' : 'mdi-heart-outline' }}
 					</v-icon>
 				</v-btn>
 			</v-card-text>
@@ -59,9 +59,14 @@
 </template>
 <script>
 export default {
+	props: {
+		favorite: {
+			type: Boolean,
+			default: false,
+		},
+	},
 	data() {
 		return {
-			saveFavorite: false,
 			model: 0,
 			links: [
 				'https://img.letgo.com/images/6e/77/b0/0f/6e77b00fe56972c0ffbeb3a7edba1b8a.jpg?impolicy=img_600',

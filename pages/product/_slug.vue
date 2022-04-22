@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<v-breadcrumbs
-			class="pa-0 mb-2"
+			class="pa-0 mb-2 ml-2"
 			divider=">"
 			:items="breadcrumbs"
 		></v-breadcrumbs>
@@ -56,11 +56,13 @@
 					</time>
 				</div>
 				<div
-					class="text-body-2 darkGrey--text d-flex align-center mt-1"
+					class="text-body-2 darkGrey--text d-sm-flex align-sm-center mt-1"
 				>
-					<span class="mr-1"> {{ item.university }} </span>
-					<span class="d-block mr-1 dot"> </span>
-					<time class="font-weight-regular">{{ item.campus }}</time>
+					<span class="d-block d-sm-flex mr-1">
+						{{ item.university }}
+					</span>
+					<span class="dot d-none d-sm-block mr-1"> </span>
+					<span class="font-weight-thin">{{ item.campus }}</span>
 				</div>
 				<p class="text-body-2 mt-2 black--text">
 					{{ item.description }}
@@ -71,7 +73,7 @@
 					<span class="text-caption darkGrey--text mr-4">
 						Bu ilan 181 kez görüntülendi
 					</span>
-					<div class="mr-4">
+					<div class="mr-sm-4 mr-2 d-flex">
 						<a
 							:href="shareWhatsAppLink"
 							data-action="share/whatsapp/share"
@@ -119,7 +121,7 @@
 						</a>
 					</div>
 				</div>
-				<v-btn v-if="$store.state.hasUser" icon absolute top right>
+				<v-btn v-if="false" icon absolute top right>
 					<v-hover v-slot="{ hover }">
 						<v-btn icon>
 							<v-icon :class="hover ? 'primary--text' : ''"
@@ -174,7 +176,7 @@ export default {
 					'		Lorem ipsum dolor sit amet consectetur, adipisicing elit. Soluta, corporis adipisci. Eaque cumque illum provident quod iure dolorem cum laudantium reprehenderit possimus nulla neque hic repudiandae officiis, tempora perspiciatis saepe. Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt quo facilis libero optio sequi, numquam velit soluta vel, aliquid a veritatis ipsam qui fugit temporibus dolore consequatur architecto sed iste?',
 				price: '17.250',
 				category: 'Teknoloji',
-				university: 'Zonguldak Bülent Ecevit Universitesi',
+				university: 'Zonguldak Bülent Ecevit Üniversitesi',
 				campus: 'Farabi',
 				contact: '',
 				publisedDate: '19.02.2022',
@@ -188,15 +190,15 @@ export default {
 	},
 	computed: {
 		shareTelegramLink() {
-			return `https://t.me/share/url?url=https://frontend-git-dev-aahmetcakir.vercel.app${this.$route.fullPath}&text=${this.item.title} ${this.item.price}TL `
+			return `https://t.me/share/url?url=https://ogrenciden-git-dev-aahmetcakir.vercel.app${this.$route.fullPath}&text=${this.item.title} ${this.item.price}TL `
 		},
 		shareTwitterLink() {
-			return `https://twitter.com/intent/tweet?text=İlanıma göz atın. ${this.item.title} ${this.item.price}TL &url=https://frontend-git-dev-aahmetcakir.vercel.app${this.$route.fullPath}`
+			return `https://twitter.com/intent/tweet?text=İlanıma göz atın. ${this.item.title} ${this.item.price}TL &url=https://ogrenciden-git-dev-aahmetcakir.vercel.app${this.$route.fullPath}`
 		},
 		shareWhatsAppLink() {
 			return this.$device.isMobile
-				? `whatsapp://send?text=https://frontend-git-dev-aahmetcakir.vercel.app${this.$route.fullPath}`
-				: `https://web.whatsapp.com/send?text=https://frontend-git-dev-aahmetcakir.vercel.app${this.$route.fullPath}`
+				? `whatsapp://send?text=https://ogrenciden-git-dev-aahmetcakir.vercel.app${this.$route.fullPath}`
+				: `https://web.whatsapp.com/send?text=https://ogrenciden-git-dev-aahmetcakir.vercel.app${this.$route.fullPath}`
 		},
 	},
 }
