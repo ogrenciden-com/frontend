@@ -157,17 +157,17 @@ export default {
 				{
 					text: 'Bülent Ecevit Üniversitesi',
 					disabled: false,
-					href: `/zonguldak-bulent-ecevit-universitesi`,
+					href: `/${this.$route.params.university}`,
 				},
 				{
 					text: 'Farabi',
 					disabled: false,
-					href: `/zonguldak-bulent-ecevit-universitesi/farabi`,
+					href: `/${this.$route.params.university}/${this.$route.params.campus}`,
 				},
 				{
 					text: 'Teknoloji',
 					disabled: false,
-					href: `/zonguldak-bulent-ecevit-universitesi/farabi/bar`,
+					href: `/${this.$route.params.university}/${this.$route.params.campus}/${this.$route.params.category}`,
 				},
 			],
 			item: {
