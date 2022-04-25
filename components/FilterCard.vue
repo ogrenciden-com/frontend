@@ -3,17 +3,23 @@
 		<!--order -->
 		<select-box
 			v-model="form.order"
-			:items="getOrdersName()"
+			:items="order"
+			item-text="name"
+			item-value="slug"
 			label="Sıralama"
 			classes="mb-8 text-caption text-md-body-2"
 		/>
 		<!-- categories -->
 		<select-box
 			v-model="form.category"
-			:items="items"
+			:items="categories"
+			item-text="name"
+			item-value="slug"
 			label="Kategori"
 			classes="mb-8 text-caption text-md-body-2"
-		/>
+		>
+		</select-box>
+
 		<!-- university -->
 		<select-box
 			v-model="form.universityName"
@@ -104,12 +110,14 @@ export default {
 				minPrice: undefined,
 				maxPrice: undefined,
 			},
-			items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
 		}
 	},
 	computed: {
-		universities() {
-			return this.$store.state.university?.list
+		order() {
+			return this.$store.state.Order?.list
+		},
+		categories() {
+			return this.$store.state.Categories?.list
 		},
 		campuses() {
 			return this.$store.state.UniversityAndCampus?.selectedCampuses
@@ -143,9 +151,7 @@ export default {
 
 		// category router name
 		if (this.$route.params.category) {
-			this.form.category =
-				this.$route.params.category[0].toUpperCase() +
-				this.$route.params.category.slice(1)
+			this.form.category = this.$route.params.category
 		}
 		// max price router value
 
@@ -158,8 +164,7 @@ export default {
 		}
 		// order (sort) router value
 		if (this.$route.query.order) {
-			this.findOrderBySlug(this.$route.query.order)
-			this.form.order = this.$store.state.Order?.routeOrderName
+			this.form.order = this.$route.query.order
 		}
 	},
 	methods: {
