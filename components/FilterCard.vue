@@ -3,7 +3,7 @@
 		<!--order -->
 		<select-box
 			v-model="form.order"
-			:items="order"
+			:items="getOrdersName()"
 			label="Sıralama"
 			classes="mb-8 text-caption text-md-body-2"
 		/>
@@ -108,9 +108,6 @@ export default {
 		}
 	},
 	computed: {
-		order() {
-			return this.$store.state.Order?.list
-		},
 		universities() {
 			return this.$store.state.university?.list
 		},
@@ -161,14 +158,8 @@ export default {
 		}
 		// order (sort) router value
 		if (this.$route.query.order) {
-			this.form.order =
-				this.$route.query.order[0].toUpperCase() +
-				this.$route.query.order
-					.toLocaleLowerCase('tr-TR')
-					.split('-')
-					.join(' ')
-					.slice(1)
-					.replace('o', 'ö')
+			this.findOrderBySlug(this.$route.query.order)
+			this.form.order = this.$store.state.Order?.routeOrderName
 		}
 	},
 	methods: {
@@ -178,9 +169,11 @@ export default {
 			findUniversityNameByUniversitySlug:
 				'UniversityAndCampus/findUniversityNameByUniversitySlug',
 			findCampusNameBySlug: 'UniversityAndCampus/findCampusNameBySlug',
+			findOrderBySlug: 'Order/findOrderBySlug',
 		}),
 		...mapGetters({
 			getUniversitiesName: 'UniversityAndCampus/getUniversitiesName',
+			getOrdersName: 'Order/getOrdersName',
 		}),
 		submit() {
 			this.$router.push({
@@ -189,19 +182,16 @@ export default {
 					university: this.form.universityName
 						? slugify(this.form.universityName, {
 								lower: true,
-								locale: 'tr-TR',
 						  })
 						: undefined,
 					campus: this.form.campus
 						? slugify(this.form.campus, {
 								lower: true,
-								locale: 'tr',
 						  })
 						: undefined,
 					category: this.form.category
 						? slugify(this.form.category, {
 								lower: true,
-								locale: 'tr',
 						  })
 						: undefined,
 				},

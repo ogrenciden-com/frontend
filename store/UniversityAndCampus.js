@@ -2,6 +2,52 @@
 export const state = () => ({
 	universities: [
 		{
+			name: 'ZONGULDAK BÜLENT ECEVİT ÜNİVERSİTESİ',
+			slug: 'zonguldak-bulent-ecevit-universitesi',
+			campuses: [
+				{
+					name: 'Farabi',
+					slug: 'farabi',
+				},
+				{
+					name: 'İbn-i Sina',
+					slug: 'ibn-i-sina',
+				},
+				{
+					name: 'İncirharmanı',
+					slug: 'incirharmani',
+				},
+				{
+					name: 'Alaplı',
+					slug: 'alapli',
+				},
+				{
+					name: 'Çaycuma',
+					slug: 'caycuma',
+				},
+				{
+					name: 'Devrek',
+					slug: 'devrek',
+				},
+				{
+					name: 'Ereğli Doruk',
+					slug: 'eregli-doruk',
+				},
+				{
+					name: 'Ereğli Kepez',
+					slug: 'eregli-kepez',
+				},
+				{
+					name: 'Gökçebey',
+					slug: 'gokcebey',
+				},
+				{
+					name: 'Kilimli',
+					slug: 'kilimli',
+				},
+			],
+		},
+		{
 			name: 'ABDULLAH GÜL ÜNİVERSİTESİ',
 			slug: 'abdullah-gul-universitesi',
 			campuses: [
@@ -3637,52 +3683,7 @@ export const state = () => ({
 				},
 			],
 		},
-		{
-			name: 'ZONGULDAK BÜLENT ECEVİT ÜNİVERSİTESİ',
-			slug: 'zonguldak-bulent-ecevit-universitesi',
-			campuses: [
-				{
-					name: 'Farabi',
-					slug: 'farabi',
-				},
-				{
-					name: 'İbn-i Sina',
-					slug: 'ibn-i-sina',
-				},
-				{
-					name: 'İncirharmanı',
-					slug: 'incirharmani',
-				},
-				{
-					name: 'Alaplı',
-					slug: 'alapli',
-				},
-				{
-					name: 'Çaycuma',
-					slug: 'caycuma',
-				},
-				{
-					name: 'Devrek',
-					slug: 'devrek',
-				},
-				{
-					name: 'Ereğli Doruk',
-					slug: 'eregli-doruk',
-				},
-				{
-					name: 'Ereğli Kepez',
-					slug: 'eregli-kepez',
-				},
-				{
-					name: 'Gökçebey',
-					slug: 'gokcebey',
-				},
-				{
-					name: 'Kilimli',
-					slug: 'kilimli',
-				},
-			],
-		},
+
 	],
 	selectedCampuses: [],
 	routeUniversityName: '',
