@@ -2,6 +2,52 @@
 export const state = () => ({
 	universities: [
 		{
+			name: 'ZONGULDAK BÜLENT ECEVİT ÜNİVERSİTESİ',
+			slug: 'zonguldak-bulent-ecevit-universitesi',
+			campuses: [
+				{
+					name: 'Farabi',
+					slug: 'farabi',
+				},
+				{
+					name: 'İbn-i Sina',
+					slug: 'ibn-i-sina',
+				},
+				{
+					name: 'İncirharmanı',
+					slug: 'incirharmani',
+				},
+				{
+					name: 'Alaplı',
+					slug: 'alapli',
+				},
+				{
+					name: 'Çaycuma',
+					slug: 'caycuma',
+				},
+				{
+					name: 'Devrek',
+					slug: 'devrek',
+				},
+				{
+					name: 'Ereğli Doruk',
+					slug: 'eregli-doruk',
+				},
+				{
+					name: 'Ereğli Kepez',
+					slug: 'eregli-kepez',
+				},
+				{
+					name: 'Gökçebey',
+					slug: 'gokcebey',
+				},
+				{
+					name: 'Kilimli',
+					slug: 'kilimli',
+				},
+			],
+		},
+		{
 			name: 'ABDULLAH GÜL ÜNİVERSİTESİ',
 			slug: 'abdullah-gul-universitesi',
 			campuses: [
@@ -3637,123 +3683,18 @@ export const state = () => ({
 				},
 			],
 		},
-		{
-			name: 'ZONGULDAK BÜLENT ECEVİT ÜNİVERSİTESİ',
-			slug: 'zonguldak-bulent-ecevit-universitesi',
-			campuses: [
-				{
-					name: 'Farabi',
-					slug: 'farabi',
-				},
-				{
-					name: 'İbn-i Sina',
-					slug: 'ibn-i-sina',
-				},
-				{
-					name: 'İncirharmanı',
-					slug: 'incirharmani',
-				},
-				{
-					name: 'Alaplı',
-					slug: 'alapli',
-				},
-				{
-					name: 'Çaycuma',
-					slug: 'caycuma',
-				},
-				{
-					name: 'Devrek',
-					slug: 'devrek',
-				},
-				{
-					name: 'Ereğli Doruk',
-					slug: 'eregli-doruk',
-				},
-				{
-					name: 'Ereğli Kepez',
-					slug: 'eregli-kepez',
-				},
-				{
-					name: 'Gökçebey',
-					slug: 'gokcebey',
-				},
-				{
-					name: 'Kilimli',
-					slug: 'kilimli',
-				},
-			],
-		},
+
 	],
 	selectedCampuses: [],
-	routeUniversityName: '',
-	routeCampusName: '',
 })
 export const mutations = {
-	// generateUniversityList(state) {
-	// 	const newUniversityList = []
-	// 	// eslint-disable-next-line
-	// 	for (const [key, value] of Object.entries(state.universities)) {
-	// 		const name = {
-	// 			name: value.name,
-	// 			slug: slugify(value.name, {
-	// 				lower: true,
-	// 				locale: 'tr-TR',
-	// 			}),
-	// 		}
-	// 		const campuses = []
-	// 		value.campus.forEach((c) => {
-	// 			campuses.push({
-	// 				name: c,
-	// 				slug: slugify(c, {
-	// 					lower: true,
-	// 					locale: 'tr-TR',
-	// 				}),
-	// 			})
-	// 		})
-	// 		newUniversityList.push({ ...name, campuses })
-	// 	}
-	// },
-
-	findCampusByUniversityName(state, name) {
+	findCampusByUniversitySlug(state, slug) {
 		state.selectedCampuses = []
-		// eslint-disable-next-line
 		for (const [key, value] of Object.entries(state.universities)) {
-			if (value.name === name) {
-				value.campuses.forEach((campus) => {
-					state.selectedCampuses.push(campus.name)
-				})
+			if (value.slug === slug) {
+				state.selectedCampuses = value.campuses
 			}
 		}
 		return state.selectedCampuses
-	},
-	findCampusNameBySlug(state, slug) {
-		// eslint-disable-next-line
-		state.universities.forEach((university) => {
-			university.campuses.forEach((campus) => {
-				if (campus.slug === slug) {
-					state.routeCampusName = campus.name
-				}
-			})
-		})
-		return state.routeCampusName
-	},
-	findUniversityNameByUniversitySlug(state, slug) {
-		// eslint-disable-next-line
-		for (const [key, value] of Object.entries(state.universities)) {
-			if (value.slug === slug) {
-				state.routeUniversityName = value.name
-			}
-		}
-		return state.routeUniversityName
-	},
-}
-export const getters = {
-	getUniversitiesName(state) {
-		const universities = []
-		// eslint-disable-next-line
-		for (const [key, value] of Object.entries(state.universities)) {
-			universities.push(value.name)
-		}
-		return universities
 	},
 }

@@ -50,7 +50,7 @@
 				<span>Farabi</span>
 				<v-btn icon @click="saveFavorite = !saveFavorite">
 					<v-icon color="red"
-						>{{ favorite ? 'mdi-heart' : 'mdi-heart-outline' }}
+						>{{ saveFavorite ? 'mdi-heart' : 'mdi-heart-outline' }}
 					</v-icon>
 				</v-btn>
 			</v-card-text>
@@ -73,6 +73,7 @@ export default {
 				'https://img.letgo.com/images/59/7b/f0/19/597bf019424a92bbb974cf7e43e91542.jpg?impolicy=img_600',
 				'https://img.letgo.com/images/d1/69/60/c7/d16960c77899a052da7de378ff68f663.jpg?impolicy=img_600',
 			],
+			saveFavorite: this.favorite,
 		}
 	},
 	computed: {

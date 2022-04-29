@@ -4,20 +4,28 @@
 		<select-box
 			v-model="form.order"
 			:items="order"
+			item-text="name"
+			item-value="slug"
 			label="Sıralama"
 			classes="mb-8 text-caption text-md-body-2"
 		/>
 		<!-- categories -->
 		<select-box
 			v-model="form.category"
-			:items="items"
+			:items="categories"
+			item-text="name"
+			item-value="slug"
 			label="Kategori"
 			classes="mb-8 text-caption text-md-body-2"
-		/>
+		>
+		</select-box>
+
 		<!-- university -->
 		<select-box
 			v-model="form.universityName"
-			:items="getUniversitiesName()"
+			:items="flatUniversities"
+			item-text="name"
+			item-value="slug"
 			label="Üniversite"
 			classes="mb-8 text-caption text-md-body-2"
 		/>
@@ -40,6 +48,8 @@
 			v-model="form.campus"
 			classes="mb-8 text-caption text-md-body-2"
 			:items="campuses"
+			item-text="name"
+			item-value="slug"
 			label="Kampüs"
 		/>
 		<!-- price inputs -->
@@ -87,7 +97,7 @@
 </template>
 <script>
 import slugify from 'slugify'
-import { mapMutations, mapGetters } from 'vuex'
+import { mapMutations } from 'vuex'
 
 import SelectBox from '@/components/SelectBox.vue'
 export default {
@@ -104,18 +114,20 @@ export default {
 				minPrice: undefined,
 				maxPrice: undefined,
 			},
-			items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
 		}
 	},
 	computed: {
 		order() {
 			return this.$store.state.Order?.list
 		},
-		universities() {
-			return this.$store.state.university?.list
+		categories() {
+			return this.$store.state.Categories?.list
 		},
 		campuses() {
 			return this.$store.state.UniversityAndCampus?.selectedCampuses
+		},
+		flatUniversities() {
+			return this.$store.state.UniversityAndCampus?.universities
 		},
 	},
 	watch: {
@@ -123,32 +135,22 @@ export default {
 			if (!this.form.universityName) {
 				this.form.campus = undefined
 			}
-			this.findCampusByUniversityName(this.form.universityName)
+			this.findCampusByUniversitySlug(this.form.universityName)
 		},
 	},
 	created() {
 		// university router name
 		if (this.$route.params.university) {
-			this.findUniversityNameByUniversitySlug(
-				this.$route.params.university,
-			)
-			this.findCampusByUniversityName(this.form.universityName)
-			this.form.universityName =
-				this.$store.state.UniversityAndCampus?.routeUniversityName
+			this.form.universityName = this.$route.params.university
+			this.findCampusByUniversitySlug(this.form.universityName)
 		}
 		// campus router name
-
 		if (this.$route.params.campus) {
-			this.findCampusNameBySlug(this.$route.params.campus)
-			this.form.campus =
-				this.$store.state.UniversityAndCampus?.routeCampusName
+			this.form.campus = this.$route.params.campus
 		}
-
 		// category router name
 		if (this.$route.params.category) {
-			this.form.category =
-				this.$route.params.category[0].toUpperCase() +
-				this.$route.params.category.slice(1)
+			this.form.category = this.$route.params.category
 		}
 		// max price router value
 
@@ -161,26 +163,13 @@ export default {
 		}
 		// order (sort) router value
 		if (this.$route.query.order) {
-			this.form.order =
-				this.$route.query.order[0].toUpperCase() +
-				this.$route.query.order
-					.toLocaleLowerCase('tr-TR')
-					.split('-')
-					.join(' ')
-					.slice(1)
-					.replace('o', 'ö')
+			this.form.order = this.$route.query.order
 		}
 	},
 	methods: {
 		...mapMutations({
-			findCampusByUniversityName:
-				'UniversityAndCampus/findCampusByUniversityName',
-			findUniversityNameByUniversitySlug:
-				'UniversityAndCampus/findUniversityNameByUniversitySlug',
-			findCampusNameBySlug: 'UniversityAndCampus/findCampusNameBySlug',
-		}),
-		...mapGetters({
-			getUniversitiesName: 'UniversityAndCampus/getUniversitiesName',
+			findCampusByUniversitySlug:
+				'UniversityAndCampus/findCampusByUniversitySlug',
 		}),
 		submit() {
 			this.$router.push({
@@ -189,19 +178,16 @@ export default {
 					university: this.form.universityName
 						? slugify(this.form.universityName, {
 								lower: true,
-								locale: 'tr-TR',
 						  })
 						: undefined,
 					campus: this.form.campus
 						? slugify(this.form.campus, {
 								lower: true,
-								locale: 'tr',
 						  })
 						: undefined,
 					category: this.form.category
 						? slugify(this.form.category, {
 								lower: true,
-								locale: 'tr',
 						  })
 						: undefined,
 				},

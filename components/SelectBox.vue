@@ -11,8 +11,12 @@
 		flat
 		solo
 		dense
+		:item-text="itemText"
+		:item-value="itemValue"
+		:return-object="returnObject"
 		@change="updateValue"
-	></v-select>
+	>
+	</v-select>
 </template>
 <script>
 export default {
@@ -22,6 +26,14 @@ export default {
 			default: undefined,
 		},
 		value: {
+			type: String,
+			default: '',
+		},
+		itemText: {
+			type: String,
+			default: '',
+		},
+		itemValue: {
 			type: String,
 			default: '',
 		},
@@ -38,6 +50,10 @@ export default {
 			default: 'mb-8',
 		},
 		outlined: {
+			type: Boolean,
+			default: false,
+		},
+		returnObject: {
 			type: Boolean,
 			default: false,
 		},
