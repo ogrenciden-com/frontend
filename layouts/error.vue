@@ -31,10 +31,9 @@
 					{{ otherError }}
 				</span>
 				<v-btn
-					nuxt
-					to="/"
 					class="primary mt-10 d-flex justify-center text-transform-none font-weight-normal text-body-1"
 					elevation="0"
+					@click="router.push('/')"
 				>
 					Ana sayfaya dön
 				</v-btn>

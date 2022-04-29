@@ -23,7 +23,9 @@
 		<!-- university -->
 		<select-box
 			v-model="form.universityName"
-			:items="getUniversitiesName()"
+			:items="flatUniversities"
+			item-text="name"
+			item-value="slug"
 			label="Üniversite"
 			classes="mb-8 text-caption text-md-body-2"
 		/>
@@ -46,6 +48,8 @@
 			v-model="form.campus"
 			classes="mb-8 text-caption text-md-body-2"
 			:items="campuses"
+			item-text="name"
+			item-value="slug"
 			label="Kampüs"
 		/>
 		<!-- price inputs -->
@@ -93,7 +97,7 @@
 </template>
 <script>
 import slugify from 'slugify'
-import { mapMutations, mapGetters } from 'vuex'
+import { mapMutations } from 'vuex'
 
 import SelectBox from '@/components/SelectBox.vue'
 export default {
@@ -122,33 +126,28 @@ export default {
 		campuses() {
 			return this.$store.state.UniversityAndCampus?.selectedCampuses
 		},
+		flatUniversities() {
+			return this.$store.state.UniversityAndCampus?.universities
+		},
 	},
 	watch: {
 		'form.universityName'() {
 			if (!this.form.universityName) {
 				this.form.campus = undefined
 			}
-			this.findCampusByUniversityName(this.form.universityName)
+			this.findCampusByUniversitySlug(this.form.universityName)
 		},
 	},
 	created() {
 		// university router name
 		if (this.$route.params.university) {
-			this.findUniversityNameByUniversitySlug(
-				this.$route.params.university,
-			)
-			this.findCampusByUniversityName(this.form.universityName)
-			this.form.universityName =
-				this.$store.state.UniversityAndCampus?.routeUniversityName
+			this.form.universityName = this.$route.params.university
+			this.findCampusByUniversitySlug(this.form.universityName)
 		}
 		// campus router name
-
 		if (this.$route.params.campus) {
-			this.findCampusNameBySlug(this.$route.params.campus)
-			this.form.campus =
-				this.$store.state.UniversityAndCampus?.routeCampusName
+			this.form.campus = this.$route.params.campus
 		}
-
 		// category router name
 		if (this.$route.params.category) {
 			this.form.category = this.$route.params.category
@@ -169,16 +168,8 @@ export default {
 	},
 	methods: {
 		...mapMutations({
-			findCampusByUniversityName:
-				'UniversityAndCampus/findCampusByUniversityName',
-			findUniversityNameByUniversitySlug:
-				'UniversityAndCampus/findUniversityNameByUniversitySlug',
-			findCampusNameBySlug: 'UniversityAndCampus/findCampusNameBySlug',
-			findOrderBySlug: 'Order/findOrderBySlug',
-		}),
-		...mapGetters({
-			getUniversitiesName: 'UniversityAndCampus/getUniversitiesName',
-			getOrdersName: 'Order/getOrdersName',
+			findCampusByUniversitySlug:
+				'UniversityAndCampus/findCampusByUniversitySlug',
 		}),
 		submit() {
 			this.$router.push({
