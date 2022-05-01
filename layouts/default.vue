@@ -69,8 +69,10 @@
 			<v-footer color="white" padless class="pb-8 pt-4">
 				<v-row justify="center" no-gutters>
 					<v-col
+						order="last"
+						order-md="first"
 						cols="3"
-						class="col-12 col-md-3 mb-4 mb-md-0 ml-12 ml-md-0"
+						class="col-12 col-md-3 mt-5 mt-md-0 ml-12 ml-md-0"
 						align-self="center"
 					>
 						<brand-logo class="d-block mb-4" />
@@ -79,9 +81,14 @@
 							<span>Öğrenciden</span>
 						</div>
 					</v-col>
-					<v-col cols="9" class="col-12 col-md-9">
-						<v-row>
-							<v-col cols="4" class="col-12 col-md-3 col-sm-6">
+					<v-col
+						order="first"
+						order-md="last"
+						cols="9"
+						class="col-12 col-md-9"
+					>
+						<v-row justify="space-between">
+							<v-col cols="4" class="col-6 col-md-3 col-sm-6">
 								<ul class="list">
 									<li>
 										<span
@@ -112,38 +119,7 @@
 									</li>
 								</ul>
 							</v-col>
-							<v-col cols="4" class="col-12 col-md-3 col-sm-6">
-								<ul class="list">
-									<li>
-										<span
-											class="black--text text-decoration-none font-weight-medium"
-											>Hesap İşlemleri</span
-										>
-									</li>
-									<li>
-										<nuxt-link
-											to="/auth/login"
-											class="darkGrey--text text-decoration-none text-body-2"
-											>Giriş Yap</nuxt-link
-										>
-									</li>
-									<li>
-										<nuxt-link
-											to="/auth/register"
-											class="darkGrey--text text-decoration-none text-body-2"
-											>Kayıt Ol</nuxt-link
-										>
-									</li>
-									<li>
-										<nuxt-link
-											to="/auth/forgot-password"
-											class="darkGrey--text text-decoration-none text-body-2"
-											>Şifremi unuttum</nuxt-link
-										>
-									</li>
-								</ul>
-							</v-col>
-							<v-col cols="4" class="col-12 col-md-3 col-sm-6">
+							<v-col cols="4" class="col-6 col-md-3 col-sm-6">
 								<ul class="list">
 									<li>
 										<span
@@ -173,6 +149,37 @@
 											target="_blank"
 											class="darkGrey--text text-decoration-none text-body-2"
 											>İnstagram</a
+										>
+									</li>
+								</ul>
+							</v-col>
+							<v-col cols="4" class="col-6 col-md-3 col-sm-6">
+								<ul class="list">
+									<li>
+										<span
+											class="black--text text-decoration-none font-weight-medium"
+											>Hesap İşlemleri</span
+										>
+									</li>
+									<li>
+										<nuxt-link
+											to="/auth/login"
+											class="darkGrey--text text-decoration-none text-body-2"
+											>Giriş Yap</nuxt-link
+										>
+									</li>
+									<li>
+										<nuxt-link
+											to="/auth/register"
+											class="darkGrey--text text-decoration-none text-body-2"
+											>Kayıt Ol</nuxt-link
+										>
+									</li>
+									<li>
+										<nuxt-link
+											to="/auth/forgot-password"
+											class="darkGrey--text text-decoration-none text-body-2"
+											>Şifremi unuttum</nuxt-link
 										>
 									</li>
 								</ul>
