@@ -66,13 +66,19 @@
 				</v-dialog>
 				<Nuxt :key="$route.fullPath" />
 			</v-main>
-			<v-footer color="white" padless class="pb-8 pt-4">
-				<v-row justify="center" no-gutters>
+			<v-footer
+				color="white"
+				class="pb-8 pt-4 mx-auto"
+				absolute
+				padless
+				max-width="1141"
+			>
+				<v-row justify="center">
 					<v-col
 						order="last"
 						order-md="first"
 						cols="3"
-						class="col-12 col-md-3 mt-5 mt-md-0 ml-12 ml-md-0"
+						class="col-12 col-md-3 mt-5 mt-md-0 pl-10 pl-md-0"
 						align-self="center"
 					>
 						<brand-logo class="d-block mb-4" />

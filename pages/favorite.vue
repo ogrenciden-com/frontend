@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="fill-height">
 		<h3 class="mb-4 text--subtitle">Favori İlanlarım</h3>
 		<v-row class="d-none d-sm-flex">
 			<v-col
