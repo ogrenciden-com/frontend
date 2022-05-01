@@ -9,11 +9,11 @@ export const state = () => ({
 			slug: 'en-eski',
 		},
 		{
-			name: 'Fiyata göre artan',
+			name: 'Fiyata göre artan (Önce düşük fiyat)',
 			slug: 'fiyata-gore-artan',
 		},
 		{
-			name: 'Fiyata göre azalan',
+			name: 'Fiyata göre azalan (Önce yüksek fiyat)',
 			slug: 'fiyata-gore-azalan',
 		},
 	],

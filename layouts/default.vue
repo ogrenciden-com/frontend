@@ -6,12 +6,6 @@
 					<brand-logo class="mt-6 mb-4 d-sm-none" />
 				</nuxt-link>
 				<v-app-bar width="1157" color="white" height="72" elevation="0">
-					<!-- 
-            		TODO
-		            logo tasarımları geldiğinde 
-        		    küçük logo ve büyük logo olarak iki farklı şekilde yapki 
-           			 responsive tasarımda düzgün görünsün
-           			-->
 					<nuxt-link to="/" class="mr-lg-10 mr-3">
 						<brand-logo class="d-none d-sm-block" />
 					</nuxt-link>
@@ -73,6 +67,14 @@
 				<Nuxt :key="$route.fullPath" />
 			</v-main>
 		</v-container>
+		<v-footer color="secondary" padless>
+			<v-row justify="center" no-gutters>
+				<v-col class="primary py-4 text-center white--text" cols="12">
+					{{ new Date().getFullYear() }} &copy;
+					<span>Öğrenciden</span>
+				</v-col>
+			</v-row>
+		</v-footer>
 	</v-app>
 </template>
 
