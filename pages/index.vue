@@ -37,7 +37,7 @@ export default {
 		ItemList,
 		FilterCard,
 	},
-	created() {
+	mounted() {
 		this.$vuetify.goTo(0)
 	},
 }

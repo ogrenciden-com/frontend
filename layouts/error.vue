@@ -31,9 +31,9 @@
 					{{ otherError }}
 				</span>
 				<v-btn
-					class="primary mt-10 d-flex justify-center text-transform-none font-weight-normal text-body-1"
+					class="primary mt-10 d-flex justify-center text-transform-none font-weight-normal text-body-1 mx-auto"
 					elevation="0"
-					@click="router.push('/')"
+					@click="$router.go(0)"
 				>
 					Ana sayfaya dön
 				</v-btn>

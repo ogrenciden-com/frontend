@@ -25,7 +25,7 @@ export default {
 		ItemCard,
 		ItemList,
 	},
-	created() {
+	mounted() {
 		this.$vuetify.goTo(0)
 	},
 }
