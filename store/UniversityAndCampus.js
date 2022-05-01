@@ -2794,8 +2794,8 @@ export const state = () => ({
 					slug: 'kartal',
 				},
 				{
-					name: 'Maletepe',
-					slug: 'maletepe',
+					name: 'Maltepe',
+					slug: 'maltepe',
 				},
 				{
 					name: 'Sultanahmet',
