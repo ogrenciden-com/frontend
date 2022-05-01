@@ -26,5 +26,8 @@ export default {
 		ItemCard,
 		ItemList,
 	},
+	created() {
+		this.$vuetify.goTo(0)
+	},
 }
 </script>
