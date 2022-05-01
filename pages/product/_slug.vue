@@ -201,7 +201,7 @@ export default {
 				: `https://web.whatsapp.com/send?text=https://ogrenciden-git-dev-aahmetcakir.vercel.app${this.$route.fullPath}`
 		},
 	},
-	created() {
+	mounted() {
 		this.$vuetify.goTo(0)
 	},
 }

@@ -1,5 +1,5 @@
 <template>
-	<v-sheet color="darkGrey" rounded="xl" max-width="232px">
+	<v-sheet max-width="232px">
 		<v-card outlined flat class="px-2 py-3">
 			<v-carousel
 				v-model="model"
@@ -78,17 +78,7 @@ export default {
 	},
 	computed: {
 		detailLink() {
-			return `/product/${
-				this.$route.params.university
-					? this.$route.params.university + '/'
-					: ''
-			}${
-				this.$route.params.campus ? this.$route.params.campus + '/' : ''
-			}${
-				this.$route.params.category
-					? this.$route.params.category + '/'
-					: ''
-			}macbook-air-m1-2020`
+			return `/product/macbook-air-m1-2020`
 		},
 	},
 }

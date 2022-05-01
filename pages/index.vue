@@ -37,6 +37,9 @@ export default {
 		ItemList,
 		FilterCard,
 	},
+	mounted() {
+		this.$vuetify.goTo(0)
+	},
 }
 </script>
 <style scoped>
