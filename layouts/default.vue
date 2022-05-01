@@ -1,7 +1,7 @@
 <template>
 	<v-app>
 		<v-container>
-			<v-main class="mb-10">
+			<v-main class="mb-16">
 				<nuxt-link to="/" class="d-flex justify-center align-center">
 					<brand-logo class="mt-6 mb-4 d-sm-none" />
 				</nuxt-link>
@@ -66,15 +66,122 @@
 				</v-dialog>
 				<Nuxt :key="$route.fullPath" />
 			</v-main>
+			<v-footer color="white" padless class="pb-8 pt-4">
+				<v-row justify="center" no-gutters>
+					<v-col
+						cols="3"
+						class="col-12 col-md-3 mb-4 mb-md-0 ml-12 ml-md-0"
+						align-self="center"
+					>
+						<brand-logo class="d-block mb-4" />
+						<div class="text-body-2 darkGrey--text">
+							{{ new Date().getFullYear() }} &copy;
+							<span>Öğrenciden</span>
+						</div>
+					</v-col>
+					<v-col cols="9" class="col-12 col-md-9">
+						<v-row>
+							<v-col cols="4" class="col-12 col-md-3 col-sm-6">
+								<ul class="list">
+									<li>
+										<span
+											class="black--text text-decoration-none font-weight-medium"
+											>Sayfalar</span
+										>
+									</li>
+									<li>
+										<nuxt-link
+											to="/"
+											class="darkGrey--text text-decoration-none text-body-2"
+											>Ana Sayfa</nuxt-link
+										>
+									</li>
+									<li>
+										<nuxt-link
+											to="/my-ads"
+											class="darkGrey--text text-decoration-none text-body-2"
+											>İlanlarım</nuxt-link
+										>
+									</li>
+									<li>
+										<nuxt-link
+											to="/favorite"
+											class="darkGrey--text text-decoration-none text-body-2"
+											>Favorilerim</nuxt-link
+										>
+									</li>
+								</ul>
+							</v-col>
+							<v-col cols="4" class="col-12 col-md-3 col-sm-6">
+								<ul class="list">
+									<li>
+										<span
+											class="black--text text-decoration-none font-weight-medium"
+											>Hesap İşlemleri</span
+										>
+									</li>
+									<li>
+										<nuxt-link
+											to="/auth/login"
+											class="darkGrey--text text-decoration-none text-body-2"
+											>Giriş Yap</nuxt-link
+										>
+									</li>
+									<li>
+										<nuxt-link
+											to="/auth/register"
+											class="darkGrey--text text-decoration-none text-body-2"
+											>Kayıt Ol</nuxt-link
+										>
+									</li>
+									<li>
+										<nuxt-link
+											to="/auth/forgot-password"
+											class="darkGrey--text text-decoration-none text-body-2"
+											>Şifremi unuttum</nuxt-link
+										>
+									</li>
+								</ul>
+							</v-col>
+							<v-col cols="4" class="col-12 col-md-3 col-sm-6">
+								<ul class="list">
+									<li>
+										<span
+											class="black--text text-decoration-none font-weight-medium"
+											>Bizi takip edin</span
+										>
+									</li>
+									<li>
+										<a
+											href="https://twitter.com"
+											target="_blank"
+											class="darkGrey--text text-decoration-none text-body-2"
+											>Twitter</a
+										>
+									</li>
+									<li>
+										<a
+											href="https://linkedin.com"
+											target="_blank"
+											class="darkGrey--text text-decoration-none text-body-2"
+											>Linkedin</a
+										>
+									</li>
+									<li>
+										<a
+											href="https://instagram.com"
+											target="_blank"
+											class="darkGrey--text text-decoration-none text-body-2"
+											>İnstagram</a
+										>
+									</li>
+								</ul>
+							</v-col>
+						</v-row>
+					</v-col>
+				</v-row>
+			</v-footer>
 		</v-container>
-		<v-footer color="secondary" padless>
-			<v-row justify="center" no-gutters>
-				<v-col class="primary py-4 text-center white--text" cols="12">
-					{{ new Date().getFullYear() }} &copy;
-					<span>Öğrenciden</span>
-				</v-col>
-			</v-row>
-		</v-footer>
 	</v-app>
 </template>
 
@@ -124,3 +231,11 @@ export default {
 	},
 }
 </script>
+<style>
+.list {
+	list-style: none;
+}
+.list li {
+	display: flex;
+}
+</style>
