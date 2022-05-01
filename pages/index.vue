@@ -1,5 +1,5 @@
 <template>
-	<v-row>
+	<v-row class="marginBottom">
 		<v-col order="last" order-md="first" cols="8" class="col-12 col-md-8">
 			<v-row class="d-none d-sm-flex">
 				<v-col
@@ -46,5 +46,8 @@ export default {
 .sticky {
 	position: sticky;
 	top: 10px;
+}
+.marginBottom {
+	margin-bottom: 310px;
 }
 </style>
