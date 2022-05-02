@@ -3692,7 +3692,6 @@ export const mutations = {
 		state.selectedCampuses = []
 		for (const [key, value] of Object.entries(state.universities)) {
 			if (value.slug === slug) {
-				console.log(ahmet)
 				state.selectedCampuses = value.campuses
 			}
 		}
