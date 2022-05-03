@@ -9,6 +9,19 @@
 //     max-width: 1200px !important;
 //   }
 // }
+.sticky {
+	position: sticky;
+	top: 10px;
+}
+.customMarginBottom {
+	margin-bottom: 400px;
+}
+.list {
+	list-style: none;
+}
+.list li {
+	display: flex;
+}
 $container-max-widths: (
 	'lg': 1157px,
 	'xl': 1157px,
