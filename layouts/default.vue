@@ -1,7 +1,7 @@
 <template>
 	<v-app>
 		<v-container>
-			<v-main class="mb-16">
+			<v-main class="customMarginBottom">
 				<nuxt-link to="/" class="d-flex justify-center align-center">
 					<brand-logo class="mt-6 mb-4 d-sm-none" />
 				</nuxt-link>
@@ -244,11 +244,3 @@ export default {
 	},
 }
 </script>
-<style>
-.list {
-	list-style: none;
-}
-.list li {
-	display: flex;
-}
-</style>

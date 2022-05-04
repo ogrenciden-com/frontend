@@ -3,7 +3,7 @@
 		<h3 class="mb-4 text--subtitle">Favori İlanlarım</h3>
 		<v-row class="d-none d-sm-flex">
 			<v-col
-				v-for="j in 4"
+				v-for="j in 3"
 				:key="j"
 				cols="3"
 				class="col-md-4 col-lg-3 col-sm-6 col-12 d-flex justify-center justify-md-start"
@@ -11,7 +11,7 @@
 				<item-card :favorite="true" />
 			</v-col>
 		</v-row>
-		<v-row v-for="j in 4" :key="j" class="d-block d-sm-none px-3 pb-3">
+		<v-row v-for="j in 3" :key="j" class="d-block d-sm-none px-3 pb-3">
 			<item-list :favorite="true" />
 		</v-row>
 	</div>
