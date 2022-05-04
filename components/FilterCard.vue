@@ -23,7 +23,7 @@
 		<!-- university -->
 		<select-box
 			v-model="form.universityName"
-			:items="flatUniversities"
+			:items="universities"
 			item-text="name"
 			item-value="slug"
 			label="Üniversite"
@@ -126,7 +126,7 @@ export default {
 		campuses() {
 			return this.$store.state.UniversityAndCampus?.selectedCampuses
 		},
-		flatUniversities() {
+		universities() {
 			return this.$store.state.UniversityAndCampus?.universities
 		},
 	},
