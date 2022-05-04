@@ -26,7 +26,7 @@
 						:style="{ position: 'relative' }"
 					>
 						<v-img
-							:src="form.url"
+							:src="user.url"
 							height="159px"
 							width="159px"
 							cover
@@ -47,7 +47,7 @@
 					<v-row class="mb-3" dense>
 						<v-col>
 							<v-text-field
-								v-model="form.name"
+								v-model="user.name"
 								background-color="secondary"
 								placeholder="Ad"
 								color="darkGrey"
@@ -63,7 +63,7 @@
 						</v-col>
 						<v-col>
 							<v-text-field
-								v-model="form.lastname"
+								v-model="user.lastname"
 								background-color="secondary"
 								placeholder="Soyad"
 								color="darkGrey"
@@ -78,7 +78,7 @@
 					</v-row>
 					<v-row class="mb-5" no-gutters>
 						<v-text-field
-							v-model="form.email"
+							v-model="user.email"
 							placeholder="E-posta"
 							color="darkGrey"
 							type="email"
@@ -97,7 +97,7 @@
 					</v-row>
 					<v-row class="mb-5" no-gutters>
 						<v-text-field
-							v-model="form.password"
+							v-model="user.password"
 							placeholder="Şifre"
 							:append-icon="
 								isShow
@@ -123,25 +123,27 @@
 			<v-divider class="mb-3 mt-n2 mb-sm-0 mt-sm-0 d-sm-none"></v-divider>
 
 			<!-- cities -->
-			<v-row no-gutters>
+			<!-- <v-row no-gutters>
 				<v-col>
 					<select-box
-						v-model="form.city"
+						v-model="user.city"
 						:items="cities"
 						label="Şehir"
 						:outlined="true"
 						classes="mb-6 text-caption text-sm-body-2 text-md-body-1"
 					></select-box>
 				</v-col>
-			</v-row>
+			</v-row> -->
 			<!-- university -->
 			<v-row no-gutters>
 				<v-col>
 					<select-box
-						v-model="form.universityName"
-						:items="university"
+						v-model="user.universityName"
+						:items="universities"
+						item-text="name"
+						item-value="slug"
 						label="Üniversite"
-						:outlined="true"
+						outlined
 						classes="mb-6 text-caption text-sm-body-2"
 					></select-box>
 				</v-col>
@@ -150,10 +152,12 @@
 			<v-row no-gutters>
 				<v-col>
 					<select-box
-						v-model="form.campus"
+						v-model="user.campus"
 						:items="campuses"
+						item-text="name"
+						item-value="slug"
 						label="Kampüs"
-						:outlined="true"
+						outlined
 						classes="mb-6 text-caption text-sm-body-2 text-md-body-1"
 					></select-box>
 				</v-col>
@@ -162,7 +166,7 @@
 			<v-row no-gutters>
 				<v-col>
 					<v-text-field
-						v-model="form.tel"
+						v-model="user.tel"
 						placeholder="(+90) İletişim bilgisi"
 						type="tel"
 						background-color="secondary"
@@ -200,51 +204,48 @@ export default {
 	},
 	data() {
 		return {
-			form: {
-				name: '',
-				lastname: '',
-				email: '',
-				password: '',
-				universityName: '',
-				campus: '',
-				tel: '',
-				city: '',
-				url: '',
+			user: {
+				name: undefined,
+				lastname: undefined,
+				email: undefined,
+				password: undefined,
+				universityName: undefined,
+				campus: undefined,
+				tel: '+905',
+				url: undefined,
 			},
 			isShow: false,
-			items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
 			image: [],
 		}
 	},
 	computed: {
-		university() {
-			return this.$store.state.university?.list
+		universities() {
+			return this.$store.state.UniversityAndCampus?.universities
 		},
 		campuses() {
 			return this.$store.state.UniversityAndCampus?.selectedCampuses
 		},
-		cities() {
-			return this.$store.state.Cities?.list
-		},
 	},
 	watch: {
-		'form.universityName'() {
-			this.form.campus = undefined
-			this.findCampusByUniversityName(this.form.universityName)
+		'user.universityName'() {
+			if (!this.user.universityName) {
+				this.user.campus = undefined
+			}
+			this.findCampusByUniversitySlug(this.user.universityName)
 		},
 	},
 	methods: {
 		...mapMutations({
 			profileToggle: 'profileToggle',
-			findCampusByUniversityName:
-				'UniversityAndCampus/findCampusByUniversityName',
+			findCampusByUniversitySlug:
+				'UniversityAndCampus/findCampusByUniversitySlug',
 		}),
 		previewImage() {
-			this.form.url = URL.createObjectURL(this.image)
+			this.user.url = URL.createObjectURL(this.image)
 		},
 		submit() {
 			// eslint-disable-next-line no-console
-			console.log(this.form)
+			console.log(this.user)
 		},
 	},
 }

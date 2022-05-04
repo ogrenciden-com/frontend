@@ -53,14 +53,16 @@
 					<v-col cols="7" sm="8">
 						<select-box
 							v-model="form.category"
-							:items="items"
+							:items="categories"
+							item-text="name"
+							item-value="slug"
 							label="Kategori"
 							:outlined="true"
 							classes="mb-6 text-caption text-sm-body-2 text-md-body-1"
 						></select-box>
 					</v-col>
 				</v-row>
-				<v-row no-gutters>
+				<!-- <v-row no-gutters>
 					<v-col>
 						<select-box
 							v-model="form.city"
@@ -70,14 +72,16 @@
 							classes="mb-6 text-caption text-sm-body-2 text-md-body-1"
 						></select-box>
 					</v-col>
-				</v-row>
+				</v-row> -->
 				<v-row no-gutters>
 					<v-col>
 						<select-box
 							v-model="form.universityName"
-							:items="university"
+							:items="universities"
+							item-text="name"
+							item-value="slug"
 							label="Üniversite"
-							:outlined="true"
+							outlined
 							classes="mb-6 text-caption text-sm-body-2"
 						></select-box>
 					</v-col>
@@ -87,8 +91,10 @@
 						<select-box
 							v-model="form.campus"
 							:items="campuses"
+							item-text="name"
+							item-value="slug"
 							label="Kampüs"
-							:outlined="true"
+							outlined
 							classes="mb-6 text-caption text-sm-body-2 text-md-body-1"
 						></select-box>
 					</v-col>
@@ -180,42 +186,43 @@ export default {
 	data() {
 		return {
 			form: {
-				title: '',
-				universityName: '',
-				campus: '',
-				description: '',
-				tel: '',
-				city: '',
-				category: '',
-				price: '',
+				title: undefined,
+				universityName: undefined,
+				campus: undefined,
+				description: undefined,
+				tel: '+905',
+				city: undefined,
+				category: undefined,
+				price: undefined,
 				url: [],
 			},
-			items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
 			image: [],
 		}
 	},
 	computed: {
-		university() {
-			return this.$store.state.university?.list
+		universities() {
+			return this.$store.state.UniversityAndCampus?.universities
 		},
 		campuses() {
 			return this.$store.state.UniversityAndCampus?.selectedCampuses
 		},
-		cities() {
-			return this.$store.state.Cities?.list
+		categories() {
+			return this.$store.state.Categories?.list
 		},
 	},
 	watch: {
 		'form.universityName'() {
-			this.form.campus = undefined
-			this.findCampusByUniversityName(this.form.universityName)
+			if (!this.form.universityName) {
+				this.form.campus = undefined
+			}
+			this.findCampusByUniversitySlug(this.form.universityName)
 		},
 	},
 	methods: {
 		...mapMutations({
 			advertToggle: 'advertToggle',
-			findCampusByUniversityName:
-				'UniversityAndCampus/findCampusByUniversityName',
+			findCampusByUniversitySlug:
+				'UniversityAndCampus/findCampusByUniversitySlug',
 		}),
 		previewImage(index) {
 			this.form.url[index] = URL.createObjectURL(this.image)
