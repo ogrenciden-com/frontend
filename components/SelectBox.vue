@@ -11,6 +11,7 @@
 		flat
 		solo
 		dense
+		no-data-text="Lütfen önce bir üniversite seçiniz."
 		:item-text="itemText"
 		:item-value="itemValue"
 		:return-object="returnObject"
