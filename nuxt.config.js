@@ -28,8 +28,28 @@ export default {
 
 	buildModules: ['@nuxtjs/device', '@nuxtjs/vuetify'],
 
-	modules: ['@nuxtjs/router-extras', '@nuxtjs/axios'],
+	modules: [
+		'@nuxtjs/router-extras',
+		'@nuxtjs/axios',
+		'@nuxtjs/firebase',
 
+	],
+	firebase: {
+		config: {
+			apiKey: "AIzaSyByJ2DTipMFTshKNQIWLzT06Np386FuNeo",
+			authDomain: "ogrenciden-1903.firebaseapp.com",
+			projectId: "ogrenciden-1903",
+			storageBucket: "ogrenciden-1903.appspot.com",
+			messagingSenderId: "976272317973",
+			appId: "1:976272317973:web:9061a5d9a246e9c767f81c",
+			measurementId: "G-YGMZZ050XH"
+		},
+		services: {
+			auth: true,
+			firestore: true,
+			storage: true
+		}
+	},
 	axios: {
 		baseURL: '/',
 	},
