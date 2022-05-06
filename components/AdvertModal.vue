@@ -17,7 +17,7 @@
 				<v-row no-gutters>
 					<v-col>
 						<v-text-field
-							v-model="form.title"
+							v-model="ads.title"
 							background-color="secondary"
 							placeholder="İlan başlığını giriniz."
 							height="42"
@@ -35,7 +35,7 @@
 				<v-row>
 					<v-col cols="5" sm="4">
 						<v-text-field
-							v-model="form.price"
+							v-model="ads.price"
 							placeholder="Fiyat"
 							append-icon="mdi-currency-try"
 							type="number"
@@ -52,7 +52,7 @@
 					</v-col>
 					<v-col cols="7" sm="8">
 						<select-box
-							v-model="form.category"
+							v-model="ads.category"
 							:items="categories"
 							item-text="name"
 							item-value="slug"
@@ -65,7 +65,7 @@
 				<!-- <v-row no-gutters>
 					<v-col>
 						<select-box
-							v-model="form.city"
+							v-model="ads.city"
 							:items="cities"
 							label="Şehir"
 							:outlined="true"
@@ -76,7 +76,7 @@
 				<v-row no-gutters>
 					<v-col>
 						<select-box
-							v-model="form.universityName"
+							v-model="ads.universityName"
 							:items="universities"
 							item-text="name"
 							item-value="slug"
@@ -89,7 +89,7 @@
 				<v-row no-gutters>
 					<v-col>
 						<select-box
-							v-model="form.campus"
+							v-model="ads.campus"
 							:items="campuses"
 							item-text="name"
 							item-value="slug"
@@ -102,7 +102,7 @@
 				<v-row no-gutters>
 					<v-col>
 						<v-text-field
-							v-model="form.tel"
+							v-model="ads.tel"
 							placeholder="(+90) İletişim bilgisi"
 							type="tel"
 							background-color="secondary"
@@ -119,7 +119,7 @@
 				<v-row>
 					<v-col>
 						<v-textarea
-							v-model="form.description"
+							v-model="ads.description"
 							placeholder="İlan açıklaması"
 							background-color="white"
 							auto-grow
@@ -144,7 +144,7 @@
 							:style="{ position: 'relative' }"
 						>
 							<v-img
-								:src="form.url[index]"
+								:src="ads.url[index]"
 								height="110px"
 								width="110px"
 								cover
@@ -177,6 +177,7 @@
 	</div>
 </template>
 <script>
+import { v4 as uuidv4 } from 'uuid'
 import { mapMutations } from 'vuex'
 import SelectBox from '@/components/SelectBox.vue'
 export default {
@@ -185,13 +186,12 @@ export default {
 	},
 	data() {
 		return {
-			form: {
-				title: undefined,
+			ads: {
+				title: 'test',
 				universityName: undefined,
 				campus: undefined,
-				description: undefined,
-				tel: '+905',
-				city: undefined,
+				description: 'lorem ipsum dolar sit amed',
+				tel: '+905316948991',
 				category: undefined,
 				price: undefined,
 				url: [],
@@ -211,11 +211,11 @@ export default {
 		},
 	},
 	watch: {
-		'form.universityName'() {
-			if (!this.form.universityName) {
-				this.form.campus = undefined
+		'ads.universityName'() {
+			if (!this.ads.universityName) {
+				this.ads.campus = undefined
 			}
-			this.findCampusByUniversitySlug(this.form.universityName)
+			this.findCampusByUniversitySlug(this.ads.universityName)
 		},
 	},
 	methods: {
@@ -225,10 +225,29 @@ export default {
 				'UniversityAndCampus/findCampusByUniversitySlug',
 		}),
 		previewImage(index) {
-			this.form.url[index] = URL.createObjectURL(this.image)
+			this.ads.url[index] = URL.createObjectURL(this.image)
 		},
-		submit() {
-			console.log(this.form)
+		async submit() {
+			const id = uuidv4()
+			try {
+				await this.$fire.firestore
+					.collection('ads')
+					.doc('detail-' + id)
+					.set({
+						title: this.ads.title,
+						universityName: this.ads.universityName,
+						campus: this.ads.campus,
+						description: this.ads.description,
+						tel: this.ads.tel,
+						category: this.ads.category,
+						price: this.ads.price,
+						url: this.ads.url,
+					})
+				console.log(this.ads)
+			} catch (e) {
+				// eslint-disable-next-line no-console
+				console.log(e)
+			}
 		},
 	},
 }
