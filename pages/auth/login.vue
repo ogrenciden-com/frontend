@@ -33,7 +33,7 @@
 		</div>
 		<v-form>
 			<v-text-field
-				v-model="form.email"
+				v-model="user.email"
 				outlined
 				solo
 				flat
@@ -51,7 +51,7 @@
 				</template>
 			</v-text-field>
 			<v-text-field
-				v-model="form.password"
+				v-model="user.password"
 				outlined
 				solo
 				flat
@@ -114,7 +114,7 @@ export default {
 	data() {
 		return {
 			isShow: false,
-			form: {
+			user: {
 				email: '',
 				password: '',
 			},
@@ -122,8 +122,17 @@ export default {
 	},
 	methods: {
 		submit() {
-			console.log(this.form)
+			// try {
+			// 	await this.$fire.auth.createUserWithEmailAndPassword(
+			// 		this.user.email,
+			// 		this.user.password,
+			// 	)
+			// 	this.$router.push('/')
+			// } catch (e) {
+			// 	console.log(e)
+			// }
 			this.$router.push('/')
+			console.log(this.user)
 		},
 	},
 }
