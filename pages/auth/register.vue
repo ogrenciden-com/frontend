@@ -35,7 +35,7 @@
 				<v-row dense>
 					<v-col
 						><v-text-field
-							v-model="form.name"
+							v-model="user.name"
 							outlined
 							solo
 							autofocus
@@ -52,7 +52,7 @@
 					</v-col>
 					<v-col>
 						<v-text-field
-							v-model="form.lastname"
+							v-model="user.lastname"
 							outlined
 							solo
 							flat
@@ -69,7 +69,7 @@
 				</v-row>
 			</div>
 			<v-text-field
-				v-model="form.email"
+				v-model="user.email"
 				outlined
 				solo
 				flat
@@ -86,7 +86,7 @@
 				</template>
 			</v-text-field>
 			<v-text-field
-				v-model="form.password"
+				v-model="user.password"
 				outlined
 				solo
 				flat
@@ -144,7 +144,7 @@ export default {
 	data() {
 		return {
 			isShow: false,
-			form: {
+			user: {
 				name: '',
 				lastname: '',
 				email: '',
@@ -153,8 +153,18 @@ export default {
 		}
 	},
 	methods: {
-		submit() {
-			console.log(this.form)
+		async submit() {
+			try {
+				await this.$fire.auth.createUserWithEmailAndPassword(
+					this.user.email,
+					this.user.password,
+					this.user.name,
+					this.user.lastname,
+				)
+				this.$router.push('/')
+			} catch (e) {
+				this.$nuxt.error({ e })
+			}
 		},
 	},
 }

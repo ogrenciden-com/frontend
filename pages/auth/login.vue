@@ -18,6 +18,7 @@
 			width="100%"
 			class="font-weight-bold mt-2 text-transform-none text-center mt-6"
 			:style="{ position: 'relative' }"
+			@click="submit"
 		>
 			<google-icon :style="{ position: 'absolute', left: '4px' }" />
 
@@ -80,7 +81,6 @@
 					class="text-body-1 font-weight-bold text-transform-none py-6 px-10"
 					color="primary"
 					elevation="0"
-					@click="submit"
 				>
 					Giriş yap
 				</v-btn>
@@ -101,6 +101,7 @@
 	</v-card>
 </template>
 <script>
+import { mapMutations } from 'vuex'
 import MailIcon from '@/components/Icons/MailIcon.vue'
 import GoogleIcon from '@/components/Icons/GoogleIcon.vue'
 import BrandLogo from '@/components/BrandLogo.vue'
@@ -121,18 +122,34 @@ export default {
 		}
 	},
 	methods: {
-		submit() {
-			// try {
-			// 	await this.$fire.auth.createUserWithEmailAndPassword(
-			// 		this.user.email,
-			// 		this.user.password,
-			// 	)
-			// 	this.$router.push('/')
-			// } catch (e) {
-			// 	console.log(e)
-			// }
-			this.$router.push('/')
-			console.log(this.user)
+		...mapMutations({
+			setUser: 'setUser',
+		}),
+		async submit() {
+			try {
+				const provider = new this.$fireModule.auth.GoogleAuthProvider()
+				const result = await this.$fire.auth.signInWithPopup(provider)
+				const {
+					displayName,
+					photoURL,
+					email,
+					metadata,
+					emailVerified,
+					uid,
+				} = result.user
+				const currentUser = {
+					displayName,
+					photoURL,
+					email,
+					metadata,
+					emailVerified,
+					uid,
+				}
+				this.setUser(currentUser)
+				this.$router.push('/')
+			} catch (error) {
+				this.$nuxt.error({ error })
+			}
 		},
 	},
 }

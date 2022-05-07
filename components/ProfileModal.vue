@@ -225,6 +225,9 @@ export default {
 		campuses() {
 			return this.$store.state.UniversityAndCampus?.selectedCampuses
 		},
+		currentUser() {
+			return this.$store.state.user
+		},
 	},
 	watch: {
 		'user.universityName'() {
@@ -234,12 +237,22 @@ export default {
 			this.findCampusByUniversitySlug(this.user.universityName)
 		},
 	},
+	created() {
+		this.fillUser()
+	},
 	methods: {
 		...mapMutations({
 			profileToggle: 'profileToggle',
 			findCampusByUniversitySlug:
 				'UniversityAndCampus/findCampusByUniversitySlug',
 		}),
+		fillUser() {
+			if (!this.currentUser) return
+			this.user.name = this.currentUser.displayName.split(' ')[0]
+			this.user.lastname = this.currentUser.displayName.split(' ')[1]
+			this.user.email = this.currentUser.email
+			this.user.url = this.currentUser.photoURL
+		},
 		previewImage() {
 			this.user.url = URL.createObjectURL(this.image)
 		},

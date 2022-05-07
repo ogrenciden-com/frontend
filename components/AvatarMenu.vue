@@ -13,12 +13,10 @@
 				<div
 					class="font-weight-bold black--text mr-2 d-none d-md-block text-transform-none"
 				>
-					Ahmet ÇAKIR
+					{{ user.displayName }}
 				</div>
 				<v-avatar size="38">
-					<v-img
-						src="https://pbs.twimg.com/profile_images/1322853331073671169/bcNaQF8Y_400x400.jpg"
-					></v-img>
+					<v-img :src="user.photoURL"></v-img>
 				</v-avatar>
 			</v-btn>
 		</template>
@@ -30,8 +28,8 @@
 					color="secondary"
 					class="ml-4"
 				></v-sheet>
-				<template v-for="(item, index) in menuItems">
-					<div :key="index">
+				<template v-for="item in menuItems">
+					<div :key="item.id">
 						<v-list-item
 							color="primary"
 							dense
@@ -64,32 +62,42 @@ export default {
 		return {
 			menuItems: [
 				{
+					id: 0,
 					text: 'Profil Düzenle',
 					function: this.profileToggle,
 					link: undefined,
 				},
 				{
+					id: 1,
 					text: 'İlanlarım',
 					function: () => {},
 					link: '/my-ads',
 				},
 				{
+					id: 2,
 					text: 'Favorilerim',
 					function: () => {},
 					link: '/favorite',
 				},
 				{
+					id: 3,
 					text: 'İlan oluştur',
 					function: this.advertToggle,
 					link: undefined,
 				},
 				{
+					id: 4,
 					text: 'Çıkış Yap',
 					function: this.userToggle,
 					link: undefined,
 				},
 			],
 		}
+	},
+	computed: {
+		user() {
+			return this.$store.state.user
+		},
 	},
 	methods: {
 		...mapMutations({
