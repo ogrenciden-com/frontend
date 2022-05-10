@@ -25,14 +25,14 @@
 							class="text-caption text-sm-body-2 text-md-body-1"
 							outlined
 							autofocus
+							counter="70"
 							flat
 							solo
 							dense
-							hide-details
 						></v-text-field>
 					</v-col>
 				</v-row>
-				<v-row>
+				<v-row no-gutters>
 					<v-col cols="5" sm="4">
 						<v-text-field
 							v-model="ads.price"
@@ -41,7 +41,7 @@
 							type="number"
 							background-color="secondary"
 							color="darkGrey"
-							class="text-caption text-sm-body-2 text-md-body-1"
+							class="text-caption text-sm-body-2 text-md-body-1 mr-3"
 							reverse
 							outlined
 							flat
@@ -133,10 +133,10 @@
 						class="d-flex justify-center justify-sm-space-between mt-n2 flex-wrap"
 					>
 						<v-sheet
-							v-for="(i, index) in 5"
+							v-for="(i, index) in 4"
 							:key="index"
-							width="110px"
-							height="110px"
+							width="130px"
+							height="130px"
 							color="secondary"
 							class="border ma-1 ma-sm-0"
 							outlined
@@ -145,8 +145,8 @@
 						>
 							<v-img
 								:src="ads.url[index]"
-								height="110px"
-								width="110px"
+								height="128px"
+								width="130px"
 								cover
 							></v-img>
 							<v-file-input
@@ -187,11 +187,11 @@ export default {
 	data() {
 		return {
 			ads: {
-				title: 'test',
+				title: undefined,
 				universityName: undefined,
 				campus: undefined,
-				description: 'lorem ipsum dolar sit amed',
-				tel: '+905316948991',
+				description: undefined,
+				tel: '+905',
 				category: undefined,
 				price: undefined,
 				url: [],

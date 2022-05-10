@@ -81,6 +81,7 @@
 							v-model="user.email"
 							placeholder="E-posta"
 							color="darkGrey"
+							disabled
 							type="email"
 							background-color="secondary"
 							class="text-caption text-sm-body-2 text-md-body-1"
