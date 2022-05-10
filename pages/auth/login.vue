@@ -81,6 +81,7 @@
 					class="text-body-1 font-weight-bold text-transform-none py-6 px-10"
 					color="primary"
 					elevation="0"
+					@click="submit"
 				>
 					Giriş yap
 				</v-btn>
@@ -125,31 +126,32 @@ export default {
 		...mapMutations({
 			setUser: 'setUser',
 		}),
-		async submit() {
-			try {
-				const provider = new this.$fireModule.auth.GoogleAuthProvider()
-				const result = await this.$fire.auth.signInWithPopup(provider)
-				const {
-					displayName,
-					photoURL,
-					email,
-					metadata,
-					emailVerified,
-					uid,
-				} = result.user
-				const currentUser = {
-					displayName,
-					photoURL,
-					email,
-					metadata,
-					emailVerified,
-					uid,
-				}
-				this.setUser(currentUser)
-				this.$router.push('/')
-			} catch (error) {
-				this.$nuxt.error({ error })
-			}
+		submit() {
+			// try {
+			// 	const provider = new this.$fireModule.auth.GoogleAuthProvider()
+			// 	const result = await this.$fire.auth.signInWithPopup(provider)
+			// 	const {
+			// 		displayName,
+			// 		photoURL,
+			// 		email,
+			// 		metadata,
+			// 		emailVerified,
+			// 		uid,
+			// 	} = result.user
+			// 	const currentUser = {
+			// 		displayName,
+			// 		photoURL,
+			// 		email,
+			// 		metadata,
+			// 		emailVerified,
+			// 		uid,
+			// 	}
+			// 	this.setUser(currentUser)
+			// 	this.$router.push('/')
+			// } catch (error) {
+			// 	this.$nuxt.error({ error })
+			// }
+			this.$router.push('/')
 		},
 	},
 }

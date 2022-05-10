@@ -26,6 +26,7 @@ export default {
 		ItemCard,
 		ItemList,
 	},
+	middleware: 'auth',
 	mounted() {
 		this.$vuetify.goTo(0)
 	},

@@ -1,8 +1,7 @@
 export const state = () => ({
 	advertModal: false,
 	profileModal: false,
-	hasUser: false,
-	user: {},
+	hasUser: true,
 })
 export const mutations = {
 	advertToggle(state) {
@@ -16,8 +15,4 @@ export const mutations = {
 	userToggle(state) {
 		state.hasUser = !state.hasUser
 	},
-	setUser(state, user) {
-		state.user = user
-		state.hasUser = true
-	}
 }

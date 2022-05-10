@@ -32,8 +32,36 @@ export default {
 		'@nuxtjs/router-extras',
 		'@nuxtjs/axios',
 		'@nuxtjs/firebase',
+		'@nuxtjs/auth-next'
 
 	],
+	auth: {
+		strategies: {
+			local: {
+				token: {
+					property: 'token',
+					global: true,
+					// required: true,
+					// type: 'Bearer'
+				},
+				user: {
+					property: 'user',
+					// autoFetch: true
+				},
+				endpoints: {
+					login: { url: '/api/auth/login', method: 'post' },
+					logout: { url: '/api/auth/logout', method: 'post' },
+					user: { url: '/api/auth/user', method: 'get' }
+				}
+			}
+		},
+		redirect: {
+			login: '/auth/login',
+			logout: '/',
+			callback: '/auth/login',
+			home: '/'
+		}
+	},
 	firebase: {
 		config: {
 			apiKey: "AIzaSyByJ2DTipMFTshKNQIWLzT06Np386FuNeo",

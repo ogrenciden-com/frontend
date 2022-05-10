@@ -13,10 +13,14 @@
 				<div
 					class="font-weight-bold black--text mr-2 d-none d-md-block text-transform-none"
 				>
-					{{ user.displayName }}
+					<!-- {{ user.displayName }} -->
+					Ahmet ÇAKIR
 				</div>
 				<v-avatar size="38">
-					<v-img :src="user.photoURL"></v-img>
+					<!-- <v-img :src="user.photoURL"></v-img> -->
+					<v-img
+						src="https://pbs.twimg.com/profile_images/1322853331073671169/bcNaQF8Y_400x400.jpg"
+					></v-img>
 				</v-avatar>
 			</v-btn>
 		</template>

@@ -243,7 +243,6 @@ export default {
 						price: this.ads.price,
 						url: this.ads.url,
 					})
-				console.log(this.ads)
 			} catch (e) {
 				// eslint-disable-next-line no-console
 				console.log(e)
