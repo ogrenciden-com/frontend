@@ -69,7 +69,7 @@ export default {
 					id: 0,
 					text: 'Profil Düzenle',
 					function: this.profileToggle,
-					link: undefined,
+					link: '/profile',
 				},
 				{
 					id: 1,
@@ -97,11 +97,6 @@ export default {
 				},
 			],
 		}
-	},
-	computed: {
-		user() {
-			return this.$store.state.user
-		},
 	},
 	methods: {
 		...mapMutations({

@@ -8,7 +8,7 @@
 					değiştirebilirsin.
 				</v-card-subtitle>
 			</div>
-			<v-btn icon class="mr-sm-n4 mt-n4" @click="profileToggle">
+			<v-btn icon class="mr-sm-n4 mt-n4" @click="closeModal">
 				<v-icon color="black">mdi-close</v-icon>
 			</v-btn>
 		</div>
@@ -242,8 +242,10 @@ export default {
 		this.fillUser()
 	},
 	methods: {
+		closeModal() {
+			this.$router.replace('/')
+		},
 		...mapMutations({
-			profileToggle: 'profileToggle',
 			findCampusByUniversitySlug:
 				'UniversityAndCampus/findCampusByUniversitySlug',
 		}),
