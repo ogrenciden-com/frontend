@@ -46,6 +46,7 @@ export default {
 		},
 	},
 	mounted() {
+		// console.log(this.$auth.user)
 		this.$vuetify.goTo(0)
 	},
 }

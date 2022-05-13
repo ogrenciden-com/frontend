@@ -15,6 +15,7 @@
 				>
 					<!-- {{ user.displayName }} -->
 					Ahmet ÇAKIR
+					<!-- {{ $auth.user }} -->
 				</div>
 				<v-avatar size="38">
 					<!-- <v-img :src="user.photoURL"></v-img> -->
@@ -92,7 +93,7 @@ export default {
 				{
 					id: 4,
 					text: 'Çıkış Yap',
-					function: this.userToggle,
+					function: this.signOut,
 					link: undefined,
 				},
 			],
@@ -104,6 +105,14 @@ export default {
 			profileToggle: 'profileToggle',
 			userToggle: 'userToggle',
 		}),
+		async signOut() {
+			try {
+				await this.$fire.auth.signOut()
+				this.$router.replace('/auth/login')
+			} catch (error) {
+				console.log(error)
+			}
+		},
 	},
 }
 </script>

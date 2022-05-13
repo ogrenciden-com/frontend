@@ -46,13 +46,14 @@ export default {
 				},
 				user: {
 					property: 'user',
-					// autoFetch: true
+					autoFetch: true
 				},
 				endpoints: {
-					login: { url: '/api/auth/login', method: 'post' },
+					login: { url: 'signInWithIdp?key=AIzaSyByJ2DTipMFTshKNQIWLzT06Np386FuNeo', method: 'post' },
 					logout: { url: '/api/auth/logout', method: 'post' },
-					user: { url: '/api/auth/user', method: 'get' }
+					user: { url: 'lookup?key=AIzaSyByJ2DTipMFTshKNQIWLzT06Np386FuNeo', method: 'get' }
 				}
+				// https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyByJ2DTipMFTshKNQIWLzT06Np386FuNeo
 			}
 		},
 		redirect: {
@@ -79,7 +80,7 @@ export default {
 		}
 	},
 	axios: {
-		baseURL: '/',
+		baseURL: 'https://identitytoolkit.googleapis.com/v1/accounts:',
 	},
 
 	vuetify: {

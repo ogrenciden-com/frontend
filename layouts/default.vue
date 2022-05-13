@@ -2,6 +2,8 @@
 	<v-app>
 		<v-container>
 			<v-main class="customMarginBottom">
+				{{ $auth.loggedIn }}
+				{{ $auth.user }}
 				<nuxt-link to="/" class="d-flex justify-center align-center">
 					<brand-logo class="mt-6 mb-4 d-sm-none" />
 				</nuxt-link>
