@@ -2,8 +2,6 @@
 	<v-app>
 		<v-container>
 			<v-main class="customMarginBottom">
-				{{ $auth.loggedIn }}
-				{{ $auth.user }}
 				<nuxt-link to="/" class="d-flex justify-center align-center">
 					<brand-logo class="mt-6 mb-4 d-sm-none" />
 				</nuxt-link>
@@ -70,18 +68,18 @@
 				<Nuxt :key="$route.fullPath" />
 			</v-main>
 			<v-footer
-				color="white"
+				color="secondary"
 				class="pb-8 pt-4 mx-auto"
 				absolute
 				padless
-				max-width="1141"
+				max-width="100%"
 			>
 				<v-row justify="center">
 					<v-col
 						order="last"
 						order-md="first"
 						cols="3"
-						class="col-12 col-md-3 mt-5 mt-md-0 pl-10 pl-md-0"
+						class="col-12 col-md-3 mt-5 mt-md-0 pl-10"
 						align-self="center"
 					>
 						<brand-logo class="d-block mb-4" />

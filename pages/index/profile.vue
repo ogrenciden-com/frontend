@@ -19,7 +19,7 @@ export default {
 	components: {
 		ProfileModal,
 	},
-	middleware: 'auth',
+	// middleware: 'auth',
 	data() {
 		return {
 			model: true,
