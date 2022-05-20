@@ -18,7 +18,6 @@
 			width="100%"
 			class="font-weight-bold mt-2 text-transform-none text-center mt-6"
 			:style="{ position: 'relative' }"
-			@click="loginWithGoogle"
 		>
 			<google-icon :style="{ position: 'absolute', left: '4px' }" />
 
@@ -126,36 +125,14 @@ export default {
 		...mapMutations({
 			setUser: 'setUser',
 		}),
-		async loginWithGoogle() {
+		async loginWithEmail() {
 			try {
-				const provider = new this.$fireModule.auth.GoogleAuthProvider()
-				const result = await this.$fire.auth.signInWithPopup(provider)
-				console.log(result)
-				// const {
-				// 	displayName,
-				// 	photoURL,
-				// 	email,
-				// 	metadata,
-				// 	emailVerified,
-				// 	uid,
-				// } = result.user
-				// const currentUser = {
-				// 	displayName,
-				// 	photoURL,
-				// 	email,
-				// 	metadata,
-				// 	emailVerified,
-				// 	uid,
-				// }
-				// this.setUser(currentUser)
+				const data = await this.$axios.$post('auth/login', this.user)
+				console.log(data)
 				this.$router.push('/')
-			} catch (error) {
-				this.$nuxt.error({ error })
+			} catch (err) {
+				console.error(err)
 			}
-		},
-		loginWithEmail() {
-			// signInWithEmailAndPassword
-			console.log('test')
 		},
 	},
 }
