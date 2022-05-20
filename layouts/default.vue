@@ -55,16 +55,6 @@
 				>
 					<advert-modal />
 				</v-dialog>
-				<!-- <v-dialog
-					v-if="true"
-					v-model="profileModal"
-					max-width="680"
-					width="100%"
-					@click:outside="profileToggle"
-					@keydown.esc="profileToggle"
-				>
-					<profile-modal />
-				</v-dialog> -->
 				<Nuxt :key="$route.fullPath" />
 			</v-main>
 			<v-footer
@@ -227,6 +217,7 @@ export default {
 			fab: false,
 		}
 	},
+
 	computed: {
 		advertModal() {
 			return this.$store.state.advertModal

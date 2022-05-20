@@ -13,15 +13,19 @@
 				<div
 					class="font-weight-bold black--text mr-2 d-none d-md-block text-transform-none"
 				>
-					<!-- {{ user.displayName }} -->
-					Ahmet ÇAKIR
-					<!-- {{ $auth.user }} -->
+					{{ !loading && user.name }}
+					{{ !loading && user.surname }}
 				</div>
-				<v-avatar size="38">
+				<v-avatar size="38" color="primary" class="white--text">
 					<!-- <v-img :src="user.photoURL"></v-img> -->
-					<v-img
+					<!-- <v-img
 						src="https://pbs.twimg.com/profile_images/1322853331073671169/bcNaQF8Y_400x400.jpg"
-					></v-img>
+					></v-img> -->
+					<span>
+						<!-- {{ user?.name.slice(0, 1) }}
+						{{ user?.surname.slice(0, 1) }} -->
+						ÖA
+					</span>
 				</v-avatar>
 			</v-btn>
 		</template>
@@ -93,11 +97,16 @@ export default {
 				{
 					id: 4,
 					text: 'Çıkış Yap',
-					function: this.signOut,
-					link: undefined,
+					function: () => {},
+					link: '/auth/login',
 				},
 			],
+			user: {},
+			loading: false,
 		}
+	},
+	created() {
+		this.getUser()
 	},
 	methods: {
 		...mapMutations({
@@ -105,12 +114,22 @@ export default {
 			profileToggle: 'profileToggle',
 			userToggle: 'userToggle',
 		}),
-		async signOut() {
+		async getUser() {
 			try {
-				await this.$fire.auth.signOut()
-				this.$router.replace('/auth/login')
-			} catch (error) {
-				console.log(error)
+				this.loading = true
+				const data = await this.$axios.$get(
+					'auth/6287f917008193cfe442094e',
+				)
+				// eslint-disable-next-line no-console
+				console.log(data)
+				this.user = { ...data }
+				// this.$router.push('/')
+			} catch (e) {
+				// eslint-disable-next-line no-console
+				console.log(e)
+				// this.$nuxt.error({ e })
+			} finally {
+				this.loading = false
 			}
 		},
 	},

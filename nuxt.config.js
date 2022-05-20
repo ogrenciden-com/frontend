@@ -49,11 +49,10 @@ export default {
 					autoFetch: true
 				},
 				endpoints: {
-					login: { url: 'signInWithIdp?key=AIzaSyByJ2DTipMFTshKNQIWLzT06Np386FuNeo', method: 'post' },
-					logout: { url: '/api/auth/logout', method: 'post' },
-					user: { url: 'lookup?key=AIzaSyByJ2DTipMFTshKNQIWLzT06Np386FuNeo', method: 'get' }
+					login: { url: 'auth/login', method: 'post' },
+					logout: { url: '/logout', method: 'post' },
+					user: { url: 'auth/:id', method: 'get' }
 				}
-				// https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyByJ2DTipMFTshKNQIWLzT06Np386FuNeo
 			}
 		},
 		redirect: {
@@ -80,7 +79,7 @@ export default {
 		}
 	},
 	axios: {
-		baseURL: 'https://identitytoolkit.googleapis.com/v1/accounts:',
+		baseURL: 'https://ogrenciden.herokuapp.com/',
 	},
 
 	vuetify: {
