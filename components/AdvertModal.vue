@@ -13,7 +13,7 @@
 					<v-icon color="black">mdi-close</v-icon>
 				</v-btn>
 			</div>
-			<form>
+			<form @submit.prevent="submit">
 				<v-row no-gutters>
 					<v-col>
 						<v-text-field
@@ -157,7 +157,7 @@
 						width="160"
 						elevation="0"
 						class="font-weight-bold my-6"
-						@click="submit"
+						type="submit"
 						>Yayınla</v-btn
 					>
 				</div>
@@ -215,6 +215,7 @@ export default {
 		previewImage(index) {
 			this.ads.images[index] = URL.createObjectURL(this.image)
 		},
+		// generateBase64Image() {},
 		async submit() {
 			try {
 				await this.$axios.$post('/products', this.ads)
