@@ -24,10 +24,10 @@
 					:key="link" -->
 				<v-carousel-item nuxt :to="detailLink">
 					<v-img
-						width="100"
-						height="100"
-						:src="ads.image"
-						:lazy-src="ads.image"
+						width="210"
+						height="190"
+						class="mx-auto rounded"
+						src="https://img.letgo.com/images/2a/00/6f/f1/2a006ff155483ebdf0a951ad50a993fe.jpg?impolicy=img_384"
 					></v-img>
 				</v-carousel-item>
 			</v-carousel>
@@ -101,7 +101,7 @@ export default {
 			// TODO
 			// routeru universite campüs isim şeklinde ayarla
 			// /product/zonguldak-bulent-ecevit-universitesi/farabi/camasir-makinesi/macbook-air-m1-2020
-			return `/product/macbook-air-m1-2020`
+			return `/product/macbook-air-m1-2020/${this.ads._id}`
 		},
 	},
 }

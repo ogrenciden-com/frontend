@@ -229,16 +229,17 @@ export default {
 		async submit() {
 			console.log(this.ads)
 			try {
-				const res = await this.$axios.$post('/product', {
-					title: 'Apple Orjinal Şarj Başlığı',
-					category: 'diğer',
+				const res = await this.$axios.$post('/products', {
+					title: 'Mause',
+					category: 'ev',
 					university: 'zonguldak-bulent-ecevit-universitesi',
 					campus: 'farabi',
-					price: 140,
+					price: 180,
 					description:
-						'iyi durumda az kullanılmış ihtiyaç fazlası üründür.',
+						'iyi durumda az kullanılmış ihtiyaç fazlası üründüriyi durumda az kullanılmış ihtiyaç fazlası üründür.iyi durumda az kullanılmış ihtiyaç fazlası üründür.',
 					contact: '05316948991',
 				})
+
 				// eslint-disable-next-line no-console
 				console.log(res)
 			} catch (e) {
