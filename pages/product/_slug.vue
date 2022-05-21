@@ -27,7 +27,6 @@
 						class="mx-auto rounded"
 						:src="image"
 					></v-img>
-					<!-- src="https://img.letgo.com/images/2a/00/6f/f1/2a006ff155483ebdf0a951ad50a993fe.jpg?impolicy=img_384" -->
 				</v-carousel-item>
 			</v-carousel>
 			<v-card
@@ -138,7 +137,7 @@
 </template>
 <router>
   {
-    path: '/product/:university?/:campus?/:category?/:id'
+    path: '/product/:university?/:campus?/:category?/:slug/:id'
   }
 </router>
 <script>
@@ -200,10 +199,7 @@ export default {
 				const res = await this.$axios.$get(
 					`/products/${this.$route.params.id}`,
 				)
-
-				// eslint-disable-next-line no-console
 				this.item = res
-				console.log(res)
 			} catch (e) {
 				// eslint-disable-next-line no-console
 				console.log(e)
