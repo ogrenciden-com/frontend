@@ -62,17 +62,6 @@
 						></select-box>
 					</v-col>
 				</v-row>
-				<!-- <v-row no-gutters>
-					<v-col>
-						<select-box
-							v-model="ads.city"
-							:items="cities"
-							label="Şehir"
-							:outlined="true"
-							classes="mb-6 text-caption text-sm-body-2 text-md-body-1"
-						></select-box>
-					</v-col>
-				</v-row> -->
 				<v-row no-gutters>
 					<v-col>
 						<select-box
@@ -143,12 +132,12 @@
 							flat
 							:style="{ position: 'relative' }"
 						>
-							<!-- <v-img
-								:src="ads.url[index]"
+							<v-img
+								:src="ads.images[index]"
 								height="128px"
 								width="130px"
 								cover
-							></v-img> -->
+							></v-img>
 							<v-file-input
 								v-model="image"
 								class="centerCard"
@@ -193,7 +182,7 @@ export default {
 				contact: '05',
 				category: undefined,
 				price: undefined,
-				// url: [],
+				images: [],
 			},
 			image: [],
 		}
@@ -223,19 +212,16 @@ export default {
 			findCampusByUniversitySlug:
 				'UniversityAndCampus/findCampusByUniversitySlug',
 		}),
-		// previewImage(index) {
-		// 	this.ads.url[index] = URL.createObjectURL(this.image)
-		// },
+		previewImage(index) {
+			this.ads.images[index] = URL.createObjectURL(this.image)
+		},
 		async submit() {
-			console.log(this.ads)
 			try {
-				const res = await this.$axios.$post('/products', this.ads)
-
-				// eslint-disable-next-line no-console
-				console.log(res)
+				await this.$axios.$post('/products', this.ads)
+				this.advertToggle()
+				this.$router.push('/')
 			} catch (e) {
-				// eslint-disable-next-line no-console
-				console.log(e)
+				this.$nuxt.error({ e })
 			}
 		},
 	},
