@@ -105,9 +105,9 @@ export default {
 			loading: false,
 		}
 	},
-	// created() {
-	// 	this.getUser()
-	// },
+	created() {
+		this.getUser()
+	},
 	methods: {
 		...mapMutations({
 			advertToggle: 'advertToggle',
@@ -120,14 +120,12 @@ export default {
 				const data = await this.$axios.$get(
 					'auth/6287f917008193cfe442094e',
 				)
-				// eslint-disable-next-line no-console
-				console.log(data)
 				this.user = { ...data }
 				// this.$router.push('/')
 			} catch (e) {
 				// eslint-disable-next-line no-console
 				console.log(e)
-				// this.$nuxt.error({ e })
+				this.$nuxt.error({ e })
 			} finally {
 				this.loading = false
 			}
