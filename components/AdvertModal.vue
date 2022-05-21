@@ -185,6 +185,7 @@ export default {
 				images: [],
 			},
 			image: [],
+			base64Images: [],
 		}
 	},
 	computed: {
@@ -214,8 +215,16 @@ export default {
 		}),
 		previewImage(index) {
 			this.ads.images[index] = URL.createObjectURL(this.image)
+			this.generateBase64Image(this.image, index)
 		},
-		// generateBase64Image() {},
+		generateBase64Image(blob, index) {
+			const reader = new FileReader()
+			reader.readAsDataURL(blob)
+			reader.onloadend = () => {
+				const base64data = reader.result
+				this.ads.images[index] = `${base64data}`
+			}
+		},
 		async submit() {
 			try {
 				await this.$axios.$post('/products', this.ads)
