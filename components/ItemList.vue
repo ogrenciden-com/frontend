@@ -20,12 +20,17 @@
 				height="100"
 				:style="{ width: '100px' }"
 			>
-				<v-carousel-item nuxt :to="detailLink">
+				<v-carousel-item
+					v-for="image in ads.images"
+					:key="image"
+					nuxt
+					:to="detailLink"
+				>
 					<v-img
 						width="210"
 						height="190"
 						class="mx-auto rounded"
-						src="https://img.letgo.com/images/2a/00/6f/f1/2a006ff155483ebdf0a951ad50a993fe.jpg?impolicy=img_384"
+						:src="image"
 					></v-img>
 				</v-carousel-item>
 			</v-carousel>
