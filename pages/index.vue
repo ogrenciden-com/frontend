@@ -138,10 +138,9 @@ export default {
 
 				// eslint-disable-next-line no-console
 				this.ads = res
-				console.log(res)
-			} catch (e) {
+			} catch (err) {
 				// eslint-disable-next-line no-console
-				console.log(e)
+				this.$nuxt.error({ err })
 			}
 		},
 	},
