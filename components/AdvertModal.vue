@@ -185,7 +185,6 @@ export default {
 				images: [],
 			},
 			image: [],
-			base64Images: [],
 		}
 	},
 	computed: {
