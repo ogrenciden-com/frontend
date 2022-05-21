@@ -167,7 +167,9 @@
 </template>
 <script>
 import { mapMutations } from 'vuex'
+import { processImage } from '../heplers/reduceImageSize'
 import SelectBox from '@/components/SelectBox.vue'
+
 export default {
 	components: {
 		SelectBox,
@@ -212,17 +214,11 @@ export default {
 			findCampusByUniversitySlug:
 				'UniversityAndCampus/findCampusByUniversitySlug',
 		}),
-		previewImage(index) {
+		async previewImage(index) {
+			let selectedImage = this.image
 			this.ads.images[index] = URL.createObjectURL(this.image)
-			this.generateBase64Image(this.image, index)
-		},
-		generateBase64Image(blob, index) {
-			const reader = new FileReader()
-			reader.readAsDataURL(blob)
-			reader.onloadend = () => {
-				const base64data = reader.result
-				this.ads.images[index] = `${base64data}`
-			}
+			selectedImage = await processImage(selectedImage)
+			this.ads.images[index] = selectedImage
 		},
 		async submit() {
 			try {
