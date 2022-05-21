@@ -1,6 +1,6 @@
 <template>
 	<v-sheet max-width="232px">
-		<v-card outlined flat class="px-2 py-3">
+		<v-card outlined flat class="px-3 py-3">
 			<v-carousel
 				v-model="model"
 				hide-delimiters

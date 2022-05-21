@@ -58,21 +58,21 @@
 				<Nuxt :key="$route.fullPath" />
 			</v-main>
 			<v-footer
-				color="secondary"
+				color="white"
 				class="pb-8 pt-4 mx-auto"
 				absolute
 				padless
-				max-width="100%"
+				max-width="1157"
 			>
 				<v-row justify="center">
 					<v-col
 						order="last"
 						order-md="first"
 						cols="3"
-						class="col-12 col-md-3 mt-5 mt-md-0 pl-10"
+						class="col-12 col-md-3 mt-5 mt-md-0 pl-md-2 pl-10"
 						align-self="center"
 					>
-						<brand-logo class="d-block mb-4" />
+						<brand-logo class="d-block mb-3" />
 						<div class="text-body-2 darkGrey--text">
 							{{ new Date().getFullYear() }} &copy;
 							<span>Öğrenciden</span>

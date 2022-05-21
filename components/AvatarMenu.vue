@@ -105,9 +105,9 @@ export default {
 			loading: false,
 		}
 	},
-	created() {
-		this.getUser()
-	},
+	// created() {
+	// 	this.getUser()
+	// },
 	methods: {
 		...mapMutations({
 			advertToggle: 'advertToggle',

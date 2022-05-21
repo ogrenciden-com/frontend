@@ -76,7 +76,7 @@
 				<v-row no-gutters>
 					<v-col>
 						<select-box
-							v-model="ads.universityName"
+							v-model="ads.university"
 							:items="universities"
 							item-text="name"
 							item-value="slug"
@@ -102,7 +102,7 @@
 				<v-row no-gutters>
 					<v-col>
 						<v-text-field
-							v-model="ads.tel"
+							v-model="ads.contact"
 							placeholder="(+90) İletişim bilgisi"
 							type="tel"
 							background-color="secondary"
@@ -143,12 +143,12 @@
 							flat
 							:style="{ position: 'relative' }"
 						>
-							<v-img
+							<!-- <v-img
 								:src="ads.url[index]"
 								height="128px"
 								width="130px"
 								cover
-							></v-img>
+							></v-img> -->
 							<v-file-input
 								v-model="image"
 								class="centerCard"
@@ -177,7 +177,6 @@
 	</div>
 </template>
 <script>
-import { v4 as uuidv4 } from 'uuid'
 import { mapMutations } from 'vuex'
 import SelectBox from '@/components/SelectBox.vue'
 export default {
@@ -188,13 +187,13 @@ export default {
 		return {
 			ads: {
 				title: undefined,
-				universityName: undefined,
+				university: undefined,
 				campus: undefined,
 				description: undefined,
-				tel: '+905',
+				contact: '05',
 				category: undefined,
 				price: undefined,
-				url: [],
+				// url: [],
 			},
 			image: [],
 		}
@@ -211,11 +210,11 @@ export default {
 		},
 	},
 	watch: {
-		'ads.universityName'() {
-			if (!this.ads.universityName) {
+		'ads.university'() {
+			if (!this.ads.university) {
 				this.ads.campus = undefined
 			}
-			this.findCampusByUniversitySlug(this.ads.universityName)
+			this.findCampusByUniversitySlug(this.ads.university)
 		},
 	},
 	methods: {
@@ -224,25 +223,24 @@ export default {
 			findCampusByUniversitySlug:
 				'UniversityAndCampus/findCampusByUniversitySlug',
 		}),
-		previewImage(index) {
-			this.ads.url[index] = URL.createObjectURL(this.image)
-		},
+		// previewImage(index) {
+		// 	this.ads.url[index] = URL.createObjectURL(this.image)
+		// },
 		async submit() {
-			const id = uuidv4()
+			console.log(this.ads)
 			try {
-				await this.$fire.firestore
-					.collection('ads')
-					.doc('detail-' + id)
-					.set({
-						title: this.ads.title,
-						universityName: this.ads.universityName,
-						campus: this.ads.campus,
-						description: this.ads.description,
-						tel: this.ads.tel,
-						category: this.ads.category,
-						price: this.ads.price,
-						url: this.ads.url,
-					})
+				const res = await this.$axios.$post('/product', {
+					title: 'Apple Orjinal Şarj Başlığı',
+					category: 'diğer',
+					university: 'zonguldak-bulent-ecevit-universitesi',
+					campus: 'farabi',
+					price: 140,
+					description:
+						'iyi durumda az kullanılmış ihtiyaç fazlası üründür.',
+					contact: '05316948991',
+				})
+				// eslint-disable-next-line no-console
+				console.log(res)
 			} catch (e) {
 				// eslint-disable-next-line no-console
 				console.log(e)

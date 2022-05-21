@@ -8,7 +8,7 @@
 				<v-col
 					v-for="(ad, index) in ads"
 					:key="index"
-					class="pb-0 d-none d-sm-flex justify-center"
+					class="pt-0 pb-6 pl-0 pr-0 ml-n1 d-none d-sm-flex justify-center"
 				>
 					<item-card :ads="ad" />
 				</v-col>
@@ -21,7 +21,12 @@
 				<item-list :ads="ad" />
 			</v-row>
 		</v-col>
-		<v-col order="first" order-md="last" cols="4" class="col-12 col-md-4">
+		<v-col
+			order="first"
+			order-md="last"
+			cols="4"
+			class="col-12 col-md-4 pt-0"
+		>
 			<div class="sticky">
 				<filter-card />
 			</div>
