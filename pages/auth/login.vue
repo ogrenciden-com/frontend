@@ -127,11 +127,10 @@ export default {
 		}),
 		async loginWithEmail() {
 			try {
-				const data = await this.$axios.$post('auth/login', this.user)
-				console.log(data)
+				await this.$axios.$post('auth/login', this.user)
 				this.$router.push('/')
 			} catch (err) {
-				console.error(err)
+				this.$nuxt.error({ err })
 			}
 		},
 	},

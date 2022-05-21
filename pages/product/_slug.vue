@@ -17,7 +17,7 @@
 				}"
 				height="600"
 			>
-				<v-carousel-item v-for="image in 3" :key="image">
+				<v-carousel-item v-for="image in item.images" :key="image">
 					<v-img
 						max-width="600"
 						max-height="600"
@@ -25,8 +25,9 @@
 						height="100%"
 						contain
 						class="mx-auto rounded"
-						src="https://img.letgo.com/images/2a/00/6f/f1/2a006ff155483ebdf0a951ad50a993fe.jpg?impolicy=img_384"
+						:src="image"
 					></v-img>
+					<!-- src="https://img.letgo.com/images/2a/00/6f/f1/2a006ff155483ebdf0a951ad50a993fe.jpg?impolicy=img_384" -->
 				</v-carousel-item>
 			</v-carousel>
 			<v-card

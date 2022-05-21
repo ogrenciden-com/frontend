@@ -192,16 +192,11 @@ export default {
 				'UniversityAndCampus/findCampusByUniversitySlug',
 		}),
 		async submit() {
-			console.log(this.user)
 			try {
-				const data = await this.$axios.$post('auth', this.user)
-				// eslint-disable-next-line no-console
-				console.log(data)
-				// this.$router.push('/')
+				await this.$axios.$post('auth', this.user)
+				this.$router.push('/')
 			} catch (e) {
-				// eslint-disable-next-line no-console
-				console.log(e)
-				// this.$nuxt.error({ e })
+				this.$nuxt.error({ e })
 			}
 		},
 	},

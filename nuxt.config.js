@@ -81,8 +81,6 @@ export default {
 		baseURL: 'https://ogrenciden.herokuapp.com/',
 		headers: {
 			Accept: '*/*',
-			Connection: 'keep-alive',
-			'Accept-Encoding': 'gzip, deflate, br',
 			'Content-Type': 'application/json',
 			'Access-Control-Allow-Origin': '*',
 			'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',

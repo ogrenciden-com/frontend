@@ -53,6 +53,7 @@
 								color="darkGrey"
 								class="text-caption text-sm-body-2 text-md-body-1"
 								outlined
+								type="text"
 								height="32"
 								autofocus
 								flat
@@ -68,6 +69,7 @@
 								placeholder="Soyad"
 								color="darkGrey"
 								class="text-caption text-sm-body-2 text-md-body-1"
+								type="text"
 								outlined
 								flat
 								solo
@@ -122,19 +124,6 @@
 			</v-row>
 			<!-- divider -->
 			<v-divider class="mb-3 mt-n2 mb-sm-0 mt-sm-0 d-sm-none"></v-divider>
-
-			<!-- cities -->
-			<!-- <v-row no-gutters>
-				<v-col>
-					<select-box
-						v-model="user.city"
-						:items="cities"
-						label="Şehir"
-						:outlined="true"
-						classes="mb-6 text-caption text-sm-body-2 text-md-body-1"
-					></select-box>
-				</v-col>
-			</v-row> -->
 			<!-- university -->
 			<v-row no-gutters>
 				<v-col>
@@ -249,7 +238,7 @@ export default {
 				)
 				// eslint-disable-next-line no-console
 				console.log(data)
-				this.user = data
+				this.user = { ...data, password: '' }
 				// this.$router.push('/')
 			} catch (e) {
 				// eslint-disable-next-line no-console

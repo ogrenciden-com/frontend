@@ -13,7 +13,7 @@
 					<v-icon color="black">mdi-close</v-icon>
 				</v-btn>
 			</div>
-			<form>
+			<form @submit.prevent="submit">
 				<v-row no-gutters>
 					<v-col>
 						<v-text-field
@@ -62,17 +62,6 @@
 						></select-box>
 					</v-col>
 				</v-row>
-				<!-- <v-row no-gutters>
-					<v-col>
-						<select-box
-							v-model="ads.city"
-							:items="cities"
-							label="Şehir"
-							:outlined="true"
-							classes="mb-6 text-caption text-sm-body-2 text-md-body-1"
-						></select-box>
-					</v-col>
-				</v-row> -->
 				<v-row no-gutters>
 					<v-col>
 						<select-box
@@ -143,12 +132,12 @@
 							flat
 							:style="{ position: 'relative' }"
 						>
-							<!-- <v-img
-								:src="ads.url[index]"
+							<v-img
+								:src="ads.images[index]"
 								height="128px"
 								width="130px"
 								cover
-							></v-img> -->
+							></v-img>
 							<v-file-input
 								v-model="image"
 								class="centerCard"
@@ -168,7 +157,7 @@
 						width="160"
 						elevation="0"
 						class="font-weight-bold my-6"
-						@click="submit"
+						type="submit"
 						>Yayınla</v-btn
 					>
 				</div>
@@ -193,9 +182,10 @@ export default {
 				contact: '05',
 				category: undefined,
 				price: undefined,
-				// url: [],
+				images: [],
 			},
 			image: [],
+			base64Images: [],
 		}
 	},
 	computed: {
@@ -223,28 +213,25 @@ export default {
 			findCampusByUniversitySlug:
 				'UniversityAndCampus/findCampusByUniversitySlug',
 		}),
-		// previewImage(index) {
-		// 	this.ads.url[index] = URL.createObjectURL(this.image)
-		// },
+		previewImage(index) {
+			this.ads.images[index] = URL.createObjectURL(this.image)
+			this.generateBase64Image(this.image, index)
+		},
+		generateBase64Image(blob, index) {
+			const reader = new FileReader()
+			reader.readAsDataURL(blob)
+			reader.onloadend = () => {
+				const base64data = reader.result
+				this.ads.images[index] = `${base64data}`
+			}
+		},
 		async submit() {
-			console.log(this.ads)
 			try {
-				const res = await this.$axios.$post('/products', {
-					title: 'Mause',
-					category: 'ev',
-					university: 'zonguldak-bulent-ecevit-universitesi',
-					campus: 'farabi',
-					price: 180,
-					description:
-						'iyi durumda az kullanılmış ihtiyaç fazlası üründüriyi durumda az kullanılmış ihtiyaç fazlası üründür.iyi durumda az kullanılmış ihtiyaç fazlası üründür.',
-					contact: '05316948991',
-				})
-
-				// eslint-disable-next-line no-console
-				console.log(res)
+				await this.$axios.$post('/products', this.ads)
+				this.advertToggle()
+				this.$router.push('/')
 			} catch (e) {
-				// eslint-disable-next-line no-console
-				console.log(e)
+				this.$nuxt.error({ e })
 			}
 		},
 	},
