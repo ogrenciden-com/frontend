@@ -55,15 +55,6 @@
 				>
 					<advert-modal />
 				</v-dialog>
-				<v-dialog
-					v-model="profileModal"
-					max-width="680"
-					width="100%"
-					@click:outside="profileToggle"
-					@keydown.esc="profileToggle"
-				>
-					<profile-modal />
-				</v-dialog>
 				<Nuxt :key="$route.fullPath" />
 			</v-main>
 			<v-footer
@@ -71,17 +62,17 @@
 				class="pb-8 pt-4 mx-auto"
 				absolute
 				padless
-				max-width="1141"
+				max-width="1157"
 			>
 				<v-row justify="center">
 					<v-col
 						order="last"
 						order-md="first"
 						cols="3"
-						class="col-12 col-md-3 mt-5 mt-md-0 pl-10 pl-md-0"
+						class="col-12 col-md-3 mt-5 mt-md-0 pl-md-2 pl-10"
 						align-self="center"
 					>
-						<brand-logo class="d-block mb-4" />
+						<brand-logo class="d-block mb-3" />
 						<div class="text-body-2 darkGrey--text">
 							{{ new Date().getFullYear() }} &copy;
 							<span>Öğrenciden</span>
@@ -107,6 +98,13 @@
 											to="/"
 											class="darkGrey--text text-decoration-none text-body-2"
 											>Ana Sayfa</nuxt-link
+										>
+									</li>
+									<li>
+										<nuxt-link
+											to="/profile"
+											class="darkGrey--text text-decoration-none text-body-2"
+											>Profil Düzenle</nuxt-link
 										>
 									</li>
 									<li>
@@ -204,7 +202,7 @@ import BrandLogo from '@/components/BrandLogo.vue'
 import SearchBox from '@/components/SearchBox.vue'
 import AvatarMenu from '@/components/AvatarMenu.vue'
 import AdvertModal from '@/components/AdvertModal.vue'
-import ProfileModal from '@/components/ProfileModal.vue'
+// import ProfileModal from '@/components/ProfileModal.vue'
 export default {
 	name: 'DefaultLayout',
 	components: {
@@ -212,13 +210,14 @@ export default {
 		SearchBox,
 		AvatarMenu,
 		AdvertModal,
-		ProfileModal,
+		// ProfileModal,
 	},
 	data() {
 		return {
 			fab: false,
 		}
 	},
+
 	computed: {
 		advertModal() {
 			return this.$store.state.advertModal

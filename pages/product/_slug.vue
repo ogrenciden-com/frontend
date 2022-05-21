@@ -17,7 +17,7 @@
 				}"
 				height="600"
 			>
-				<v-carousel-item v-for="image in item.images" :key="image">
+				<v-carousel-item v-for="image in 3" :key="image">
 					<v-img
 						max-width="600"
 						max-height="600"
@@ -25,7 +25,7 @@
 						height="100%"
 						contain
 						class="mx-auto rounded"
-						:src="image"
+						src="https://img.letgo.com/images/2a/00/6f/f1/2a006ff155483ebdf0a951ad50a993fe.jpg?impolicy=img_384"
 					></v-img>
 				</v-carousel-item>
 			</v-carousel>
@@ -52,7 +52,7 @@
 					<span class="mr-1"> {{ item.category }} </span>
 					<span class="d-block mr-1 dot"></span>
 					<time class="text-caption font-weight-light">
-						{{ item.publisedDate }}
+						{{ item.createdAt }}
 					</time>
 				</div>
 				<div
@@ -71,7 +71,8 @@
 					class="pb-4 pb-sm-0 d-flex align-center justify-space-between"
 				>
 					<span class="text-caption darkGrey--text mr-4">
-						Bu ilan 181 kez görüntülendi
+						<!-- Bu ilan 181 kez görüntülendi -->
+						Tel: {{ item.contact }}
 					</span>
 					<div class="mr-sm-4 mr-2 d-flex">
 						<a
@@ -136,7 +137,7 @@
 </template>
 <router>
   {
-    path: '/product/:university?/:campus?/:category?/:slug'
+    path: '/product/:university?/:campus?/:category?/:id'
   }
 </router>
 <script>
@@ -170,22 +171,7 @@ export default {
 					href: `/${this.$route.params.university}/${this.$route.params.campus}/${this.$route.params.category}`,
 				},
 			],
-			item: {
-				title: 'Macbook Air M1 (2020)',
-				description:
-					'		Lorem ipsum dolor sit amet consectetur, adipisicing elit. Soluta, corporis adipisci. Eaque cumque illum provident quod iure dolorem cum laudantium reprehenderit possimus nulla neque hic repudiandae officiis, tempora perspiciatis saepe. Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt quo facilis libero optio sequi, numquam velit soluta vel, aliquid a veritatis ipsam qui fugit temporibus dolore consequatur architecto sed iste?',
-				price: '17.250',
-				category: 'Teknoloji',
-				university: 'Zonguldak Bülent Ecevit Üniversitesi',
-				campus: 'Farabi',
-				contact: '',
-				publisedDate: '19.02.2022',
-				images: [
-					'https://img.letgo.com/images/6e/77/b0/0f/6e77b00fe56972c0ffbeb3a7edba1b8a.jpg?impolicy=img_600',
-					'https://img.letgo.com/images/59/7b/f0/19/597bf019424a92bbb974cf7e43e91542.jpg?impolicy=img_600',
-					'https://img.letgo.com/images/d1/69/60/c7/d16960c77899a052da7de378ff68f663.jpg?impolicy=img_600',
-				],
-			},
+			item: {},
 		}
 	},
 	computed: {
@@ -203,6 +189,25 @@ export default {
 	},
 	mounted() {
 		this.$vuetify.goTo(0)
+	},
+	created() {
+		this.getProduct()
+	},
+	methods: {
+		async getProduct() {
+			try {
+				const res = await this.$axios.$get(
+					`/products/${this.$route.params.id}`,
+				)
+
+				// eslint-disable-next-line no-console
+				this.item = res
+				console.log(res)
+			} catch (e) {
+				// eslint-disable-next-line no-console
+				console.log(e)
+			}
+		},
 	},
 }
 </script>

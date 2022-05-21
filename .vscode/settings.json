@@ -4,5 +4,6 @@
 		"docs": "md",
 		"i18n": "json",
 		"router": "js"
-	}
+	},
+	"nuxt.isNuxtApp": true
 }

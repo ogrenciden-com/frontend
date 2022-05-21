@@ -28,10 +28,65 @@ export default {
 
 	buildModules: ['@nuxtjs/device', '@nuxtjs/vuetify'],
 
-	modules: ['@nuxtjs/router-extras', '@nuxtjs/axios'],
-
+	modules: [
+		'@nuxtjs/router-extras',
+		'@nuxtjs/axios',
+		// '@nuxtjs/firebase',
+		'@nuxtjs/auth-next',
+	],
+	auth: {
+		strategies: {
+			local: {
+				token: {
+					property: 'token',
+					global: true,
+					// required: true,
+					// type: 'Bearer'
+				},
+				user: {
+					property: 'user',
+					autoFetch: true,
+				},
+				endpoints: {
+					login: { url: 'auth/login', method: 'post' },
+					logout: { url: '/logout', method: 'post' },
+					user: { url: 'auth/:id', method: 'get' },
+				},
+			},
+		},
+		redirect: {
+			login: '/auth/login',
+			logout: '/',
+			callback: '/auth/login',
+			home: '/',
+		},
+	},
+	// firebase: {
+	// 	config: {
+	// 		apiKey: 'AIzaSyByJ2DTipMFTshKNQIWLzT06Np386FuNeo',
+	// 		authDomain: 'ogrenciden-1903.firebaseapp.com',
+	// 		projectId: 'ogrenciden-1903',
+	// 		storageBucket: 'ogrenciden-1903.appspot.com',
+	// 		messagingSenderId: '976272317973',
+	// 		appId: '1:976272317973:web:9061a5d9a246e9c767f81c',
+	// 		measurementId: 'G-YGMZZ050XH',
+	// 	},
+	// 	services: {
+	// 		auth: true,
+	// 		firestore: true,
+	// 		storage: true,
+	// 	},
+	// },
 	axios: {
-		baseURL: '/',
+		baseURL: 'https://ogrenciden.herokuapp.com/',
+		headers: {
+			Accept: '*/*',
+			Connection: 'keep-alive',
+			'Accept-Encoding': 'gzip, deflate, br',
+			'Content-Type': 'application/json',
+			'Access-Control-Allow-Origin': '*',
+			'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+		},
 	},
 
 	vuetify: {

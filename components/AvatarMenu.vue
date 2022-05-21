@@ -13,12 +13,19 @@
 				<div
 					class="font-weight-bold black--text mr-2 d-none d-md-block text-transform-none"
 				>
-					Ahmet ÇAKIR
+					{{ !loading && user.name }}
+					{{ !loading && user.surname }}
 				</div>
-				<v-avatar size="38">
-					<v-img
+				<v-avatar size="38" color="primary" class="white--text">
+					<!-- <v-img :src="user.photoURL"></v-img> -->
+					<!-- <v-img
 						src="https://pbs.twimg.com/profile_images/1322853331073671169/bcNaQF8Y_400x400.jpg"
-					></v-img>
+					></v-img> -->
+					<span>
+						<!-- {{ user?.name.slice(0, 1) }}
+						{{ user?.surname.slice(0, 1) }} -->
+						ÖA
+					</span>
 				</v-avatar>
 			</v-btn>
 		</template>
@@ -30,8 +37,8 @@
 					color="secondary"
 					class="ml-4"
 				></v-sheet>
-				<template v-for="(item, index) in menuItems">
-					<div :key="index">
+				<template v-for="item in menuItems">
+					<div :key="item.id">
 						<v-list-item
 							color="primary"
 							dense
@@ -64,39 +71,67 @@ export default {
 		return {
 			menuItems: [
 				{
+					id: 0,
 					text: 'Profil Düzenle',
 					function: this.profileToggle,
-					link: undefined,
+					link: '/profile',
 				},
 				{
+					id: 1,
 					text: 'İlanlarım',
 					function: () => {},
 					link: '/my-ads',
 				},
 				{
+					id: 2,
 					text: 'Favorilerim',
 					function: () => {},
 					link: '/favorite',
 				},
 				{
+					id: 3,
 					text: 'İlan oluştur',
 					function: this.advertToggle,
 					link: undefined,
 				},
 				{
+					id: 4,
 					text: 'Çıkış Yap',
-					function: this.userToggle,
-					link: undefined,
+					function: () => {},
+					link: '/auth/login',
 				},
 			],
+			user: {},
+			loading: false,
 		}
 	},
+	// created() {
+	// 	this.getUser()
+	// },
 	methods: {
 		...mapMutations({
 			advertToggle: 'advertToggle',
 			profileToggle: 'profileToggle',
 			userToggle: 'userToggle',
 		}),
+		async getUser() {
+			try {
+				this.loading = true
+				const data = await this.$axios.$get(
+					'auth/6287f917008193cfe442094e',
+				)
+				// eslint-disable-next-line no-console
+				console.log(data)
+				this.user = { ...data }
+				// this.$router.push('/')
+			} catch (e) {
+				// eslint-disable-next-line no-console
+				console.log(e)
+				// this.$nuxt.error({ e })
+			} finally {
+				this.loading = false
+			}
+		},
 	},
 }
 </script>

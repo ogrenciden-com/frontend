@@ -1,6 +1,5 @@
 export const state = () => ({
 	advertModal: false,
-	profileModal: false,
 	hasUser: true,
 })
 export const mutations = {
@@ -8,10 +7,9 @@ export const mutations = {
 		globalThis.$nuxt.$store.state.UniversityAndCampus.selectedCampuses = []
 		state.advertModal = !state.advertModal
 	},
-	profileToggle(state) {
-		globalThis.$nuxt.$store.state.UniversityAndCampus.selectedCampuses = []
-		state.profileModal = !state.profileModal
-	},
+	// profileToggle() {
+	// 	this.$router.replace('/')
+	// },
 	userToggle(state) {
 		state.hasUser = !state.hasUser
 	},

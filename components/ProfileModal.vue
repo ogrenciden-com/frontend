@@ -8,7 +8,7 @@
 					değiştirebilirsin.
 				</v-card-subtitle>
 			</div>
-			<v-btn icon class="mr-sm-n4 mt-n4" @click="profileToggle">
+			<v-btn icon class="mr-sm-n4 mt-n4" @click="closeModal">
 				<v-icon color="black">mdi-close</v-icon>
 			</v-btn>
 		</div>
@@ -63,7 +63,7 @@
 						</v-col>
 						<v-col>
 							<v-text-field
-								v-model="user.lastname"
+								v-model="user.surname"
 								background-color="secondary"
 								placeholder="Soyad"
 								color="darkGrey"
@@ -81,6 +81,7 @@
 							v-model="user.email"
 							placeholder="E-posta"
 							color="darkGrey"
+							disabled
 							type="email"
 							background-color="secondary"
 							class="text-caption text-sm-body-2 text-md-body-1"
@@ -138,7 +139,7 @@
 			<v-row no-gutters>
 				<v-col>
 					<select-box
-						v-model="user.universityName"
+						v-model="user.university"
 						:items="universities"
 						item-text="name"
 						item-value="slug"
@@ -206,10 +207,10 @@ export default {
 		return {
 			user: {
 				name: undefined,
-				lastname: undefined,
+				surname: undefined,
 				email: undefined,
 				password: undefined,
-				universityName: undefined,
+				university: undefined,
 				campus: undefined,
 				tel: '+905',
 				url: undefined,
@@ -225,21 +226,51 @@ export default {
 		campuses() {
 			return this.$store.state.UniversityAndCampus?.selectedCampuses
 		},
-	},
-	watch: {
-		'user.universityName'() {
-			if (!this.user.universityName) {
-				this.user.campus = undefined
-			}
-			this.findCampusByUniversitySlug(this.user.universityName)
+		currentUser() {
+			return this.$store.state.user
 		},
 	},
+	watch: {
+		'user.university'() {
+			if (!this.user.university) {
+				this.user.campus = undefined
+			}
+			this.findCampusByUniversitySlug(this.user.university)
+		},
+	},
+	created() {
+		this.getUser()
+	},
 	methods: {
+		async getUser() {
+			try {
+				const data = await this.$axios.$get(
+					'auth/6287f917008193cfe442094e',
+				)
+				// eslint-disable-next-line no-console
+				console.log(data)
+				this.user = data
+				// this.$router.push('/')
+			} catch (e) {
+				// eslint-disable-next-line no-console
+				console.log(e)
+				// this.$nuxt.error({ e })
+			}
+		},
+		closeModal() {
+			this.$router.replace('/')
+		},
 		...mapMutations({
-			profileToggle: 'profileToggle',
 			findCampusByUniversitySlug:
 				'UniversityAndCampus/findCampusByUniversitySlug',
 		}),
+		// fillUser() {
+		// 	if (!this.currentUser) return
+		// 	this.user.name = this.currentUser.displayName.split(' ')[0]
+		// 	this.user.surname = this.currentUser.displayName.split(' ')[1]
+		// 	this.user.email = this.currentUser.email
+		// 	this.user.url = this.currentUser.photoURL
+		// },
 		previewImage() {
 			this.user.url = URL.createObjectURL(this.image)
 		},

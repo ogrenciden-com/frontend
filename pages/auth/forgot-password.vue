@@ -38,7 +38,7 @@
 					>Giriş yap</nuxt-link
 				>
 			</small>
-			<div class="d-flex justify-center mt-4">
+			<div class="d-flex justify-center mt-2">
 				<v-btn
 					class="text-body-1 text-transform-none py-4"
 					width="100%"

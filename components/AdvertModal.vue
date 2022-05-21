@@ -17,7 +17,7 @@
 				<v-row no-gutters>
 					<v-col>
 						<v-text-field
-							v-model="form.title"
+							v-model="ads.title"
 							background-color="secondary"
 							placeholder="İlan başlığını giriniz."
 							height="42"
@@ -25,23 +25,23 @@
 							class="text-caption text-sm-body-2 text-md-body-1"
 							outlined
 							autofocus
+							counter="70"
 							flat
 							solo
 							dense
-							hide-details
 						></v-text-field>
 					</v-col>
 				</v-row>
-				<v-row>
+				<v-row no-gutters>
 					<v-col cols="5" sm="4">
 						<v-text-field
-							v-model="form.price"
+							v-model="ads.price"
 							placeholder="Fiyat"
 							append-icon="mdi-currency-try"
 							type="number"
 							background-color="secondary"
 							color="darkGrey"
-							class="text-caption text-sm-body-2 text-md-body-1"
+							class="text-caption text-sm-body-2 text-md-body-1 mr-3"
 							reverse
 							outlined
 							flat
@@ -52,7 +52,7 @@
 					</v-col>
 					<v-col cols="7" sm="8">
 						<select-box
-							v-model="form.category"
+							v-model="ads.category"
 							:items="categories"
 							item-text="name"
 							item-value="slug"
@@ -65,7 +65,7 @@
 				<!-- <v-row no-gutters>
 					<v-col>
 						<select-box
-							v-model="form.city"
+							v-model="ads.city"
 							:items="cities"
 							label="Şehir"
 							:outlined="true"
@@ -76,7 +76,7 @@
 				<v-row no-gutters>
 					<v-col>
 						<select-box
-							v-model="form.universityName"
+							v-model="ads.university"
 							:items="universities"
 							item-text="name"
 							item-value="slug"
@@ -89,7 +89,7 @@
 				<v-row no-gutters>
 					<v-col>
 						<select-box
-							v-model="form.campus"
+							v-model="ads.campus"
 							:items="campuses"
 							item-text="name"
 							item-value="slug"
@@ -102,7 +102,7 @@
 				<v-row no-gutters>
 					<v-col>
 						<v-text-field
-							v-model="form.tel"
+							v-model="ads.contact"
 							placeholder="(+90) İletişim bilgisi"
 							type="tel"
 							background-color="secondary"
@@ -119,7 +119,7 @@
 				<v-row>
 					<v-col>
 						<v-textarea
-							v-model="form.description"
+							v-model="ads.description"
 							placeholder="İlan açıklaması"
 							background-color="white"
 							auto-grow
@@ -133,22 +133,22 @@
 						class="d-flex justify-center justify-sm-space-between mt-n2 flex-wrap"
 					>
 						<v-sheet
-							v-for="(i, index) in 5"
+							v-for="(i, index) in 4"
 							:key="index"
-							width="110px"
-							height="110px"
+							width="130px"
+							height="130px"
 							color="secondary"
 							class="border ma-1 ma-sm-0"
 							outlined
 							flat
 							:style="{ position: 'relative' }"
 						>
-							<v-img
-								:src="form.url[index]"
-								height="110px"
-								width="110px"
+							<!-- <v-img
+								:src="ads.url[index]"
+								height="128px"
+								width="130px"
 								cover
-							></v-img>
+							></v-img> -->
 							<v-file-input
 								v-model="image"
 								class="centerCard"
@@ -185,16 +185,15 @@ export default {
 	},
 	data() {
 		return {
-			form: {
+			ads: {
 				title: undefined,
-				universityName: undefined,
+				university: undefined,
 				campus: undefined,
 				description: undefined,
-				tel: '+905',
-				city: undefined,
+				contact: '05',
 				category: undefined,
 				price: undefined,
-				url: [],
+				// url: [],
 			},
 			image: [],
 		}
@@ -211,11 +210,11 @@ export default {
 		},
 	},
 	watch: {
-		'form.universityName'() {
-			if (!this.form.universityName) {
-				this.form.campus = undefined
+		'ads.university'() {
+			if (!this.ads.university) {
+				this.ads.campus = undefined
 			}
-			this.findCampusByUniversitySlug(this.form.universityName)
+			this.findCampusByUniversitySlug(this.ads.university)
 		},
 	},
 	methods: {
@@ -224,11 +223,29 @@ export default {
 			findCampusByUniversitySlug:
 				'UniversityAndCampus/findCampusByUniversitySlug',
 		}),
-		previewImage(index) {
-			this.form.url[index] = URL.createObjectURL(this.image)
-		},
-		submit() {
-			console.log(this.form)
+		// previewImage(index) {
+		// 	this.ads.url[index] = URL.createObjectURL(this.image)
+		// },
+		async submit() {
+			console.log(this.ads)
+			try {
+				const res = await this.$axios.$post('/products', {
+					title: 'Mause',
+					category: 'ev',
+					university: 'zonguldak-bulent-ecevit-universitesi',
+					campus: 'farabi',
+					price: 180,
+					description:
+						'iyi durumda az kullanılmış ihtiyaç fazlası üründüriyi durumda az kullanılmış ihtiyaç fazlası üründür.iyi durumda az kullanılmış ihtiyaç fazlası üründür.',
+					contact: '05316948991',
+				})
+
+				// eslint-disable-next-line no-console
+				console.log(res)
+			} catch (e) {
+				// eslint-disable-next-line no-console
+				console.log(e)
+			}
 		},
 	},
 }

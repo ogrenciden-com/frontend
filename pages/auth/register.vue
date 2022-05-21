@@ -5,7 +5,7 @@
 		rounded="lg"
 		max-width="410"
 		width="100%"
-		height="550"
+		height="670"
 		class="px-4 py-2"
 	>
 		<v-card-title class="justify-center mt-4">
@@ -35,7 +35,7 @@
 				<v-row dense>
 					<v-col
 						><v-text-field
-							v-model="form.name"
+							v-model="user.name"
 							outlined
 							solo
 							autofocus
@@ -52,7 +52,7 @@
 					</v-col>
 					<v-col>
 						<v-text-field
-							v-model="form.lastname"
+							v-model="user.surname"
 							outlined
 							solo
 							flat
@@ -68,8 +68,26 @@
 					</v-col>
 				</v-row>
 			</div>
+			<select-box
+				v-model="user.university"
+				:items="universities"
+				item-text="name"
+				item-value="slug"
+				label="Üniversite"
+				classes="mb-8 text-caption text-md-body-2"
+			/>
+
+			<!-- campuses -->
+			<select-box
+				v-model="user.campus"
+				classes="mb-8 text-caption text-md-body-2"
+				:items="campuses"
+				item-text="name"
+				item-value="slug"
+				label="Kampüs"
+			/>
 			<v-text-field
-				v-model="form.email"
+				v-model="user.email"
 				outlined
 				solo
 				flat
@@ -86,7 +104,7 @@
 				</template>
 			</v-text-field>
 			<v-text-field
-				v-model="form.password"
+				v-model="user.password"
 				outlined
 				solo
 				flat
@@ -129,10 +147,10 @@
 	</v-card>
 </template>
 <script>
+import { mapMutations } from 'vuex'
 import MailIcon from '@/components/Icons/MailIcon.vue'
 import BrandLogo from '@/components/BrandLogo.vue'
 import GoogleIcon from '@/components/Icons/GoogleIcon.vue'
-
 export default {
 	components: {
 		BrandLogo,
@@ -144,17 +162,47 @@ export default {
 	data() {
 		return {
 			isShow: false,
-			form: {
+			user: {
 				name: '',
-				lastname: '',
+				surname: '',
 				email: '',
 				password: '',
+				university: undefined,
+				campus: undefined,
 			},
 		}
 	},
+
+	computed: {
+		campuses() {
+			return this.$store.state.UniversityAndCampus?.selectedCampuses
+		},
+		universities() {
+			return this.$store.state.UniversityAndCampus?.universities
+		},
+	},
+	watch: {
+		'user.university'() {
+			this.findCampusByUniversitySlug(this.user.university)
+		},
+	},
 	methods: {
-		submit() {
-			console.log(this.form)
+		...mapMutations({
+			findCampusByUniversitySlug:
+				'UniversityAndCampus/findCampusByUniversitySlug',
+		}),
+		async submit() {
+			console.log(this.user)
+			try {
+				const data = await this.$axios.$post('auth', this.user)
+				// eslint-disable-next-line no-console
+				console.log(data)
+				// this.$router.push('/')
+			} catch (e) {
+				// eslint-disable-next-line no-console
+				console.log(e)
+				// this.$nuxt.error({ e })
+			}
 		},
 	},
 }

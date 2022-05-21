@@ -33,7 +33,7 @@
 		</div>
 		<v-form>
 			<v-text-field
-				v-model="form.email"
+				v-model="user.email"
 				outlined
 				solo
 				flat
@@ -51,7 +51,7 @@
 				</template>
 			</v-text-field>
 			<v-text-field
-				v-model="form.password"
+				v-model="user.password"
 				outlined
 				solo
 				flat
@@ -80,7 +80,7 @@
 					class="text-body-1 font-weight-bold text-transform-none py-6 px-10"
 					color="primary"
 					elevation="0"
-					@click="submit"
+					@click="loginWithEmail"
 				>
 					Giriş yap
 				</v-btn>
@@ -101,6 +101,7 @@
 	</v-card>
 </template>
 <script>
+import { mapMutations } from 'vuex'
 import MailIcon from '@/components/Icons/MailIcon.vue'
 import GoogleIcon from '@/components/Icons/GoogleIcon.vue'
 import BrandLogo from '@/components/BrandLogo.vue'
@@ -114,16 +115,24 @@ export default {
 	data() {
 		return {
 			isShow: false,
-			form: {
+			user: {
 				email: '',
 				password: '',
 			},
 		}
 	},
 	methods: {
-		submit() {
-			console.log(this.form)
-			this.$router.push('/')
+		...mapMutations({
+			setUser: 'setUser',
+		}),
+		async loginWithEmail() {
+			try {
+				const data = await this.$axios.$post('auth/login', this.user)
+				console.log(data)
+				this.$router.push('/')
+			} catch (err) {
+				console.error(err)
+			}
 		},
 	},
 }
