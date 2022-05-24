@@ -38,7 +38,7 @@
 				<v-card-title class="pa-0">
 					<nuxt-link
 						:to="detailLink"
-						class="text-body-2 font-weight-medium black--text text-decoration-none elipsis2"
+						class="text-body-2 font-weight-medium black--text text-decoration-none elipsis2 text-transform-capitalize"
 					>
 						{{ ads.title }}
 					</nuxt-link>
