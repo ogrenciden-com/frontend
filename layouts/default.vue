@@ -9,11 +9,11 @@
 					<nuxt-link to="/" class="mr-lg-10 mr-3">
 						<brand-logo class="d-none d-sm-block" />
 					</nuxt-link>
-					<search-box class="mr-lg-8 mr-3" />
+					<search-box class="mr-lg-14 mr-3" />
 					<v-btn
 						color="primary"
 						height="48"
-						width="160"
+						width="170"
 						elevation="0"
 						class="rounded-lg d-none d-sm-flex mr-7 font text-transform-none"
 						@click="advertToggle"
@@ -54,6 +54,15 @@
 					@keydown.esc="advertToggle"
 				>
 					<advert-modal />
+				</v-dialog>
+				<v-dialog
+					v-model="profileModal"
+					max-width="680"
+					width="100%"
+					@click:outside="profileToggle"
+					@keydown.esc="profileToggle"
+				>
+					<profile-modal />
 				</v-dialog>
 				<Nuxt :key="$route.fullPath" />
 			</v-main>
@@ -202,7 +211,7 @@ import BrandLogo from '@/components/BrandLogo.vue'
 import SearchBox from '@/components/SearchBox.vue'
 import AvatarMenu from '@/components/AvatarMenu.vue'
 import AdvertModal from '@/components/AdvertModal.vue'
-// import ProfileModal from '@/components/ProfileModal.vue'
+import ProfileModal from '@/components/ProfileModal.vue'
 export default {
 	name: 'DefaultLayout',
 	components: {
@@ -210,7 +219,7 @@ export default {
 		SearchBox,
 		AvatarMenu,
 		AdvertModal,
-		// ProfileModal,
+		ProfileModal,
 	},
 	data() {
 		return {
