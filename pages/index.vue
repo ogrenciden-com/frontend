@@ -4,11 +4,12 @@
 			<nuxt-child></nuxt-child>
 		</div>
 		<v-col order="last" order-md="first" cols="8" class="col-12 col-md-8">
-			<v-row class="d-none d-sm-flex">
+			<v-row>
 				<v-col
 					v-for="(ad, index) in ads"
 					:key="index"
-					class="pt-0 pb-6 pl-0 pr-0 ml-n1 d-none d-sm-flex justify-center justify-md-start"
+					cols="4"
+					class="pt-0 pb-6 pr-0 ml-n1 d-none d-sm-flex justify-center justify-md-start col-4 col-md-6 col-lg-4"
 				>
 					<item-card :ads="ad" />
 				</v-col>
