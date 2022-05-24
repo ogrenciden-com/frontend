@@ -25,11 +25,5 @@ export default {
 			model: true,
 		}
 	},
-
-	methods: {
-		closeModal() {
-			this.$router.replace('/')
-		},
-	},
 }
 </script>

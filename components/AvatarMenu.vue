@@ -74,7 +74,7 @@ export default {
 					id: 0,
 					text: 'Profil Düzenle',
 					function: this.profileToggle,
-					link: '/profile',
+					link: undefined,
 				},
 				{
 					id: 1,
@@ -125,7 +125,6 @@ export default {
 			} catch (e) {
 				// eslint-disable-next-line no-console
 				console.log(e)
-				this.$nuxt.error({ e })
 			} finally {
 				this.loading = false
 			}

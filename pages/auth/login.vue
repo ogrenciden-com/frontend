@@ -5,13 +5,15 @@
 		rounded="lg"
 		max-width="410"
 		width="100%"
-		height="500"
+		height="430"
 		class="px-4 py-2"
 	>
 		<v-card-title class="justify-center mt-4">
 			<brand-logo />
 		</v-card-title>
-		<v-btn
+		<h3 class="text-center">Giriş Yap</h3>
+
+		<!-- <v-btn
 			outlined
 			block
 			color="primary"
@@ -30,7 +32,7 @@
 				:style="{ position: 'relative', top: '-13px', left: '167px' }"
 				>Veya</span
 			>
-		</div>
+		</div> -->
 		<v-form>
 			<v-text-field
 				v-model="user.email"
@@ -41,7 +43,7 @@
 				placeholder="Lütfen E-posta adresinizi girin"
 				height="32"
 				color="darkGrey"
-				class="text-body-2 mb-5"
+				class="text-body-2 my-5"
 				type="email"
 				dense
 				hide-details
@@ -75,7 +77,7 @@
 					>Şifremi unuttum</nuxt-link
 				>
 			</div>
-			<div class="d-flex justify-center mt-8">
+			<div class="d-flex justify-center mt-6">
 				<v-btn
 					class="text-body-1 font-weight-bold text-transform-none py-6 px-10"
 					color="primary"
@@ -101,15 +103,14 @@
 	</v-card>
 </template>
 <script>
-import { mapMutations } from 'vuex'
 import MailIcon from '@/components/Icons/MailIcon.vue'
-import GoogleIcon from '@/components/Icons/GoogleIcon.vue'
 import BrandLogo from '@/components/BrandLogo.vue'
+// import GoogleIcon from '@/components/Icons/GoogleIcon.vue'
 export default {
 	components: {
 		BrandLogo,
 		MailIcon,
-		GoogleIcon,
+		// GoogleIcon,
 	},
 	layout: 'auth',
 	data() {
@@ -122,12 +123,10 @@ export default {
 		}
 	},
 	methods: {
-		...mapMutations({
-			setUser: 'setUser',
-		}),
 		async loginWithEmail() {
 			try {
-				await this.$axios.$post('auth/login', this.user)
+				const res = await this.$axios.$post('auth/login', this.user)
+				console.log(res)
 				this.$router.push('/')
 			} catch (err) {
 				this.$nuxt.error({ err })

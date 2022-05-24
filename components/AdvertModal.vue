@@ -1,6 +1,20 @@
 <template>
 	<div>
 		<v-card flat rounded="lg" class="px-sm-10 px-4">
+			<v-snackbar v-model="snackbar" timeout="2000">
+				{{ err }}
+
+				<template #action="{ attrs }">
+					<v-btn
+						color="red"
+						text
+						v-bind="attrs"
+						@click="snackbar = false"
+					>
+						Close
+					</v-btn>
+				</template>
+			</v-snackbar>
 			<div class="d-flex justify-space-between align-center">
 				<div>
 					<v-card-title class="px-0">Yeni ilan ekle</v-card-title>
@@ -112,6 +126,7 @@
 							placeholder="İlan açıklaması"
 							background-color="white"
 							auto-grow
+							counter="250"
 							outlined
 							flat
 						></v-textarea>
@@ -119,7 +134,7 @@
 				</v-row>
 				<v-row no-gutters>
 					<v-col
-						class="d-flex justify-center justify-sm-space-between mt-n2 flex-wrap"
+						class="d-flex justify-center justify-sm-space-between flex-wrap"
 					>
 						<v-sheet
 							v-for="(i, index) in 4"
@@ -155,6 +170,7 @@
 						color="primary"
 						height="40"
 						width="160"
+						:loading="loading"
 						elevation="0"
 						class="font-weight-bold my-6"
 						type="submit"
@@ -187,6 +203,9 @@ export default {
 				images: [],
 			},
 			image: [],
+			snackbar: false,
+			err: 'Bir şeyler yanlış gitti',
+			loading: false,
 		}
 	},
 	computed: {
@@ -221,12 +240,21 @@ export default {
 			this.ads.images[index] = selectedImage
 		},
 		async submit() {
+			this.ads.contact = this.ads.contact.split(' ').join('')
+			this.ads.images = this.ads.images.filter((img) => {
+				return img !== null
+			})
 			try {
+				this.loading = true
 				await this.$axios.$post('/products', this.ads)
 				this.advertToggle()
-				this.$router.push('/')
-			} catch (e) {
-				this.$nuxt.error({ e })
+			} catch (err) {
+				// console.log(e.response.data.error)
+				this.snackbar = true
+				this.err = err.response.data.error
+				// this.$nuxt.error({ e })
+			} finally {
+				this.loading = false
 			}
 		},
 	},

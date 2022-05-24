@@ -9,6 +9,18 @@
 //     max-width: 1200px !important;
 //   }
 // }
+.dot {
+	width: 5px;
+	height: 5px;
+	background-color: #a6a2a2;
+	border-radius: 100px;
+}
+.text-transform-capitalize {
+	text-transform: capitalize;
+}
+.text-transform-none {
+	text-transform: none !important;
+}
 .sticky {
 	position: sticky;
 	top: 10px;

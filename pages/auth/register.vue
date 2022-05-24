@@ -5,13 +5,14 @@
 		rounded="lg"
 		max-width="410"
 		width="100%"
-		height="670"
+		height="600"
 		class="px-4 py-2"
 	>
 		<v-card-title class="justify-center mt-4">
 			<brand-logo />
 		</v-card-title>
-		<v-btn
+		<h3 class="text-center">Kayıt Ol</h3>
+		<!-- <v-btn
 			outlined
 			block
 			color="primary"
@@ -29,9 +30,9 @@
 				:style="{ position: 'relative', top: '-13px', left: '167px' }"
 				>Veya</span
 			>
-		</div>
+		</div> -->
 		<v-form>
-			<div>
+			<div class="mt-6">
 				<v-row dense>
 					<v-col
 						><v-text-field
@@ -150,12 +151,12 @@
 import { mapMutations } from 'vuex'
 import MailIcon from '@/components/Icons/MailIcon.vue'
 import BrandLogo from '@/components/BrandLogo.vue'
-import GoogleIcon from '@/components/Icons/GoogleIcon.vue'
+// import GoogleIcon from '@/components/Icons/GoogleIcon.vue'
 export default {
 	components: {
 		BrandLogo,
 		MailIcon,
-		GoogleIcon,
+		// GoogleIcon,
 	},
 	layout: 'auth',
 
@@ -202,9 +203,3 @@ export default {
 	},
 }
 </script>
-
-<style>
-.text-transform-none {
-	text-transform: none !important;
-}
-</style>
