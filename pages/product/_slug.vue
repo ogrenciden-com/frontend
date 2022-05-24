@@ -37,7 +37,7 @@
 				class="pl-5 rounded-r-lg rounded-l-0 mx-auto mx-md-0"
 			>
 				<v-card-subtitle
-					class="font-weight-bold text-h6 black--text pl-0 pb-0"
+					class="font-weight-bold text-h6 black--text pl-0 pb-0 text-transform-capitalize"
 				>
 					{{ item.title }}
 				</v-card-subtitle>
@@ -51,8 +51,9 @@
 				>
 					<span class="mr-1"> {{ item.category }} </span>
 					<span class="d-block mr-1 dot"></span>
-					<time class="text-caption font-weight-light">
-						{{ item.createdAt }}
+					<time class="text-caption font-weight-light darkGrey--text">
+						{{ formatDate(item.createdAt) }}
+						<!-- {{ moment().add(10, 'days').calendar() }} -->
 					</time>
 				</div>
 				<div
@@ -72,7 +73,7 @@
 				>
 					<span class="text-caption darkGrey--text mr-4">
 						<!-- Bu ilan 181 kez görüntülendi -->
-						Tel: {{ item.contact }}
+						İletişim: {{ item.contact }}
 					</span>
 					<div class="mr-sm-4 mr-2 d-flex">
 						<a
@@ -176,15 +177,15 @@ export default {
 	},
 	computed: {
 		shareTelegramLink() {
-			return `https://t.me/share/url?url=https://ogrenciden-git-dev-aahmetcakir.vercel.app${this.$route.fullPath}&text=${this.item.title} ${this.item.price}TL `
+			return `https://t.me/share/url?url=https://ogrenciden.vercel.app${this.$route.fullPath}&text=${this.item.title} ${this.item.price}TL `
 		},
 		shareTwitterLink() {
-			return `https://twitter.com/intent/tweet?text=İlanıma göz atın. ${this.item.title} ${this.item.price}TL &url=https://ogrenciden-git-dev-aahmetcakir.vercel.app${this.$route.fullPath}`
+			return `https://twitter.com/intent/tweet?text=İlanıma göz atın. ${this.item.title} ${this.item.price}TL &url=https://ogrenciden.vercel.app${this.$route.fullPath}`
 		},
 		shareWhatsAppLink() {
 			return this.$device.isMobile
-				? `whatsapp://send?text=https://ogrenciden-git-dev-aahmetcakir.vercel.app${this.$route.fullPath}`
-				: `https://web.whatsapp.com/send?text=https://ogrenciden-git-dev-aahmetcakir.vercel.app${this.$route.fullPath}`
+				? `whatsapp://send?text=https://ogrenciden.vercel.app${this.$route.fullPath}`
+				: `https://web.whatsapp.com/send?text=https://ogrenciden.vercel.app${this.$route.fullPath}`
 		},
 	},
 	mounted() {
@@ -194,6 +195,16 @@ export default {
 		this.getProduct()
 	},
 	methods: {
+		formatDate(date) {
+			let mounth = date?.slice(5, 7)
+			const day = date?.slice(8, 10)
+			const year = date?.slice(0, 4)
+			mounth = new Date(`${year}-${mounth}-${day}`).toLocaleString(
+				'tr-TR',
+				{ month: 'long' },
+			)
+			return `${day} ${mounth} ${year}`
+		},
 		async getProduct() {
 			try {
 				const res = await this.$axios.$get(
@@ -208,11 +219,3 @@ export default {
 	},
 }
 </script>
-<style scoped>
-.dot {
-	width: 5px;
-	height: 5px;
-	background-color: #a6a2a2;
-	border-radius: 100px;
-}
-</style>
