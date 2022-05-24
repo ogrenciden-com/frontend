@@ -51,7 +51,7 @@
 				<v-card-subtitle
 					class="pa-0 pt-1 text-body-1 font-weight-bold primary--text"
 				>
-					{{ ads.price }}
+					{{ ads.price }} TL
 				</v-card-subtitle>
 				<v-card-text
 					class="pa-0 pt-1 text-caption font-weight-light dark-grey--text d-flex align-center justify-space-between"

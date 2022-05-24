@@ -28,7 +28,7 @@
 			<v-card-title class="pa-0 pt-1 mt-2">
 				<nuxt-link
 					:to="detailLink"
-					class="text-body-2 font-weight-medium black--text text-decoration-none elipsis"
+					class="text-body-2 font-weight-medium black--text text-decoration-none text-transform-capitalize elipsis"
 				>
 					{{ ads.title }}
 				</nuxt-link>
@@ -41,7 +41,7 @@
 			<v-card-subtitle
 				class="pa-0 pt-2 text-body-1 font-weight-bold primary--text"
 			>
-				{{ ads.price }}
+				{{ ads.price }} TL
 			</v-card-subtitle>
 			<v-card-text
 				class="pa-0 pt-1 text-caption font-weight-light dark-grey--text d-flex align-center justify-space-between"
