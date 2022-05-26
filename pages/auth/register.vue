@@ -191,6 +191,7 @@ export default {
 		...mapMutations({
 			findCampusByUniversitySlug:
 				'UniversityAndCampus/findCampusByUniversitySlug',
+			userToggle: 'userToggle',
 		}),
 		async submit() {
 			try {
@@ -202,6 +203,7 @@ export default {
 					},
 				})
 				this.$auth.strategy.token.set(res.data.tokens.access_token)
+				this.userToggle()
 
 				this.$router.push('/')
 			} catch (e) {
