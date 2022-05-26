@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<v-card flat rounded="lg" class="px-sm-10 px-4">
-			<v-snackbar v-model="snackbar" timeout="2000">
+			<v-snackbar v-model="snackbar" timeout="2000" top app>
 				{{ err }}
 
 				<template #action="{ attrs }">
@@ -201,6 +201,7 @@ export default {
 				category: undefined,
 				price: undefined,
 				images: [],
+				user_id: '',
 			},
 			image: [],
 			snackbar: false,
@@ -227,6 +228,9 @@ export default {
 			this.findCampusByUniversitySlug(this.ads.university)
 		},
 	},
+	created() {
+		this.getUser()
+	},
 	methods: {
 		...mapMutations({
 			advertToggle: 'advertToggle',
@@ -238,6 +242,16 @@ export default {
 			this.ads.images[index] = URL.createObjectURL(this.image)
 			selectedImage = await processImage(selectedImage)
 			this.ads.images[index] = selectedImage
+		},
+		async getUser() {
+			try {
+				const data = await this.$axios.$get('auth/me')
+				this.ads.user_id = data._id
+			} catch (e) {
+				// eslint-disable-next-line no-console
+				console.log(e)
+				// this.$nuxt.error({ e })
+			}
 		},
 		async submit() {
 			this.ads.contact = this.ads.contact.split(' ').join('')
