@@ -125,11 +125,14 @@ export default {
 	methods: {
 		async loginWithEmail() {
 			try {
-				const res = await this.$axios.$post('auth/login', this.user)
-				console.log(res)
+				const res = await this.$auth.loginWith('local', {
+					data: this.user,
+				})
+				this.$auth.strategy.token.set(res.data.tokens.access_token)
 				this.$router.push('/')
 			} catch (err) {
-				this.$nuxt.error({ err })
+				console.log(err)
+				// this.$nuxt.error({ err })
 			}
 		},
 	},
