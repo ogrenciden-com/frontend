@@ -30,6 +30,8 @@ export default {
 		ItemCard,
 		ItemList,
 	},
+	middleware: 'auth',
+
 	data() {
 		return {
 			ads: [
@@ -99,7 +101,6 @@ export default {
 			],
 		}
 	},
-	// middleware: 'auth',
 	mounted() {
 		this.$vuetify.goTo(0)
 	},

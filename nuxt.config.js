@@ -36,6 +36,28 @@ export default {
 	],
 	auth: {
 		strategies: {
+			// local: {
+			// 	token: {
+			// 		property: 'token',
+			// 		// required: true,
+			// 		// type: 'Bearer',
+			// 	},
+			// 	user: {
+			// 		property: 'user',
+			// 		autoFetch: false,
+			// 	},
+			// 	endpoints: {
+			// 		login: {
+			// 			url: 'auth/login',
+			// 			method: 'post',
+			// 		},
+			// 		user: {
+			// 			url: 'auth/me',
+			// 			method: 'get',
+			// 		},
+			// 		logout: false,
+			// 	},
+			// },
 			local: {
 				token: {
 					property: 'token',
@@ -45,12 +67,12 @@ export default {
 				},
 				user: {
 					property: 'user',
-					autoFetch: true,
+					// autoFetch: true
 				},
 				endpoints: {
 					login: { url: 'auth/login', method: 'post' },
-					logout: { url: '/logout', method: 'post' },
-					user: { url: 'auth/:id', method: 'get' },
+					logout: false,
+					user: { url: 'auth/me', method: 'get' },
 				},
 			},
 		},

@@ -19,7 +19,7 @@
 						@click="advertToggle"
 						>İlan oluştur</v-btn
 					>
-					<avatar-menu v-if="hasUser" />
+					<avatar-menu v-if="$auth.loggedIn" :user="user" />
 					<v-btn
 						v-else
 						outlined
@@ -111,7 +111,7 @@
 									</li>
 									<li>
 										<nuxt-link
-											to="/profile"
+											to="/"
 											class="darkGrey--text text-decoration-none text-body-2"
 											>Profil Düzenle</nuxt-link
 										>
@@ -224,6 +224,9 @@ export default {
 	data() {
 		return {
 			fab: false,
+			user: {},
+			loading: false,
+			hasUser: false,
 		}
 	},
 
@@ -234,16 +237,35 @@ export default {
 		profileModal() {
 			return this.$store.state.profileModal
 		},
-		hasUser() {
-			return this.$store.state.hasUser
-		},
+	},
+	created() {
+		this.getUser()
 	},
 	methods: {
+		// checkHasUser(user) {
+		// 	if (Object.keys(user).length > 0) this.hasUser = true
+		// 	// else this.hasUser = false
+		// },
 		...mapMutations({
 			advertToggle: 'advertToggle',
 			profileToggle: 'profileToggle',
 			userToggle: 'userToggle',
 		}),
+		async getUser() {
+			try {
+				this.loading = true
+				const data = await this.$axios.$get('auth/me')
+
+				this.user = { ...data }
+				this.$auth.setUser(this.user)
+			} catch (e) {
+				// eslint-disable-next-line no-console
+				console.log(e)
+			} finally {
+				this.loading = false
+				// this.checkHasUser(this.user)
+			}
+		},
 		onScroll(e) {
 			if (typeof window === 'undefined') return
 			const top = window.pageYOffset || e.target.scrollTop || 0

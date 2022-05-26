@@ -233,12 +233,9 @@ export default {
 	methods: {
 		async getUser() {
 			try {
-				const data = await this.$axios.$get(
-					'auth/6287f917008193cfe442094e',
-				)
+				const data = await this.$axios.$get('auth/me')
 				// eslint-disable-next-line no-console
-				console.log(data)
-				this.user = { ...data, password: '' }
+				this.user = { ...data }
 				// this.$router.push('/')
 			} catch (e) {
 				// eslint-disable-next-line no-console
@@ -251,13 +248,6 @@ export default {
 				'UniversityAndCampus/findCampusByUniversitySlug',
 			profileToggle: 'profileToggle',
 		}),
-		// fillUser() {
-		// 	if (!this.currentUser) return
-		// 	this.user.name = this.currentUser.displayName.split(' ')[0]
-		// 	this.user.surname = this.currentUser.displayName.split(' ')[1]
-		// 	this.user.email = this.currentUser.email
-		// 	this.user.url = this.currentUser.photoURL
-		// },
 		previewImage() {
 			this.user.url = URL.createObjectURL(this.image)
 		},

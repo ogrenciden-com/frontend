@@ -191,10 +191,22 @@ export default {
 		...mapMutations({
 			findCampusByUniversitySlug:
 				'UniversityAndCampus/findCampusByUniversitySlug',
+			userToggle: 'userToggle',
 		}),
 		async submit() {
 			try {
 				await this.$axios.$post('auth', this.user)
+				const res = await this.$auth.loginWith('local', {
+					data: {
+						email: this.user.email,
+						password: this.user.password,
+					},
+				})
+				this.$auth.strategy.token.set(res.data.tokens.access_token)
+				this.$auth.setUser(res.data)
+
+				this.userToggle()
+
 				this.$router.push('/')
 			} catch (e) {
 				this.$nuxt.error({ e })
