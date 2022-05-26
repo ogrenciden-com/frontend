@@ -233,12 +233,9 @@ export default {
 	methods: {
 		async getUser() {
 			try {
-				const data = await this.$axios.$get(
-					'auth/6287f917008193cfe442094e',
-				)
+				const data = await this.$axios.$get('auth/me')
 				// eslint-disable-next-line no-console
-				console.log(data)
-				this.user = { ...data, password: '' }
+				this.user = { ...data }
 				// this.$router.push('/')
 			} catch (e) {
 				// eslint-disable-next-line no-console
