@@ -22,9 +22,8 @@
 						src="https://pbs.twimg.com/profile_images/1322853331073671169/bcNaQF8Y_400x400.jpg"
 					></v-img> -->
 					<span>
-						<!-- {{ user?.name.slice(0, 1) }}
-						{{ user?.surname.slice(0, 1) }} -->
-						ÖA
+						{{ !loading && user.name.slice(0, 1)
+						}}{{ !loading && user.surname.slice(0, 1) }}
 					</span>
 				</v-avatar>
 			</v-btn>
@@ -97,7 +96,7 @@ export default {
 				{
 					id: 4,
 					text: 'Çıkış Yap',
-					function: () => {},
+					function: this.logout,
 					link: '/auth/login',
 				},
 			],
@@ -114,14 +113,18 @@ export default {
 			profileToggle: 'profileToggle',
 			userToggle: 'userToggle',
 		}),
+		async logout() {
+			try {
+				await this.$auth.logout()
+			} catch (error) {
+				console.error(error)
+			}
+		},
 		async getUser() {
 			try {
 				this.loading = true
-				const data = await this.$axios.$get(
-					'auth/6287f917008193cfe442094e',
-				)
+				const data = await this.$axios.$get('auth/me')
 				this.user = { ...data }
-				// this.$router.push('/')
 			} catch (e) {
 				// eslint-disable-next-line no-console
 				console.log(e)
