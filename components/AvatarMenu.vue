@@ -13,8 +13,8 @@
 				<div
 					class="font-weight-bold black--text mr-2 d-none d-md-block text-transform-none"
 				>
-					{{ !loading && user.name }}
-					{{ !loading && user.surname }}
+					{{ user.name }}
+					{{ user.surname }}
 				</div>
 				<v-avatar size="38" color="primary" class="white--text">
 					<!-- <v-img :src="user.photoURL"></v-img> -->
@@ -22,8 +22,8 @@
 						src="https://pbs.twimg.com/profile_images/1322853331073671169/bcNaQF8Y_400x400.jpg"
 					></v-img> -->
 					<span>
-						{{ !loading && user.name.slice(0, 1)
-						}}{{ !loading && user.surname.slice(0, 1) }}
+						{{ user.name && user.name.slice(0, 1)
+						}}{{ user.surname && user.surname.slice(0, 1) }}
 					</span>
 				</v-avatar>
 			</v-btn>
@@ -66,6 +66,12 @@
 import { mapMutations } from 'vuex'
 
 export default {
+	props: {
+		user: {
+			type: Object,
+			default: () => {},
+		},
+	},
 	data() {
 		return {
 			menuItems: [
@@ -100,12 +106,7 @@ export default {
 					link: '/auth/login',
 				},
 			],
-			user: {},
-			loading: false,
 		}
-	},
-	created() {
-		this.getUser()
 	},
 	methods: {
 		...mapMutations({
@@ -118,18 +119,6 @@ export default {
 				await this.$auth.logout()
 			} catch (error) {
 				console.error(error)
-			}
-		},
-		async getUser() {
-			try {
-				this.loading = true
-				const data = await this.$axios.$get('auth/me')
-				this.user = { ...data }
-			} catch (e) {
-				// eslint-disable-next-line no-console
-				console.log(e)
-			} finally {
-				this.loading = false
 			}
 		},
 	},
