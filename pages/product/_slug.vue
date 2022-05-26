@@ -157,17 +157,17 @@ export default {
 					href: '/',
 				},
 				{
-					text: 'Bülent Ecevit Üniversitesi',
+					text: this.$route.params.university,
 					disabled: false,
 					href: `/${this.$route.params.university}`,
 				},
 				{
-					text: 'Farabi',
+					text: this.$route.params.campus,
 					disabled: false,
 					href: `/${this.$route.params.university}/${this.$route.params.campus}`,
 				},
 				{
-					text: 'Teknoloji',
+					text: this.$route.params.category,
 					disabled: false,
 					href: `/${this.$route.params.university}/${this.$route.params.campus}/${this.$route.params.category}`,
 				},
@@ -214,6 +214,7 @@ export default {
 			} catch (e) {
 				// eslint-disable-next-line no-console
 				console.log(e)
+				this.$nuxt.error({ e })
 			}
 		},
 	},
