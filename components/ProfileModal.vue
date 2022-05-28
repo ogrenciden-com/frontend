@@ -208,6 +208,9 @@ export default {
 			image: [],
 		}
 	},
+	async fetch() {
+		await this.getUser()
+	},
 	computed: {
 		universities() {
 			return this.$store.state.UniversityAndCampus?.universities
@@ -227,16 +230,12 @@ export default {
 			this.findCampusByUniversitySlug(this.user.university)
 		},
 	},
-	created() {
-		this.getUser()
-	},
 	methods: {
 		async getUser() {
 			try {
 				const data = await this.$axios.$get('auth/me')
 				// eslint-disable-next-line no-console
 				this.user = { ...data }
-				// this.$router.push('/')
 			} catch (e) {
 				// eslint-disable-next-line no-console
 				console.log(e)

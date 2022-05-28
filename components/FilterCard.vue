@@ -192,6 +192,7 @@ export default {
 						: undefined,
 				},
 				query: {
+					text: this.$route.query.text || undefined,
 					order: this.form.order
 						? slugify(this.form.order, {
 								lower: true,

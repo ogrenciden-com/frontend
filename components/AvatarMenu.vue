@@ -13,8 +13,8 @@
 				<div
 					class="font-weight-bold black--text mr-2 d-none d-md-block text-transform-none"
 				>
-					{{ user.name }}
-					{{ user.surname }}
+					{{ $auth.user.name || user.name }}
+					{{ $auth.user.surname || user.surname }}
 				</div>
 				<v-avatar size="38" color="primary" class="white--text">
 					<!-- <v-img :src="user.photoURL"></v-img> -->
@@ -22,8 +22,13 @@
 						src="https://pbs.twimg.com/profile_images/1322853331073671169/bcNaQF8Y_400x400.jpg"
 					></v-img> -->
 					<span>
-						{{ user.name && user.name.slice(0, 1)
-						}}{{ user.surname && user.surname.slice(0, 1) }}
+						{{
+							(user.name && user.name.slice(0, 1)) ||
+							$auth.user.name.slice(0, 1)
+						}}{{
+							(user.surname && user.surname.slice(0, 1)) ||
+							$auth.user.surname.slice(0, 1)
+						}}
 					</span>
 				</v-avatar>
 			</v-btn>
@@ -102,7 +107,7 @@ export default {
 				{
 					id: 4,
 					text: 'Çıkış Yap',
-					function: this.logout,
+					function: () => {},
 					link: '/auth/login',
 				},
 			],
@@ -114,13 +119,13 @@ export default {
 			profileToggle: 'profileToggle',
 			userToggle: 'userToggle',
 		}),
-		async logout() {
-			try {
-				await this.$auth.logout()
-			} catch (error) {
-				console.error(error)
-			}
-		},
+		// async logout() {
+		// 	try {
+		// 		await this.$auth.logout()
+		// 	} catch (error) {
+		// 		console.error(error)
+		// 	}
+		// },
 	},
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
 	<v-sheet max-width="232px">
-		<v-card outlined flat class="px-3 py-3">
+		<v-card outlined flat class="pa-3">
 			<v-carousel
 				v-model="model"
 				hide-delimiters
@@ -34,7 +34,7 @@
 				</nuxt-link>
 			</v-card-title>
 			<v-card-subtitle
-				class="pa-0 mt-1 text-caption font-weight-medium dark-grey--text"
+				class="pa-0 mt-1 text-caption font-weight-medium dark-grey--text text-transform-capitalize"
 			>
 				{{ ads.category }}
 			</v-card-subtitle>
@@ -44,7 +44,7 @@
 				{{ ads.price }} TL
 			</v-card-subtitle>
 			<v-card-text
-				class="pa-0 pt-1 text-caption font-weight-light dark-grey--text d-flex align-center justify-space-between"
+				class="pa-0 pt-1 text-caption font-weight-light dark-grey--text d-flex align-center justify-space-between text-transform-capitalize"
 			>
 				<span>
 					{{ ads.campus }}
