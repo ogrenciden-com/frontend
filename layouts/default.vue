@@ -9,11 +9,11 @@
 					<nuxt-link to="/" class="mr-lg-10 mr-3">
 						<brand-logo class="d-none d-sm-block" />
 					</nuxt-link>
-					<search-box class="mr-lg-14 mr-3" />
+					<search-box class="mr-lg-10 mr-3" />
 					<v-btn
 						color="primary"
 						height="48"
-						width="170"
+						width="160"
 						elevation="0"
 						class="rounded-lg d-none d-sm-flex mr-7 font text-transform-none"
 						@click="advertToggle"
@@ -48,6 +48,7 @@
 				</v-btn>
 				<v-dialog
 					v-model="advertModal"
+					:fullscreen="$vuetify.breakpoint.mobile"
 					max-width="680"
 					width="100%"
 					@click:outside="advertToggle"
@@ -242,14 +243,9 @@ export default {
 		this.getUser()
 	},
 	methods: {
-		// checkHasUser(user) {
-		// 	if (Object.keys(user).length > 0) this.hasUser = true
-		// 	// else this.hasUser = false
-		// },
 		...mapMutations({
 			advertToggle: 'advertToggle',
 			profileToggle: 'profileToggle',
-			userToggle: 'userToggle',
 		}),
 		async getUser() {
 			try {
@@ -263,7 +259,6 @@ export default {
 				console.log(e)
 			} finally {
 				this.loading = false
-				// this.checkHasUser(this.user)
 			}
 		},
 		onScroll(e) {
