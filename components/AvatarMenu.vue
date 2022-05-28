@@ -17,10 +17,6 @@
 					{{ $auth.user.surname || user.surname }}
 				</div>
 				<v-avatar size="38" color="primary" class="white--text">
-					<!-- <v-img :src="user.photoURL"></v-img> -->
-					<!-- <v-img
-						src="https://pbs.twimg.com/profile_images/1322853331073671169/bcNaQF8Y_400x400.jpg"
-					></v-img> -->
 					<span>
 						{{
 							(user.name && user.name.slice(0, 1)) ||
@@ -42,26 +38,26 @@
 					class="ml-4"
 				></v-sheet>
 				<template v-for="item in menuItems">
-					<div :key="item.id">
-						<v-list-item
-							color="primary"
-							dense
-							:style="{
-								textAlign: 'center',
-								fontSize: '14px',
-							}"
-							:to="item.link"
-							@click="item.function"
-						>
-							<span class="mx-auto"> {{ item.text }} </span>
-						</v-list-item>
-						<v-sheet
-							height="1"
-							width="129"
-							color="secondary"
-							class="ml-4"
-						></v-sheet>
-					</div>
+					<v-list-item
+						:key="'item-' + item.id"
+						color="primary"
+						dense
+						:style="{
+							textAlign: 'center',
+							fontSize: '14px',
+						}"
+						:to="item.link"
+						@click="item.function"
+					>
+						<span class="mx-auto"> {{ item.text }} </span>
+					</v-list-item>
+					<v-sheet
+						:key="'sheet-' + item.id"
+						height="1"
+						width="129"
+						color="secondary"
+						class="ml-4"
+					></v-sheet>
 				</template>
 			</v-list>
 		</v-card>
@@ -107,7 +103,7 @@ export default {
 				{
 					id: 4,
 					text: 'Çıkış Yap',
-					function: () => {},
+					function: this.logout,
 					link: '/auth/login',
 				},
 			],
@@ -117,15 +113,14 @@ export default {
 		...mapMutations({
 			advertToggle: 'advertToggle',
 			profileToggle: 'profileToggle',
-			userToggle: 'userToggle',
 		}),
-		// async logout() {
-		// 	try {
-		// 		await this.$auth.logout()
-		// 	} catch (error) {
-		// 		console.error(error)
-		// 	}
-		// },
+		async logout() {
+			try {
+				await this.$auth.logout()
+			} catch (error) {
+				console.error(error)
+			}
+		},
 	},
 }
 </script>
