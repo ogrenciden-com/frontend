@@ -2,19 +2,19 @@ export const state = () => ({
 	list: [
 		{
 			name: 'En yeni',
-			slug: 'en-yeni',
+			slug: 'descending',
 		},
 		{
 			name: 'En eski',
-			slug: 'en-eski',
+			slug: 'ascending',
 		},
 		{
 			name: 'Fiyata göre artan (Önce düşük fiyat)',
-			slug: 'fiyata-gore-artan',
+			slug: 'asc',
 		},
 		{
 			name: 'Fiyata göre azalan (Önce yüksek fiyat)',
-			slug: 'fiyata-gore-azalan',
+			slug: 'desc',
 		},
 	],
 })
