@@ -2,10 +2,10 @@
 	<v-row>
 		<v-col order="last" order-md="first" cols="8" class="col-12 col-md-8">
 			<v-row>
-				<template v-if="loading">
+				<template v-if="$fetchState.pending">
 					<v-col
 						v-for="index in 9"
-						:key="index"
+						:key="'card-' + index"
 						cols="4"
 						class="pt-0 pb-6 pr-0 ml-n1 d-none d-sm-flex justify-center justify-md-start col-4 col-md-6 col-lg-4"
 					>
@@ -13,9 +13,9 @@
 					</v-col>
 				</template>
 				<v-col
-					v-for="(ad, index) in ads"
+					v-for="ad in ads"
 					v-else
-					:key="index"
+					:key="ad._id"
 					cols="4"
 					class="pt-0 pb-6 pr-0 ml-n1 d-none d-sm-flex justify-center justify-md-start col-4 col-md-6 col-lg-4"
 				>
@@ -35,16 +35,16 @@
 			<template v-if="loading">
 				<v-row
 					v-for="index in 5"
-					:key="index"
+					:key="'list-' + index"
 					class="d-block d-sm-none px-3 pb-3"
 				>
 					<card-skeleton :card="false" />
 				</v-row>
 			</template>
 			<v-row
-				v-for="(ad, index) in ads"
+				v-for="ad in ads"
 				v-else
-				:key="index"
+				:key="`${ad.user_id}-${ad._id}`"
 				class="d-block d-sm-none px-3 pb-3"
 			>
 				<item-list :ads="ad" />
@@ -90,9 +90,9 @@ export default {
 	async fetch() {
 		await this.getProducts()
 	},
-	mounted() {
-		this.$vuetify.goTo(0)
-	},
+	// mounted() {
+	// 	this.$vuetify.goTo(0)
+	// },
 	methods: {
 		async getProducts() {
 			try {

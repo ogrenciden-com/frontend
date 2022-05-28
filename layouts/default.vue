@@ -19,7 +19,10 @@
 						@click="advertToggle"
 						>İlan oluştur</v-btn
 					>
-					<avatar-menu v-if="$auth.loggedIn" :user="user" />
+					<avatar-menu
+						v-if="!loading && $auth.loggedIn"
+						:user="user"
+					/>
 					<v-btn
 						v-else
 						outlined
@@ -230,6 +233,9 @@ export default {
 			hasUser: false,
 		}
 	},
+	async fetch() {
+		await this.getUser()
+	},
 
 	computed: {
 		advertModal() {
@@ -238,9 +244,6 @@ export default {
 		profileModal() {
 			return this.$store.state.profileModal
 		},
-	},
-	created() {
-		this.getUser()
 	},
 	methods: {
 		...mapMutations({
