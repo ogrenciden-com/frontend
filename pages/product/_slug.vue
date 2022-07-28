@@ -44,7 +44,7 @@
 				<v-card-title
 					class="font-weight-bold text-h5 primary--text pl-0 pt-2 pb-0"
 				>
-					{{ item.price }} TL
+					{{ item.price && item.price.toLocaleString('tr-TR') }} TL
 				</v-card-title>
 				<div
 					class="text-body-2 darkGrey--text d-flex align-center mt-1"
@@ -71,7 +71,20 @@
 				<div
 					class="pb-4 pb-sm-0 d-flex align-center justify-space-between"
 				>
-					<span class="text-caption darkGrey--text mr-4">
+					<v-btn
+						v-if="!reCAPTCHA"
+						x-small
+						text
+						:loading="recaptchaLoading"
+						color="primary"
+						@click="waitASecond()"
+					>
+						Numarayı gör
+					</v-btn>
+					<span
+						v-if="reCAPTCHA"
+						class="text-caption darkGrey--text mr-4"
+					>
 						<!-- Bu ilan 181 kez görüntülendi -->
 						İletişim: {{ item.contact }}
 					</span>
@@ -123,17 +136,55 @@
 						</a>
 					</div>
 				</div>
-				<v-btn v-if="false" icon absolute top right>
-					<v-hover v-slot="{ hover }">
-						<v-btn icon>
-							<v-icon :class="hover ? 'primary--text' : ''"
-								>mdi-pencil-circle</v-icon
+				<div v-if="item && userId">
+					<v-btn
+						v-if="item.user_id._id === userId"
+						icon
+						absolute
+						top
+						right
+						:loading="deleteLoading"
+					>
+						<v-hover v-slot="{ hover }">
+							<v-btn
+								icon
+								@click="
+									;(snackbar = true), (deleteLoading = true)
+								"
 							>
-						</v-btn>
-					</v-hover>
-				</v-btn>
+								<v-icon :class="hover ? 'red--text' : ''"
+									>mdi-delete</v-icon
+								>
+							</v-btn>
+						</v-hover>
+					</v-btn>
+				</div>
 			</v-card>
 		</v-sheet>
+		<v-snackbar v-model="snackbar" top app outlined color="primary">
+			Silmek istediğinize emin misiniz?
+
+			<template #action="{ attrs }">
+				<v-btn
+					color="red"
+					text
+					v-bind="attrs"
+					class="text-transform-none"
+					@click="deleteAd()"
+				>
+					Sil
+				</v-btn>
+				<v-btn
+					color="primary"
+					text
+					v-bind="attrs"
+					class="text-transform-none"
+					@click=";(snackbar = false), (deleteLoading = false)"
+				>
+					Silme
+				</v-btn>
+			</template>
+		</v-snackbar>
 	</div>
 </template>
 <router>
@@ -150,6 +201,9 @@ export default {
 	data() {
 		return {
 			model: 0,
+			reCAPTCHA: false,
+			recaptchaLoading: false,
+			snackbar: undefined,
 			breadcrumbs: [
 				{
 					text: 'Ana Sayfa',
@@ -173,7 +227,13 @@ export default {
 				},
 			],
 			item: {},
+			userId: undefined,
+			deleteLoading: false,
 		}
+	},
+	async fetch() {
+		await this.getProduct()
+		await this.getUser()
 	},
 	computed: {
 		shareTelegramLink() {
@@ -191,10 +251,29 @@ export default {
 	mounted() {
 		this.$vuetify.goTo(0)
 	},
-	created() {
-		this.getProduct()
-	},
+
 	methods: {
+		async getUser() {
+			try {
+				const data = await this.$axios.$get('auth/me')
+				// eslint-disable-next-line no-console
+				this.userId = data._id
+			} catch (e) {
+				// eslint-disable-next-line no-console
+				console.log(e)
+				// this.$nuxt.error({ e })
+			}
+		},
+		waitASecond() {
+			this.recaptchaLoading = true
+			// console.log('1.', this.reCAPTCHA, this.recaptchaLoading)
+			setTimeout(() => {
+				this.reCAPTCHA = true
+				// console.log('2.', this.reCAPTCHA, this.recaptchaLoading)
+				this.recaptchaLoading = false
+			}, Math.floor(Math.random() * 1000 * 2))
+			// console.log('3.', this.reCAPTCHA, this.recaptchaLoading)
+		},
 		formatDate(date) {
 			let mounth = date?.slice(5, 7)
 			const day = date?.slice(8, 10)
@@ -215,6 +294,20 @@ export default {
 				// eslint-disable-next-line no-console
 				console.log(e)
 				this.$nuxt.error({ e })
+			}
+		},
+		async deleteAd() {
+			try {
+				this.snackbar = true
+				this.deleteLoading = true
+				await this.$axios.$delete(`/products/${this.$route.params.id}`)
+				this.$router.push({ path: '/' })
+			} catch (e) {
+				// eslint-disable-next-line no-console
+				console.log(e)
+				this.$nuxt.error({ e })
+			} finally {
+				this.deleteLoading = false
 			}
 		},
 	},

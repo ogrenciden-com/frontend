@@ -11,7 +11,7 @@
 						v-bind="attrs"
 						@click="snackbar = false"
 					>
-						Close
+						Kapat
 					</v-btn>
 				</template>
 			</v-snackbar>
@@ -52,7 +52,7 @@
 							v-model="ads.price"
 							placeholder="Fiyat"
 							append-icon="mdi-currency-try"
-							type="number"
+							type="tel"
 							background-color="secondary"
 							color="darkGrey"
 							class="text-caption text-sm-body-2 text-md-body-1 mr-3"
@@ -232,6 +232,9 @@ export default {
 		this.getUser()
 	},
 	methods: {
+		// clearAd(){
+
+		// }
 		...mapMutations({
 			advertToggle: 'advertToggle',
 			findCampusByUniversitySlug:
@@ -263,9 +266,8 @@ export default {
 				await this.$axios.$post('/products', this.ads)
 				this.advertToggle()
 			} catch (err) {
-				// console.log(e.response.data.error)
 				this.snackbar = true
-				this.err = err.response.data.error
+				this.err = err.response?.data.error
 				// this.$nuxt.error({ e })
 			} finally {
 				this.loading = false

@@ -51,7 +51,7 @@
 				</v-btn>
 				<v-dialog
 					v-model="advertModal"
-					:fullscreen="$vuetify.breakpoint.mobile"
+					:fullscreen="!$vuetify.breakpoint.smAndUp"
 					max-width="680"
 					width="100%"
 					@click:outside="advertToggle"
@@ -61,6 +61,7 @@
 				</v-dialog>
 				<v-dialog
 					v-model="profileModal"
+					:fullscreen="!$vuetify.breakpoint.smAndUp"
 					max-width="680"
 					width="100%"
 					@click:outside="profileToggle"
