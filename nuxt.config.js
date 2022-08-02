@@ -7,7 +7,13 @@ export default {
 		htmlAttrs: {
 			lang: 'en',
 		},
-
+		script: [
+			{
+				src: 'https://plausible.io/js/plausible.js',
+				'data-domain': 'ogrenciden.vercel.app',
+				defer: true,
+			},
+		],
 		meta: [
 			{ charset: 'utf-8' },
 			{
