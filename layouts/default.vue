@@ -5,10 +5,26 @@
 				<nuxt-link to="/" class="d-flex justify-center align-center">
 					<brand-logo class="mt-6 mb-4 d-sm-none" />
 				</nuxt-link>
+				<v-sheet class="text-center d-sm-none mt-n5">
+					<span
+						class="px-2 border rounded darkGrey--text text-caption"
+					>
+						Beta
+					</span>
+				</v-sheet>
 				<v-app-bar width="1157" color="white" height="72" elevation="0">
-					<nuxt-link to="/" class="mr-lg-10 mr-3">
-						<brand-logo class="d-none d-sm-block" />
-					</nuxt-link>
+					<div class="mr-lg-10 mr-3 d-none d-sm-flex">
+						<nuxt-link to="/">
+							<brand-logo />
+						</nuxt-link>
+						<v-sheet class="ml-1">
+							<span
+								class="px-1 border rounded darkGrey--text text-caption"
+							>
+								Beta
+							</span>
+						</v-sheet>
+					</div>
 					<search-box class="mr-lg-10 mr-3" />
 					<v-btn
 						color="primary"
@@ -91,6 +107,10 @@
 							{{ new Date().getFullYear() }} &copy;
 							<span>Öğrenciden</span>
 						</div>
+						<span class="text-caption darkGrey--text">
+							Bu uygulama hala yapım aşamasındadır. <br />
+							Olası hatalar olabilir.
+						</span>
 					</v-col>
 					<v-col
 						order="first"
@@ -147,7 +167,7 @@
 									</li>
 									<li>
 										<a
-											href="https://twitter.com"
+											href="https://twitter.com/_ahmet_cakir"
 											target="_blank"
 											class="darkGrey--text text-decoration-none text-body-2"
 											>Twitter</a
@@ -155,7 +175,7 @@
 									</li>
 									<li>
 										<a
-											href="https://linkedin.com"
+											href="https://www.linkedin.com/in/aahmetcakir/"
 											target="_blank"
 											class="darkGrey--text text-decoration-none text-body-2"
 											>Linkedin</a
@@ -163,7 +183,7 @@
 									</li>
 									<li>
 										<a
-											href="https://instagram.com"
+											href="https://www.instagram.com/ahmetcakir.ac/"
 											target="_blank"
 											class="darkGrey--text text-decoration-none text-body-2"
 											>İnstagram</a
@@ -273,3 +293,8 @@ export default {
 	},
 }
 </script>
+<style scoped>
+.border {
+	border: 1px solid #a6a2a2 !important;
+}
+</style>
