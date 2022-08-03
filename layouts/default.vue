@@ -43,7 +43,7 @@
 						v-else
 						outlined
 						nuxt
-						to="/auth/login"
+						to="/auth/register"
 						color="primary"
 						height="48"
 						elevation="0"
