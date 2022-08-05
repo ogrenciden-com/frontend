@@ -31,17 +31,13 @@
 		/>
 		<!-- university autocomplete -->
 		<!-- <v-autocomplete
-    	  :items="university"
-    	  v-model="universityName"
-    	  label="Üniversite"
-    	  class="mb-8 text-caption text-md-body-2"
-    	  background-color="secondary"
-    	  color="darkGrey"
-    	  hide-details
-    	  flat
-    	  solo
-    	  dense
-   		 ></v-autocomplete> -->
+			v-model="form.universityName"
+			:items="universities"
+			item-text="name"
+			item-value="slug"
+			label="Üniversite"
+			classes="mb-8 text-caption text-md-body-2"
+		></v-autocomplete> -->
 
 		<!-- campuses -->
 		<select-box
@@ -132,13 +128,13 @@ export default {
 	},
 	watch: {
 		'form.universityName'() {
-			if (!this.form.universityName) {
-				this.form.campus = undefined
-			}
+			if (!this.form.universityName) return (this.form.campus = undefined)
+
 			this.findCampusByUniversitySlug(this.form.universityName)
 		},
 	},
 	created() {
+		this.clearSelectedCampuses()
 		// university router name
 		if (this.$route.params.university) {
 			this.form.universityName = this.$route.params.university
@@ -170,6 +166,7 @@ export default {
 		...mapMutations({
 			findCampusByUniversitySlug:
 				'UniversityAndCampus/findCampusByUniversitySlug',
+			clearSelectedCampuses: 'UniversityAndCampus/clearSelectedCampuses',
 		}),
 		submit() {
 			this.$router.push({

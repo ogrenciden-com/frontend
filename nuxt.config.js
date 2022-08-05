@@ -2,8 +2,8 @@ import colors from 'vuetify/es5/util/colors'
 
 export default {
 	head: {
-		titleTemplate: '%s - ogrenciden',
-		title: 'ogrenciden',
+		titleTemplate: 'Öğrenciden - %s',
+		title: 'Öğrenciden',
 		htmlAttrs: {
 			lang: 'en',
 		},
