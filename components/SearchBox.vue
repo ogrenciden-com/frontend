@@ -12,7 +12,9 @@
 		@keydown.enter="submit"
 	>
 		<template slot="append">
-			<search-icon />
+			<v-btn icon @click="submit()">
+				<search-icon />
+			</v-btn>
 		</template>
 	</v-text-field>
 </template>
@@ -24,13 +26,13 @@ export default {
 	},
 	data() {
 		return {
+			// TODO when clicked brand logo clear input
 			search: undefined,
 		}
 	},
 	created() {
-		if (this.$route.query.q) {
-			this.search = this.$route.query.q
-		}
+		if (!this.$route.query.text) return (this.search = undefined)
+		this.search = this.$route.query.text
 	},
 	methods: {
 		submit() {
