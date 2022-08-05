@@ -22,6 +22,15 @@
 						>Bu formu kullanarak yeni bir ilan
 						oluşturabilirsiniz.</v-card-subtitle
 					>
+					<v-alert
+						width="100%"
+						dense
+						outlined
+						type="error"
+						class="text-caption red--text"
+					>
+						İlan oluşturmak için giriş yapmanız gerekmektedir!
+					</v-alert>
 				</div>
 				<v-btn icon class="mr-sm-n4 mt-n4" @click="advertToggle">
 					<v-icon color="black">mdi-close</v-icon>
@@ -232,9 +241,16 @@ export default {
 		this.getUser()
 	},
 	methods: {
-		// clearAd(){
-
-		// }
+		clearAd() {
+			this.ads.title = undefined
+			this.ads.university = undefined
+			this.ads.campus = undefined
+			this.ads.description = undefined
+			this.ads.contact = undefined
+			this.ads.price = undefined
+			this.ads.images = []
+			this.ads.user_id = undefined
+		},
 		...mapMutations({
 			advertToggle: 'advertToggle',
 			findCampusByUniversitySlug:
@@ -264,6 +280,7 @@ export default {
 			try {
 				this.loading = true
 				await this.$axios.$post('/products', this.ads)
+				this.clearAd()
 				this.advertToggle()
 			} catch (err) {
 				this.snackbar = true
