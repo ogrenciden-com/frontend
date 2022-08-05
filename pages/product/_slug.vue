@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<v-breadcrumbs
-			class="pa-0 mb-2 ml-2"
+			class="pa-0 mb-2 ml-2 font-weight-thin"
 			divider=">"
 			:items="breadcrumbs"
 		></v-breadcrumbs>
@@ -49,11 +49,12 @@
 				<div
 					class="text-body-2 darkGrey--text d-flex align-center mt-1"
 				>
-					<span class="mr-1"> {{ item.category }} </span>
+					<span class="mr-1 text-transform-capitalize darkGrey--text">
+						{{ item.category }}
+					</span>
 					<span class="d-block mr-1 dot"></span>
 					<time class="text-caption font-weight-light darkGrey--text">
 						{{ formatDate(item.createdAt) }}
-						<!-- {{ moment().add(10, 'days').calendar() }} -->
 					</time>
 				</div>
 				<div
@@ -63,7 +64,10 @@
 						{{ item.university }}
 					</span>
 					<span class="dot d-none d-sm-block mr-1"> </span>
-					<span class="font-weight-thin">{{ item.campus }}</span>
+					<span
+						class="font-weight-thin text-transform-capitalize darkGrey--text"
+						>{{ item.campus }}</span
+					>
 				</div>
 				<p class="text-body-2 mt-2 black--text">
 					{{ item.description }}
@@ -207,23 +211,25 @@ export default {
 			breadcrumbs: [
 				{
 					text: 'Ana Sayfa',
-					disabled: false,
 					href: '/',
 				},
 				{
-					text: this.$route.params.university,
+					text: this.convertTitle(this.$route.params.university),
 					disabled: false,
 					href: `/${this.$route.params.university}`,
+					nuxt: true,
 				},
 				{
-					text: this.$route.params.campus,
+					text: this.convertTitle(this.$route.params.campus),
 					disabled: false,
 					href: `/${this.$route.params.university}/${this.$route.params.campus}`,
+					nuxt: true,
 				},
 				{
-					text: this.$route.params.category,
+					text: this.convertTitle(this.$route.params.category),
 					disabled: false,
 					href: `/${this.$route.params.university}/${this.$route.params.campus}/${this.$route.params.category}`,
+					nuxt: true,
 				},
 			],
 			item: {},
@@ -253,6 +259,15 @@ export default {
 	},
 
 	methods: {
+		convertTitle(slug) {
+			const words = slug.split('-')
+			for (let i = 0; i < words.length; i++) {
+				const word = words[i]
+				words[i] = word.charAt(0).toUpperCase() + word.slice(1)
+			}
+			return words.join(' ')
+		},
+
 		async getUser() {
 			try {
 				const data = await this.$axios.$get('auth/me')
@@ -289,7 +304,12 @@ export default {
 				const res = await this.$axios.$get(
 					`/products/${this.$route.params.id}`,
 				)
-				this.item = res
+				let { category, university, campus } = res
+				category = this.convertTitle(category)
+				university = this.convertTitle(university)
+				campus = this.convertTitle(campus)
+
+				this.item = { ...res, category, university, campus }
 			} catch (e) {
 				// eslint-disable-next-line no-console
 				console.log(e)
