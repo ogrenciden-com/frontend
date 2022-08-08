@@ -6,7 +6,24 @@
 			:items="breadcrumbs"
 		></v-breadcrumbs>
 		<v-sheet class="d-md-flex d-block mb-10 mb-sm-0" outlined rounded="lg">
+			<template v-if="$fetchState.pending">
+				<v-sheet>
+					<v-skeleton-loader
+						class="d-none d-sm-block"
+						v-bind="attrs"
+						width="600"
+						height="600"
+					></v-skeleton-loader>
+					<v-skeleton-loader
+						class="d-sm-none d--block"
+						v-bind="attrs"
+						width="357"
+						height="600"
+					></v-skeleton-loader>
+				</v-sheet>
+			</template>
 			<v-carousel
+				v-else
 				v-model="model"
 				class="rounded"
 				hide-delimiters
@@ -29,7 +46,51 @@
 					></v-img>
 				</v-carousel-item>
 			</v-carousel>
+			<template v-if="$fetchState.pending">
+				<v-sheet
+					max-width="539"
+					width="100%"
+					color="secondary pl-5 rounded-r-lg mx-auto mx-md-0 pt-1"
+				>
+					<v-skeleton-loader
+						v-bind="attrs"
+						class="mt-4"
+						width="80%"
+						type="heading"
+					>
+					</v-skeleton-loader>
+					<v-skeleton-loader
+						v-bind="attrs"
+						class="mt-4"
+						width="80%"
+						type="chip"
+					>
+					</v-skeleton-loader>
+					<v-skeleton-loader
+						class="mt-4"
+						v-bind="attrs"
+						width="80%"
+						type="paragraph"
+					>
+					</v-skeleton-loader>
+					<v-skeleton-loader
+						class="mt-4"
+						v-bind="attrs"
+						width="80%"
+						type="text"
+					>
+					</v-skeleton-loader>
+					<v-skeleton-loader
+						class="py-4"
+						v-bind="attrs"
+						width="50%"
+						type="text"
+					>
+					</v-skeleton-loader>
+				</v-sheet>
+			</template>
 			<v-card
+				v-else
 				max-width="530"
 				width="100%"
 				flat
