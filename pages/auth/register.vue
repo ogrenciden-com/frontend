@@ -129,7 +129,7 @@
 					elevation="0"
 					@click="submit"
 				>
-					Giriş yap
+					Kayıt Ol
 				</v-btn>
 			</div>
 		</v-form>
