@@ -7,7 +7,7 @@
 			item-text="name"
 			item-value="slug"
 			label="Sıralama"
-			classes="mb-8 text-caption text-md-body-2"
+			classes="mb-4 mb-sm-8 text-caption text-md-body-2"
 		/>
 		<!-- categories -->
 		<select-box
@@ -16,7 +16,7 @@
 			item-text="name"
 			item-value="slug"
 			label="Kategori"
-			classes="mb-8 text-caption text-md-body-2"
+			classes="mb-4 mb-sm-8 text-caption text-md-body-2"
 		>
 		</select-box>
 
@@ -27,7 +27,7 @@
 			item-text="name"
 			item-value="slug"
 			label="Üniversite"
-			classes="mb-8 text-caption text-md-body-2"
+			classes="mb-4 mb-sm-8 text-caption text-md-body-2"
 		/>
 		<!-- university autocomplete -->
 		<!-- <v-autocomplete
@@ -42,18 +42,18 @@
 		<!-- campuses -->
 		<select-box
 			v-model="form.campus"
-			classes="mb-8 text-caption text-md-body-2"
 			:items="campuses"
 			item-text="name"
 			item-value="slug"
 			label="Kampüs"
+			classes="mb-4 mb-sm-8 text-caption text-md-body-2"
 		/>
 		<!-- price inputs -->
 		<div class="d-flex">
 			<v-text-field
 				v-model="form.minPrice"
 				placeholder="En Az"
-				class="mb-8 mr-1 text-caption text-md-body-2"
+				class="mb-4 mb-sm-8 mr-1 text-caption text-md-body-2"
 				type="number"
 				append-icon="mdi-currency-try"
 				background-color="white"
@@ -68,7 +68,7 @@
 				v-model="form.maxPrice"
 				placeholder="En Çok"
 				append-icon="mdi-currency-try"
-				class="mb-8 ml-1 text-caption text-md-body-2"
+				class="mb-4 mb-sm-8 ml-1 text-caption text-md-body-2"
 				type="number"
 				outlined
 				flat
@@ -129,7 +129,6 @@ export default {
 	watch: {
 		'form.universityName'() {
 			if (!this.form.universityName) return (this.form.campus = undefined)
-
 			this.findCampusByUniversitySlug(this.form.universityName)
 		},
 	},
@@ -149,7 +148,6 @@ export default {
 			this.form.category = this.$route.params.category
 		}
 		// max price router value
-
 		if (this.$route.query.maxPrice) {
 			this.form.maxPrice = this.$route.query.maxPrice
 		}

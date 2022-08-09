@@ -10,13 +10,11 @@
 				<v-sheet>
 					<v-skeleton-loader
 						class="d-none d-sm-block"
-						v-bind="attrs"
 						width="600"
 						height="600"
 					></v-skeleton-loader>
 					<v-skeleton-loader
 						class="d-sm-none d--block"
-						v-bind="attrs"
 						width="357"
 						height="600"
 					></v-skeleton-loader>
@@ -52,40 +50,19 @@
 					width="100%"
 					color="secondary pl-5 rounded-r-lg mx-auto mx-md-0 pt-1"
 				>
-					<v-skeleton-loader
-						v-bind="attrs"
-						class="mt-4"
-						width="80%"
-						type="heading"
-					>
+					<v-skeleton-loader class="mt-4" width="80%" type="heading">
 					</v-skeleton-loader>
-					<v-skeleton-loader
-						v-bind="attrs"
-						class="mt-4"
-						width="80%"
-						type="chip"
-					>
+					<v-skeleton-loader class="mt-4" width="80%" type="chip">
 					</v-skeleton-loader>
 					<v-skeleton-loader
 						class="mt-4"
-						v-bind="attrs"
 						width="80%"
 						type="paragraph"
 					>
 					</v-skeleton-loader>
-					<v-skeleton-loader
-						class="mt-4"
-						v-bind="attrs"
-						width="80%"
-						type="text"
-					>
+					<v-skeleton-loader class="mt-4" width="80%" type="text">
 					</v-skeleton-loader>
-					<v-skeleton-loader
-						class="py-4"
-						v-bind="attrs"
-						width="50%"
-						type="text"
-					>
+					<v-skeleton-loader class="py-4" width="50%" type="text">
 					</v-skeleton-loader>
 				</v-sheet>
 			</template>

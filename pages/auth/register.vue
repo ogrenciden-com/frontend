@@ -142,7 +142,7 @@
 				to="/auth/login"
 				class="primary--text text-decoration-none"
 			>
-				Giriş yap.
+				Kayıt Ol
 			</nuxt-link>
 		</span>
 	</v-card>

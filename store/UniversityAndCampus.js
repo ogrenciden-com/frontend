@@ -2,6 +2,32 @@
 export const state = () => ({
 	universities: [
 		{
+			name: 'İSTANBUL TEKNİK ÜNİVERSİTESİ',
+			slug: 'istanbul-teknik-universitesi',
+			campuses: [
+				{
+					name: 'Ayazağa',
+					slug: 'ayazaga',
+				},
+				{
+					name: 'Taşkışla',
+					slug: 'taskisla',
+				},
+				{
+					name: 'Maçka',
+					slug: 'macka',
+				},
+				{
+					name: 'Gümüşsuyu',
+					slug: 'gumussuyu',
+				},
+				{
+					name: 'Tuzla',
+					slug: 'tuzla',
+				},
+			],
+		},
+		{
 			name: 'ZONGULDAK BÜLENT ECEVİT ÜNİVERSİTESİ',
 			slug: 'zonguldak-bulent-ecevit-universitesi',
 			campuses: [
@@ -2080,32 +2106,6 @@ export const state = () => ({
 				{
 					name: 'Esentepe',
 					slug: 'esentepe',
-				},
-			],
-		},
-		{
-			name: 'İSTANBUL TEKNİK ÜNİVERSİTESİ',
-			slug: 'istanbul-teknik-universitesi',
-			campuses: [
-				{
-					name: 'Ayazağa',
-					slug: 'ayazaga',
-				},
-				{
-					name: 'Taşkışla',
-					slug: 'taskisla',
-				},
-				{
-					name: 'Maçka',
-					slug: 'macka',
-				},
-				{
-					name: 'Gümüşsuyu',
-					slug: 'gumussuyu',
-				},
-				{
-					name: 'Tuzla',
-					slug: 'tuzla',
 				},
 			],
 		},
