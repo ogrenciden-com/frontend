@@ -154,7 +154,8 @@
 							class="border ma-1 ma-sm-0"
 							outlined
 							flat
-							:style="{ position: 'relative' }"
+							:style="{ position: 'relative', cursor: 'pointer' }"
+							@click="fileInput(index)"
 						>
 							<v-img
 								:src="ads.images[index]"
@@ -163,6 +164,7 @@
 								cover
 							></v-img>
 							<v-file-input
+								ref="fileInput"
 								v-model="image"
 								class="centerCard"
 								accept="image/*"
@@ -256,6 +258,9 @@ export default {
 			findCampusByUniversitySlug:
 				'UniversityAndCampus/findCampusByUniversitySlug',
 		}),
+		fileInput(index) {
+			this.$refs.fileInput[index].$refs.input.click()
+		},
 		async previewImage(index) {
 			let selectedImage = this.image
 			this.ads.images[index] = URL.createObjectURL(this.image)
