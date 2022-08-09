@@ -129,7 +129,7 @@
 					elevation="0"
 					@click="submit"
 				>
-					Giriş yap
+					Kayıt Ol
 				</v-btn>
 			</div>
 		</v-form>
@@ -142,7 +142,7 @@
 				to="/auth/login"
 				class="primary--text text-decoration-none"
 			>
-				Giriş yap.
+				Giriş Yap
 			</nuxt-link>
 		</span>
 	</v-card>

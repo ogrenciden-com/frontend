@@ -23,7 +23,8 @@
 						class="border mx-auto mx-sm-0"
 						outlined
 						flat
-						:style="{ position: 'relative' }"
+						:style="{ position: 'relative', cursor: 'pointer' }"
+						@click="fileInput()"
 					>
 						<v-img
 							:src="user.url"
@@ -32,6 +33,7 @@
 							cover
 						></v-img>
 						<v-file-input
+							ref="fileInput"
 							v-model="image"
 							class="centerCard"
 							accept="image/*"
@@ -45,6 +47,7 @@
 				<!-- name & surname -->
 				<v-col class="mt-5 mt-sm-0" cols="12" sm="8">
 					<v-row class="mb-3" dense>
+						<!-- name -->
 						<v-col>
 							<v-text-field
 								v-model="user.name"
@@ -62,6 +65,7 @@
 								hide-details
 							></v-text-field>
 						</v-col>
+						<!-- surname -->
 						<v-col>
 							<v-text-field
 								v-model="user.surname"
@@ -78,6 +82,7 @@
 							></v-text-field>
 						</v-col>
 					</v-row>
+					<!-- email -->
 					<v-row class="mb-5" no-gutters>
 						<v-text-field
 							v-model="user.email"
@@ -98,6 +103,7 @@
 							</template>
 						</v-text-field>
 					</v-row>
+					<!-- password -->
 					<v-row class="mb-5" no-gutters>
 						<v-text-field
 							v-model="user.password"
@@ -153,7 +159,7 @@
 				</v-col>
 			</v-row>
 			<!-- contact information  -->
-			<v-row no-gutters>
+			<!-- <v-row no-gutters>
 				<v-col>
 					<v-text-field
 						v-model="user.tel"
@@ -169,15 +175,16 @@
 						dense
 					></v-text-field>
 				</v-col>
-			</v-row>
+			</v-row> -->
 
 			<v-btn
 				color="primary"
 				height="40"
 				width="100%"
 				elevation="0"
-				class="font-weight-bold my-6"
-				@click="submit"
+				class="font-weight-bold mb-6"
+				:loading="loading"
+				@click="submit()"
 				>Kaydet</v-btn
 			>
 		</form>
@@ -201,11 +208,11 @@ export default {
 				password: undefined,
 				university: undefined,
 				campus: undefined,
-				tel: '+905',
 				url: undefined,
 			},
 			isShow: false,
 			image: [],
+			loading: false,
 		}
 	},
 	async fetch() {
@@ -250,9 +257,29 @@ export default {
 		previewImage() {
 			this.user.url = URL.createObjectURL(this.image)
 		},
-		submit() {
-			// eslint-disable-next-line no-console
-			console.log(this.user)
+		fileInput() {
+			this.$refs.fileInput.$refs.input.click()
+		},
+		async submit() {
+			try {
+				this.loading = true
+				const newUser = { ...this.user }
+				delete newUser._id
+				delete newUser.createdAt
+				delete newUser.updatedAt
+				delete newUser.email
+				const res = await this.$axios.$put(
+					`/auth/${this.user._id}`,
+					newUser,
+				)
+				// eslint-disable-next-line
+				console.log(res)
+			} catch (error) {
+				// eslint-disable-next-line
+				console.log(error)
+			} finally {
+				this.loading = false
+			}
 		},
 	},
 }

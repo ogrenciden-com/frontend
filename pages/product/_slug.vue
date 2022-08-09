@@ -10,13 +10,11 @@
 				<v-sheet>
 					<v-skeleton-loader
 						class="d-none d-sm-block"
-						v-bind="attrs"
 						width="600"
 						height="600"
 					></v-skeleton-loader>
 					<v-skeleton-loader
 						class="d-sm-none d--block"
-						v-bind="attrs"
 						width="357"
 						height="600"
 					></v-skeleton-loader>
@@ -52,40 +50,19 @@
 					width="100%"
 					color="secondary pl-5 rounded-r-lg mx-auto mx-md-0 pt-1"
 				>
-					<v-skeleton-loader
-						v-bind="attrs"
-						class="mt-4"
-						width="80%"
-						type="heading"
-					>
+					<v-skeleton-loader class="mt-4" width="80%" type="heading">
 					</v-skeleton-loader>
-					<v-skeleton-loader
-						v-bind="attrs"
-						class="mt-4"
-						width="80%"
-						type="chip"
-					>
+					<v-skeleton-loader class="mt-4" width="80%" type="chip">
 					</v-skeleton-loader>
 					<v-skeleton-loader
 						class="mt-4"
-						v-bind="attrs"
 						width="80%"
 						type="paragraph"
 					>
 					</v-skeleton-loader>
-					<v-skeleton-loader
-						class="mt-4"
-						v-bind="attrs"
-						width="80%"
-						type="text"
-					>
+					<v-skeleton-loader class="mt-4" width="80%" type="text">
 					</v-skeleton-loader>
-					<v-skeleton-loader
-						class="py-4"
-						v-bind="attrs"
-						width="50%"
-						type="text"
-					>
+					<v-skeleton-loader class="py-4" width="50%" type="text">
 					</v-skeleton-loader>
 				</v-sheet>
 			</template>
@@ -136,7 +113,7 @@
 				<div
 					class="pb-4 pb-sm-0 d-flex align-center justify-space-between"
 				>
-					<v-btn
+					<!-- <v-btn
 						v-if="!reCAPTCHA"
 						x-small
 						text
@@ -145,13 +122,12 @@
 						@click="waitASecond()"
 					>
 						Numarayı gör
-					</v-btn>
-					<span
-						v-if="reCAPTCHA"
-						class="text-caption darkGrey--text mr-4"
-					>
+					</v-btn> -->
+					<span class="text-caption darkGrey--text mr-4">
 						<!-- Bu ilan 181 kez görüntülendi -->
-						İletişim: {{ item.contact }}
+						{{ item.user_id.name }}
+						{{ item.user_id.surname }}:
+						{{ item.contact }}
 					</span>
 					<div class="mr-sm-4 mr-2 d-flex">
 						<a
@@ -266,8 +242,8 @@ export default {
 	data() {
 		return {
 			model: 0,
-			reCAPTCHA: false,
-			recaptchaLoading: false,
+			// reCAPTCHA: false,
+			// recaptchaLoading: false,
 			snackbar: undefined,
 			breadcrumbs: [
 				{
@@ -340,16 +316,16 @@ export default {
 				// this.$nuxt.error({ e })
 			}
 		},
-		waitASecond() {
-			this.recaptchaLoading = true
-			// console.log('1.', this.reCAPTCHA, this.recaptchaLoading)
-			setTimeout(() => {
-				this.reCAPTCHA = true
-				// console.log('2.', this.reCAPTCHA, this.recaptchaLoading)
-				this.recaptchaLoading = false
-			}, Math.floor(Math.random() * 1000 * 2))
-			// console.log('3.', this.reCAPTCHA, this.recaptchaLoading)
-		},
+		// waitASecond() {
+		// 	this.recaptchaLoading = true
+		// 	// console.log('1.', this.reCAPTCHA, this.recaptchaLoading)
+		// 	setTimeout(() => {
+		// 		this.reCAPTCHA = true
+		// 		// console.log('2.', this.reCAPTCHA, this.recaptchaLoading)
+		// 		this.recaptchaLoading = false
+		// 	}, Math.floor(Math.random() * 1000 * 2))
+		// 	// console.log('3.', this.reCAPTCHA, this.recaptchaLoading)
+		// },
 		formatDate(date) {
 			let mounth = date?.slice(5, 7)
 			const day = date?.slice(8, 10)

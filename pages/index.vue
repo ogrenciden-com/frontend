@@ -9,7 +9,7 @@
 						cols="4"
 						class="pt-0 pb-6 pr-0 ml-n1 d-none d-sm-flex justify-center justify-md-start col-4 col-md-6 col-lg-4"
 					>
-						<card-skeleton />
+						<card-skeleton card />
 					</v-col>
 				</template>
 				<v-col
@@ -27,9 +27,13 @@
 					dense
 					outlined
 					type="error"
-					class="ml-3 mr-2"
+					class="ml-3 mr-2 d-flex align-center"
 				>
-					Seçtiğiniz kriterlere ait ilan bulunamamıştır.
+					Seçtiğin kriterlere ait ilan bulunamadı ama sen yeni bir
+					tane oluşturabilirsin.
+					<v-btn icon class="mt-n1" @click="advertToggle()">
+						<v-icon color="darkGray">mdi-clipboard-plus </v-icon>
+					</v-btn>
 				</v-alert>
 			</v-row>
 			<template v-if="loading">
@@ -38,7 +42,7 @@
 					:key="'list-' + index"
 					class="d-block d-sm-none px-3 pb-3"
 				>
-					<card-skeleton :card="false" />
+					<card-skeleton />
 				</v-row>
 			</template>
 			<v-row
@@ -68,10 +72,12 @@
   }
 </router>
 <script>
+import { mapMutations } from 'vuex'
 import ItemCard from '@/components/ItemCard.vue'
 import ItemList from '@/components/ItemList.vue'
 import FilterCard from '@/components/FilterCard.vue'
 import CardSkeleton from '@/components/CardSkeleton.vue'
+
 export default {
 	name: 'IndexPage',
 	components: {
@@ -94,6 +100,9 @@ export default {
 	// 	this.$vuetify.goTo(0)
 	// },
 	methods: {
+		...mapMutations({
+			advertToggle: 'advertToggle',
+		}),
 		async getProducts() {
 			try {
 				this.loading = true
