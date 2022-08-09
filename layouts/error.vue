@@ -33,6 +33,8 @@
 				<v-btn
 					class="primary mt-10 d-flex justify-center text-transform-none font-weight-normal text-body-1 mx-auto"
 					elevation="0"
+					nuxt
+					to="/"
 					@click="$router.go(0)"
 				>
 					Ana sayfaya dön
