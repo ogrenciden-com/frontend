@@ -134,12 +134,13 @@
 											>Ana Sayfa</nuxt-link
 										>
 									</li>
-									<li>
-										<nuxt-link
-											to="/"
-											class="darkGrey--text text-decoration-none text-body-2"
-											>Profil Düzenle</nuxt-link
-										>
+									<li
+										class="darkGrey--text text-decoration-none text-body-2 cursor-pointer"
+										@click="
+											$auth.loggedIn && profileToggle()
+										"
+									>
+										Profil Düzenle
 									</li>
 									<li>
 										<nuxt-link

@@ -11,7 +11,9 @@
 // }
 $skeleton-loader-card-heading-loader-heading-margin: 8px 0 0 0;
 $skeleton-loader-item-padding: 0px;
-
+.cursor-pointer {
+	cursor: pointer;
+}
 .dot {
 	width: 5px;
 	height: 5px;
