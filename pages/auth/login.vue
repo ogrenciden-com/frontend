@@ -9,7 +9,9 @@
 		class="px-4 py-2"
 	>
 		<v-card-title class="justify-center mt-4">
-			<brand-logo />
+			<nuxt-link to="/">
+				<brand-logo />
+			</nuxt-link>
 		</v-card-title>
 		<h3 class="text-center">Giriş Yap</h3>
 

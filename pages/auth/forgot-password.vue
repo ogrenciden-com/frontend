@@ -5,11 +5,13 @@
 		rounded="lg"
 		max-width="510"
 		width="100%"
-		height="240"
+		height="260"
 		class="px-4 py-2"
 	>
-		<v-card-title class="justify-center mt-2">
-			<brand-logo />
+		<v-card-title class="justify-center mt-4">
+			<nuxt-link to="/">
+				<brand-logo />
+			</nuxt-link>
 		</v-card-title>
 		<v-form>
 			<v-text-field
