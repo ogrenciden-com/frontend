@@ -11,6 +11,7 @@
 		flat
 		solo
 		dense
+		:clearable="clearable"
 		no-data-text="Lütfen önce bir üniversite seçiniz."
 		:item-text="itemText"
 		:item-value="itemValue"
@@ -51,6 +52,10 @@ export default {
 			default: 'mb-8',
 		},
 		outlined: {
+			type: Boolean,
+			default: false,
+		},
+		clearable: {
 			type: Boolean,
 			default: false,
 		},

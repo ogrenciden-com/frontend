@@ -7,6 +7,7 @@
 			item-text="name"
 			item-value="slug"
 			label="Sıralama"
+			clearable
 			classes="mb-4 mb-sm-8 text-caption text-md-body-2"
 		/>
 		<!-- categories -->
@@ -16,6 +17,7 @@
 			item-text="name"
 			item-value="slug"
 			label="Kategori"
+			clearable
 			classes="mb-4 mb-sm-8 text-caption text-md-body-2"
 		>
 		</select-box>
@@ -26,6 +28,7 @@
 			:items="universities"
 			item-text="name"
 			item-value="slug"
+			clearable
 			label="Üniversite"
 			classes="mb-4 mb-sm-8 text-caption text-md-body-2"
 		/>
@@ -43,6 +46,7 @@
 		<select-box
 			v-model="form.campus"
 			:items="campuses"
+			clearable
 			item-text="name"
 			item-value="slug"
 			label="Kampüs"
@@ -61,6 +65,7 @@
 				dense
 				hide-details
 				hide-spin-buttons
+				clearable
 				flat
 				outlined
 			></v-text-field>
@@ -73,12 +78,23 @@
 				outlined
 				flat
 				hide-details
+				clearable
 				hide-spin-buttons
 				dense
 				background-color="white"
 				color="darkGrey"
 			></v-text-field>
 		</div>
+		<v-btn
+			class="text-transform-none mb-2 white--text font-weight-bold"
+			elevation="0"
+			color="red"
+			width="100%"
+			text
+			@click="clearFilter"
+		>
+			Temizle
+		</v-btn>
 
 		<v-btn
 			class="text-transform-none"
@@ -166,6 +182,14 @@ export default {
 				'UniversityAndCampus/findCampusByUniversitySlug',
 			clearSelectedCampuses: 'UniversityAndCampus/clearSelectedCampuses',
 		}),
+		clearFilter() {
+			this.form.order = undefined
+			this.form.universityName = undefined
+			this.form.campus = undefined
+			this.form.category = undefined
+			this.form.minPrice = undefined
+			this.form.maxPrice = undefined
+		},
 		submit() {
 			this.$router.push({
 				name: 'index',
