@@ -113,7 +113,7 @@
 				</v-row>
 				<v-row no-gutters>
 					<v-col>
-						<v-text-field
+						<!-- <v-text-field
 							v-model="ads.contact"
 							placeholder="(+90) İletişim bilgisi"
 							type="tel"
@@ -125,7 +125,13 @@
 							hide-details
 							hide-spin-buttons
 							dense
-						></v-text-field>
+						></v-text-field> -->
+						<vue-phone-number-input
+							v-model="ads.contact"
+							:only-countries="['TR']"
+							default-country-code="TR"
+							:default-text="translations"
+						/>
 					</v-col>
 				</v-row>
 				<v-row>
@@ -192,7 +198,9 @@
 		</v-card>
 	</div>
 </template>
+
 <script>
+import VuePhoneNumberInput from 'vue-phone-number-input'
 import { mapMutations } from 'vuex'
 import { processImage } from '../heplers/reduceImageSize'
 import SelectBox from '@/components/SelectBox.vue'
@@ -200,6 +208,7 @@ import SelectBox from '@/components/SelectBox.vue'
 export default {
 	components: {
 		SelectBox,
+		VuePhoneNumberInput,
 	},
 	data() {
 		return {
@@ -213,6 +222,12 @@ export default {
 				price: undefined,
 				images: [],
 				user_id: '',
+			},
+			translations: {
+				countrySelectorLabel: 'Code pays',
+				countrySelectorError: 'Choisir un pays',
+				phoneNumberLabel: 'Numéro de téléphone',
+				example: 'Exemple : 0501 234 56 77',
 			},
 			image: [],
 			snackbar: false,
@@ -277,23 +292,24 @@ export default {
 				// this.$nuxt.error({ e })
 			}
 		},
-		async submit() {
-			this.ads.contact = this.ads.contact.split(' ').join('')
-			this.ads.images = this.ads.images.filter((img) => {
-				return img !== null
-			})
-			try {
-				this.loading = true
-				await this.$axios.$post('/products', this.ads)
-				this.clearAd()
-				this.advertToggle()
-			} catch (err) {
-				this.snackbar = true
-				this.err = err.response?.data.error
-				// this.$nuxt.error({ e })
-			} finally {
-				this.loading = false
-			}
+		submit() {
+			this.ads.contact = this.ads.contact.split(' ').join('').slice(1)
+			// this.ads.images = this.ads.images.filter((img) => {
+			// 	return img !== null
+			// })
+			console.log(this.ads)
+			// try {
+			// 	this.loading = true
+			// 	await this.$axios.$post('/products', this.ads)
+			// 	this.clearAd()
+			// 	this.advertToggle()
+			// } catch (err) {
+			// 	this.snackbar = true
+			// 	this.err = err.response?.data.error
+			// 	// this.$nuxt.error({ e })
+			// } finally {
+			// 	this.loading = false
+			// }
 		},
 	},
 }
