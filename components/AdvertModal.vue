@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<v-card flat rounded="lg" class="px-sm-10 px-4">
-			<v-snackbar v-model="snackbar" timeout="2000" top app>
+			<v-snackbar v-model="snackbar" timeout="2000" app>
 				{{ err }}
 
 				<template #action="{ attrs }">
@@ -23,6 +23,7 @@
 						oluşturabilirsiniz.</v-card-subtitle
 					>
 					<v-alert
+						v-if="!$auth.loggedIn"
 						width="100%"
 						dense
 						outlined
@@ -223,12 +224,13 @@ export default {
 				images: [],
 				user_id: '',
 			},
-			translations: {
-				countrySelectorLabel: 'Code pays',
-				countrySelectorError: 'Choisir un pays',
-				phoneNumberLabel: 'Numéro de téléphone',
-				example: 'Exemple : 0501 234 56 77',
-			},
+
+			// translations: {
+			// 	countrySelectorLabel: 'Code pays',
+			// 	countrySelectorError: 'Choisir un pays',
+			// 	phoneNumberLabel: 'Numéro de téléphone',
+			// 	example: 'Exemple : 0501 234 56 77',
+			// },
 			image: [],
 			snackbar: false,
 			err: 'Bir şeyler yanlış gitti',

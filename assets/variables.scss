@@ -30,6 +30,11 @@ $skeleton-loader-item-padding: 0px;
 	position: sticky;
 	top: 10px;
 }
+.elipsis {
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
 .customMarginBottom {
 	margin-bottom: 450px;
 }

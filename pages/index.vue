@@ -19,7 +19,7 @@
 					cols="4"
 					class="pt-0 pb-6 pr-0 ml-n1 d-none d-sm-flex justify-center justify-md-start col-4 col-md-6 col-lg-4"
 				>
-					<item-card :ads="ad" />
+					<item-card :ad="ad" />
 				</v-col>
 				<v-alert
 					v-if="err"
@@ -51,7 +51,7 @@
 				:key="`${ad.user_id}-${ad._id}`"
 				class="d-block d-sm-none px-3 pb-3"
 			>
-				<item-list :ads="ad" />
+				<item-list :ad="ad" />
 			</v-row>
 		</v-col>
 		<v-col
@@ -91,10 +91,26 @@ export default {
 			ads: [],
 			loading: false,
 			err: '',
+			title: 'Kampüsündeki ikinci el ilanları keşfet',
 		}
 	},
 	async fetch() {
 		await this.getProducts()
+	},
+
+	head() {
+		return {
+			title: this.title,
+			meta: [
+				// hid is used as unique identifier. Do not use `vmid` for it as it will not work
+				{
+					hid: 'description',
+					name: 'description',
+					content:
+						'Kampüsündeki ikinci el ilanları keşfet, al ve sat',
+				},
+			],
+		}
 	},
 	// mounted() {
 	// 	this.$vuetify.goTo(0)

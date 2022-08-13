@@ -57,13 +57,13 @@
 			<v-text-field
 				v-model="form.minPrice"
 				placeholder="En Az"
-				class="mb-4 mb-sm-8 mr-1 text-caption text-md-body-2"
+				class="mb-4 mr-1 text-caption text-md-body-2"
 				type="number"
 				append-icon="mdi-currency-try"
 				background-color="white"
 				color="darkGrey"
+				:rules="[rules.min]"
 				dense
-				hide-details
 				hide-spin-buttons
 				clearable
 				flat
@@ -73,11 +73,11 @@
 				v-model="form.maxPrice"
 				placeholder="En Çok"
 				append-icon="mdi-currency-try"
-				class="mb-4 mb-sm-8 ml-1 text-caption text-md-body-2"
+				class="mb-4 ml-1 text-caption text-md-body-2"
 				type="number"
+				:rules="[rules.max]"
 				outlined
 				flat
-				hide-details
 				clearable
 				hide-spin-buttons
 				dense
@@ -125,6 +125,14 @@ export default {
 				campus: undefined,
 				minPrice: undefined,
 				maxPrice: undefined,
+			},
+			rules: {
+				min: (v) =>
+					!(Number(v) > Number(this.form.maxPrice)) ||
+					'Minimum fiyat maksimum büyük olamaz',
+				max: (v) =>
+					!(Number(v) <= Number(this.form.minPrice)) ||
+					'Maksimum fiyat minimum küçük olamaz',
 			},
 		}
 	},

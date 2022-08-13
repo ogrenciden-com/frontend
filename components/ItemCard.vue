@@ -12,7 +12,7 @@
 				height="190"
 			>
 				<v-carousel-item
-					v-for="image in ads.images"
+					v-for="image in ad.images"
 					:key="image"
 					nuxt
 					:to="detailLink"
@@ -30,24 +30,24 @@
 					:to="detailLink"
 					class="text-body-2 font-weight-medium black--text text-decoration-none text-transform-capitalize elipsis"
 				>
-					{{ ads.title }}
+					{{ ad.title }}
 				</nuxt-link>
 			</v-card-title>
 			<v-card-subtitle
 				class="pa-0 mt-1 text-caption font-weight-medium dark-grey--text text-transform-capitalize"
 			>
-				{{ ads.category }}
+				{{ ad.category }}
 			</v-card-subtitle>
 			<v-card-subtitle
 				class="pa-0 pt-2 text-body-1 font-weight-bold primary--text"
 			>
-				{{ ads.price.toLocaleString('tr-TR') }} TL
+				{{ ad.price.toLocaleString('tr-TR') }} TL
 			</v-card-subtitle>
 			<v-card-text
 				class="pa-0 pt-1 text-caption font-weight-light dark-grey--text d-flex align-center justify-space-between text-transform-capitalize"
 			>
 				<span>
-					{{ ads.campus }}
+					{{ ad.campus }}
 				</span>
 				<v-btn icon @click="saveFavorite = !saveFavorite">
 					<v-icon color="red"
@@ -66,7 +66,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
-		ads: {
+		ad: {
 			type: Object,
 			default: () => {},
 		},
@@ -79,18 +79,10 @@ export default {
 	},
 	computed: {
 		detailLink() {
-			return `/product/${this.ads.university}/${this.ads.campus}/${
-				this.ads.category
-			}/${slugify(this.ads.title, { lower: true })}/${this.ads._id}`
+			return `/product/${this.ad.university}/${this.ad.campus}/${
+				this.ad.category
+			}/${slugify(this.ad.title, { lower: true })}/${this.ad._id}`
 		},
 	},
 }
 </script>
-
-<style>
-.elipsis {
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	overflow: hidden;
-}
-</style>
