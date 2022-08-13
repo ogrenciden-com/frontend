@@ -114,25 +114,39 @@
 				</v-row>
 				<v-row no-gutters>
 					<v-col>
-						<!-- <v-text-field
+						<v-text-field
 							v-model="ads.contact"
-							placeholder="(+90) İletişim bilgisi"
 							type="tel"
+							placeholder="Telefon numarası"
 							background-color="secondary"
-							color="darkGrey"
+							color="red--text"
 							class="text-caption text-sm-body-2 text-md-body-1"
 							outlined
 							flat
 							hide-details
 							hide-spin-buttons
 							dense
-						></v-text-field> -->
-						<vue-phone-number-input
+						>
+							<template slot="prepend-inner">
+								<div
+									:class="
+										ads.contact
+											? phoneClass
+												? 'green--text'
+												: 'red--text'
+											: 'darkGrey--text'
+									"
+								>
+									<small> +90 </small>
+								</div>
+							</template>
+						</v-text-field>
+						<!-- <vue-phone-number-input
 							v-model="ads.contact"
 							:only-countries="['TR']"
 							default-country-code="TR"
 							:default-text="translations"
-						/>
+						/> -->
 					</v-col>
 				</v-row>
 				<v-row>
@@ -201,7 +215,6 @@
 </template>
 
 <script>
-import VuePhoneNumberInput from 'vue-phone-number-input'
 import { mapMutations } from 'vuex'
 import { processImage } from '../heplers/reduceImageSize'
 import SelectBox from '@/components/SelectBox.vue'
@@ -209,7 +222,6 @@ import SelectBox from '@/components/SelectBox.vue'
 export default {
 	components: {
 		SelectBox,
-		VuePhoneNumberInput,
 	},
 	data() {
 		return {
@@ -218,23 +230,17 @@ export default {
 				university: undefined,
 				campus: undefined,
 				description: undefined,
-				contact: '05',
+				contact: undefined,
 				category: undefined,
 				price: undefined,
 				images: [],
 				user_id: '',
 			},
-
-			// translations: {
-			// 	countrySelectorLabel: 'Code pays',
-			// 	countrySelectorError: 'Choisir un pays',
-			// 	phoneNumberLabel: 'Numéro de téléphone',
-			// 	example: 'Exemple : 0501 234 56 77',
-			// },
 			image: [],
 			snackbar: false,
 			err: 'Bir şeyler yanlış gitti',
 			loading: false,
+			phoneClass: false,
 		}
 	},
 	computed: {
@@ -254,6 +260,10 @@ export default {
 				this.ads.campus = undefined
 			}
 			this.findCampusByUniversitySlug(this.ads.university)
+		},
+		'ads.contact'() {
+			if (this.ads.contact.length === 10) return (this.phoneClass = true)
+			this.phoneClass = false
 		},
 	},
 	created() {
