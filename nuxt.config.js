@@ -1,6 +1,7 @@
 import colors from 'vuetify/es5/util/colors'
 
 export default {
+	ssr: false,
 	head: {
 		titleTemplate: '%s - Öğrenciden',
 		title: 'Öğrenciden',
@@ -118,7 +119,6 @@ export default {
 	plugins: [],
 
 	components: true,
-
 	buildModules: ['@nuxtjs/device', '@nuxtjs/vuetify'],
 
 	modules: [
@@ -151,16 +151,25 @@ export default {
 			// 		logout: false,
 			// 	},
 			// },
+			cookie: {
+				options: {
+					expires: new Date(
+						new Date().getTime() + 20000000000,
+					).getTime(),
+					maxAge: 31622400,
+				},
+			},
 			local: {
 				token: {
 					property: 'token',
 					global: true,
+					maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week,
 					// required: true,
-					// type: 'Bearer'
+					type: 'Bearer',
 				},
 				user: {
 					property: 'user',
-					// autoFetch: true
+					autoFetch: true,
 				},
 				endpoints: {
 					login: { url: 'auth/login', method: 'post' },
