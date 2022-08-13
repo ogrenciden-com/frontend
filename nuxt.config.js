@@ -2,7 +2,7 @@ import colors from 'vuetify/es5/util/colors'
 
 export default {
 	head: {
-		titleTemplate: 'Öğrenciden - %s',
+		titleTemplate: '%s - Öğrenciden',
 		title: 'Öğrenciden',
 		htmlAttrs: {
 			lang: 'en',
