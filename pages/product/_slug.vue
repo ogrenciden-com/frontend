@@ -127,7 +127,10 @@
 						<!-- Bu ilan 181 kez görüntülendi -->
 						{{ item.user_id.name }}
 						{{ item.user_id.surname }}:
-						<a href="tel: +905316948991" class="darkGrey--text">
+						<a
+							:href="`tel: +9${item.contact}`"
+							class="darkGrey--text"
+						>
 							{{ item.contact }}
 						</a>
 					</span>
