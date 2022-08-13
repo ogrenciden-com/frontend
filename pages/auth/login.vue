@@ -131,6 +131,7 @@ export default {
 					data: this.user,
 				})
 				this.$auth.strategy.token.set(res.data.tokens.access_token)
+
 				this.$router.push('/')
 				this.$auth.setUser(res.data)
 			} catch (err) {

@@ -127,7 +127,9 @@
 						<!-- Bu ilan 181 kez görüntülendi -->
 						{{ item.user_id.name }}
 						{{ item.user_id.surname }}:
-						{{ item.contact }}
+						<a href="tel: +905316948991" class="darkGrey--text">
+							{{ item.contact }}
+						</a>
 					</span>
 					<div class="mr-sm-4 mr-2 d-flex">
 						<a
@@ -276,7 +278,7 @@ export default {
 	},
 	async fetch() {
 		await this.getProduct()
-		await this.getUser()
+		this.$auth.user && (await this.getUser())
 	},
 	computed: {
 		shareTelegramLink() {
