@@ -57,7 +57,7 @@
 			<v-text-field
 				v-model="form.minPrice"
 				placeholder="En Az"
-				class="mb-4 mr-1 text-caption text-md-body-2"
+				class="mr-1 text-caption text-md-body-2"
 				type="number"
 				append-icon="mdi-currency-try"
 				background-color="white"
@@ -73,7 +73,7 @@
 				v-model="form.maxPrice"
 				placeholder="En Çok"
 				append-icon="mdi-currency-try"
-				class="mb-4 ml-1 text-caption text-md-body-2"
+				class="ml-1 text-caption text-md-body-2"
 				type="number"
 				:rules="[rules.max]"
 				outlined
