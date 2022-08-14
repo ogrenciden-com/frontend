@@ -7,7 +7,8 @@
 		:class="classes"
 		background-color="secondary"
 		color="darkGrey"
-		hide-details
+		:hide-details="hideDetails"
+		:error-messages="errorMessages"
 		flat
 		solo
 		dense
@@ -28,6 +29,10 @@ export default {
 			default: undefined,
 		},
 		value: {
+			type: String,
+			default: '',
+		},
+		errorMessages: {
 			type: String,
 			default: '',
 		},
@@ -54,6 +59,10 @@ export default {
 		outlined: {
 			type: Boolean,
 			default: false,
+		},
+		hideDetails: {
+			type: Boolean,
+			default: true,
 		},
 		clearable: {
 			type: Boolean,

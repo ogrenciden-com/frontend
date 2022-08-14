@@ -112,9 +112,9 @@ export default {
 			],
 		}
 	},
-	// mounted() {
-	// 	this.$vuetify.goTo(0)
-	// },
+	mounted() {
+		this.$vuetify.goTo(0)
+	},
 	methods: {
 		...mapMutations({
 			advertToggle: 'advertToggle',
