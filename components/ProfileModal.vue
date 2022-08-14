@@ -1,5 +1,15 @@
 <template>
 	<v-card flat rounded="lg" class="px-sm-10 px-4">
+		<v-snackbar
+			v-model="snackbar"
+			timeout="1500"
+			app
+			top
+			color="success"
+			outlined
+		>
+			{{ res }}
+		</v-snackbar>
 		<div class="d-flex justify-space-between align-center">
 			<div>
 				<v-card-title class="px-0">Profil Düzenle</v-card-title>
@@ -213,6 +223,8 @@ export default {
 			isShow: false,
 			image: [],
 			loading: false,
+			snackbar: false,
+			res: undefined,
 		}
 	},
 	async fetch() {
@@ -241,12 +253,10 @@ export default {
 		async getUser() {
 			try {
 				const data = await this.$axios.$get('auth/me')
-				// eslint-disable-next-line no-console
 				this.user = { ...data }
 			} catch (e) {
 				// eslint-disable-next-line no-console
 				console.log(e)
-				// this.$nuxt.error({ e })
 			}
 		},
 		...mapMutations({
@@ -268,12 +278,12 @@ export default {
 				delete newUser.createdAt
 				delete newUser.updatedAt
 				delete newUser.email
-				const res = await this.$axios.$put(
-					`/auth/${this.user._id}`,
-					newUser,
-				)
-				// eslint-disable-next-line
-				console.log(res)
+				await this.$axios.$put(`/auth/${this.user._id}`, newUser)
+				this.snackbar = true
+				this.res = 'Profil bilgileriniz başarı ile güncellenmiştir.'
+				setTimeout(() => {
+					this.profileToggle()
+				}, 1500)
 			} catch (error) {
 				// eslint-disable-next-line
 				console.log(error)
