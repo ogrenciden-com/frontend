@@ -1,19 +1,15 @@
 <template>
 	<div>
 		<v-card flat rounded="lg" class="px-sm-10 px-4">
-			<v-snackbar v-model="snackbar" timeout="2000" app>
-				{{ err }}
-
-				<template #action="{ attrs }">
-					<v-btn
-						color="red"
-						text
-						v-bind="attrs"
-						@click="snackbar = false"
-					>
-						Kapat
-					</v-btn>
-				</template>
+			<v-snackbar
+				v-model="snackbar"
+				timeout="1200"
+				app
+				top
+				color="success"
+				outlined
+			>
+				{{ res }}
 			</v-snackbar>
 			<div class="d-flex justify-space-between align-center">
 				<div>
@@ -41,7 +37,7 @@
 				<v-row no-gutters>
 					<v-col>
 						<v-text-field
-							v-model="ads.title"
+							v-model="ad.title"
 							background-color="secondary"
 							placeholder="İlan başlığını giriniz."
 							height="42"
@@ -50,6 +46,7 @@
 							outlined
 							autofocus
 							counter="70"
+							:error-messages="error.title"
 							flat
 							solo
 							dense
@@ -59,7 +56,7 @@
 				<v-row no-gutters>
 					<v-col cols="5" sm="4">
 						<v-text-field
-							v-model="ads.price"
+							v-model="ad.price"
 							placeholder="Fiyat"
 							append-icon="mdi-currency-try"
 							type="tel"
@@ -69,68 +66,74 @@
 							reverse
 							outlined
 							flat
-							hide-details
+							:error-messages="error.price"
 							hide-spin-buttons
 							dense
 						></v-text-field>
 					</v-col>
 					<v-col cols="7" sm="8">
 						<select-box
-							v-model="ads.category"
+							v-model="ad.category"
 							:items="categories"
 							item-text="name"
+							:error-messages="error.category"
+							:hide-details="false"
 							item-value="slug"
 							label="Kategori"
 							:outlined="true"
-							classes="mb-6 text-caption text-sm-body-2 text-md-body-1"
+							classes="text-caption text-sm-body-2 text-md-body-1"
 						></select-box>
 					</v-col>
 				</v-row>
 				<v-row no-gutters>
 					<v-col>
 						<select-box
-							v-model="ads.university"
+							v-model="ad.university"
 							:items="universities"
+							:error-messages="error.university"
+							:hide-details="false"
 							item-text="name"
 							item-value="slug"
 							label="Üniversite"
 							outlined
-							classes="mb-6 text-caption text-sm-body-2"
+							classes="text-caption text-sm-body-2"
 						></select-box>
 					</v-col>
 				</v-row>
 				<v-row no-gutters>
 					<v-col>
 						<select-box
-							v-model="ads.campus"
+							v-model="ad.campus"
 							:items="campuses"
+							:error-messages="error.campus"
+							:hide-details="false"
 							item-text="name"
 							item-value="slug"
 							label="Kampüs"
 							outlined
-							classes="mb-6 text-caption text-sm-body-2 text-md-body-1"
+							classes="text-caption text-sm-body-2 text-md-body-1"
 						></select-box>
 					</v-col>
 				</v-row>
 				<v-row no-gutters>
 					<v-col>
 						<v-text-field
-							v-model="ads.contact"
+							v-model="ad.contact"
 							type="tel"
 							placeholder="Telefon numarası"
 							background-color="secondary"
 							color="red--text"
 							class="text-caption text-sm-body-2 text-md-body-1"
+							:error-messages="error.contact"
 							outlined
 							flat
-							hide-details
 							hide-spin-buttons
 							dense
 						>
 							<template slot="prepend-inner">
 								<div
 									:class="
-										ads.contact
+										ad.contact
 											? phoneClass
 												? 'green--text'
 												: 'red--text'
@@ -141,18 +144,13 @@
 								</div>
 							</template>
 						</v-text-field>
-						<!-- <vue-phone-number-input
-							v-model="ads.contact"
-							:only-countries="['TR']"
-							default-country-code="TR"
-							:default-text="translations"
-						/> -->
 					</v-col>
 				</v-row>
-				<v-row>
+				<v-row no-gutters>
 					<v-col>
 						<v-textarea
-							v-model="ads.description"
+							v-model="ad.description"
+							:error-messages="error.description"
 							placeholder="İlan açıklaması"
 							background-color="white"
 							auto-grow
@@ -179,7 +177,7 @@
 							@click="fileInput(index)"
 						>
 							<v-img
-								:src="ads.images[index]"
+								:src="ad.images[index]"
 								height="128px"
 								width="130px"
 								cover
@@ -187,6 +185,7 @@
 							<v-file-input
 								ref="fileInput"
 								v-model="image"
+								:error-messages="error.images"
 								class="centerCard"
 								accept="image/*"
 								prepend-icon="mdi-cloud-upload"
@@ -225,7 +224,7 @@ export default {
 	},
 	data() {
 		return {
-			ads: {
+			ad: {
 				title: undefined,
 				university: undefined,
 				campus: undefined,
@@ -238,9 +237,19 @@ export default {
 			},
 			image: [],
 			snackbar: false,
-			err: 'Bir şeyler yanlış gitti',
+			res: undefined,
 			loading: false,
 			phoneClass: false,
+			error: {
+				title: undefined,
+				university: undefined,
+				campus: undefined,
+				description: undefined,
+				contact: undefined,
+				category: undefined,
+				price: undefined,
+				images: [],
+			},
 		}
 	},
 	computed: {
@@ -255,14 +264,14 @@ export default {
 		},
 	},
 	watch: {
-		'ads.university'() {
-			if (!this.ads.university) {
-				this.ads.campus = undefined
+		'ad.university'() {
+			if (!this.ad.university) {
+				this.ad.campus = undefined
 			}
-			this.findCampusByUniversitySlug(this.ads.university)
+			this.findCampusByUniversitySlug(this.ad.university)
 		},
-		'ads.contact'() {
-			if (this.ads.contact.length === 10) return (this.phoneClass = true)
+		'ad.contact'() {
+			if (this.ad?.contact?.length === 10) return (this.phoneClass = true)
 			this.phoneClass = false
 		},
 	},
@@ -270,15 +279,25 @@ export default {
 		this.getUser()
 	},
 	methods: {
+		clearErrorMessages() {
+			this.error.title = undefined
+			this.error.university = undefined
+			this.error.campus = undefined
+			this.error.description = undefined
+			this.error.contact = undefined
+			this.error.category = undefined
+			this.error.price = undefined
+			this.error.images = undefined
+		},
 		clearAd() {
-			this.ads.title = undefined
-			this.ads.university = undefined
-			this.ads.campus = undefined
-			this.ads.description = undefined
-			this.ads.contact = undefined
-			this.ads.price = undefined
-			this.ads.images = []
-			this.ads.user_id = undefined
+			this.ad.title = undefined
+			this.ad.university = undefined
+			this.ad.campus = undefined
+			this.ad.description = undefined
+			this.ad.contact = undefined
+			this.ad.price = undefined
+			this.ad.images = []
+			this.ad.user_id = undefined
 		},
 		...mapMutations({
 			advertToggle: 'advertToggle',
@@ -290,38 +309,73 @@ export default {
 		},
 		async previewImage(index) {
 			let selectedImage = this.image
-			this.ads.images[index] = URL.createObjectURL(this.image)
+			this.ad.images[index] = URL.createObjectURL(this.image)
 			selectedImage = await processImage(selectedImage)
-			this.ads.images[index] = selectedImage
+			this.ad.images[index] = selectedImage
 		},
 		async getUser() {
 			try {
 				const data = await this.$axios.$get('auth/me')
-				this.ads.user_id = data._id
+				this.ad.user_id = data._id
 			} catch (e) {
 				// eslint-disable-next-line no-console
 				console.log(e)
 				// this.$nuxt.error({ e })
 			}
 		},
-		submit() {
-			this.ads.contact = this.ads.contact.split(' ').join('').slice(1)
-			// this.ads.images = this.ads.images.filter((img) => {
-			// 	return img !== null
-			// })
-			console.log(this.ads)
-			// try {
-			// 	this.loading = true
-			// 	await this.$axios.$post('/products', this.ads)
-			// 	this.clearAd()
-			// 	this.advertToggle()
-			// } catch (err) {
-			// 	this.snackbar = true
-			// 	this.err = err.response?.data.error
-			// 	// this.$nuxt.error({ e })
-			// } finally {
-			// 	this.loading = false
-			// }
+		async submit() {
+			if (this.ad?.contact?.length === 11) {
+				this.ad.contact = this.ad?.contact?.split(' ').join('')
+			} else this.ad.contact = this.ad?.contact?.split(' ').join('')
+
+			this.ad.images = this.ad.images.filter((img) => {
+				return img !== null
+			})
+			try {
+				this.loading = true
+				await this.$axios.$post('/products', this.ad)
+				this.res = 'İlanınız başarılı bir şekilde oluşturuldu'
+				this.snackbar = true
+				this.clearAd()
+				setTimeout(() => {
+					this.advertToggle()
+				}, 1200)
+			} catch (e) {
+				if (e.response?.data?.error?.includes('title')) {
+					this.clearErrorMessages()
+					this.error.title = 'Başlık alanı boş bırakılamaz'
+				}
+				if (e.response?.data?.error?.includes('price')) {
+					this.clearErrorMessages()
+					this.error.price = 'Fiyat alanı boş bırakılamaz'
+				}
+				if (e.response?.data?.error?.includes('university')) {
+					this.clearErrorMessages()
+					this.error.university = 'Üniversite alanı boş bırakılamaz'
+				}
+				if (e.response?.data?.error?.includes('campus')) {
+					this.clearErrorMessages()
+					this.error.campus = 'Kampüs alanı boş bırakılamaz'
+				}
+				if (e.response?.data?.error?.includes('category')) {
+					this.clearErrorMessages()
+					this.error.category = 'Kategori alanı boş bırakılamaz'
+				}
+				if (e.response?.data?.error?.includes('contact')) {
+					this.clearErrorMessages()
+					this.error.contact = 'İletişim alanı boş bırakılamaz'
+				}
+				if (e.response?.data?.error?.includes('description')) {
+					this.clearErrorMessages()
+					this.error.description = 'Açıklama alanı boş bırakılamaz'
+				}
+				if (e.response?.data?.error?.includes('images')) {
+					this.clearErrorMessages()
+					this.error.images = 'Resim alanı boş bırakılamaz'
+				}
+			} finally {
+				this.loading = false
+			}
 		},
 	},
 }
