@@ -15,26 +15,7 @@
 		</v-card-title>
 
 		<h3 class="text-center">Kayıt Ol</h3>
-		<!-- <v-btn
-			outlined
-			block
-			color="primary"
-			width="100%"
-			class="font-weight-bold mt-2 text-transform-none mt-6"
-			:style="{ position: 'relative' }"
-		>
-			<google-icon :style="{ position: 'absolute', left: '4px' }" />
-			Google ile giriş yap</v-btn
-		>
-		<div class="mt-8 mb-2">
-			<v-divider></v-divider>
-			<span
-				class="text-caption darkGrey--text white px-2"
-				:style="{ position: 'relative', top: '-13px', left: '167px' }"
-				>Veya</span
-			>
-		</div> -->
-		<v-form>
+		<v-form @submit.prevent="submit">
 			<div class="mt-6">
 				<v-row dense>
 					<v-col
@@ -47,10 +28,10 @@
 							placeholder="Ad"
 							height="32"
 							color="darkGrey"
-							class="text-body-2 mb-5"
+							class="text-body-2"
 							type="text"
 							dense
-							hide-details
+							:error-messages="error.name"
 						>
 						</v-text-field>
 					</v-col>
@@ -63,10 +44,10 @@
 							placeholder="Soyad"
 							height="32"
 							color="darkGrey"
-							class="text-body-2 mb-5"
+							class="text-body-2"
 							type="text"
 							dense
-							hide-details
+							:error-messages="error.surname"
 						>
 						</v-text-field>
 					</v-col>
@@ -75,17 +56,21 @@
 			<select-box
 				v-model="user.university"
 				:items="universities"
+				:hide-details="false"
+				:error-messages="error.university"
 				item-text="name"
 				item-value="slug"
 				label="Üniversite"
-				classes="mb-8 text-caption text-md-body-2"
+				classes="mb-0 text-caption text-md-body-2"
 			/>
 
 			<!-- campuses -->
 			<select-box
 				v-model="user.campus"
-				classes="mb-8 text-caption text-md-body-2"
+				classes="mb-0 text-caption text-md-body-2"
 				:items="campuses"
+				:hide-details="false"
+				:error-messages="error.campus"
 				item-text="name"
 				item-value="slug"
 				label="Kampüs"
@@ -98,10 +83,10 @@
 				placeholder="Lütfen E-posta adresinizi giriniz"
 				height="32"
 				color="darkGrey"
-				class="text-body-2 mb-5"
+				class="text-body-2"
 				type="email"
 				dense
-				hide-details
+				:error-messages="error.email"
 			>
 				<template slot="append">
 					<mail-icon />
@@ -120,26 +105,24 @@
 				color="darkGrey"
 				class="text-body-2"
 				:type="isShow ? 'text' : 'password'"
+				:error-messages="error.password"
 				dense
-				hide-details
 				@click:append="isShow = !isShow"
 			>
 			</v-text-field>
-			<div class="d-flex justify-center mt-8">
+			<div class="d-flex justify-center mt-2">
 				<v-btn
 					class="text-body-1 font-weight-bold text-transform-none py-6 px-10"
 					color="primary"
 					elevation="0"
+					:loading="loading"
 					@click="submit"
 				>
 					Kayıt Ol
 				</v-btn>
 			</div>
 		</v-form>
-		<span
-			class="text-body-2 font-weight-bold"
-			:style="{ position: 'absolute', bottom: '30px' }"
-		>
+		<span class="text-body-2 font-weight-bold d-block mt-5">
 			Hesabın var mı?
 			<nuxt-link
 				to="/auth/login"
@@ -154,18 +137,17 @@
 import { mapMutations } from 'vuex'
 import MailIcon from '@/components/Icons/MailIcon.vue'
 import BrandLogo from '@/components/BrandLogo.vue'
-// import GoogleIcon from '@/components/Icons/GoogleIcon.vue'
 export default {
 	components: {
 		BrandLogo,
 		MailIcon,
-		// GoogleIcon,
 	},
 	layout: 'auth',
 
 	data() {
 		return {
 			isShow: false,
+			loading: false,
 			user: {
 				name: '',
 				surname: '',
@@ -173,6 +155,14 @@ export default {
 				password: '',
 				university: undefined,
 				campus: undefined,
+			},
+			error: {
+				name: undefined,
+				surname: undefined,
+				university: undefined,
+				campus: undefined,
+				email: undefined,
+				password: undefined,
 			},
 		}
 	},
@@ -194,10 +184,18 @@ export default {
 		...mapMutations({
 			findCampusByUniversitySlug:
 				'UniversityAndCampus/findCampusByUniversitySlug',
-			userToggle: 'userToggle',
 		}),
+		clearErrorMessages() {
+			this.error.name = undefined
+			this.error.surname = undefined
+			this.error.university = undefined
+			this.error.campus = undefined
+			this.error.email = undefined
+			this.error.password = undefined
+		},
 		async submit() {
 			try {
+				this.loading = true
 				await this.$axios.$post('auth', this.user)
 				const res = await this.$auth.loginWith('local', {
 					data: {
@@ -207,12 +205,39 @@ export default {
 				})
 				this.$auth.strategy.token.set(res.data.tokens.access_token)
 				this.$auth.setUser(res.data)
-
-				this.userToggle()
-
 				this.$router.push('/')
 			} catch (e) {
-				this.$nuxt.error({ e })
+				if (e.response?.data?.error?.includes('name')) {
+					this.clearErrorMessages()
+					this.error.name = 'İsim alanı boş bırakılamaz'
+				}
+				if (e.response?.data?.error?.includes('surname')) {
+					this.clearErrorMessages()
+					this.error.surname = 'Soyisim alanı boş bırakılamaz'
+				}
+				if (e.response?.data?.error?.includes('university')) {
+					this.clearErrorMessages()
+					this.error.university = 'Üniversite alanı boş bırakılamaz'
+				}
+				if (e.response?.data?.error?.includes('campus')) {
+					this.clearErrorMessages()
+					this.error.campus = 'Kampüs alanı boş bırakılamaz'
+				}
+				if (e.response?.data?.error?.includes('email')) {
+					this.clearErrorMessages()
+					this.error.email = 'E-posta alanı boş bırakılamaz'
+				}
+				if (e.response?.data?.error?.includes('password')) {
+					this.clearErrorMessages()
+					this.error.password = 'Şifre alanı boş bırakılamaz'
+				}
+				if (e.response.data.code === 11000) {
+					this.clearErrorMessages()
+					this.error.email =
+						'Bu email ile zaten bir hesap var giriş yapmayı deneyebilirsiniz.'
+				}
+			} finally {
+				this.loading = false
 			}
 		},
 	},
