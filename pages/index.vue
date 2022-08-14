@@ -79,7 +79,7 @@ import FilterCard from '@/components/FilterCard.vue'
 import CardSkeleton from '@/components/CardSkeleton.vue'
 
 export default {
-	name: 'IndexPage',
+	name: 'Index',
 	components: {
 		ItemCard,
 		ItemList,
@@ -140,7 +140,7 @@ export default {
 				})
 				this.ads = res
 			} catch (err) {
-				if (err.response.status > 404) return this.$nuxt.error({ err })
+				if (err.response.status > 404) return this.$nuxt.error(err)
 				this.err = err.response.data.message
 			} finally {
 				this.loading = false
