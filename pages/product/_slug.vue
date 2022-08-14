@@ -113,16 +113,6 @@
 				<div
 					class="pb-4 pb-sm-0 d-flex align-center justify-space-between"
 				>
-					<!-- <v-btn
-						v-if="!reCAPTCHA"
-						x-small
-						text
-						:loading="recaptchaLoading"
-						color="primary"
-						@click="waitASecond()"
-					>
-						Numarayı gör
-					</v-btn> -->
 					<span class="text-caption darkGrey--text mr-4">
 						<!-- Bu ilan 181 kez görüntülendi -->
 						{{ item.user_id.name }}
@@ -247,8 +237,6 @@ export default {
 	data() {
 		return {
 			model: 0,
-			// reCAPTCHA: false,
-			// recaptchaLoading: false,
 			snackbar: undefined,
 			breadcrumbs: [
 				{
@@ -313,7 +301,6 @@ export default {
 		async getUser() {
 			try {
 				const data = await this.$axios.$get('auth/me')
-				// eslint-disable-next-line no-console
 				this.userId = data._id
 			} catch (e) {
 				// eslint-disable-next-line no-console
@@ -321,16 +308,6 @@ export default {
 				// this.$nuxt.error({ e })
 			}
 		},
-		// waitASecond() {
-		// 	this.recaptchaLoading = true
-		// 	// console.log('1.', this.reCAPTCHA, this.recaptchaLoading)
-		// 	setTimeout(() => {
-		// 		this.reCAPTCHA = true
-		// 		// console.log('2.', this.reCAPTCHA, this.recaptchaLoading)
-		// 		this.recaptchaLoading = false
-		// 	}, Math.floor(Math.random() * 1000 * 2))
-		// 	// console.log('3.', this.reCAPTCHA, this.recaptchaLoading)
-		// },
 		formatDate(date) {
 			let mounth = date?.slice(5, 7)
 			const day = date?.slice(8, 10)
@@ -353,9 +330,7 @@ export default {
 
 				this.item = { ...res, category, university, campus }
 			} catch (e) {
-				// eslint-disable-next-line no-console
-				console.log(e)
-				this.$nuxt.error({ e })
+				this.$nuxt.error(e)
 			}
 		},
 		async deleteAd() {
@@ -366,8 +341,7 @@ export default {
 				this.$router.push({ path: '/' })
 			} catch (e) {
 				// eslint-disable-next-line no-console
-				console.log(e)
-				this.$nuxt.error({ e })
+				this.$nuxt.error(e)
 			} finally {
 				this.deleteLoading = false
 			}

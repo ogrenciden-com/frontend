@@ -32,16 +32,6 @@
 			label="Üniversite"
 			classes="mb-4 mb-sm-8 text-caption text-md-body-2"
 		/>
-		<!-- university autocomplete -->
-		<!-- <v-autocomplete
-			v-model="form.universityName"
-			:items="universities"
-			item-text="name"
-			item-value="slug"
-			label="Üniversite"
-			classes="mb-8 text-caption text-md-body-2"
-		></v-autocomplete> -->
-
 		<!-- campuses -->
 		<select-box
 			v-model="form.campus"
@@ -129,10 +119,10 @@ export default {
 			rules: {
 				min: (v) =>
 					!(Number(v) > Number(this.form.maxPrice)) ||
-					'Minimum fiyat maksimum büyük olamaz',
+					'Minimum fiyat maksimumdan büyük olamaz',
 				max: (v) =>
 					!(Number(v) <= Number(this.form.minPrice)) ||
-					'Maksimum fiyat minimum küçük olamaz',
+					'Maksimum fiyat minimumdan küçük olamaz',
 			},
 		}
 	},

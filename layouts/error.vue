@@ -1,7 +1,7 @@
 <template>
 	<v-app>
 		<v-container class="d-flex justify-center font">
-			<div v-if="error.statusCode === 404">
+			<div v-if="error.response.status === 404">
 				<h1
 					class="d-block primary--text font-weight-regular"
 					:style="{ fontSize: '200px' }"
@@ -56,8 +56,8 @@ export default {
 	},
 	data() {
 		return {
-			pageNotFound: 'Page Not Found',
-			otherError: 'An error occurred',
+			pageNotFound: 'Sayfa bulunamadı',
+			otherError: 'Bir hata meydana geldi',
 		}
 	},
 	head() {
