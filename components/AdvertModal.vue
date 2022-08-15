@@ -215,6 +215,9 @@
 						elevation="0"
 						class="font-weight-bold my-6"
 						type="submit"
+						nuxt
+						to="/"
+						@click="submit"
 						>Yayınla</v-btn
 					>
 				</div>
@@ -350,6 +353,7 @@ export default {
 				this.clearAd()
 				setTimeout(() => {
 					this.advertToggle()
+					this.$router.go(0)
 				}, 500)
 			} catch (e) {
 				if (e.response?.data?.error?.includes('title')) {
