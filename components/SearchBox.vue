@@ -38,7 +38,8 @@ export default {
 		submit() {
 			this.$router.push({
 				name: 'index',
-				query: { text: this.search },
+
+				query: { text: this.search ? this.search : '' },
 			})
 		},
 	},

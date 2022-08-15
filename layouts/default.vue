@@ -51,7 +51,11 @@
 						>Giriş yap / Kayıt ol</v-btn
 					>
 				</v-app-bar>
-				<v-sheet height="2px" color="secondary" class="mb-10"></v-sheet>
+				<v-sheet
+					height="2px"
+					color="secondary"
+					class="mb-2 mb-sm-8 d-none d-sm-flex"
+				></v-sheet>
 				<v-btn
 					v-show="fab"
 					v-scroll="onScroll"
@@ -85,7 +89,7 @@
 				>
 					<profile-modal />
 				</v-dialog>
-				<Nuxt :key="$route.fullPath" />
+				<Nuxt :key="$route.fullPath" class="mt-1 mt-sm-0" />
 			</v-main>
 			<v-footer
 				color="white"
@@ -134,12 +138,21 @@
 											>Ana Sayfa</nuxt-link
 										>
 									</li>
-									<li>
-										<nuxt-link
-											to="/"
-											class="darkGrey--text text-decoration-none text-body-2"
-											>Profil Düzenle</nuxt-link
-										>
+									<li
+										class="darkGrey--text text-decoration-none text-body-2 cursor-pointer"
+										@click="
+											$auth.loggedIn && profileToggle()
+										"
+									>
+										Profil Düzenle
+									</li>
+									<li
+										class="darkGrey--text text-decoration-none text-body-2 cursor-pointer"
+										@click="
+											$auth.loggedIn && advertToggle()
+										"
+									>
+										İlan ekle
 									</li>
 									<li>
 										<nuxt-link

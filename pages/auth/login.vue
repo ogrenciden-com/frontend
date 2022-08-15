@@ -9,31 +9,12 @@
 		class="px-4 py-2"
 	>
 		<v-card-title class="justify-center mt-4">
-			<brand-logo />
+			<nuxt-link to="/">
+				<brand-logo />
+			</nuxt-link>
 		</v-card-title>
 		<h3 class="text-center">Giriş Yap</h3>
-
-		<!-- <v-btn
-			outlined
-			block
-			color="primary"
-			width="100%"
-			class="font-weight-bold mt-2 text-transform-none text-center mt-6"
-			:style="{ position: 'relative' }"
-		>
-			<google-icon :style="{ position: 'absolute', left: '4px' }" />
-
-			Google ile giriş yap
-		</v-btn>
-		<div class="mt-8 mb-2">
-			<v-divider></v-divider>
-			<span
-				class="text-caption darkGrey--text white px-2"
-				:style="{ position: 'relative', top: '-13px', left: '167px' }"
-				>Veya</span
-			>
-		</div> -->
-		<v-form>
+		<v-form @submit.prevent="loginWithEmail">
 			<v-text-field
 				v-model="user.email"
 				outlined
@@ -43,10 +24,11 @@
 				placeholder="Lütfen E-posta adresinizi girin"
 				height="32"
 				color="darkGrey"
-				class="text-body-2 my-5"
+				class="text-body-2 mt-5"
 				type="email"
+				:rules="[rules.required]"
 				dense
-				hide-details
+				:error-messages="error.email"
 			>
 				<template slot="append">
 					<mail-icon />
@@ -64,24 +46,26 @@
 				height="32"
 				color="darkGrey"
 				class="text-body-2"
-				:type="isShow ? 'text' : 'password'"
 				dense
-				hide-details
+				:rules="[rules.required]"
+				:type="isShow ? 'text' : 'password'"
+				:error-messages="error.password"
 				@click:append="isShow = !isShow"
 			>
 			</v-text-field>
 			<div class="d-flex justify-end">
 				<nuxt-link
 					to="/auth/forgot-password"
-					class="primary--text text-decoration-underline text-caption font-weight-light mt-4 text-right"
+					class="primary--text text-decoration-underline text-caption font-weight-light text-right"
 					>Şifremi unuttum</nuxt-link
 				>
 			</div>
-			<div class="d-flex justify-center mt-6">
+			<div class="d-flex justify-center mt-3">
 				<v-btn
 					class="text-body-1 font-weight-bold text-transform-none py-6 px-10"
 					color="primary"
 					elevation="0"
+					:loading="loading"
 					@click="loginWithEmail"
 				>
 					Giriş yap
@@ -105,12 +89,10 @@
 <script>
 import MailIcon from '@/components/Icons/MailIcon.vue'
 import BrandLogo from '@/components/BrandLogo.vue'
-// import GoogleIcon from '@/components/Icons/GoogleIcon.vue'
 export default {
 	components: {
 		BrandLogo,
 		MailIcon,
-		// GoogleIcon,
 	},
 	layout: 'auth',
 	data() {
@@ -120,20 +102,35 @@ export default {
 				email: '',
 				password: '',
 			},
+			rules: {
+				required: (value) =>
+					!!value || 'Bu alanı doldurmak zorunludur.',
+			},
+			error: {
+				email: undefined,
+				password: undefined,
+			},
+			loading: false,
 		}
 	},
 	methods: {
 		async loginWithEmail() {
 			try {
+				this.loading = true
+
 				const res = await this.$auth.loginWith('local', {
 					data: this.user,
 				})
 				this.$auth.strategy.token.set(res.data.tokens.access_token)
 				this.$router.push('/')
 				this.$auth.setUser(res.data)
-			} catch (err) {
-				console.log(err)
-				// this.$nuxt.error({ err })
+			} catch (e) {
+				this.error.email =
+					'Email veya şifre hatalı lütfen tekrar deneyiniz.'
+				this.error.password =
+					'Email veya şifre hatalı lütfen tekrar deneyiniz.'
+			} finally {
+				this.loading = false
 			}
 		},
 	},

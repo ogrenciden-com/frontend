@@ -11,7 +11,9 @@
 // }
 $skeleton-loader-card-heading-loader-heading-margin: 8px 0 0 0;
 $skeleton-loader-item-padding: 0px;
-
+.cursor-pointer {
+	cursor: pointer;
+}
 .dot {
 	width: 5px;
 	height: 5px;
@@ -27,6 +29,11 @@ $skeleton-loader-item-padding: 0px;
 .sticky {
 	position: sticky;
 	top: 10px;
+}
+.elipsis {
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
 }
 .customMarginBottom {
 	margin-bottom: 450px;

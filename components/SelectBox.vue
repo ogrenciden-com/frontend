@@ -7,10 +7,12 @@
 		:class="classes"
 		background-color="secondary"
 		color="darkGrey"
-		hide-details
+		:hide-details="hideDetails"
+		:error-messages="errorMessages"
 		flat
 		solo
 		dense
+		:clearable="clearable"
 		no-data-text="Lütfen önce bir üniversite seçiniz."
 		:item-text="itemText"
 		:item-value="itemValue"
@@ -27,6 +29,10 @@ export default {
 			default: undefined,
 		},
 		value: {
+			type: String,
+			default: '',
+		},
+		errorMessages: {
 			type: String,
 			default: '',
 		},
@@ -51,6 +57,14 @@ export default {
 			default: 'mb-8',
 		},
 		outlined: {
+			type: Boolean,
+			default: false,
+		},
+		hideDetails: {
+			type: Boolean,
+			default: true,
+		},
+		clearable: {
 			type: Boolean,
 			default: false,
 		},

@@ -104,7 +104,7 @@ export default {
 					id: 4,
 					text: 'Çıkış Yap',
 					function: this.logout,
-					link: `/`,
+					link: undefined,
 				},
 			],
 		}

@@ -19,7 +19,7 @@
 					cols="4"
 					class="pt-0 pb-6 pr-0 ml-n1 d-none d-sm-flex justify-center justify-md-start col-4 col-md-6 col-lg-4"
 				>
-					<item-card :ads="ad" />
+					<item-card :ad="ad" />
 				</v-col>
 				<v-alert
 					v-if="err"
@@ -51,7 +51,7 @@
 				:key="`${ad.user_id}-${ad._id}`"
 				class="d-block d-sm-none px-3 pb-3"
 			>
-				<item-list :ads="ad" />
+				<item-list :ad="ad" />
 			</v-row>
 		</v-col>
 		<v-col
@@ -79,7 +79,7 @@ import FilterCard from '@/components/FilterCard.vue'
 import CardSkeleton from '@/components/CardSkeleton.vue'
 
 export default {
-	name: 'IndexPage',
+	name: 'Index',
 	components: {
 		ItemCard,
 		ItemList,
@@ -91,20 +91,41 @@ export default {
 			ads: [],
 			loading: false,
 			err: '',
+			title: 'Kampüsündeki ikinci el ilanları keşfet',
 		}
 	},
 	async fetch() {
 		await this.getProducts()
 	},
-	// mounted() {
-	// 	this.$vuetify.goTo(0)
+	head() {
+		return {
+			title: this.title,
+			meta: [
+				// hid is used as unique identifier. Do not use `vmid` for it as it will not work
+				{
+					hid: 'description',
+					name: 'description',
+					content:
+						'Kampüsündeki ikinci el ilanları keşfet, al ve sat',
+				},
+			],
+		}
+	},
+	// watch: {
+	// 	async $route() {
+	// 		await this.getProducts()
+	// 	},
 	// },
+	mounted() {
+		this.$vuetify.goTo(0)
+	},
 	methods: {
 		...mapMutations({
 			advertToggle: 'advertToggle',
 		}),
 		async getProducts() {
 			try {
+				this.ads = []
 				this.loading = true
 				const res = await this.$axios.$post('/products/filter', {
 					text: this.$route.query.text || undefined,
@@ -124,7 +145,7 @@ export default {
 				})
 				this.ads = res
 			} catch (err) {
-				if (err.response.status > 404) return this.$nuxt.error({ err })
+				if (err.response.status > 404) return this.$nuxt.error(err)
 				this.err = err.response.data.message
 			} finally {
 				this.loading = false

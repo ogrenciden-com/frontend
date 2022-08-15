@@ -23,6 +23,7 @@
 		"slugify": "^1.6.5",
 		"uuid": "^8.3.2",
 		"vue": "^2.6.14",
+		"vue-phone-number-input": "^1.1.12",
 		"vue-server-renderer": "^2.6.14",
 		"vue-template-compiler": "^2.6.14",
 		"vuetify": "^2.6.1",

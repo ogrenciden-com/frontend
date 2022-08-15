@@ -1,5 +1,15 @@
 <template>
 	<v-card flat rounded="lg" class="px-sm-10 px-4">
+		<v-snackbar
+			v-model="snackbar"
+			timeout="1500"
+			app
+			top
+			color="success"
+			outlined
+		>
+			{{ res }}
+		</v-snackbar>
 		<div class="d-flex justify-space-between align-center">
 			<div>
 				<v-card-title class="px-0">Profil Düzenle</v-card-title>
@@ -158,25 +168,6 @@
 					></select-box>
 				</v-col>
 			</v-row>
-			<!-- contact information  -->
-			<!-- <v-row no-gutters>
-				<v-col>
-					<v-text-field
-						v-model="user.tel"
-						placeholder="(+90) İletişim bilgisi"
-						type="tel"
-						background-color="secondary"
-						color="darkGrey"
-						class="text-caption text-sm-body-2 text-md-body-1"
-						outlined
-						flat
-						hide-details
-						hide-spin-buttons
-						dense
-					></v-text-field>
-				</v-col>
-			</v-row> -->
-
 			<v-btn
 				color="primary"
 				height="40"
@@ -213,6 +204,8 @@ export default {
 			isShow: false,
 			image: [],
 			loading: false,
+			snackbar: false,
+			res: undefined,
 		}
 	},
 	async fetch() {
@@ -225,15 +218,13 @@ export default {
 		campuses() {
 			return this.$store.state.UniversityAndCampus?.selectedCampuses
 		},
-		currentUser() {
-			return this.$store.state.user
-		},
 	},
 	watch: {
 		'user.university'() {
 			if (!this.user.university) {
 				this.user.campus = undefined
 			}
+			console.log('changed')
 			this.findCampusByUniversitySlug(this.user.university)
 		},
 	},
@@ -241,18 +232,17 @@ export default {
 		async getUser() {
 			try {
 				const data = await this.$axios.$get('auth/me')
-				// eslint-disable-next-line no-console
 				this.user = { ...data }
 			} catch (e) {
 				// eslint-disable-next-line no-console
 				console.log(e)
-				// this.$nuxt.error({ e })
 			}
 		},
 		...mapMutations({
 			findCampusByUniversitySlug:
 				'UniversityAndCampus/findCampusByUniversitySlug',
 			profileToggle: 'profileToggle',
+			clearSelectedCampuses: 'UniversityAndCampus/clearSelectedCampuses',
 		}),
 		previewImage() {
 			this.user.url = URL.createObjectURL(this.image)
@@ -268,12 +258,13 @@ export default {
 				delete newUser.createdAt
 				delete newUser.updatedAt
 				delete newUser.email
-				const res = await this.$axios.$put(
-					`/auth/${this.user._id}`,
-					newUser,
-				)
-				// eslint-disable-next-line
-				console.log(res)
+				await this.$axios.$put(`/auth/${this.user._id}`, newUser)
+				this.snackbar = true
+				this.res = 'Profil bilgileriniz başarı ile güncellenmiştir.'
+				setTimeout(() => {
+					this.profileToggle()
+					this.clearSelectedCampuses()
+				}, 500)
 			} catch (error) {
 				// eslint-disable-next-line
 				console.log(error)

@@ -1,8 +1,10 @@
 import colors from 'vuetify/es5/util/colors'
+import { sortRoutes } from '@nuxt/utils'
 
 export default {
+	ssr: false,
 	head: {
-		titleTemplate: 'Öğrenciden - %s',
+		titleTemplate: '%s - Öğrenciden',
 		title: 'Öğrenciden',
 		htmlAttrs: {
 			lang: 'en',
@@ -118,49 +120,31 @@ export default {
 	plugins: [],
 
 	components: true,
-
 	buildModules: ['@nuxtjs/device', '@nuxtjs/vuetify'],
 
-	modules: [
-		'@nuxtjs/router-extras',
-		'@nuxtjs/axios',
-		// '@nuxtjs/firebase',
-		'@nuxtjs/auth-next',
-	],
+	modules: ['@nuxtjs/router-extras', '@nuxtjs/axios', '@nuxtjs/auth-next'],
+
 	auth: {
 		strategies: {
-			// local: {
-			// 	token: {
-			// 		property: 'token',
-			// 		// required: true,
-			// 		// type: 'Bearer',
-			// 	},
-			// 	user: {
-			// 		property: 'user',
-			// 		autoFetch: false,
-			// 	},
-			// 	endpoints: {
-			// 		login: {
-			// 			url: 'auth/login',
-			// 			method: 'post',
-			// 		},
-			// 		user: {
-			// 			url: 'auth/me',
-			// 			method: 'get',
-			// 		},
-			// 		logout: false,
-			// 	},
-			// },
+			cookie: {
+				options: {
+					expires: new Date(
+						new Date().getTime() + 20000000000,
+					).getTime(),
+					maxAge: 31622400,
+				},
+			},
 			local: {
 				token: {
 					property: 'token',
 					global: true,
+					maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week,
 					// required: true,
-					// type: 'Bearer'
+					type: 'Bearer',
 				},
 				user: {
 					property: 'user',
-					// autoFetch: true
+					autoFetch: true,
 				},
 				endpoints: {
 					login: { url: 'auth/login', method: 'post' },
@@ -176,22 +160,6 @@ export default {
 			home: '/',
 		},
 	},
-	// firebase: {
-	// 	config: {
-	// 		apiKey: 'AIzaSyByJ2DTipMFTshKNQIWLzT06Np386FuNeo',
-	// 		authDomain: 'ogrenciden-1903.firebaseapp.com',
-	// 		projectId: 'ogrenciden-1903',
-	// 		storageBucket: 'ogrenciden-1903.appspot.com',
-	// 		messagingSenderId: '976272317973',
-	// 		appId: '1:976272317973:web:9061a5d9a246e9c767f81c',
-	// 		measurementId: 'G-YGMZZ050XH',
-	// 	},
-	// 	services: {
-	// 		auth: true,
-	// 		firestore: true,
-	// 		storage: true,
-	// 	},
-	// },
 	axios: {
 		baseURL: 'https://ogrenciden.herokuapp.com/',
 		headers: {
@@ -219,6 +187,11 @@ export default {
 					success: colors.green.accent3,
 				},
 			},
+		},
+	},
+	router: {
+		extendRoutes(routes) {
+			sortRoutes(routes)
 		},
 	},
 
