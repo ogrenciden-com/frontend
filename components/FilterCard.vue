@@ -190,7 +190,7 @@ export default {
 		},
 		submit() {
 			this.$router.push({
-				path: '/',
+				name: 'Index',
 				params: {
 					university: this.form.universityName
 						? slugify(this.form.universityName, {
