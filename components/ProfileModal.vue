@@ -168,25 +168,6 @@
 					></select-box>
 				</v-col>
 			</v-row>
-			<!-- contact information  -->
-			<!-- <v-row no-gutters>
-				<v-col>
-					<v-text-field
-						v-model="user.tel"
-						placeholder="(+90) İletişim bilgisi"
-						type="tel"
-						background-color="secondary"
-						color="darkGrey"
-						class="text-caption text-sm-body-2 text-md-body-1"
-						outlined
-						flat
-						hide-details
-						hide-spin-buttons
-						dense
-					></v-text-field>
-				</v-col>
-			</v-row> -->
-
 			<v-btn
 				color="primary"
 				height="40"
@@ -237,15 +218,13 @@ export default {
 		campuses() {
 			return this.$store.state.UniversityAndCampus?.selectedCampuses
 		},
-		currentUser() {
-			return this.$store.state.user
-		},
 	},
 	watch: {
 		'user.university'() {
 			if (!this.user.university) {
 				this.user.campus = undefined
 			}
+			console.log('changed')
 			this.findCampusByUniversitySlug(this.user.university)
 		},
 	},
@@ -263,6 +242,7 @@ export default {
 			findCampusByUniversitySlug:
 				'UniversityAndCampus/findCampusByUniversitySlug',
 			profileToggle: 'profileToggle',
+			clearSelectedCampuses: 'UniversityAndCampus/clearSelectedCampuses',
 		}),
 		previewImage() {
 			this.user.url = URL.createObjectURL(this.image)
@@ -283,7 +263,8 @@ export default {
 				this.res = 'Profil bilgileriniz başarı ile güncellenmiştir.'
 				setTimeout(() => {
 					this.profileToggle()
-				}, 1500)
+					this.clearSelectedCampuses()
+				}, 500)
 			} catch (error) {
 				// eslint-disable-next-line
 				console.log(error)

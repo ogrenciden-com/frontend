@@ -97,7 +97,6 @@ export default {
 	async fetch() {
 		await this.getProducts()
 	},
-
 	head() {
 		return {
 			title: this.title,
@@ -112,6 +111,11 @@ export default {
 			],
 		}
 	},
+	// watch: {
+	// 	async $route() {
+	// 		await this.getProducts()
+	// 	},
+	// },
 	mounted() {
 		this.$vuetify.goTo(0)
 	},
@@ -121,6 +125,7 @@ export default {
 		}),
 		async getProducts() {
 			try {
+				this.ads = []
 				this.loading = true
 				const res = await this.$axios.$post('/products/filter', {
 					text: this.$route.query.text || undefined,

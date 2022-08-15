@@ -118,10 +118,18 @@
 						{{ item.user_id.name }}
 						{{ item.user_id.surname }}:
 						<a
-							:href="`tel: +9${item.contact}`"
+							:href="`tel: ${
+								item.contact.length > 10
+									? `+9${item.contact}`
+									: `+90${item.contact}`
+							}`"
 							class="darkGrey--text"
 						>
-							{{ item.contact }}
+							{{
+								item.contact.length > 10
+									? `${item.contact}`
+									: `0${item.contact}`
+							}}
 						</a>
 					</span>
 					<div class="mr-sm-4 mr-2 d-flex">
