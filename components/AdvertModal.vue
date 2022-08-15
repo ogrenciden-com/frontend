@@ -196,11 +196,21 @@
 						</v-sheet>
 					</v-col>
 				</v-row>
-				<div class="d-flex justify-end">
+				<div class="d-flex justify-space-between align-center">
+					<v-btn
+						color="red"
+						height="40"
+						width="140"
+						outlined
+						elevation="0"
+						class="font-weight-bold my-6"
+						@click="clearAd"
+						>Temizle</v-btn
+					>
 					<v-btn
 						color="primary"
 						height="40"
-						width="160"
+						width="140"
 						:loading="loading"
 						elevation="0"
 						class="font-weight-bold my-6"
