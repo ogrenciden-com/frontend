@@ -252,6 +252,9 @@ export default {
 			},
 		}
 	},
+	async fetch() {
+		await this.getUser()
+	},
 	computed: {
 		universities() {
 			return this.$store.state.UniversityAndCampus?.universities
@@ -275,9 +278,7 @@ export default {
 			this.phoneClass = false
 		},
 	},
-	created() {
-		this.getUser()
-	},
+
 	methods: {
 		clearErrorMessages() {
 			this.error.title = undefined
@@ -339,7 +340,7 @@ export default {
 				this.clearAd()
 				setTimeout(() => {
 					this.advertToggle()
-				}, 1200)
+				}, 500)
 			} catch (e) {
 				if (e.response?.data?.error?.includes('title')) {
 					this.clearErrorMessages()
