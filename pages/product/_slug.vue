@@ -1,10 +1,10 @@
 <template>
 	<div>
-		<v-breadcrumbs
+		<!-- <v-breadcrumbs
 			class="pa-0 mb-2 ml-2 font-weight-thin"
 			divider=">"
 			:items="breadcrumbs"
-		></v-breadcrumbs>
+		></v-breadcrumbs> -->
 		<v-sheet class="d-md-flex d-block mb-10 mb-sm-0" outlined rounded="lg">
 			<template v-if="$fetchState.pending">
 				<v-sheet>
@@ -246,30 +246,30 @@ export default {
 		return {
 			model: 0,
 			snackbar: undefined,
-			breadcrumbs: [
-				{
-					text: 'Ana Sayfa',
-					href: '/',
-				},
-				{
-					text: this.convertTitle(this.$route.params.university),
-					disabled: false,
-					href: `/${this.$route.params.university}`,
-					nuxt: true,
-				},
-				{
-					text: this.convertTitle(this.$route.params.campus),
-					disabled: false,
-					href: `/${this.$route.params.university}/${this.$route.params.campus}`,
-					nuxt: true,
-				},
-				{
-					text: this.convertTitle(this.$route.params.category),
-					disabled: false,
-					href: `/${this.$route.params.university}/${this.$route.params.campus}/${this.$route.params.category}`,
-					nuxt: true,
-				},
-			],
+			// breadcrumbs: [
+			// 	{
+			// 		text: 'Ana Sayfa',
+			// 		href: '/',
+			// 	},
+			// 	{
+			// 		text: this.convertTitle(this.$route.params.university),
+			// 		disabled: false,
+			// 		href: `/${this.$route.params.university}`,
+			// 		nuxt: true,
+			// 	},
+			// 	{
+			// 		text: this.convertTitle(this.$route.params.campus),
+			// 		disabled: false,
+			// 		href: `/${this.$route.params.university}/${this.$route.params.campus}`,
+			// 		nuxt: true,
+			// 	},
+			// 	{
+			// 		text: this.convertTitle(this.$route.params.category),
+			// 		disabled: false,
+			// 		href: `/${this.$route.params.university}/${this.$route.params.campus}/${this.$route.params.category}`,
+			// 		nuxt: true,
+			// 	},
+			// ],
 			item: {},
 			userId: undefined,
 			deleteLoading: false,
@@ -279,6 +279,21 @@ export default {
 		await this.getProduct()
 		this.$auth.user && (await this.getUser())
 	},
+	head() {
+		return {
+			title: this.item.title,
+			meta: [
+				// hid is used as unique identifier. Do not use `vmid` for it as it will not work
+				{
+					hid: 'description',
+					name: 'description',
+					content:
+						'Kampüsündeki ikinci el ilanları keşfet, al ve sat',
+				},
+			],
+		}
+	},
+
 	computed: {
 		shareTelegramLink() {
 			return `https://t.me/share/url?url=https://ogrenciden.vercel.app${this.$route.fullPath}&text=${this.item.title} ${this.item.price}TL `

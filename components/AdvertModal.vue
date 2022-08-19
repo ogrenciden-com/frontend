@@ -5,6 +5,8 @@
 				v-model="snackbar"
 				timeout="1200"
 				app
+				absolute
+				right
 				top
 				color="success"
 				outlined

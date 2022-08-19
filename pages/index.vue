@@ -111,11 +111,6 @@ export default {
 			],
 		}
 	},
-	// watch: {
-	// 	async $route() {
-	// 		await this.getProducts()
-	// 	},
-	// },
 	mounted() {
 		this.$vuetify.goTo(0)
 	},

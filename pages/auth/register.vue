@@ -164,9 +164,23 @@ export default {
 				email: undefined,
 				password: undefined,
 			},
+			title: 'Kayıt Ol',
 		}
 	},
-
+	head() {
+		return {
+			title: this.title,
+			meta: [
+				// hid is used as unique identifier. Do not use `vmid` for it as it will not work
+				{
+					hid: 'description',
+					name: 'description',
+					content:
+						'Kampüsündeki ikinci el ilanları keşfet, al ve sat',
+				},
+			],
+		}
+	},
 	computed: {
 		campuses() {
 			return this.$store.state.UniversityAndCampus?.selectedCampuses
