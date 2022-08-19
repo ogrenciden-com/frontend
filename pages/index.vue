@@ -36,7 +36,7 @@
 					</v-btn>
 				</v-alert>
 			</v-row>
-			<template v-if="loading">
+			<template v-if="$fetchState.pending">
 				<v-row
 					v-for="index in 5"
 					:key="'list-' + index"
@@ -89,7 +89,6 @@ export default {
 	data() {
 		return {
 			ads: [],
-			loading: false,
 			err: '',
 			title: 'Kampüsündeki ikinci el ilanları keşfet, al & sat',
 		}
@@ -121,7 +120,6 @@ export default {
 		async getProducts() {
 			try {
 				this.ads = []
-				this.loading = true
 				const res = await this.$axios.$post('/products/filter', {
 					text: this.$route.query.text || undefined,
 					category: this.$route.params.category || undefined,
@@ -142,8 +140,6 @@ export default {
 			} catch (err) {
 				if (err.response.status > 404) return this.$nuxt.error(err)
 				this.err = err.response.data.message
-			} finally {
-				this.loading = false
 			}
 		},
 	},

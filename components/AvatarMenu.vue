@@ -86,7 +86,7 @@ export default {
 					id: 1,
 					text: 'İlanlarım',
 					function: () => {},
-					link: '/my-ads',
+					link: '/my-ads/' + this.user._id,
 				},
 				{
 					id: 2,

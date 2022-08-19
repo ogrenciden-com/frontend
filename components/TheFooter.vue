@@ -117,7 +117,7 @@ export default {
 					},
 					{
 						title: 'İlanlarım',
-						href: '/my-ads',
+						href: '/my-ads/' + this.$auth.user._id,
 						function: undefined,
 						isExternalLink: false,
 					},
