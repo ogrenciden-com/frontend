@@ -91,7 +91,7 @@ export default {
 			ads: [],
 			loading: false,
 			err: '',
-			title: 'Kampüsündeki ikinci el ilanları keşfet',
+			title: 'Kampüsündeki ikinci el ilanları keşfet, al & sat',
 		}
 	},
 	async fetch() {

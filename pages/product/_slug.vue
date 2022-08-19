@@ -281,7 +281,17 @@ export default {
 	},
 	head() {
 		return {
-			title: this.item.title,
+			title: `${
+				this.item.title
+					? this.item.title +
+					  ' / ' +
+					  this.item.university +
+					  ' / ' +
+					  this.item.campus +
+					  ' / ' +
+					  this.item.category
+					: 'Kampüsündeki ikinci el ilanları keşfet, al ve sat'
+			} `,
 			meta: [
 				// hid is used as unique identifier. Do not use `vmid` for it as it will not work
 				{
