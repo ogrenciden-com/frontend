@@ -78,6 +78,7 @@ import ItemCard from '@/components/ItemCard.vue'
 import ItemList from '@/components/ItemList.vue'
 import FilterCard from '@/components/FilterCard.vue'
 import CardSkeleton from '@/components/CardSkeleton.vue'
+import SocialTags from '@/components/Seo/SocialTags.vue'
 
 export default {
 	name: 'Index',
@@ -85,6 +86,7 @@ export default {
 		ItemCard,
 		ItemList,
 		FilterCard,
+		SocialTags,
 		CardSkeleton,
 	},
 	data() {

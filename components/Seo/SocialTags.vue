@@ -24,9 +24,7 @@ export default {
 		}
 	},
 	head() {
-		const image =
-			this.image ||
-			'https://ogrenciden-git-dev-ogrenciden.vercel.app/ogrenciden.png'
+		const image = this.image || require('@/static/assets/ogrenciden.png')
 
 		return {
 			meta: [

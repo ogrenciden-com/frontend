@@ -229,11 +229,7 @@
 				</v-btn>
 			</template>
 		</v-snackbar>
-		<social-tags
-			:title="item.title"
-			:description="item.description"
-			:image="item.images[0]"
-		/>
+		<social-tags :title="item.title" :description="item.description" />
 	</div>
 </template>
 <router>
