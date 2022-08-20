@@ -307,12 +307,12 @@ export default {
 				{
 					hid: 'og-title',
 					property: 'og:title',
-					content: this.item.title,
+					content: 'test',
 				},
 				{
 					hid: 'og-desc',
 					property: 'og:description',
-					content: this.item.description,
+					content: 'bu bir deneme yazısıdır',
 				},
 				{
 					hid: 'og-image',
