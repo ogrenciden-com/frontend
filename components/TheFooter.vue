@@ -89,6 +89,12 @@
 import { mapMutations } from 'vuex'
 
 export default {
+	// props: {
+	// 	userId: {
+	// 		type: Object,
+	// 		default: () => {},
+	// 	},
+	// },
 	data() {
 		return {
 			sitemap: [
@@ -115,12 +121,12 @@ export default {
 						function: this.advertToggle,
 						isExternalLink: false,
 					},
-					{
-						title: 'İlanlarım',
-						href: '/my-ads/' + this.$auth.user._id,
-						function: undefined,
-						isExternalLink: false,
-					},
+					// {
+					// 	title: 'İlanlarım',
+					// 	href: undefined,
+					// 	function: undefined,
+					// 	isExternalLink: false,
+					// },
 					{
 						title: 'favorilerim',
 						href: '/favorite',
@@ -161,7 +167,6 @@ export default {
 						title: 'Giriş yap',
 						href: '/auth/login',
 						function: undefined,
-
 						isExternalLink: false,
 					},
 					{

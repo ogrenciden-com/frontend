@@ -64,6 +64,7 @@
 				<filter-card />
 			</div>
 		</v-col>
+		<social-tags :title="title" :description="title" />
 	</v-row>
 </template>
 <router>

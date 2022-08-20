@@ -229,6 +229,11 @@
 				</v-btn>
 			</template>
 		</v-snackbar>
+		<social-tags
+			:title="item.title"
+			:description="item.description"
+			:image="item.images[0]"
+		/>
 	</div>
 </template>
 <router>
@@ -238,9 +243,11 @@
 </router>
 <script>
 import TelegramIcon from '@/components/Icons/TelegramIcon.vue'
+import SocialTags from '@/components/Seo/SocialTags.vue'
 export default {
 	components: {
 		TelegramIcon,
+		SocialTags,
 	},
 	data() {
 		return {

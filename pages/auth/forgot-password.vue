@@ -17,7 +17,6 @@
 			<v-text-field
 				v-model="email"
 				outlined
-				autofocus
 				solo
 				flat
 				placeholder="Lütfen E-posta adresinizi girin"
@@ -73,7 +72,6 @@ export default {
 		return {
 			title: this.title,
 			meta: [
-				// hid is used as unique identifier. Do not use `vmid` for it as it will not work
 				{
 					hid: 'description',
 					name: 'description',

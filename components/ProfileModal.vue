@@ -68,7 +68,6 @@
 								outlined
 								type="text"
 								height="32"
-								autofocus
 								flat
 								solo
 								dense
@@ -224,7 +223,6 @@ export default {
 			if (!this.user.university) {
 				this.user.campus = undefined
 			}
-			console.log('changed')
 			this.findCampusByUniversitySlug(this.user.university)
 		},
 	},
