@@ -94,7 +94,7 @@ export default {
 				{
 					hid: 'og:site_name',
 					property: 'og:site_name',
-					content: 'StoreSpy Blog',
+					content: 'Ogrenciden',
 				},
 			],
 		}
