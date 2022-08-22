@@ -189,9 +189,7 @@
 			</template>
 		</v-snackbar>
 		<social-tags :title="item.title" :description="item.description" />
-		<canonical-tag
-			:path="`product/${item.university}/${item.campus}/${item.category}/${itemSlug}/${item._id}`"
-		/>
+		<canonical-tag :path="itemSlug" />
 	</div>
 </template>
 <router>
@@ -267,9 +265,17 @@ export default {
 		itemSlug() {
 			return (
 				this.item?.title &&
-				slugify(this.item?.title, {
+				this.item?.university &&
+				this.item?.campus &&
+				this.item?.category &&
+				`product/${slugify(this.item.university, {
 					lower: true,
-				})
+				})}/${slugify(this.item.campus, { lower: true })}/${slugify(
+					this.item.category,
+					{ lower: true },
+				)}/${slugify(this.item.title, { lower: true })}/${
+					this.item._id
+				}`
 			)
 		},
 	},
