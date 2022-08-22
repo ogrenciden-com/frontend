@@ -230,6 +230,9 @@
 			</template>
 		</v-snackbar>
 		<social-tags :title="item.title" :description="item.description" />
+		<canonical-tag
+			:path="`product/${item.university}/${item.campus}/${item.category}/${itemSlug}/${item._id}`"
+		/>
 	</div>
 </template>
 <router>
@@ -238,12 +241,15 @@
   }
 </router>
 <script>
+import slugify from 'slugify'
 import TelegramIcon from '@/components/Icons/TelegramIcon.vue'
 import SocialTags from '@/components/Seo/SocialTags.vue'
+import CanonicalTag from '~/components/Seo/CanonicalTag.vue'
 export default {
 	components: {
 		TelegramIcon,
 		SocialTags,
+		CanonicalTag,
 	},
 	data() {
 		return {
@@ -295,39 +301,6 @@ export default {
 					  this.item.category
 					: 'Kampüsündeki ikinci el ilanları keşfet, al ve sat'
 			} `,
-			// meta: [
-			// 	// hid is used as unique identifier. Do not use `vmid` for it as it will not work
-			// 	{
-			// 		hid: 'description',
-			// 		name: 'description',
-			// 		content:
-			// 			'Kampüsündeki ikinci el ilanları keşfet, al ve sat',
-			// 	},
-			// 	{ hid: 'og-type', property: 'og:type', content: 'product' },
-			// 	{
-			// 		hid: 'og-title',
-			// 		property: 'og:title',
-			// 		content: 'test',
-			// 	},
-			// 	{
-			// 		hid: 'og-desc',
-			// 		property: 'og:description',
-			// 		content: 'bu bir deneme yazısıdır',
-			// 	},
-			// 	{
-			// 		hid: 'og-image',
-			// 		property: 'og:image',
-			// 		content:
-			// 			'https://pbs.twimg.com/profile_banners/1158829223936745479/1604412246/1500x500',
-			// 	},
-			// 	{
-			// 		hid: 'og-url',
-			// 		property: 'og:url',
-			// 		content:
-			// 			'https://ogrenciden-git-dev-ogrenciden.vercel.app' +
-			// 			this.$route.fullPath,
-			// 	},
-			// ],
 		}
 	},
 
@@ -342,6 +315,15 @@ export default {
 			return this.$device.isMobile
 				? `whatsapp://send?text=https://ogrenciden.co${this.$route.fullPath}`
 				: `https://web.whatsapp.com/send?text=https://ogrenciden.co${this.$route.fullPath}`
+		},
+		itemSlug() {
+			// console.log(slugify(this.item?.title, { lower: true })
+			return (
+				this.item?.title &&
+				slugify(this.item?.title, {
+					lower: true,
+				})
+			)
 		},
 	},
 	mounted() {
