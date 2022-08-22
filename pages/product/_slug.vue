@@ -133,51 +133,10 @@
 						</a>
 					</span>
 					<div class="mr-sm-4 mr-2 d-flex">
-						<a
-							:href="shareWhatsAppLink"
-							data-action="share/whatsapp/share"
-							target="_blank"
-							class="text-decoration-none"
-						>
-							<v-hover v-slot="{ hover }">
-								<v-btn icon>
-									<v-icon :class="hover ? 'green--text' : ''"
-										>mdi-whatsapp</v-icon
-									>
-								</v-btn>
-							</v-hover>
-						</a>
-						<a
-							:href="shareTelegramLink"
-							target="_blank"
-							class="text-decoration-none"
-						>
-							<v-hover v-slot="{ hover }">
-								<v-btn icon>
-									<telegram-icon
-										:class="
-											hover
-												? 'blue--text'
-												: '#E1E9E9--text'
-										"
-									/>
-								</v-btn>
-							</v-hover>
-						</a>
-						<a
-							:href="shareTwitterLink"
-							data-action="share/whatsapp/share"
-							target="_blank"
-							class="text-decoration-none"
-						>
-							<v-hover v-slot="{ hover }">
-								<v-btn icon>
-									<v-icon :class="hover ? 'blue--text' : ''"
-										>mdi-twitter</v-icon
-									>
-								</v-btn>
-							</v-hover>
-						</a>
+						<share-social-media
+							:title="item.title"
+							:price="item.price"
+						/>
 					</div>
 				</div>
 				<div v-if="item && userId">
@@ -242,14 +201,14 @@
 </router>
 <script>
 import slugify from 'slugify'
-import TelegramIcon from '@/components/Icons/TelegramIcon.vue'
 import SocialTags from '@/components/Seo/SocialTags.vue'
 import CanonicalTag from '~/components/Seo/CanonicalTag.vue'
+import ShareSocialMedia from '~/components/ShareSocialMedia.vue'
 export default {
 	components: {
-		TelegramIcon,
 		SocialTags,
 		CanonicalTag,
+		ShareSocialMedia,
 	},
 	data() {
 		return {
@@ -286,7 +245,7 @@ export default {
 	},
 	async fetch() {
 		await this.getProduct()
-		this.$auth.user && (await this.getUser())
+		await this.getUser()
 	},
 	head() {
 		return {
@@ -305,19 +264,7 @@ export default {
 	},
 
 	computed: {
-		shareTelegramLink() {
-			return `https://t.me/share/url?url=https://ogrenciden.co${this.$route.fullPath}&text=${this.item.title} ${this.item.price}TL `
-		},
-		shareTwitterLink() {
-			return `https://twitter.com/intent/tweet?text=İlanıma göz atın. ${this.item.title} ${this.item.price}TL &url=https://ogrenciden.co${this.$route.fullPath}`
-		},
-		shareWhatsAppLink() {
-			return this.$device.isMobile
-				? `whatsapp://send?text=https://ogrenciden.co${this.$route.fullPath}`
-				: `https://web.whatsapp.com/send?text=https://ogrenciden.co${this.$route.fullPath}`
-		},
 		itemSlug() {
-			// console.log(slugify(this.item?.title, { lower: true })
 			return (
 				this.item?.title &&
 				slugify(this.item?.title, {
