@@ -232,7 +232,7 @@
 		<social-tags
 			:title="item.title"
 			:description="item.description"
-			:image="require('@/static/assets/ogrenciden.png')"
+			image="https://pbs.twimg.com/profile_banners/1158829223936745479/1604412246/1500x500"
 		/>
 	</div>
 </template>
