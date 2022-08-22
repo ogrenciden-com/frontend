@@ -50,7 +50,20 @@ export default {
 	// 	ItemCard,
 	// 	ItemList,
 	// },
-
+	head() {
+		return {
+			title: 'Favorilerim',
+			meta: [
+				// hid is used as unique identifier. Do not use `vmid` for it as it will not work
+				{
+					hid: 'description',
+					name: 'description',
+					content:
+						'Kampüsündeki ikinci el ilanları keşfet, al ve sat',
+				},
+			],
+		}
+	},
 	mounted() {
 		this.$vuetify.goTo(0)
 	},

@@ -17,7 +17,6 @@
 			<v-text-field
 				v-model="email"
 				outlined
-				autofocus
 				solo
 				flat
 				placeholder="Lütfen E-posta adresinizi girin"
@@ -66,6 +65,20 @@ export default {
 	data() {
 		return {
 			email: '',
+			title: 'Şifremi Unuttum',
+		}
+	},
+	head() {
+		return {
+			title: this.title,
+			meta: [
+				{
+					hid: 'description',
+					name: 'description',
+					content:
+						'Kampüsündeki ikinci el ilanları keşfet, al ve sat',
+				},
+			],
 		}
 	},
 	methods: {

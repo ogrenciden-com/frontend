@@ -69,6 +69,7 @@
 				>
 					<v-icon>mdi-arrow-up</v-icon>
 				</v-btn>
+				<!-- advert modal -->
 				<v-dialog
 					v-model="advertModal"
 					:fullscreen="!$vuetify.breakpoint.smAndUp"
@@ -78,6 +79,7 @@
 					@keydown.esc="advertToggle"
 				>
 					<advert-modal />
+					<!-- profile modal -->
 				</v-dialog>
 				<v-dialog
 					v-model="profileModal"
@@ -91,154 +93,7 @@
 				</v-dialog>
 				<Nuxt :key="$route.fullPath" class="mt-1 mt-sm-0" />
 			</v-main>
-			<v-footer
-				color="white"
-				class="pb-8 pt-4 mx-auto"
-				absolute
-				padless
-				max-width="1157"
-			>
-				<v-row justify="center">
-					<v-col
-						order="last"
-						order-md="first"
-						cols="3"
-						class="col-12 col-md-3 mt-5 mt-md-0 pl-md-2 pl-10"
-						align-self="center"
-					>
-						<brand-logo class="d-block mb-3" />
-						<div class="text-body-2 darkGrey--text">
-							{{ new Date().getFullYear() }} &copy;
-							<span>Öğrenciden</span>
-						</div>
-						<span class="text-caption darkGrey--text">
-							Bu uygulama hala yapım aşamasındadır. <br />
-							Olası hatalar olabilir.
-						</span>
-					</v-col>
-					<v-col
-						order="first"
-						order-md="last"
-						cols="9"
-						class="col-12 col-md-9"
-					>
-						<v-row justify="space-between">
-							<v-col cols="4" class="col-6 col-md-3 col-sm-6">
-								<ul class="list">
-									<li>
-										<span
-											class="black--text text-decoration-none font-weight-medium"
-											>Sayfalar</span
-										>
-									</li>
-									<li>
-										<nuxt-link
-											to="/"
-											class="darkGrey--text text-decoration-none text-body-2"
-											>Ana Sayfa</nuxt-link
-										>
-									</li>
-									<li
-										class="darkGrey--text text-decoration-none text-body-2 cursor-pointer"
-										@click="
-											$auth.loggedIn && profileToggle()
-										"
-									>
-										Profil Düzenle
-									</li>
-									<li
-										class="darkGrey--text text-decoration-none text-body-2 cursor-pointer"
-										@click="
-											$auth.loggedIn && advertToggle()
-										"
-									>
-										İlan ekle
-									</li>
-									<li>
-										<nuxt-link
-											to="/my-ads"
-											class="darkGrey--text text-decoration-none text-body-2"
-											>İlanlarım</nuxt-link
-										>
-									</li>
-									<li>
-										<nuxt-link
-											to="/favorite"
-											class="darkGrey--text text-decoration-none text-body-2"
-											>Favorilerim</nuxt-link
-										>
-									</li>
-								</ul>
-							</v-col>
-							<v-col cols="4" class="col-6 col-md-3 col-sm-6">
-								<ul class="list">
-									<li>
-										<span
-											class="black--text text-decoration-none font-weight-medium"
-											>Bizi takip edin</span
-										>
-									</li>
-									<li>
-										<a
-											href="https://twitter.com/_ahmet_cakir"
-											target="_blank"
-											class="darkGrey--text text-decoration-none text-body-2"
-											>Twitter</a
-										>
-									</li>
-									<li>
-										<a
-											href="https://www.linkedin.com/in/aahmetcakir/"
-											target="_blank"
-											class="darkGrey--text text-decoration-none text-body-2"
-											>Linkedin</a
-										>
-									</li>
-									<li>
-										<a
-											href="https://www.instagram.com/ahmetcakir.ac/"
-											target="_blank"
-											class="darkGrey--text text-decoration-none text-body-2"
-											>İnstagram</a
-										>
-									</li>
-								</ul>
-							</v-col>
-							<v-col cols="4" class="col-6 col-md-3 col-sm-6">
-								<ul class="list">
-									<li>
-										<span
-											class="black--text text-decoration-none font-weight-medium"
-											>Hesap İşlemleri</span
-										>
-									</li>
-									<li>
-										<nuxt-link
-											to="/auth/login"
-											class="darkGrey--text text-decoration-none text-body-2"
-											>Giriş Yap</nuxt-link
-										>
-									</li>
-									<li>
-										<nuxt-link
-											to="/auth/register"
-											class="darkGrey--text text-decoration-none text-body-2"
-											>Kayıt Ol</nuxt-link
-										>
-									</li>
-									<li>
-										<nuxt-link
-											to="/auth/forgot-password"
-											class="darkGrey--text text-decoration-none text-body-2"
-											>Şifremi unuttum</nuxt-link
-										>
-									</li>
-								</ul>
-							</v-col>
-						</v-row>
-					</v-col>
-				</v-row>
-			</v-footer>
+			<the-footer />
 		</v-container>
 	</v-app>
 </template>
@@ -250,13 +105,15 @@ import SearchBox from '@/components/SearchBox.vue'
 import AvatarMenu from '@/components/AvatarMenu.vue'
 import AdvertModal from '@/components/AdvertModal.vue'
 import ProfileModal from '@/components/ProfileModal.vue'
+import TheFooter from '@/components/TheFooter.vue'
 export default {
 	name: 'DefaultLayout',
 	components: {
-		BrandLogo,
-		SearchBox,
 		AvatarMenu,
 		AdvertModal,
+		BrandLogo,
+		TheFooter,
+		SearchBox,
 		ProfileModal,
 	},
 	data() {

@@ -23,7 +23,6 @@
 							v-model="user.name"
 							outlined
 							solo
-							autofocus
 							flat
 							placeholder="Ad"
 							height="32"
@@ -164,9 +163,22 @@ export default {
 				email: undefined,
 				password: undefined,
 			},
+			title: 'Kayıt Ol',
 		}
 	},
-
+	head() {
+		return {
+			title: this.title,
+			meta: [
+				{
+					hid: 'description',
+					name: 'description',
+					content:
+						'Kampüsündeki ikinci el ilanları keşfet, al ve sat',
+				},
+			],
+		}
+	},
 	computed: {
 		campuses() {
 			return this.$store.state.UniversityAndCampus?.selectedCampuses

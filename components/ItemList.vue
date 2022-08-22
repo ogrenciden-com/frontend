@@ -97,9 +97,9 @@ export default {
 	},
 	computed: {
 		detailLink() {
-			return `/product/${this.ad.university}/${this.ad.campus}/${
-				this.ad.category
-			}/${slugify(this.ad.title, { lower: true })}/${this.ad._id}`
+			return `/product/${this.ad?.university}/${this.ad?.campus}/${
+				this.ad?.category
+			}/${slugify(this.ad?.title, { lower: true })}/${this.ad?._id}`
 		},
 	},
 }

@@ -5,6 +5,8 @@
 				v-model="snackbar"
 				timeout="1200"
 				app
+				absolute
+				right
 				top
 				color="success"
 				outlined
@@ -44,7 +46,6 @@
 							color="darkGrey"
 							class="text-caption text-sm-body-2 text-md-body-1"
 							outlined
-							autofocus
 							counter="70"
 							:error-messages="error.title"
 							flat

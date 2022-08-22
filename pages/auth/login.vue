@@ -20,7 +20,6 @@
 				outlined
 				solo
 				flat
-				autofocus
 				placeholder="Lütfen E-posta adresinizi girin"
 				height="32"
 				color="darkGrey"
@@ -111,6 +110,20 @@ export default {
 				password: undefined,
 			},
 			loading: false,
+			title: 'Giriş Yap',
+		}
+	},
+	head() {
+		return {
+			title: this.title,
+			meta: [
+				{
+					hid: 'description',
+					name: 'description',
+					content:
+						'Kampüsündeki ikinci el ilanları keşfet, al ve sat',
+				},
+			],
 		}
 	},
 	methods: {
