@@ -24,7 +24,7 @@ export default {
 		}
 	},
 	head() {
-		const image = this.image || require('@/static/assets/ogrenciden.png')
+		const image = this.image || 'https://i.ibb.co/PN9c0LQ/ogrenciden.png'
 
 		return {
 			meta: [

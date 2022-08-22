@@ -229,11 +229,7 @@
 				</v-btn>
 			</template>
 		</v-snackbar>
-		<social-tags
-			:title="item.title"
-			:description="item.description"
-			image="https://pbs.twimg.com/profile_banners/1158829223936745479/1604412246/1500x500"
-		/>
+		<social-tags :title="item.title" :description="item.description" />
 	</div>
 </template>
 <router>
