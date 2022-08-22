@@ -2,7 +2,7 @@ import colors from 'vuetify/es5/util/colors'
 import { sortRoutes } from '@nuxt/utils'
 
 export default {
-	ssr: false,
+	ssr: true,
 	head: {
 		titleTemplate: '%s - Öğrenciden',
 		title: 'Öğrenciden',

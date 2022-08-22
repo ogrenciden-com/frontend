@@ -64,7 +64,11 @@
 				<filter-card />
 			</div>
 		</v-col>
-		<social-tags :title="title" :description="title" />
+		<social-tags
+			:title="title"
+			:description="title"
+			:image="require('@/static/assets/ogrenciden.png')"
+		/>
 	</v-row>
 </template>
 <router>

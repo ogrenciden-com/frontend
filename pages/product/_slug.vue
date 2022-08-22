@@ -1,10 +1,10 @@
 <template>
 	<div>
-		<!-- <v-breadcrumbs
+		<v-breadcrumbs
 			class="pa-0 mb-2 ml-2 font-weight-thin"
 			divider=">"
 			:items="breadcrumbs"
-		></v-breadcrumbs> -->
+		></v-breadcrumbs>
 		<v-sheet class="d-md-flex d-block mb-10 mb-sm-0" outlined rounded="lg">
 			<template v-if="$fetchState.pending">
 				<v-sheet>
@@ -229,50 +229,54 @@
 				</v-btn>
 			</template>
 		</v-snackbar>
-		<!-- <social-tags :title="item.title" :description="item.description" /> -->
+		<social-tags
+			:title="item.title"
+			:description="item.description"
+			:image="require('@/static/assets/ogrenciden.png')"
+		/>
 	</div>
 </template>
 <router>
   {
-    path: '/product/:university?/:campus?/:category?/:slug/:id'
+    path: '/product/:university/:campus/:category/:slug/:id'
   }
 </router>
 <script>
 import TelegramIcon from '@/components/Icons/TelegramIcon.vue'
-// import SocialTags from '@/components/Seo/SocialTags.vue'
+import SocialTags from '@/components/Seo/SocialTags.vue'
 export default {
 	components: {
 		TelegramIcon,
-		// SocialTags,
+		SocialTags,
 	},
 	data() {
 		return {
 			model: 0,
 			snackbar: undefined,
-			// breadcrumbs: [
-			// 	{
-			// 		text: 'Ana Sayfa',
-			// 		href: '/',
-			// 	},
-			// 	{
-			// 		text: this.convertTitle(this.$route.params.university),
-			// 		disabled: false,
-			// 		href: `/${this.$route.params.university}`,
-			// 		nuxt: true,
-			// 	},
-			// 	{
-			// 		text: this.convertTitle(this.$route.params.campus),
-			// 		disabled: false,
-			// 		href: `/${this.$route.params.university}/${this.$route.params.campus}`,
-			// 		nuxt: true,
-			// 	},
-			// 	{
-			// 		text: this.convertTitle(this.$route.params.category),
-			// 		disabled: false,
-			// 		href: `/${this.$route.params.university}/${this.$route.params.campus}/${this.$route.params.category}`,
-			// 		nuxt: true,
-			// 	},
-			// ],
+			breadcrumbs: [
+				{
+					text: 'Ana Sayfa',
+					href: '/',
+				},
+				{
+					text: this.convertTitle(this.$route.params.university),
+					disabled: false,
+					href: `/${this.$route.params.university}`,
+					nuxt: true,
+				},
+				{
+					text: this.convertTitle(this.$route.params.campus),
+					disabled: false,
+					href: `/${this.$route.params.university}/${this.$route.params.campus}`,
+					nuxt: true,
+				},
+				{
+					text: this.convertTitle(this.$route.params.category),
+					disabled: false,
+					href: `/${this.$route.params.university}/${this.$route.params.campus}/${this.$route.params.category}`,
+					nuxt: true,
+				},
+			],
 			item: {},
 			userId: undefined,
 			deleteLoading: false,
@@ -295,39 +299,39 @@ export default {
 					  this.item.category
 					: 'Kampüsündeki ikinci el ilanları keşfet, al ve sat'
 			} `,
-			meta: [
-				// hid is used as unique identifier. Do not use `vmid` for it as it will not work
-				{
-					hid: 'description',
-					name: 'description',
-					content:
-						'Kampüsündeki ikinci el ilanları keşfet, al ve sat',
-				},
-				{ hid: 'og-type', property: 'og:type', content: 'product' },
-				{
-					hid: 'og-title',
-					property: 'og:title',
-					content: 'test',
-				},
-				{
-					hid: 'og-desc',
-					property: 'og:description',
-					content: 'bu bir deneme yazısıdır',
-				},
-				{
-					hid: 'og-image',
-					property: 'og:image',
-					content:
-						'https://pbs.twimg.com/profile_banners/1158829223936745479/1604412246/1500x500',
-				},
-				{
-					hid: 'og-url',
-					property: 'og:url',
-					content:
-						'https://ogrenciden-git-dev-ogrenciden.vercel.app' +
-						this.$route.fullPath,
-				},
-			],
+			// meta: [
+			// 	// hid is used as unique identifier. Do not use `vmid` for it as it will not work
+			// 	{
+			// 		hid: 'description',
+			// 		name: 'description',
+			// 		content:
+			// 			'Kampüsündeki ikinci el ilanları keşfet, al ve sat',
+			// 	},
+			// 	{ hid: 'og-type', property: 'og:type', content: 'product' },
+			// 	{
+			// 		hid: 'og-title',
+			// 		property: 'og:title',
+			// 		content: 'test',
+			// 	},
+			// 	{
+			// 		hid: 'og-desc',
+			// 		property: 'og:description',
+			// 		content: 'bu bir deneme yazısıdır',
+			// 	},
+			// 	{
+			// 		hid: 'og-image',
+			// 		property: 'og:image',
+			// 		content:
+			// 			'https://pbs.twimg.com/profile_banners/1158829223936745479/1604412246/1500x500',
+			// 	},
+			// 	{
+			// 		hid: 'og-url',
+			// 		property: 'og:url',
+			// 		content:
+			// 			'https://ogrenciden-git-dev-ogrenciden.vercel.app' +
+			// 			this.$route.fullPath,
+			// 	},
+			// ],
 		}
 	},
 
