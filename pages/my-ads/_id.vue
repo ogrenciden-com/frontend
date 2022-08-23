@@ -1,6 +1,17 @@
 <template>
 	<div>
-		<h3 class="mb-4 text--subtitle">İlanlarım</h3>
+		<h2 class="ml-2 mb-8 text--subtitle">İlanlarım</h2>
+		<v-alert
+			v-if="ads.length < 1 && !$fetchState.pending"
+			width="100%"
+			dense
+			text
+			type="warning"
+			border="left"
+			class="d-flex align-center ml-2 green--text"
+		>
+			İlanınız bulunmamaktadır
+		</v-alert>
 		<v-row class="d-none d-sm-flex">
 			<template v-if="$fetchState.pending">
 				<v-col
@@ -37,12 +48,14 @@
 		>
 			<item-list :favorite="true" :ad="ad" />
 		</v-row>
+		<canonical-tag :path="`my-ads/${$route.params.id}`" />
 	</div>
 </template>
 <script>
 import CardSkeleton from '@/components/CardSkeleton.vue'
 import ItemCard from '@/components/ItemCard.vue'
 import ItemList from '@/components/ItemList.vue'
+import CanonicalTag from '~/components/Seo/CanonicalTag.vue'
 
 export default {
 	name: 'MyAds',
@@ -50,6 +63,7 @@ export default {
 		ItemCard,
 		ItemList,
 		CardSkeleton,
+		CanonicalTag,
 	},
 	data() {
 		return {
