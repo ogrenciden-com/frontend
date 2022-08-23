@@ -49,6 +49,7 @@
 			<item-list :favorite="true" :ad="ad" />
 		</v-row>
 		<canonical-tag :path="`my-ads/${$route.params.id}`" />
+		<social-tags :title="title" :description="description" />
 	</div>
 </template>
 <script>
@@ -56,6 +57,7 @@ import CardSkeleton from '@/components/CardSkeleton.vue'
 import ItemCard from '@/components/ItemCard.vue'
 import ItemList from '@/components/ItemList.vue'
 import CanonicalTag from '~/components/Seo/CanonicalTag.vue'
+import SocialTags from '@/components/Seo/SocialTags.vue'
 
 export default {
 	name: 'MyAds',
@@ -64,11 +66,14 @@ export default {
 		ItemList,
 		CardSkeleton,
 		CanonicalTag,
+		SocialTags,
 	},
 	data() {
 		return {
 			ads: [],
 			loading: false,
+			title: 'İlanlarım ',
+			description: 'İlanlarıma göz atın',
 		}
 	},
 	async fetch() {
@@ -76,13 +81,12 @@ export default {
 	},
 	head() {
 		return {
-			title: 'İlanlarım',
+			title: this.title,
 			meta: [
 				{
 					hid: 'description',
 					name: 'description',
-					content:
-						'Kampüsündeki ikinci el ilanları keşfet, al ve sat',
+					content: this.description,
 				},
 			],
 		}

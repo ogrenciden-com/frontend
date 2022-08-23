@@ -83,19 +83,27 @@
 				Hesap oluştur.
 			</nuxt-link>
 		</span>
+		<social-tags :title="title" :description="description" />
+		<canonical-tag :path="'auth/login'" />
 	</v-card>
 </template>
 <script>
 import MailIcon from '@/components/Icons/MailIcon.vue'
 import BrandLogo from '@/components/BrandLogo.vue'
+import SocialTags from '@/components/Seo/SocialTags.vue'
+import CanonicalTag from '@/components/Seo/CanonicalTag.vue'
 export default {
 	components: {
 		BrandLogo,
 		MailIcon,
+		SocialTags,
+		CanonicalTag,
 	},
 	layout: 'auth',
 	data() {
 		return {
+			title: 'Giriş Yap',
+			description: "Ögrenciden'e hemen Giriş Yap",
 			isShow: false,
 			user: {
 				email: '',
@@ -110,7 +118,6 @@ export default {
 				password: undefined,
 			},
 			loading: false,
-			title: 'Giriş Yap',
 		}
 	},
 	head() {
