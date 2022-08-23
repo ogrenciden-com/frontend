@@ -24,7 +24,7 @@ export default {
 		}
 	},
 	head() {
-		const image = this.image || 'https://i.ibb.co/pWn67RK/ogrenciden.png'
+		const image = this.image || 'https://i.ibb.co/kXTJ1cW/ogrenciden.png'
 
 		return {
 			meta: [

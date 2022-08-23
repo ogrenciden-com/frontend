@@ -130,21 +130,29 @@
 				Giriş Yap
 			</nuxt-link>
 		</span>
+		<social-tags :title="title" :description="description" />
+		<canonical-tag :path="'auth/register'" />
 	</v-card>
 </template>
 <script>
 import { mapMutations } from 'vuex'
 import MailIcon from '@/components/Icons/MailIcon.vue'
 import BrandLogo from '@/components/BrandLogo.vue'
+import SocialTags from '@/components/Seo/SocialTags.vue'
+import CanonicalTag from '~/components/Seo/CanonicalTag.vue'
 export default {
 	components: {
 		BrandLogo,
 		MailIcon,
+		SocialTags,
+		CanonicalTag,
 	},
 	layout: 'auth',
 
 	data() {
 		return {
+			title: 'Kayıt Ol',
+			description: "Ögrenciden'e hemen Kayıt Ol",
 			isShow: false,
 			loading: false,
 			user: {
@@ -163,7 +171,6 @@ export default {
 				email: undefined,
 				password: undefined,
 			},
-			title: 'Kayıt Ol',
 		}
 	},
 	head() {

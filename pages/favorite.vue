@@ -39,27 +39,38 @@
 				Ana sayfaya dön
 			</v-btn>
 		</div>
+		<social-tags :title="title" :description="description" />
+		<canonical-tag path="favorite" />
 	</div>
 </template>
 <script>
 // import ItemCard from '@/components/ItemCard.vue'
 // import ItemList from '@/components/ItemList.vue'
+import SocialTags from '@/components/Seo/SocialTags.vue'
+import CanonicalTag from '~/components/Seo/CanonicalTag.vue'
 export default {
 	name: 'Favorite',
-	// components: {
-	// 	ItemCard,
-	// 	ItemList,
-	// },
-	head() {
+	components: {
+		// ItemCard,
+		// ItemList,
+		SocialTags,
+		CanonicalTag,
+	},
+	data() {
 		return {
 			title: 'Favorilerim',
+			description: 'Favori ilanlarıma göz atın',
+		}
+	},
+	head() {
+		return {
+			title: this.title,
 			meta: [
 				// hid is used as unique identifier. Do not use `vmid` for it as it will not work
 				{
 					hid: 'description',
 					name: 'description',
-					content:
-						'Kampüsündeki ikinci el ilanları keşfet, al ve sat',
+					content: this.description,
 				},
 			],
 		}

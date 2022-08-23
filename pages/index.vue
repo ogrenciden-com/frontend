@@ -65,6 +65,7 @@
 			</div>
 		</v-col>
 		<social-tags :title="title" :description="title" />
+		<canonical-tag :path="''" />
 	</v-row>
 </template>
 <router>
@@ -79,6 +80,7 @@ import ItemList from '@/components/ItemList.vue'
 import FilterCard from '@/components/FilterCard.vue'
 import CardSkeleton from '@/components/CardSkeleton.vue'
 import SocialTags from '@/components/Seo/SocialTags.vue'
+import CanonicalTag from '~/components/Seo/CanonicalTag.vue'
 
 export default {
 	name: 'Index',
@@ -88,6 +90,7 @@ export default {
 		FilterCard,
 		SocialTags,
 		CardSkeleton,
+		CanonicalTag,
 	},
 	data() {
 		return {
