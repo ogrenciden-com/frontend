@@ -63,11 +63,12 @@
 						absolute
 						right
 						icon
-						@click="saveFavorite = !saveFavorite"
+						:loading="loading"
+						@click="isFavorite ? deleteFavorite() : addFavorite()"
 					>
 						<v-icon size="20" color="red"
 							>{{
-								saveFavorite ? 'mdi-heart' : 'mdi-heart-outline'
+								isFavorite ? 'mdi-heart' : 'mdi-heart-outline'
 							}}
 						</v-icon>
 					</v-btn>
@@ -80,10 +81,6 @@
 import slugify from 'slugify'
 export default {
 	props: {
-		favorite: {
-			type: Boolean,
-			default: false,
-		},
 		ad: {
 			type: Object,
 			default: () => {},
@@ -92,7 +89,7 @@ export default {
 	data() {
 		return {
 			model: 0,
-			saveFavorite: this.favorite,
+			loading: false,
 		}
 	},
 	computed: {
@@ -100,6 +97,55 @@ export default {
 			return `/product/${this.ad?.university}/${this.ad?.campus}/${
 				this.ad?.category
 			}/${slugify(this.ad?.title, { lower: true })}/${this.ad?._id}`
+		},
+		isFavorite() {
+			return this.$auth?.user?.favorites.includes(this.ad?._id)
+		},
+	},
+	methods: {
+		async addFavorite() {
+			try {
+				this.loading = true
+				await this.$axios.post('auth/favorite', {
+					productId: this.ad?._id,
+				})
+				await this.getUser()
+			} catch (error) {
+				// eslint-disable-next-line no-console
+				console.log(error)
+			} finally {
+				this.loading = false
+			}
+		},
+		async getUser() {
+			try {
+				this.loading = true
+				const data = await this.$axios.$get('auth/me')
+
+				const user = { ...data }
+				this.$auth.setUser(user)
+			} catch (e) {
+				// eslint-disable-next-line no-console
+				console.log(e)
+			} finally {
+				this.loading = false
+			}
+		},
+		async deleteFavorite() {
+			try {
+				this.loading = true
+				await this.$axios.delete('auth/favorite', {
+					data: {
+						productId: this.ad._id,
+					},
+				})
+				await this.getUser()
+			} catch (error) {
+				// eslint-disable-next-line no-console
+				console.log(error)
+			} finally {
+				this.loading = false
+			}
 		},
 	},
 }
