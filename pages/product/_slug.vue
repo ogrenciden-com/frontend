@@ -117,20 +117,32 @@
 						<!-- Bu ilan 181 kez görüntülendi -->
 						{{ item.user_id.name }}
 						{{ item.user_id.surname }}:
-						<a
-							:href="`tel: ${
-								item.contact.length > 10
-									? `+9${item.contact}`
-									: `+90${item.contact}`
-							}`"
-							class="darkGrey--text"
-						>
-							{{
-								item.contact.length > 10
-									? `${item.contact}`
-									: `0${item.contact}`
-							}}
-						</a>
+						<div v-if="!!userId" class="d-inline">
+							<a
+								:href="`tel: ${
+									item.contact.length > 10
+										? `+9${item.contact}`
+										: `+90${item.contact}`
+								}`"
+								class="darkGrey--text"
+							>
+								{{
+									item.contact.length > 10
+										? `${item.contact}`
+										: `0${item.contact}`
+								}}
+							</a>
+						</div>
+						<div v-else class="red--text">
+							İletişim bilgilerine ulaşmak için
+							<nuxt-link
+								to="/auth/register"
+								class="red--text text-decoration-none"
+							>
+								<strong> üye olmanız </strong>
+							</nuxt-link>
+							gerekmektedir.
+						</div>
 					</span>
 					<div class="mr-sm-4 mr-2 d-flex">
 						<share-social-media
