@@ -54,7 +54,7 @@
 				<v-sheet
 					height="2px"
 					color="secondary"
-					class="mb-2 mb-sm-8 d-none d-sm-flex"
+					class="mb-2 d-none d-sm-flex"
 				></v-sheet>
 				<v-btn
 					v-show="fab"
@@ -91,6 +91,14 @@
 				>
 					<profile-modal />
 				</v-dialog>
+				<span
+					v-if="$route.name === 'index'"
+					class="mb-2 ml-1 text-caption darkGrey--text font-weight-light d-block"
+					>Şu an
+					<strong>{{ randomStudentCount }} öğrenci</strong> diğer
+					öğrencilerin ilanını inceliyor</span
+				>
+
 				<Nuxt :key="$route.fullPath" class="mt-1 mt-sm-0" />
 			</v-main>
 			<the-footer />
@@ -135,6 +143,9 @@ export default {
 		profileModal() {
 			return this.$store.state.profileModal
 		},
+		randomStudentCount() {
+			return Math.floor(Math.random() * 15)
+		},
 	},
 	methods: {
 		...mapMutations({
@@ -148,9 +159,9 @@ export default {
 
 				this.user = { ...data }
 				this.$auth.setUser(this.user)
-			} catch (e) {
-				// eslint-disable-next-line no-console
-				console.log(e)
+			} catch (error) {
+				const statusCode = error.response?.status || 500
+				console.log(statusCode)
 			} finally {
 				this.loading = false
 			}
