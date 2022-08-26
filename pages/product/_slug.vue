@@ -296,11 +296,10 @@ export default {
 		async getUser() {
 			try {
 				const data = await this.$axios.$get('auth/me')
-				this.userId = data._id
-			} catch (e) {
-				// eslint-disable-next-line no-console
-				console.log(e)
-				// this.$nuxt.error({ e })
+				this.userId = data?._id
+			} catch (error) {
+				const statusCode = error.response?.status || 500
+				console.log(statusCode)
 			}
 		},
 		formatDate(date) {
@@ -324,8 +323,9 @@ export default {
 				campus = this.convertTitle(campus)
 
 				this.item = { ...res, category, university, campus }
-			} catch (e) {
-				this.$nuxt.error(e)
+			} catch (error) {
+				const statusCode = error.response?.status || 500
+				this.$nuxt.error({ statusCode })
 			}
 		},
 		async deleteAd() {
@@ -334,9 +334,9 @@ export default {
 				this.deleteLoading = true
 				await this.$axios.$delete(`/products/${this.$route.params.id}`)
 				this.$router.push({ path: '/' })
-			} catch (e) {
-				// eslint-disable-next-line no-console
-				this.$nuxt.error(e)
+			} catch (error) {
+				const statusCode = error.response?.status || 500
+				this.$nuxt.error({ statusCode })
 			} finally {
 				this.deleteLoading = false
 			}
