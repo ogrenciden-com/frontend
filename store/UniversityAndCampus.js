@@ -3404,6 +3404,10 @@ export const state = () => ({
 					name: 'Değirmanaltı',
 					slug: 'degirmanalti',
 				},
+				{
+					name: 'Çorlu',
+					slug: 'corlu',
+				},
 			],
 		},
 		{
