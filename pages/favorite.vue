@@ -11,7 +11,7 @@
 		>
 			Önce
 			<nuxt-link
-				to="auth/login"
+				to="/auth/login"
 				class="text-decoration-none text-decoration-none"
 			>
 				giriş
