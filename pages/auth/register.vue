@@ -212,49 +212,72 @@ export default {
 			this.error.email = undefined
 			this.error.password = undefined
 		},
+
 		async submit() {
 			try {
 				this.loading = true
-				await this.$axios.$post('auth', this.user)
-				const res = await this.$auth.loginWith('local', {
-					data: {
-						email: this.user.email,
-						password: this.user.password,
-					},
+				const data =
+					await this.$fire.auth.createUserWithEmailAndPassword(
+						this.user.email,
+						this.user.password,
+					)
+				const userRef = this.$fire.firestore
+					.collection('users')
+					.doc(data.user.uid)
+
+				await userRef.set({
+					name: this.user.name,
+					surname: this.user.surname,
+					email: data.user.email,
+					university: this.user.university,
+					campus: this.user.campus,
+					timestamp: new Date(),
 				})
-				this.$auth.strategy.token.set(res.data.tokens.access_token)
-				this.$auth.setUser(res.data)
+
+				const res = await this.$fire.auth.signInWithEmailAndPassword(
+					this.user.email,
+					this.user.password,
+				)
+				this.$auth.strategy.token.set(
+					res.user.auth._currentUser.accessToken,
+				)
+				const snapshot = await userRef.get()
+				const doc = snapshot.data()
+				const uid = data.user.uid
+				const user = { uid, ...doc }
+				this.$auth.setUser(user)
 				this.$router.push('/')
 			} catch (e) {
-				if (e.response?.data?.error?.includes('name')) {
-					this.clearErrorMessages()
-					this.error.name = 'İsim alanı boş bırakılamaz'
-				}
-				if (e.response?.data?.error?.includes('surname')) {
-					this.clearErrorMessages()
-					this.error.surname = 'Soyisim alanı boş bırakılamaz'
-				}
-				if (e.response?.data?.error?.includes('university')) {
-					this.clearErrorMessages()
-					this.error.university = 'Üniversite alanı boş bırakılamaz'
-				}
-				if (e.response?.data?.error?.includes('campus')) {
-					this.clearErrorMessages()
-					this.error.campus = 'Kampüs alanı boş bırakılamaz'
-				}
-				if (e.response?.data?.error?.includes('email')) {
-					this.clearErrorMessages()
-					this.error.email = 'E-posta alanı boş bırakılamaz'
-				}
-				if (e.response?.data?.error?.includes('password')) {
-					this.clearErrorMessages()
-					this.error.password = 'Şifre alanı boş bırakılamaz'
-				}
-				if (e.response.data.code === 11000) {
-					this.clearErrorMessages()
-					this.error.email =
-						'Bu email ile zaten bir hesap var giriş yapmayı deneyebilirsiniz.'
-				}
+				console.log(e)
+				// if (e.response?.data?.error?.includes('name')) {
+				// 	this.clearErrorMessages()
+				// 	this.error.name = 'İsim alanı boş bırakılamaz'
+				// }
+				// if (e.response?.data?.error?.includes('surname')) {
+				// 	this.clearErrorMessages()
+				// 	this.error.surname = 'Soyisim alanı boş bırakılamaz'
+				// }
+				// if (e.response?.data?.error?.includes('university')) {
+				// 	this.clearErrorMessages()
+				// 	this.error.university = 'Üniversite alanı boş bırakılamaz'
+				// }
+				// if (e.response?.data?.error?.includes('campus')) {
+				// 	this.clearErrorMessages()
+				// 	this.error.campus = 'Kampüs alanı boş bırakılamaz'
+				// }
+				// if (e.response?.data?.error?.includes('email')) {
+				// 	this.clearErrorMessages()
+				// 	this.error.email = 'E-posta alanı boş bırakılamaz'
+				// }
+				// if (e.response?.data?.error?.includes('password')) {
+				// 	this.clearErrorMessages()
+				// 	this.error.password = 'Şifre alanı boş bırakılamaz'
+				// }
+				// if (e.response.data.code === 11000) {
+				// 	this.clearErrorMessages()
+				// 	this.error.email =
+				// 		'Bu email ile zaten bir hesap var giriş yapmayı deneyebilirsiniz.'
+				// }
 			} finally {
 				this.loading = false
 			}

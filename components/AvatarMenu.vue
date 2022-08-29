@@ -17,15 +17,15 @@
 					{{ $auth.user.surname || user.surname }}
 				</div>
 				<v-avatar size="38" color="primary" class="white--text">
-					<span>
-						{{
-							(user.name && user.name.slice(0, 1)) ||
-							$auth.user.name.slice(0, 1)
-						}}{{
-							(user.surname && user.surname.slice(0, 1)) ||
-							$auth.user.surname.slice(0, 1)
-						}}
+					<span v-if="!$auth.user.profileImage">
+						{{ $auth.user.name.slice(0, 1)
+						}}{{ $auth.user.surname.slice(0, 1) }}
 					</span>
+					<img
+						v-else
+						:src="$auth.user.profileImage"
+						:alt="$auth.user.name"
+					/>
 				</v-avatar>
 			</v-btn>
 		</template>
@@ -116,7 +116,8 @@ export default {
 		}),
 		async logout() {
 			try {
-				await this.$auth.logout()
+				await this.$fire.auth.signOut()
+				this.$router.push('/auth/login')
 			} catch (error) {
 				console.error(error)
 			}

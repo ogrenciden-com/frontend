@@ -27,8 +27,8 @@
 				<!-- change image -->
 				<v-col class="mr-sm-12 mr-0" cols="12" sm="3">
 					<v-sheet
-						width="160px"
-						height="160px"
+						width="175px"
+						height="175px"
 						color="secondary"
 						class="border mx-auto mx-sm-0"
 						outlined
@@ -37,9 +37,9 @@
 						@click="fileInput()"
 					>
 						<v-img
-							:src="user.url"
-							height="159px"
-							width="159px"
+							:src="preview"
+							height="174px"
+							width="174px"
 							cover
 						></v-img>
 						<v-file-input
@@ -92,7 +92,7 @@
 						</v-col>
 					</v-row>
 					<!-- email -->
-					<v-row class="mb-5" no-gutters>
+					<!-- <v-row class="mb-5" no-gutters>
 						<v-text-field
 							v-model="user.email"
 							placeholder="E-posta"
@@ -111,9 +111,9 @@
 								<mail-icon />
 							</template>
 						</v-text-field>
-					</v-row>
+					</v-row> -->
 					<!-- password -->
-					<v-row class="mb-5" no-gutters>
+					<!-- <v-row class="mb-5" no-gutters>
 						<v-text-field
 							v-model="user.password"
 							placeholder="Şifre"
@@ -134,13 +134,40 @@
 							@click:append="isShow = !isShow"
 						>
 						</v-text-field>
+					</v-row> -->
+					<v-row>
+						<v-col>
+							<select-box
+								v-model="user.university"
+								:items="universities"
+								item-text="name"
+								item-value="slug"
+								label="Üniversite"
+								outlined
+								classes="mb-6 text-caption text-sm-body-2"
+							></select-box>
+						</v-col>
+					</v-row>
+					<!-- campuses -->
+					<v-row no-gutters>
+						<v-col>
+							<select-box
+								v-model="user.campus"
+								:items="campuses"
+								item-text="name"
+								item-value="slug"
+								label="Kampüs"
+								outlined
+								classes="mb-6 text-caption text-sm-body-2 text-md-body-1"
+							></select-box>
+						</v-col>
 					</v-row>
 				</v-col>
 			</v-row>
 			<!-- divider -->
 			<v-divider class="mb-3 mt-n2 mb-sm-0 mt-sm-0 d-sm-none"></v-divider>
 			<!-- university -->
-			<v-row no-gutters>
+			<!-- <v-row>
 				<v-col>
 					<select-box
 						v-model="user.university"
@@ -153,8 +180,8 @@
 					></select-box>
 				</v-col>
 			</v-row>
-			<!-- campuses -->
-			<v-row no-gutters>
+ 			campuses 
+			 <v-row no-gutters>
 				<v-col>
 					<select-box
 						v-model="user.campus"
@@ -166,7 +193,7 @@
 						classes="mb-6 text-caption text-sm-body-2 text-md-body-1"
 					></select-box>
 				</v-col>
-			</v-row>
+			</v-row> -->
 			<v-btn
 				color="primary"
 				height="40"
@@ -183,11 +210,11 @@
 <script>
 import { mapMutations } from 'vuex'
 import SelectBox from '@/components/SelectBox.vue'
-import MailIcon from '@/components/Icons/MailIcon.vue'
+// import MailIcon from '@/components/Icons/MailIcon.vue'
 export default {
 	components: {
 		SelectBox,
-		MailIcon,
+		// MailIcon,
 	},
 	data() {
 		return {
@@ -195,7 +222,7 @@ export default {
 				name: undefined,
 				surname: undefined,
 				email: undefined,
-				password: undefined,
+				// password: undefined,
 				university: undefined,
 				campus: undefined,
 				url: undefined,
@@ -205,10 +232,17 @@ export default {
 			loading: false,
 			snackbar: false,
 			res: undefined,
+			preview: undefined,
 		}
 	},
 	async fetch() {
-		await this.getUser()
+		const doc = await this.getUser()
+		console.log(doc)
+		this.user.name = doc?.name
+		this.user.surname = doc.surname
+		this.preview = doc.profileImage
+		this.user.university = doc.university
+		this.user.campus = doc.campus
 	},
 	computed: {
 		universities() {
@@ -226,43 +260,57 @@ export default {
 			this.findCampusByUniversitySlug(this.user.university)
 		},
 	},
+
 	methods: {
-		async getUser() {
-			try {
-				const data = await this.$axios.$get('auth/me')
-				this.user = { ...data }
-			} catch (e) {
-				// eslint-disable-next-line no-console
-				console.log(e)
-			}
-		},
 		...mapMutations({
 			findCampusByUniversitySlug:
 				'UniversityAndCampus/findCampusByUniversitySlug',
 			profileToggle: 'profileToggle',
 			clearSelectedCampuses: 'UniversityAndCampus/clearSelectedCampuses',
 		}),
-		previewImage() {
-			this.user.url = URL.createObjectURL(this.image)
+		previewImage(select) {
+			this.preview = URL.createObjectURL(this.image)
+			this.user.url = select
 		},
 		fileInput() {
 			this.$refs.fileInput.$refs.input.click()
 		},
+		async getUser() {
+			const userRef = this.$fire.firestore
+				.collection('users')
+				.doc(this.$auth.user.uid)
+			const snapshot = await userRef.get()
+			return snapshot.data()
+		},
 		async submit() {
 			try {
 				this.loading = true
-				const newUser = { ...this.user }
-				delete newUser._id
-				delete newUser.createdAt
-				delete newUser.updatedAt
-				delete newUser.email
-				await this.$axios.$put(`/auth/${this.user._id}`, newUser)
+				const storageRef = this.$fire.storage
+					.ref()
+					.child(this.$auth.user.uid)
+
+				const userRef = this.$fire.firestore
+					.collection('users')
+					.doc(this.$auth.user.uid)
+
+				await storageRef.put(this.user.url)
+
+				const downloadUrl = await storageRef.getDownloadURL()
+				await userRef.update({
+					name: this.user.name,
+					surname: this.user.surname,
+					university: this.user.university,
+					campus: this.user.campus,
+					profileImage: downloadUrl,
+				})
+
+				const newUser = await this.getUser()
+				const uid = this.$auth.user.uid
+				this.$auth.setUser({ uid, ...newUser })
 				this.snackbar = true
 				this.res = 'Profil bilgileriniz başarı ile güncellenmiştir.'
-				setTimeout(() => {
-					this.profileToggle()
-					this.clearSelectedCampuses()
-				}, 500)
+				this.profileToggle()
+				this.clearSelectedCampuses()
 			} catch (error) {
 				// eslint-disable-next-line
 				console.log(error)

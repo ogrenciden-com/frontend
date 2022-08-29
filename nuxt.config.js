@@ -122,7 +122,40 @@ export default {
 	components: true,
 	buildModules: ['@nuxtjs/device', '@nuxtjs/vuetify', '@nuxtjs/pwa'],
 
-	modules: ['@nuxtjs/router-extras', '@nuxtjs/axios', '@nuxtjs/auth-next'],
+	modules: [
+		'@nuxtjs/router-extras',
+		'@nuxtjs/axios',
+		'@nuxtjs/auth-next',
+		[
+			'@nuxtjs/firebase',
+			{
+				config: {
+					apiKey: 'AIzaSyByJ2DTipMFTshKNQIWLzT06Np386FuNeo',
+					authDomain: 'ogrenciden-1903.firebaseapp.com',
+					projectId: 'ogrenciden-1903',
+					storageBucket: 'ogrenciden-1903.appspot.com',
+					messagingSenderId: '976272317973',
+					appId: '1:976272317973:web:9061a5d9a246e9c767f81c',
+					measurementId: 'G-YGMZZ050XH',
+				},
+				services: {
+					auth: true,
+					firestore: true,
+					functions: true,
+					storage: true,
+					database: true,
+					messaging: true,
+					performance: true,
+					analytics: true,
+					remoteConfig: true,
+				},
+				auth: {
+					ssr: true,
+					persistence: 'session',
+				},
+			},
+		],
+	],
 	pwa: {
 		meta: {
 			title: 'Öğrenciden',
@@ -175,7 +208,6 @@ export default {
 			'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
 		},
 	},
-
 	vuetify: {
 		customVariables: ['~/assets/variables.scss'],
 		treeShake: true,
