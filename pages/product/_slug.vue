@@ -117,7 +117,7 @@
 						<!-- Bu ilan 181 kez görüntülendi -->
 						{{ item.user_id.name }}
 						{{ item.user_id.surname }}:
-						<div v-if="$auth.loggedIn" class="d-inline">
+						<div v-if="!!userId" class="d-inline">
 							<a
 								:href="`tel: ${
 									item.contact.length > 10
@@ -255,7 +255,7 @@ export default {
 	},
 	async fetch() {
 		await this.getProduct()
-		// await this.getUser()
+		await this.getUser()
 	},
 	head() {
 		return {
@@ -305,15 +305,15 @@ export default {
 			return words.join(' ')
 		},
 
-		// async getUser() {
-		// 	try {
-		// 		const data = await this.$axios.$get('auth/me')
-		// 		this.userId = data?._id
-		// 	} catch (error) {
-		// 		const statusCode = error.response?.status || 500
-		// 		console.log(statusCode)
-		// 	}
-		// },
+		async getUser() {
+			try {
+				const data = await this.$axios.$get('auth/me')
+				this.userId = data?._id
+			} catch (error) {
+				const statusCode = error.response?.status || 500
+				console.log(statusCode)
+			}
+		},
 		formatDate(date) {
 			let mounth = date?.slice(5, 7)
 			const day = date?.slice(8, 10)

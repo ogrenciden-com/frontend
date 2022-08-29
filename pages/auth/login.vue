@@ -137,24 +137,15 @@ export default {
 		async loginWithEmail() {
 			try {
 				this.loading = true
-				const res = await this.$fire.auth.signInWithEmailAndPassword(
-					this.user.email,
-					this.user.password,
-				)
-				const userRef = this.$fire.firestore
-					.collection('users')
-					.doc(res.user.uid)
 
-				this.$auth.strategy.token.set(
-					res.user.auth._currentUser.accessToken,
-				)
-				const snapshot = await userRef.get()
-				const doc = snapshot.data()
-				const uid = res.user.uid
-				const user = { uid, ...doc }
-				this.$auth.setUser(user)
+				const res = await this.$auth.loginWith('local', {
+					data: this.user,
+				})
+				this.$auth.strategy.token.set(res.data.tokens.access_token)
+				this.$auth.setUser(res.data)
 				this.$router.push('/')
 			} catch (error) {
+				console.log(error)
 				this.error.email =
 					'Email veya şifre hatalı lütfen tekrar deneyiniz.'
 				this.error.password =
