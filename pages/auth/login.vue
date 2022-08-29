@@ -114,8 +114,8 @@ export default {
 					!!value || 'Bu alanı doldurmak zorunludur.',
 			},
 			error: {
-				email: undefined,
-				password: undefined,
+				email: '',
+				password: '',
 			},
 			loading: false,
 		}
@@ -142,9 +142,10 @@ export default {
 					data: this.user,
 				})
 				this.$auth.strategy.token.set(res.data.tokens.access_token)
-				this.$router.push('/')
 				this.$auth.setUser(res.data)
-			} catch (e) {
+				this.$router.push('/')
+			} catch (error) {
+				console.log(error)
 				this.error.email =
 					'Email veya şifre hatalı lütfen tekrar deneyiniz.'
 				this.error.password =

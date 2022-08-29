@@ -84,7 +84,7 @@ export default {
 			}/${slugify(this.ad?.title, { lower: true })}/${this.ad?._id}`
 		},
 		isFavorite() {
-			return this.$auth?.user?.favorites.includes(this.ad?._id)
+			return this.$auth?.user?.favorites?.includes(this.ad?._id) || false
 		},
 	},
 	methods: {

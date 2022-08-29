@@ -117,20 +117,32 @@
 						<!-- Bu ilan 181 kez görüntülendi -->
 						{{ item.user_id.name }}
 						{{ item.user_id.surname }}:
-						<a
-							:href="`tel: ${
-								item.contact.length > 10
-									? `+9${item.contact}`
-									: `+90${item.contact}`
-							}`"
-							class="darkGrey--text"
-						>
-							{{
-								item.contact.length > 10
-									? `${item.contact}`
-									: `0${item.contact}`
-							}}
-						</a>
+						<div v-if="!!userId" class="d-inline">
+							<a
+								:href="`tel: ${
+									item.contact.length > 10
+										? `+9${item.contact}`
+										: `+90${item.contact}`
+								}`"
+								class="darkGrey--text"
+							>
+								{{
+									item.contact.length > 10
+										? `${item.contact}`
+										: `0${item.contact}`
+								}}
+							</a>
+						</div>
+						<div v-else class="red--text">
+							İletişim bilgilerine ulaşmak için
+							<nuxt-link
+								to="/auth/register"
+								class="red--text text-decoration-none"
+							>
+								<strong> üye olmanız </strong>
+							</nuxt-link>
+							gerekmektedir.
+						</div>
 					</span>
 					<div class="mr-sm-4 mr-2 d-flex">
 						<share-social-media
@@ -296,11 +308,10 @@ export default {
 		async getUser() {
 			try {
 				const data = await this.$axios.$get('auth/me')
-				this.userId = data._id
-			} catch (e) {
-				// eslint-disable-next-line no-console
-				console.log(e)
-				// this.$nuxt.error({ e })
+				this.userId = data?._id
+			} catch (error) {
+				const statusCode = error.response?.status || 500
+				console.log(statusCode)
 			}
 		},
 		formatDate(date) {
@@ -324,8 +335,9 @@ export default {
 				campus = this.convertTitle(campus)
 
 				this.item = { ...res, category, university, campus }
-			} catch (e) {
-				this.$nuxt.error(e)
+			} catch (error) {
+				const statusCode = error.response?.status || 500
+				this.$nuxt.error({ statusCode })
 			}
 		},
 		async deleteAd() {
@@ -334,9 +346,9 @@ export default {
 				this.deleteLoading = true
 				await this.$axios.$delete(`/products/${this.$route.params.id}`)
 				this.$router.push({ path: '/' })
-			} catch (e) {
-				// eslint-disable-next-line no-console
-				this.$nuxt.error(e)
+			} catch (error) {
+				const statusCode = error.response?.status || 500
+				this.$nuxt.error({ statusCode })
 			} finally {
 				this.deleteLoading = false
 			}

@@ -143,9 +143,10 @@ export default {
 							: undefined,
 				})
 				this.ads = res
-			} catch (err) {
-				if (err.response.status > 404) return this.$nuxt.error(err)
-				this.err = err.response.data.message
+			} catch (error) {
+				const statusCode = error.response?.status || 500
+				if (statusCode > 404) return this.$nuxt.error({ statusCode })
+				this.err = error.response.data.message
 			}
 		},
 	},

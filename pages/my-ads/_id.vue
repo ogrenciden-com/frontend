@@ -2,7 +2,24 @@
 	<div>
 		<h2 class="ml-2 mb-8 text--subtitle">İlanlarım</h2>
 		<v-alert
-			v-if="ads.length < 1 && !$fetchState.pending"
+			v-if="alert"
+			width="100%"
+			dense
+			text
+			type="error"
+			border="left"
+		>
+			Önce
+			<nuxt-link
+				to="auth/login"
+				class="text-decoration-none text-decoration-none"
+			>
+				giriş
+			</nuxt-link>
+			yapmalısınız
+		</v-alert>
+		<v-alert
+			v-else-if="ads.length < 1 && !$fetchState.pending"
 			width="100%"
 			dense
 			text
@@ -74,6 +91,7 @@ export default {
 			loading: false,
 			title: 'İlanlarım ',
 			description: 'İlanlarıma göz atın',
+			alert: false,
 		}
 	},
 	async fetch() {
@@ -103,7 +121,11 @@ export default {
 				)
 				this.ads = data
 			} catch (error) {
-				console.log(error)
+				const statusCode = error.response?.status || 500
+				if (statusCode === 401) {
+					return (this.alert = true)
+				}
+				this.$nuxt.error({ statusCode })
 			}
 		},
 	},

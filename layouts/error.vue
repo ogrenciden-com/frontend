@@ -1,7 +1,7 @@
 <template>
 	<v-app>
 		<v-container class="d-flex justify-center font">
-			<div v-if="error.response.status === 404">
+			<div v-if="error.statusCode === 404">
 				<h1
 					class="d-block primary--text font-weight-regular"
 					:style="{ fontSize: '200px' }"

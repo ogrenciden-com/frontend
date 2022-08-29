@@ -154,7 +154,7 @@ export default {
 					{
 						title: 'Instagram',
 						isExternalLink: true,
-						href: 'https://www.instagram.com/ahmetcakir.ac/',
+						href: 'https://www.instagram.com/ogrenciden.co/',
 						function: undefined,
 					},
 				],

@@ -2,7 +2,24 @@
 	<div>
 		<h2 class="ml-2 mb-8 text--subtitle">Favorilerim</h2>
 		<v-alert
-			v-if="ads.length < 1 && !$fetchState.pending"
+			v-if="alert"
+			width="100%"
+			dense
+			text
+			type="error"
+			border="left"
+		>
+			Önce
+			<nuxt-link
+				to="/auth/login"
+				class="text-decoration-none text-decoration-none"
+			>
+				giriş
+			</nuxt-link>
+			yapmalısınız
+		</v-alert>
+		<v-alert
+			v-else-if="ads.length < 1 && !$fetchState.pending"
 			width="100%"
 			dense
 			text
@@ -12,6 +29,7 @@
 		>
 			Favori ilanınız bulunmamaktadır
 		</v-alert>
+
 		<v-row class="d-none d-sm-flex">
 			<template v-if="$fetchState.pending">
 				<v-col
@@ -73,6 +91,7 @@ export default {
 			loading: false,
 			title: 'Favorilerim',
 			description: 'Favori ilanlarıma göz atın',
+			alert: false,
 		}
 	},
 	async fetch() {
@@ -100,8 +119,11 @@ export default {
 				const { data } = await this.$axios.get('auth/favorite')
 				this.ads = data?.favorites
 			} catch (error) {
-				// eslint-disable-next-line no-console
-				console.log(error)
+				const statusCode = error.response?.status || 500
+				if (statusCode === 401) {
+					return (this.alert = true)
+				}
+				this.$nuxt.error({ statusCode })
 			}
 		},
 	},

@@ -5,15 +5,24 @@
 		rounded="lg"
 		max-width="510"
 		width="100%"
-		height="260"
+		height="200"
 		class="px-4 py-2"
 	>
-		<v-card-title class="justify-center mt-4">
+		<v-card-title class="justify-center mt-2">
 			<nuxt-link to="/">
 				<brand-logo />
 			</nuxt-link>
 		</v-card-title>
-		<v-form>
+
+		<v-card-text class="text-center">
+			Eğer şifrenizi unuttuysanız
+			<a href="mailto:destek.ogrenciden@gmail.com"
+				>destek.ogrenciden@gmail.com'a</a
+			>
+			kaydolduğunuz e-posta adresi ile birlikte "ŞİFREMİ UNUTTUM" başlıklı
+			e-posta atınız.
+		</v-card-text>
+		<!-- <v-form>
 			<v-text-field
 				v-model="email"
 				outlined
@@ -50,21 +59,21 @@
 					E-mail gönder
 				</v-btn>
 			</div>
-		</v-form>
+		</v-form> -->
 	</v-card>
 </template>
 <script>
-import MailIcon from '@/components/Icons/MailIcon.vue'
+// import MailIcon from '@/components/Icons/MailIcon.vue'
 import BrandLogo from '@/components/BrandLogo.vue'
 export default {
 	components: {
 		BrandLogo,
-		MailIcon,
+		// MailIcon,
 	},
 	layout: 'auth',
 	data() {
 		return {
-			email: '',
+			// email: '',
 			title: 'Şifremi Unuttum',
 		}
 	},
@@ -81,11 +90,11 @@ export default {
 			],
 		}
 	},
-	methods: {
-		submit() {
-			console.log(this.email)
-		},
-	},
+	// methods: {
+	// 	submit() {
+	// 		console.log(this.email)
+	// 	},
+	// },
 }
 </script>
 
