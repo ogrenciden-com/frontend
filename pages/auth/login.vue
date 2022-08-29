@@ -145,6 +145,7 @@ export default {
 				this.$auth.setUser(res.data)
 				this.$router.push('/')
 			} catch (error) {
+				console.log(error)
 				this.error.email =
 					'Email veya şifre hatalı lütfen tekrar deneyiniz.'
 				this.error.password =

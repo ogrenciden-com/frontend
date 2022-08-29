@@ -140,14 +140,6 @@ export default {
 	},
 	auth: {
 		strategies: {
-			cookie: {
-				options: {
-					expires: new Date(
-						new Date().getTime() + 20000000000,
-					).getTime(),
-					maxAge: 31622400,
-				},
-			},
 			local: {
 				token: {
 					property: 'token',

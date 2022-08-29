@@ -144,7 +144,7 @@ export default {
 			return this.$store.state.profileModal
 		},
 		randomStudentCount() {
-			return Math.floor(Math.random() * 15)
+			return Math.ceil(Math.random() * 15)
 		},
 	},
 	methods: {
