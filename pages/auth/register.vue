@@ -216,14 +216,12 @@ export default {
 			try {
 				this.loading = true
 				await this.$axios.$post('auth', this.user)
-				const res = await this.$auth.loginWith('local', {
+				await this.$auth.loginWith('local', {
 					data: {
 						email: this.user.email,
 						password: this.user.password,
 					},
 				})
-				this.$auth.strategy.token.set(res.data.tokens.access_token)
-				this.$auth.setUser(res.data)
 				this.$router.push('/')
 			} catch (e) {
 				if (e.response?.data?.error?.includes('name')) {

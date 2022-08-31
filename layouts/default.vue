@@ -35,21 +35,20 @@
 						@click="advertToggle"
 						>İlan oluştur</v-btn
 					>
-					<avatar-menu
-						v-if="!loading && $auth.loggedIn"
-						:user="user"
-					/>
-					<v-btn
-						v-else
-						outlined
-						nuxt
-						to="/auth/register"
-						color="primary"
-						height="48"
-						elevation="0"
-						class="rounded-lg text-transform-none"
-						>Giriş yap / Kayıt ol</v-btn
-					>
+					<client-only>
+						<avatar-menu v-if="$auth.loggedIn" />
+						<v-btn
+							v-else
+							outlined
+							nuxt
+							to="/auth/register"
+							color="primary"
+							height="48"
+							elevation="0"
+							class="rounded-lg text-transform-none"
+							>Giriş yap / Kayıt ol</v-btn
+						>
+					</client-only>
 				</v-app-bar>
 				<v-sheet
 					height="2px"
@@ -127,14 +126,13 @@ export default {
 	data() {
 		return {
 			fab: false,
-			user: {},
+			// user: {},
 			loading: false,
-			hasUser: false,
 		}
 	},
-	async fetch() {
-		await this.getUser()
-	},
+	// async fetch() {
+	// 	await this.getUser()
+	// },
 
 	computed: {
 		advertModal() {
@@ -152,20 +150,20 @@ export default {
 			advertToggle: 'advertToggle',
 			profileToggle: 'profileToggle',
 		}),
-		async getUser() {
-			try {
-				this.loading = true
-				const data = await this.$axios.$get('auth/me')
+		// async getUser() {
+		// 	try {
+		// 		this.loading = true
+		// 		const data = await this.$axios.$get('auth/me')
 
-				this.user = { ...data }
-				this.$auth.setUser(this.user)
-			} catch (error) {
-				const statusCode = error.response?.status || 500
-				console.log(statusCode)
-			} finally {
-				this.loading = false
-			}
-		},
+		// 		this.user = { ...data }
+		// 		this.$auth.setUser(this.user)
+		// 	} catch (error) {
+		// 		const statusCode = error.response?.status || 500
+		// 		console.log(statusCode)
+		// 	} finally {
+		// 		this.loading = false
+		// 	}
+		// },
 		onScroll(e) {
 			if (typeof window === 'undefined') return
 			const top = window.pageYOffset || e.target.scrollTop || 0
