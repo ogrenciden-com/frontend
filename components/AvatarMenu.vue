@@ -13,15 +13,13 @@
 				<div
 					class="font-weight-bold black--text mr-2 d-none d-md-block text-transform-none"
 				>
-					<!-- {{ $auth.user.name }}
-					{{ $auth.user.surname }} -->
-					Ahmet ÇAKIR
+					{{ $auth.user.name }}
+					{{ $auth.user.surname }}
 				</div>
 				<v-avatar size="38" color="primary" class="white--text">
 					<span>
-						<!-- {{ $auth.user.name.slice(0, 1)
-						}}{{ $auth.user.surname.slice(0, 1) }} -->
-						AÇ
+						{{ $auth.user.name.slice(0, 1)
+						}}{{ $auth.user.surname.slice(0, 1) }}
 					</span>
 				</v-avatar>
 			</v-btn>
