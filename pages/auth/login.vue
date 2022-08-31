@@ -138,11 +138,9 @@ export default {
 			try {
 				this.loading = true
 
-				const res = await this.$auth.loginWith('local', {
+				await this.$auth.loginWith('local', {
 					data: this.user,
 				})
-				this.$auth.strategy.token.set(res.data.tokens.access_token)
-				this.$auth.setUser(res.data)
 				this.$router.push('/')
 			} catch (error) {
 				console.log(error)

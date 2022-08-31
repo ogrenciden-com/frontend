@@ -122,7 +122,12 @@ export default {
 	components: true,
 	buildModules: ['@nuxtjs/device', '@nuxtjs/vuetify', '@nuxtjs/pwa'],
 
-	modules: ['@nuxtjs/router-extras', '@nuxtjs/axios', '@nuxtjs/auth-next'],
+	modules: [
+		'@nuxtjs/router-extras',
+		'@nuxtjs/axios',
+		'@nuxtjs/auth-next',
+		'cookie-universal-nuxt',
+	],
 	pwa: {
 		meta: {
 			title: 'Öğrenciden',
@@ -138,34 +143,6 @@ export default {
 			background_color: '#2D7BF0',
 		},
 	},
-	auth: {
-		strategies: {
-			local: {
-				token: {
-					property: 'token',
-					global: true,
-					maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week,
-					// required: true,
-					type: 'Bearer',
-				},
-				user: {
-					property: 'user',
-					autoFetch: true,
-				},
-				endpoints: {
-					login: { url: 'auth/login', method: 'post' },
-					logout: false,
-					user: { url: 'auth/me', method: 'get' },
-				},
-			},
-		},
-		redirect: {
-			login: '/auth/login',
-			logout: '/',
-			callback: '/auth/login',
-			home: '/',
-		},
-	},
 	axios: {
 		baseURL: 'https://ogrenciden.herokuapp.com/',
 		headers: {
@@ -175,7 +152,28 @@ export default {
 			'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
 		},
 	},
-
+	auth: {
+		strategies: {
+			local: {
+				token: {
+					property: 'tokens.access_token',
+					global: true,
+					maxAge: 604800,
+					// required: true,
+					// type: 'Bearer'
+				},
+				user: {
+					property: false,
+					// autoFetch: true
+				},
+				endpoints: {
+					login: { url: 'auth/login', method: 'post' },
+					logout: false,
+					user: { url: 'auth/me', method: 'get' },
+				},
+			},
+		},
+	},
 	vuetify: {
 		customVariables: ['~/assets/variables.scss'],
 		treeShake: true,

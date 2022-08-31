@@ -13,18 +13,15 @@
 				<div
 					class="font-weight-bold black--text mr-2 d-none d-md-block text-transform-none"
 				>
-					{{ $auth.user.name || user.name }}
-					{{ $auth.user.surname || user.surname }}
+					<!-- {{ $auth.user.name }}
+					{{ $auth.user.surname }} -->
+					Ahmet ÇAKIR
 				</div>
 				<v-avatar size="38" color="primary" class="white--text">
 					<span>
-						{{
-							(user.name && user.name.slice(0, 1)) ||
-							$auth.user.name.slice(0, 1)
-						}}{{
-							(user.surname && user.surname.slice(0, 1)) ||
-							$auth.user.surname.slice(0, 1)
-						}}
+						<!-- {{ $auth.user.name.slice(0, 1)
+						}}{{ $auth.user.surname.slice(0, 1) }} -->
+						AÇ
 					</span>
 				</v-avatar>
 			</v-btn>
@@ -37,28 +34,30 @@
 					color="secondary"
 					class="ml-4"
 				></v-sheet>
-				<template v-for="item in menuItems">
-					<v-list-item
-						:key="'item-' + item.id"
-						color="primary"
-						dense
-						:style="{
-							textAlign: 'center',
-							fontSize: '14px',
-						}"
-						:to="item.link"
-						@click="item.function"
-					>
-						<span class="mx-auto"> {{ item.text }} </span>
-					</v-list-item>
-					<v-sheet
-						:key="'sheet-' + item.id"
-						height="1"
-						width="129"
-						color="secondary"
-						class="ml-4"
-					></v-sheet>
-				</template>
+				<client-only>
+					<template v-for="item in menuItems">
+						<v-list-item
+							:key="'item-' + item.id"
+							color="primary"
+							dense
+							:style="{
+								textAlign: 'center',
+								fontSize: '14px',
+							}"
+							:to="item.link"
+							@click="item.function"
+						>
+							<span class="mx-auto"> {{ item.text }} </span>
+						</v-list-item>
+						<v-sheet
+							:key="'sheet-' + item.id"
+							height="1"
+							width="129"
+							color="secondary"
+							class="ml-4"
+						></v-sheet>
+					</template>
+				</client-only>
 			</v-list>
 		</v-card>
 	</v-menu>
@@ -67,12 +66,12 @@
 import { mapMutations } from 'vuex'
 
 export default {
-	props: {
-		user: {
-			type: Object,
-			default: () => {},
-		},
-	},
+	// props: {
+	// 	user: {
+	// 		type: Object,
+	// 		default: () => {},
+	// 	},
+	// },
 	data() {
 		return {
 			menuItems: [
@@ -86,7 +85,7 @@ export default {
 					id: 1,
 					text: 'İlanlarım',
 					function: () => {},
-					link: '/my-ads/' + this.user._id,
+					link: '/my-ads/' + this.$auth.user?._id,
 				},
 				{
 					id: 2,
