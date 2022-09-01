@@ -12,7 +12,7 @@ export default {
 		script: [
 			{
 				src: 'https://plausible.io/js/plausible.js',
-				'data-domain': 'ogrenciden.vercel.app',
+				'data-domain': 'ogrenciden-ogrenciden.vercel.app',
 				defer: true,
 			},
 		],
