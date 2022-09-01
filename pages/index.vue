@@ -22,7 +22,7 @@
 					<item-card :ad="ad" />
 				</v-col>
 				<v-alert
-					v-if="err"
+					v-if="err && !endOfTheAds"
 					width="100%"
 					dense
 					outlined
@@ -53,7 +53,20 @@
 			>
 				<item-list :ad="ad" />
 			</v-row>
+			<v-btn
+				v-if="!err"
+				color="primary"
+				height="48"
+				elevation="0"
+				class="mt-5 rounded d-flex text-transform-none mx-auto"
+				:disabled="endOfTheAds"
+				:loading="isLoadMoreLoading"
+				@click="increaseLimit()"
+			>
+				Daha fazla ilan yükle
+			</v-btn>
 		</v-col>
+
 		<v-col
 			order="first"
 			order-md="last"
@@ -66,6 +79,7 @@
 		</v-col>
 		<social-tags :title="title" :description="title" />
 		<canonical-tag :path="''" />
+		<!-- <v-card v-intersect="infiniteScrolling"></v-card> -->
 	</v-row>
 </template>
 <router>
@@ -97,10 +111,14 @@ export default {
 			ads: [],
 			err: '',
 			title: 'Kampüsündeki ikinci el ilanları keşfet, al & sat',
+			limit: 9,
+			page: 0,
+			isLoadMoreLoading: false,
+			endOfTheAds: false,
 		}
 	},
 	async fetch() {
-		await this.getProducts()
+		this.ads = await this.getProducts()
 	},
 	head() {
 		return {
@@ -125,7 +143,6 @@ export default {
 		}),
 		async getProducts() {
 			try {
-				this.ads = []
 				const res = await this.$axios.$post('/products/filter', {
 					text: this.$route.query.text || undefined,
 					category: this.$route.params.category || undefined,
@@ -133,6 +150,8 @@ export default {
 					campus: this.$route.params.campus || undefined,
 					maxPrice: this.$route.query.maxPrice || undefined,
 					minPrice: this.$route.query.minPrice || undefined,
+					limit: this.limit,
+					page: this.page,
 					sortPrice:
 						this.$route.query?.order?.length <= 4
 							? this.$route.query?.order
@@ -142,11 +161,32 @@ export default {
 							? this.$route.query?.order
 							: undefined,
 				})
-				this.ads = res
+				return res
 			} catch (error) {
 				const statusCode = error.response?.status || 500
 				if (statusCode > 404) return this.$nuxt.error({ statusCode })
 				this.err = error.response.data.message
+			}
+		},
+		// async infiniteScrolling(entries, observer, isIntersecting) {
+		// 	console.log('çalıştı')
+		// 	this.page++
+		// 	const res = await this.getProducts()
+
+		// 	this.ads = [...this.ads, ...res]
+		// },
+		async increaseLimit() {
+			if (!this.endOfTheAds) {
+				try {
+					this.page++
+					this.isLoadMoreLoading = true
+					const res = await this.getProducts()
+					this.ads = [...this.ads, ...res]
+				} catch (error) {
+					this.endOfTheAds = true
+				} finally {
+					this.isLoadMoreLoading = false
+				}
 			}
 		},
 	},
