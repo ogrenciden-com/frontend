@@ -145,13 +145,17 @@ export default {
 					.collection('users')
 					.doc(res.user.uid)
 
-				this.$auth.strategy.token.set(
-					res.user.auth._currentUser.accessToken,
-				)
 				const snapshot = await userRef.get()
 				const doc = snapshot.data()
 				const uid = res.user.uid
 				const user = { uid, ...doc }
+				await this.$auth.setUserToken(
+					res.user._delegate.accessToken,
+					res.user.refreshToken,
+				)
+				// this.$auth.strategy.token.set(
+				// 	res.user.auth._currentUser.accessToken,
+				// )
 				this.$auth.setUser(user)
 				this.$router.push('/')
 			} catch (error) {

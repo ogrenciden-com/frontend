@@ -237,7 +237,6 @@ export default {
 	},
 	async fetch() {
 		const doc = await this.getUser()
-		console.log(doc)
 		this.user.name = doc?.name
 		this.user.surname = doc.surname
 		this.preview = doc.profileImage
@@ -286,7 +285,7 @@ export default {
 			try {
 				this.loading = true
 				const storageRef = this.$fire.storage
-					.ref()
+					.ref('users')
 					.child(this.$auth.user.uid)
 
 				const userRef = this.$fire.firestore
