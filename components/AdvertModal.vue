@@ -178,7 +178,7 @@
 							@click="fileInput(index)"
 						>
 							<v-img
-								:src="ad.images[index]"
+								:src="imagesPreview[index]"
 								height="128px"
 								width="130px"
 								cover
@@ -229,7 +229,7 @@
 
 <script>
 import { mapMutations } from 'vuex'
-import { processImage } from '../heplers/reduceImageSize'
+import slugify from 'slugify'
 import SelectBox from '@/components/SelectBox.vue'
 
 export default {
@@ -264,10 +264,8 @@ export default {
 				price: undefined,
 				images: [],
 			},
+			imagesPreview: [],
 		}
-	},
-	async fetch() {
-		await this.getUser()
 	},
 	computed: {
 		universities() {
@@ -312,6 +310,7 @@ export default {
 			this.ad.contact = undefined
 			this.ad.price = undefined
 			this.ad.images = []
+			this.imagesPreview = []
 			this.ad.user_id = undefined
 		},
 		...mapMutations({
@@ -322,21 +321,9 @@ export default {
 		fileInput(index) {
 			this.$refs.fileInput[index].$refs.input.click()
 		},
-		async previewImage(index) {
-			let selectedImage = this.image
-			this.ad.images[index] = URL.createObjectURL(this.image)
-			selectedImage = await processImage(selectedImage)
-			this.ad.images[index] = selectedImage
-		},
-		async getUser() {
-			try {
-				const data = await this.$axios.$get('auth/me')
-				this.ad.user_id = data._id
-			} catch (e) {
-				// eslint-disable-next-line no-console
-				console.log(e)
-				// this.$nuxt.error({ e })
-			}
+		previewImage(index) {
+			this.imagesPreview[index] = URL.createObjectURL(this.image)
+			this.ad.images[index] = this.image
 		},
 		async submit() {
 			if (this.ad?.contact?.length === 11) {
@@ -347,15 +334,44 @@ export default {
 				return img !== null
 			})
 			try {
+				// await this.$axios.$post('/products', this.ad)
 				this.loading = true
-				await this.$axios.$post('/products', this.ad)
+				this.ad.images.forEach(async (img) => {
+					const storageRef = this.$fire.storage
+						.ref('products')
+						.child(
+							this.$auth.user.uid +
+								'-' +
+								slugify(img.name, { lower: true }),
+						)
+					await storageRef.put(img)
+				})
+				const urls = []
+				this.ad.images.forEach((img) => {
+					urls.push(
+						`https://firebasestorage.googleapis.com/v0/b/ogrenciden-1903.appspot.com/o/products%2F${
+							this.$auth.user.uid
+						}-${slugify(img.name, {
+							lower: true,
+						})}?alt=media&token`,
+					)
+				})
+				const productRef = this.$fire.firestore.collection('products')
+				await productRef.add({
+					title: this.ad.title,
+					university: this.ad.university,
+					campus: this.ad.campus,
+					description: this.ad.description,
+					contact: this.ad.contact,
+					price: this.ad.price,
+					images: urls,
+					user_id: this.$auth.user.uid,
+					timestamp: new Date(),
+				})
+
 				this.res = 'İlanınız başarılı bir şekilde oluşturuldu'
 				this.snackbar = true
 				this.clearAd()
-				setTimeout(() => {
-					this.advertToggle()
-					this.$router.go(0)
-				}, 500)
 			} catch (e) {
 				if (e.response?.data?.error?.includes('title')) {
 					this.clearErrorMessages()
