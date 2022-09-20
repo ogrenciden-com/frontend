@@ -133,6 +133,12 @@ export default {
 						function: undefined,
 						isExternalLink: false,
 					},
+					{
+						title: 'Aydınlatma Metni',
+						href: '/termsOfService',
+						function: undefined,
+						isExternalLink: false,
+					},
 				],
 				[
 					{

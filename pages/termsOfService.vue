@@ -345,6 +345,13 @@
 		</p>
 	</div>
 </template>
+<script>
+export default {
+	mounted() {
+		this.$vuetify.goTo(0)
+	},
+}
+</script>
 <style scoped>
 .width {
 	max-width: 1000px;
@@ -368,8 +375,8 @@ ul {
 	list-style-type: upper-roman;
 }
 li {
-	padding-top: 6px;
 	padding: 0 4px;
+	padding-top: 4px;
 	font-size: 14px;
 }
 h3 {
