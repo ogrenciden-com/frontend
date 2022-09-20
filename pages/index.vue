@@ -54,7 +54,7 @@
 				<item-list :ad="ad" />
 			</v-row>
 			<v-btn
-				v-if="!err"
+				v-if="!err && ads.length > 9"
 				color="primary"
 				height="48"
 				elevation="0"

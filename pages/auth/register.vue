@@ -5,10 +5,10 @@
 		rounded="lg"
 		max-width="410"
 		width="100%"
-		height="600"
+		height="610"
 		class="px-4 py-2"
 	>
-		<v-card-title class="justify-center mt-4">
+		<v-card-title class="justify-center pb-0">
 			<nuxt-link to="/">
 				<brand-logo />
 			</nuxt-link>
@@ -16,7 +16,7 @@
 
 		<h3 class="text-center">Kayıt Ol</h3>
 		<v-form @submit.prevent="submit">
-			<div class="mt-6">
+			<div class="mt-2">
 				<v-row dense>
 					<v-col
 						><v-text-field
@@ -109,7 +109,29 @@
 				@click:append="isShow = !isShow"
 			>
 			</v-text-field>
-			<div class="d-flex justify-center mt-2">
+			<v-checkbox v-model="termsOfService" class="mt-0 pt-0">
+				<template slot="label">
+					<span
+						class="text-caption"
+						:class="error.termsOfService && 'red--text checkbox'"
+					>
+						Kişisel verilerimin işlenmesine yönelik
+						<nuxt-link
+							to="/termsOfService"
+							:class="
+								!error.termsOfService
+									? 'black--text'
+									: 'red--text'
+							"
+							>aydınlatma metnini</nuxt-link
+						>
+						okudum ve onayladım.
+					</span>
+				</template>
+				<!-- Kişisel verilerimin işlenmesine yönelik aydınlatma metnini
+				okudum ve anladım. -->
+			</v-checkbox>
+			<div class="d-flex justify-center">
 				<v-btn
 					class="text-body-1 font-weight-bold text-transform-none py-6 px-10"
 					color="primary"
@@ -170,7 +192,9 @@ export default {
 				campus: undefined,
 				email: undefined,
 				password: undefined,
+				termsOfService: undefined,
 			},
+			termsOfService: false,
 		}
 	},
 	head() {
@@ -213,7 +237,10 @@ export default {
 			this.error.password = undefined
 		},
 		async submit() {
+			if (!this.termsOfService) return (this.error.termsOfService = true)
+
 			try {
+				this.error.termsOfService = false
 				this.loading = true
 				await this.$axios.$post('auth', this.user)
 				await this.$auth.loginWith('local', {
@@ -260,3 +287,44 @@ export default {
 	},
 }
 </script>
+<style scoped>
+@keyframes example {
+	0% {
+		transform: translateX(0px);
+		timing-function: ease-in;
+	}
+	37% {
+		transform: translateX(5px);
+		timing-function: ease-out;
+	}
+	55% {
+		transform: translateX(-5px);
+		timing-function: ease-in;
+	}
+	73% {
+		transform: translateX(4px);
+		timing-function: ease-out;
+	}
+	82% {
+		transform: translateX(-4px);
+		timing-function: ease-in;
+	}
+	91% {
+		transform: translateX(2px);
+		timing-function: ease-out;
+	}
+	96% {
+		transform: translateX(-2px);
+		timing-function: ease-in;
+	}
+	100% {
+		transform: translateX(0px);
+		timing-function: ease-in;
+	}
+}
+.checkbox {
+	position: relative;
+	animation-name: example;
+	animation-duration: 0.5s;
+}
+</style>
