@@ -238,7 +238,6 @@ export default {
 		},
 		async submit() {
 			if (!this.termsOfService) return (this.error.termsOfService = true)
-
 			try {
 				this.error.termsOfService = false
 				this.loading = true
