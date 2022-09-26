@@ -111,7 +111,7 @@ export default {
 			ads: [],
 			err: '',
 			title: 'Kampüsündeki ikinci el ilanları keşfet, al & sat',
-			limit: 3,
+			limit: 1,
 			page: 0,
 			isLoadMoreLoading: false,
 			endOfTheAds: false,
