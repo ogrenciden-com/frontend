@@ -54,7 +54,7 @@
 				<item-list :ad="ad" />
 			</v-row>
 			<v-btn
-				v-if="!err"
+				v-if="!err && ads.length > 8"
 				color="primary"
 				height="48"
 				elevation="0"
@@ -111,7 +111,7 @@ export default {
 			ads: [],
 			err: '',
 			title: 'Kampüsündeki ikinci el ilanları keşfet, al & sat',
-			limit: 1,
+			limit: 9,
 			page: 0,
 			isLoadMoreLoading: false,
 			endOfTheAds: false,
