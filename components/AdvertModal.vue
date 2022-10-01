@@ -166,7 +166,7 @@
 						class="d-flex justify-center justify-sm-space-between flex-wrap"
 					>
 						<v-sheet
-							v-for="(i, index) in 4"
+							v-for="(i, index) in 3"
 							:key="index"
 							width="130px"
 							height="130px"
