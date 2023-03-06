@@ -11,8 +11,8 @@ export default {
 		},
 		script: [
 			{
-				src: 'https://plausible.io/js/plausible.js',
-				'data-domain': 'ogrenciden-git-main-ogrenciden.vercel.app',
+				src: 'https://scripts.simpleanalyticscdn.com/latest.js',
+				'data-domain': 'https://www.ogrenciden.co',
 				defer: true,
 			},
 		],
