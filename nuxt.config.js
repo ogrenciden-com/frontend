@@ -12,8 +12,8 @@ export default {
 		script: [
 			{
 				src: 'https://scripts.simpleanalyticscdn.com/latest.js',
-				'data-domain': 'https://www.ogrenciden.co',
 				defer: true,
+				async: true,
 			},
 		],
 		// meta: [
